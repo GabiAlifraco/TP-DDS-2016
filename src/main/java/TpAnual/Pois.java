@@ -16,6 +16,14 @@ public Pois(double latitud,double longitud,String nombre,String calle,int altura
 	this.rubro=rubro;
 }
 
+public double getLatitud() {
+	return latitud;
+}
+
+public double getLongitud() {
+	return longitud;
+}
+
 public String getNombre() {
 	return nombre;
 }
