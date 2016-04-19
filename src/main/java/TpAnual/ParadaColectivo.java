@@ -2,21 +2,19 @@ package TpAnual;
 
 import java.util.List;
 
-public class ParadaColectivo implements TipoPoi  {
-
-    
-
-    private Poi parada;
-
+public class ParadaColectivo extends Poi implements TipoPoi  {
 
 	public ParadaColectivo(Poi unPoi){
-		parada = unPoi;
-		}
+		super(unPoi.getCallePrincipal(),unPoi.getAlturaPrincipal(),unPoi.getEntreLaCalle(),unPoi.getHastaLaCalle(),
+		      unPoi.getAlturaCalles(),unPoi.getPiso(),unPoi.getDepartamento(),unPoi.getUnidad(),
+		      unPoi.getCodigoPostal(),unPoi.getLocalidad(),unPoi.getBarrio(),
+		      unPoi.getProvincia(),unPoi.getPais(),unPoi.getLatitud(),unPoi.getLongitud());
+	}
     
     
 	public boolean poiCercanoAOtro(Poi unPoi) {
 		
-		return parada.calculoDistanciaEntrePois(unPoi) < 100 ;
+		return this.calculoDistanciaEntrePois(unPoi) < 100 ;
 	}
 
 	

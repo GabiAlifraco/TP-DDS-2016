@@ -34,136 +34,88 @@ public class Poi {
 			   double unaLatitud,
 			   double unaLongitud){
 		
-	this.setCallePrincipal(unaCallePrincipal);
-	this.setAlturaPrincipal(unaAlturaPrincipal);
-	this.setEntreLaCalle(entreUnaCalle);
-	this.setHastaLaCalle(hastaOtraCalle);
-	this.setAlturaCalles(unaAlturaCalles);
-	this.setPiso(unPiso);
-	this.setDepartamento(unDepartamento);
-	this.setUnidad(unaUnidad);
-	this.setCodigoPostal(unCodigoPostal);
-	this.setLocalidad(unaLocalidad);
-	this.setBarrio(unBarrio);
-	this.setProvincia(unaProvincia);
-	this.setPais(unPais);
-	this.setLatitud(unaLatitud);
-	this.setLongitud(unaLongitud);
+		this.callePrincipal = unaCallePrincipal;
+		this.alturaPrincipal = unaAlturaPrincipal;
+	    this.entreLaCalle = entreUnaCalle;
+		this.hastaLaCalle = hastaOtraCalle;
+		this.alturaCalles = unaAlturaCalles;
+		this.piso = unPiso;
+		this.departamento = unDepartamento;
+		this.unidad = unaUnidad;
+		this.codigoPostal = unCodigoPostal;
+		this.localidad = unaLocalidad;
+		this.barrio = unBarrio;
+		this.provincia = unaProvincia;
+		this.pais = unPais;
+		this.latitud = unaLatitud;
+		this.longitud = unaLongitud;
+	
 	}
-	public String getCallePrincipal() {
-		return callePrincipal;
-	}
-	public void setCallePrincipal(String callePrincipal) {
-		this.callePrincipal = callePrincipal;
-	}
+
 	public int getAlturaPrincipal() {
 		return alturaPrincipal;
 	}
-	public void setAlturaPrincipal(int alturaPrincipal) {
-		this.alturaPrincipal = alturaPrincipal;
-	}
-	public String getEntreLaCalle() {
-		return entreLaCalle;
-	}
-	public void setEntreLaCalle(String entreLaCalle) {
-		this.entreLaCalle = entreLaCalle;
-	}
-	public String getHastaLaCalle() {
-		return hastaLaCalle;
-	}
-	public void setHastaLaCalle(String hastaLaCalle) {
-		this.hastaLaCalle = hastaLaCalle;
-	}
-	public int getAlturaCalles() {
+
+    public int getAlturaCalles() {
 		return alturaCalles;
 	}
-	public void setAlturaCalles(int alturaCalles) {
-		this.alturaCalles = alturaCalles;
+    
+    public double getLatitud(){
+    	return latitud;
+    }
+    public double getLongitud(){
+    	return longitud;
+    }
+    public String getCallePrincipal() {
+		return callePrincipal;
 	}
-	public int getPiso() {
+    public String getEntreLaCalle() {
+		return entreLaCalle;
+	}
+    public String getHastaLaCalle() {
+		return hastaLaCalle;
+	}
+    public int getPiso() {
 		return piso;
 	}
-	public void setPiso(int piso) {
-		this.piso = piso;
-	}
-	public int getUnidad() {
-		return unidad;
-	}
-	public void setUnidad(int unaUnidad) {
-		this.unidad = unaUnidad;
-	}
-	public int getDepartamento() {
+    public int getDepartamento() {
 		return departamento;
 	}
-	public void setDepartamento(int departamento) {
-		this.departamento = departamento;
+    public int getUnidad() {
+		return unidad;
 	}
-	public String getLocalidad() {
-		return localidad;
-	}
-	public void setLocalidad(String localidad) {
-		this.localidad = localidad;
-	}
-	public int getCodigoPostal() {
+    public int getCodigoPostal() {
 		return codigoPostal;
 	}
-	public void setCodigoPostal(int codigoPostal) {
-		this.codigoPostal = codigoPostal;
+    public String getLocalidad() {
+		return localidad;
 	}
-	public String getBarrio() {
+    public String getBarrio() {
 		return barrio;
 	}
-	public void setBarrio(String barrio) {
-		this.barrio = barrio;
-	}
-	public String getProvincia() {
+    public String getProvincia() {
 		return provincia;
 	}
-	public void setProvincia(String provincia) {
-		this.provincia = provincia;
-	}
-	public String getPais() {
+    public String getPais() {
 		return pais;
 	}
-	public void setPais(String pais) {
-		this.pais = pais;
-	}
-	public double getLatitud() {
-		return latitud;
-	}
-	public void setLatitud(double latitud) {
-		this.latitud = latitud;
-	}
-	public double getLongitud() {
-		return longitud;
-	}
-	public void setLongitud(double longitud) {
-		this.longitud = longitud;
-	}
+    
+    public int diferenciaAlturas(int altura1,int altura2){
+    	if(altura1>altura2){
+    		return altura1-altura2;
+    	}
+    	else{
+    		return altura2-altura1;
+    	}
+     }
+    
+    public int calculoDistanciaEntrePois(Poi unPoi){
+    	return this.diferenciaAlturas(this.getAlturaPrincipal(), unPoi.getAlturaPrincipal()) +
+    		   this.diferenciaAlturas(this.getAlturaCalles(), unPoi.getAlturaCalles());	
+    }
+
 	
-	public int diferenciaAlturaPrincipalDePois(Poi unPoi){
-		if(this.getAlturaPrincipal() > unPoi.getAlturaPrincipal()){
-			return this.getAlturaPrincipal() - unPoi.getAlturaPrincipal();
-		}
-		else{
-			return unPoi.getAlturaPrincipal() - this.getAlturaPrincipal();
-		}
-			
-	}
-	
-	public int diferenciaAlturaCallesDePois(Poi unPoi){
-		if(this.getAlturaCalles() > unPoi.getAlturaCalles()){
-			return this.getAlturaCalles() - unPoi.getAlturaCalles();
-		}
-		else{
-			return unPoi.getAlturaCalles() - this.getAlturaCalles();
-		}
-			
-	}
-	
-	public int calculoDistanciaEntrePois(Poi unPoi){
-		return this.diferenciaAlturaPrincipalDePois(unPoi) + this.diferenciaAlturaCallesDePois(unPoi);
-	}
+
 	
 	
 }
