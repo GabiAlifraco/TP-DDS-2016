@@ -141,16 +141,29 @@ public class Poi {
 		this.longitud = longitud;
 	}
 	
-	public int sumaAlturaPoi(){
-		return this.getAlturaPrincipal() + this.getAlturaCalles();
-	}
-	
-	public int calculoDifAlturaEntrePois(Poi unPoi){
-		if(this.sumaAlturaPoi() > unPoi.sumaAlturaPoi()){
-			return this.sumaAlturaPoi() - unPoi.sumaAlturaPoi();
+	public int diferenciaAlturaPrincipalDePois(Poi unPoi){
+		if(this.getAlturaPrincipal() > unPoi.getAlturaPrincipal()){
+			return this.getAlturaPrincipal() - unPoi.getAlturaPrincipal();
 		}
 		else{
-			return unPoi.sumaAlturaPoi() - this.sumaAlturaPoi();
+			return unPoi.getAlturaPrincipal() - this.getAlturaPrincipal();
 		}
+			
 	}
+	
+	public int diferenciaAlturaCallesDePois(Poi unPoi){
+		if(this.getAlturaCalles() > unPoi.getAlturaCalles()){
+			return this.getAlturaCalles() - unPoi.getAlturaCalles();
+		}
+		else{
+			return unPoi.getAlturaCalles() - this.getAlturaCalles();
+		}
+			
+	}
+	
+	public int calculoDistanciaEntrePois(Poi unPoi){
+		return this.diferenciaAlturaPrincipalDePois(unPoi) + this.diferenciaAlturaCallesDePois(unPoi);
+	}
+	
+	
 }

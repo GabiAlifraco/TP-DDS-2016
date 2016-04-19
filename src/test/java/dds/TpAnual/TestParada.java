@@ -18,7 +18,7 @@ public class TestParada {
 		public void initialize(){
 			parada114 = new Poi("Arenales",1300,"Santa Fe","Junin",2000,0,0,0,1111,"CABA","Recoleta","Buenos Aires",
 					           "Argentina",32.43,54.12);
-			juan = new Poi("Arenales",1700,"Santa Fe","Junin",2000,0,0,0,1111,"CABA","Recoleta","Buenos Aires",
+			juan = new Poi("Arenales",1350,"Santa Fe","Junin",2000,0,0,0,1111,"CABA","Recoleta","Buenos Aires",
 			               "Argentina",32.43,54.12);
 			unaParada = new ParadaColectivo(parada114);
 			
@@ -26,12 +26,12 @@ public class TestParada {
 		
 		@Test
 		public void juanEstaCercaDel114(){
-			Assert.assertEquals(false,unaParada.poiCercanoAOtro(juan));
+			Assert.assertEquals(true,unaParada.poiCercanoAOtro(juan));
 		}
 		
 		@Test
 		public void distanciaEntreJuanYLaParada114(){
-			Assert.assertEquals(400, parada114.calculoDifAlturaEntrePois(juan));
+			Assert.assertEquals(50, parada114.calculoDistanciaEntrePois(juan));
 		}
 }
 

@@ -16,7 +16,7 @@ public class CGP implements TipoPoi {
 	
     public boolean poiCercanoAOtro(Poi unPoi) {
 		
-		return false;
+    	return unCGP.getLatitud() == unPoi.getLatitud() && unCGP.getLongitud() == unPoi.getLongitud();
 	}
 
 	

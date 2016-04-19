@@ -12,7 +12,7 @@ public class Banco implements TipoPoi {
 	}
 	public boolean poiCercanoAOtro(Poi unPoi) {
 		
-		return false;
+		return unBanco.calculoDistanciaEntrePois(unPoi) < 500;
 	}
 
 	

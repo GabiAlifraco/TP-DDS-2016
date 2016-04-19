@@ -16,7 +16,7 @@ public class ParadaColectivo implements TipoPoi  {
     
 	public boolean poiCercanoAOtro(Poi unPoi) {
 		
-		return parada.calculoDifAlturaEntrePois(unPoi) < 100 ;
+		return parada.calculoDistanciaEntrePois(unPoi) < 100 ;
 	}
 
 	

@@ -3,7 +3,7 @@ package TpAnual;
 import java.util.List;
 
 
-public class Comercio implements TipoPoi{
+public abstract class Comercio implements TipoPoi{
 
 	private Poi unComercio;
 
@@ -13,10 +13,9 @@ public class Comercio implements TipoPoi{
 	}
 
 	
-	public boolean poiCercanoAOtro(Poi unPoi) {
+	public abstract boolean poiCercanoAOtro(Poi unPoi);
 		
-		return false;
-	}
+		
 
 	
 	public boolean poiEstaDisponible() {
