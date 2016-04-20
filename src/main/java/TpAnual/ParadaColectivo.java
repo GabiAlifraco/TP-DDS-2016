@@ -2,19 +2,19 @@ package TpAnual;
 
 import java.util.List;
 
-public class ParadaColectivo extends Poi implements TipoPoi  {
+import org.uqbar.geodds.Point;
 
-	public ParadaColectivo(Poi unPoi){
-		super(unPoi.getCallePrincipal(),unPoi.getAlturaPrincipal(),unPoi.getEntreLaCalle(),unPoi.getHastaLaCalle(),
-		      unPoi.getAlturaCalles(),unPoi.getPiso(),unPoi.getDepartamento(),unPoi.getUnidad(),
-		      unPoi.getCodigoPostal(),unPoi.getLocalidad(),unPoi.getBarrio(),
-		      unPoi.getProvincia(),unPoi.getPais(),unPoi.getLatitud(),unPoi.getLongitud());
+public class ParadaColectivo implements TipoPoi {
+
+	private Point coordenada;
+
+
+	public ParadaColectivo(Point unaCoordenada){
+	  coordenada = unaCoordenada;
 	}
-    
-    
-	public boolean poiCercanoAOtro(Poi unPoi) {
+	public boolean poiCercanoAOtro(Point otraCoordenada) {
 		
-		return this.calculoDistanciaEntrePois(unPoi) < 100 ;
+		return this.coordenada.distance(otraCoordenada) < 100;
 	}
 
 	
@@ -28,5 +28,7 @@ public class ParadaColectivo extends Poi implements TipoPoi  {
 		
 		return null;
 	}
+	
+	
 
 }

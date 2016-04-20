@@ -2,18 +2,22 @@ package TpAnual;
 
 import java.util.List;
 
-public class CGP extends Poi implements TipoPoi {
+import org.uqbar.geodds.Point;
+import org.uqbar.geodds.Polygon;
 
-	public CGP(Poi unPoi){
-		super(unPoi.getCallePrincipal(),unPoi.getAlturaPrincipal(),unPoi.getEntreLaCalle(),unPoi.getHastaLaCalle(),
-		      unPoi.getAlturaCalles(),unPoi.getPiso(),unPoi.getDepartamento(),unPoi.getUnidad(),
-		      unPoi.getCodigoPostal(),unPoi.getLocalidad(),unPoi.getBarrio(),
-		      unPoi.getProvincia(),unPoi.getPais(),unPoi.getLatitud(),unPoi.getLongitud());
+public class CGP implements TipoPoi{
+
+    private Point coordenada;
+	private Polygon zona;
+	public CGP (Point unaCoordenada,Polygon unaZona){
+		coordenada = unaCoordenada;
+		zona = unaZona;
 	}
 	
-    public boolean poiCercanoAOtro(Poi unPoi) {
+	
+	public boolean poiCercanoAOtro(Point otraCoordenada) {
 		
-    	return this.getLatitud() == unPoi.getLatitud() && this.getLongitud() == unPoi.getLongitud();
+		return this.zona.isInside(coordenada);
 	}
 
 	
@@ -27,7 +31,5 @@ public class CGP extends Poi implements TipoPoi {
 		
 		return null;
 	}
-	
-
 
 }

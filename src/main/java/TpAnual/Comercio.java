@@ -2,25 +2,27 @@ package TpAnual;
 
 import java.util.List;
 
+import org.uqbar.geodds.Point;
 
-public abstract class Comercio extends Poi implements TipoPoi{
+public class Comercio implements TipoPoi{
 
-	public Comercio(Poi unPoi){
-		super(unPoi.getCallePrincipal(),unPoi.getAlturaPrincipal(),unPoi.getEntreLaCalle(),unPoi.getHastaLaCalle(),
-		      unPoi.getAlturaCalles(),unPoi.getPiso(),unPoi.getDepartamento(),unPoi.getUnidad(),
-		      unPoi.getCodigoPostal(),unPoi.getLocalidad(),unPoi.getBarrio(),
-		      unPoi.getProvincia(),unPoi.getPais(),unPoi.getLatitud(),unPoi.getLongitud());
+	private Point coordenada;
+	public Comercio(Point unaCoordenada){
+		coordenada = unaCoordenada;
+	}
+	
+	public boolean poiCercanoAOtro(Point otraCoordenada) {
+		
+		return false;
 	}
 
-	
-	public abstract boolean poiCercanoAOtro(Poi unPoi);
-		
+	@Override
 	public boolean poiEstaDisponible() {
 		
 		return false;
 	}
 
-	
+	@Override
 	public List<Poi> busquedaDePuntos(String unaBusqueda) {
 		
 		return null;

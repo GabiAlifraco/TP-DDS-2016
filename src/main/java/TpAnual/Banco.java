@@ -2,24 +2,23 @@ package TpAnual;
 
 import java.util.List;
 
-public class Banco extends Poi implements TipoPoi  {
+import org.uqbar.geodds.Point;
 
-	public Banco(Poi unPoi){
-		super(unPoi.getCallePrincipal(),unPoi.getAlturaPrincipal(),unPoi.getEntreLaCalle(),unPoi.getHastaLaCalle(),
-		      unPoi.getAlturaCalles(),unPoi.getPiso(),unPoi.getDepartamento(),unPoi.getUnidad(),
-		      unPoi.getCodigoPostal(),unPoi.getLocalidad(),unPoi.getBarrio(),
-		      unPoi.getProvincia(),unPoi.getPais(),unPoi.getLatitud(),unPoi.getLongitud());
+public class Banco implements TipoPoi {
+
+	private Point coordenada;
+	
+	public Banco(Point unaCoordenada){
+		coordenada = unaCoordenada;
 	}
-
-
-	public boolean poiCercanoAOtro(Poi unPoi) {
+	public boolean poiCercanoAOtro(Point otraCoordenada) {
 		
-		return this.calculoDistanciaEntrePois(unPoi) < 500;
+		return this.coordenada.distance(otraCoordenada) < 500;
 	}
 
 	
 	public boolean poiEstaDisponible() {
-	
+		
 		return false;
 	}
 
