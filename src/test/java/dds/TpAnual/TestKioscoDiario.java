@@ -1,10 +1,13 @@
 package dds.TpAnual;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.*;
 
-
+import TpAnual.Disponibilidad;
 import TpAnual.Domicilio;
 import TpAnual.KioscoDiario;
 import TpAnual.ParadaColectivo;
@@ -19,18 +22,21 @@ public class TestKioscoDiario {
 	private Region regionKiosco;
 	private Point coordenadaKiosco;
 	private KioscoDiario elDiarioDelPueblo;
+	private Disponibilidad disponibilidadKioscoDiario;
+	private List<String> diasDeAtencionKioscoDiario = Arrays.asList("Lunes","Martes","Miercoles","Jueves","Viernes");
 
 	@Before
 	public void initialize(){
 		domicilioParada = new Domicilio("Av.Monroe",1540 , "Olazabal", "Virrey del Pino", 1900, 0, 0, 0, 1111);
 		regionParada = new Region("CABA", "Palermo", "Bs As", "Argentina");
 		coordenadaParada = new Point(10.2758,16.2148);
-		parada114 = new ParadaColectivo(domicilioParada, regionParada, coordenadaParada);
+		parada114 = new ParadaColectivo(domicilioParada, regionParada, coordenadaParada,"114");
 		
 		domicilioKiosco = new Domicilio("Av.Monroe",1740 , "Olazabal", "Virrey del Pino", 1900, 0, 0, 0, 1111);
 		regionKiosco = new Region("CABA", "Palermo", "Bs As", "Argentina");
 		coordenadaKiosco = new Point(10.2478,14.2547);
-		elDiarioDelPueblo = new KioscoDiario(domicilioKiosco, regionKiosco, coordenadaKiosco);
+		disponibilidadKioscoDiario = new Disponibilidad ("06:00","12:00");
+		elDiarioDelPueblo = new KioscoDiario("El diario del pueblo", domicilioKiosco, regionKiosco, coordenadaKiosco,diasDeAtencionKioscoDiario,disponibilidadKioscoDiario);
 	}
 	
 	@Test
