@@ -14,20 +14,15 @@ public class ParadaColectivo implements Poi {
 	private String linea;
     
     
-	public ParadaColectivo(Domicilio unDomicilio,Region unaRegion,Point unaCoordenada){
+	public ParadaColectivo(Domicilio unDomicilio,Region unaRegion,Point unaCoordenada, String unaLinea){
 	  coordenada = unaCoordenada;
 	  setDomicilio(unDomicilio);
 	  setRegion(unaRegion);
+	  setLinea(unaLinea);
 	  }
 	public boolean poiCercanoAOtro(Point otraCoordenada) {
 		
 		return this.coordenada.distance(otraCoordenada) < 100;
-	}
-
-	
-	public boolean poiEstaDisponible() {
-		
-		return false;
 	}
 
 	public Domicilio getDomicilio() {
@@ -57,7 +52,13 @@ public class ParadaColectivo implements Poi {
 		return linea;
 	}
 
-	@Override
+	public boolean estaDisponible(String dia, String hora) {
+		return true;
+	}
+	
+	public String getNombre() {
+		return linea;
+	}
 	public boolean textoIncluido(String texto) {
 		return linea.contains(texto) || palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));
 	}

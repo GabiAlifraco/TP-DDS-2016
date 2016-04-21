@@ -9,18 +9,19 @@ public abstract class Comercio implements Poi{
 	protected Point coordenada;
     private Domicilio domicilio;
     private Region region;
+    private String nombre;
+    
+    
 
-	public Comercio(Domicilio unDomicilio,Region unaRegion,Point unaCoordenada){
+	public Comercio(String unNombre,Domicilio unDomicilio,Region unaRegion,Point unaCoordenada){
 	  setCoordenada(unaCoordenada);
 	  setDomicilio(unDomicilio);
 	  setRegion(unaRegion);
+	  this.nombre = unNombre;
 	  }
 	
 	public abstract boolean poiCercanoAOtro(Point otraCoordenada);
-		
-    public boolean poiEstaDisponible() {
-		return false;
-	}
+	
 
 	
 	public List<Poi> busquedaDePuntos(String unaBusqueda) {
@@ -50,5 +51,9 @@ public abstract class Comercio implements Poi{
 	public void setRegion(Region region) {
 		this.region = region;
 	}
+	public String getNombre() {
+		return nombre;
+	}
+
 
 }

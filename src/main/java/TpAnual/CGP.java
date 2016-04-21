@@ -1,5 +1,6 @@
 package TpAnual;
 
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,26 +13,25 @@ public class CGP implements Poi{
 	private Domicilio domicilio;
 	private Region region;
 	List<String> palabrasClave = Arrays.asList("Rentas"); // Hay que cambiarlo
-
+	private List<String> diasDeAtencion;
+	private String nombre;
+    private Disponibilidad horarioDeAtencion;
     
 	private Polygon zona;
-	public CGP (Domicilio unDomicilio,Region unaRegion,Point unaCoordenada,Polygon unaZona){
+	public CGP (String unNombre, Domicilio unDomicilio,Region unaRegion,Point unaCoordenada,Polygon unaZona,List<String> unosDiasDeAtencion, Disponibilidad unHorarioDeAtencion){
 		setCoordenada(unaCoordenada);
 		setZona(unaZona);
 		setRegion(unaRegion);
 		setDomicilio(unDomicilio);
+		this.nombre = unNombre;
+		this.diasDeAtencion= unosDiasDeAtencion;
+		this.horarioDeAtencion= unHorarioDeAtencion;
 	}
 	
 	
 	public boolean poiCercanoAOtro(Point otraCoordenada) {
 		return this.zona.isInside(coordenada);
 		
-	}
-
-	
-	public boolean poiEstaDisponible() {
-		
-		return false;
 	}
 
 	public Region getRegion() {
@@ -73,9 +73,21 @@ public class CGP implements Poi{
 		this.zona = zona;
 	}
 	
+	public String getNombre() {
+		return nombre;
+	}
+	
 	public boolean textoIncluido(String texto) {
 		return palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));
 	}
+
+	public boolean estaDisponible(String dia, String hora) {
+		return diasDeAtencion.contains(dia)&& this.horarioDentroDelRango(hora);
+	}
+	public boolean horarioDentroDelRango(String hora){
+		return (horarioDeAtencion.getHorarioInicial().isBefore(LocalTime.parse(hora)) && horarioDeAtencion.getHorarioFinal().isAfter(LocalTime.parse(hora)));
+	}
+
 	
 
 }

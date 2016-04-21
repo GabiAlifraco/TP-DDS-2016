@@ -16,9 +16,9 @@ public class Sistema {
 		return false;
 	}
 
-	public boolean poiEstaDisponible() {
+	public boolean poiEstaDisponible(String nombreServicio, String dia, String hora) {
+		return (pois.stream().filter(poi -> poi.getNombre()== nombreServicio)).anyMatch(poi -> poi.estaDisponible(dia,hora));
 
-		return false;
 	}
 
 	public List<Poi> busquedaDePuntos(String unaBusqueda){

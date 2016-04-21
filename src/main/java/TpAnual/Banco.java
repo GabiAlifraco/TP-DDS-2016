@@ -1,5 +1,6 @@
 package TpAnual;
 
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,22 +11,23 @@ public class Banco implements Poi {
 	private Point coordenada;
     private Domicilio domicilio;
     private Region region;
+    private String nombre;
     List<String> palabrasClave = Arrays.asList("Cajero automatico", "Deposito");
+    private List<String> diasDeAtencion;
+    private Disponibilidad horarioDeAtencion;
+    
 
-	public Banco(Domicilio unDomicilio,Region unaRegion,Point unaCoordenada){
+	public Banco(String unNombre,Domicilio unDomicilio,Region unaRegion,Point unaCoordenada, List<String> diasDeAtencion,Disponibilidad unHorarioDeAtencion){
 	  setCoordenada(unaCoordenada);
 	  setDomicilio(unDomicilio);
 	  setRegion(unaRegion);
+	  this.diasDeAtencion=diasDeAtencion;
+	  this.horarioDeAtencion=unHorarioDeAtencion;
+	  this.nombre = unNombre;
 	  }
 	public boolean poiCercanoAOtro(Point otraCoordenada) {
 		
 		return this.coordenada.distance(otraCoordenada) < 500;
-	}
-
-	
-	public boolean poiEstaDisponible() {
-		
-		return false;
 	}
 
 	public Region getRegion() {
@@ -46,8 +48,19 @@ public class Banco implements Poi {
 	public void setCoordenada(Point coordenada) {
 		this.coordenada = coordenada;
 	}
+	
+	public String getNombre() {
+		return nombre;
+	}
 	public boolean textoIncluido(String texto){
 		return palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));
 	}
+	public boolean estaDisponible(String dia,String hora){
+		return diasDeAtencion.contains(dia) && this.horaDentroDelRango(hora);
+	}
+	private boolean horaDentroDelRango(String hora) {
+		return (horarioDeAtencion.getHorarioInicial().isBefore(LocalTime.parse(hora)) && horarioDeAtencion.getHorarioFinal().isAfter(LocalTime.parse(hora)));
+	}
+	
 
 }
