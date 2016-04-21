@@ -1,5 +1,6 @@
 package TpAnual;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.uqbar.geodds.Point;
@@ -9,6 +10,9 @@ public class ParadaColectivo implements Poi {
 	private Point coordenada;
     private Domicilio domicilio;
     private Region region;
+    List<String> palabrasClave = Arrays.asList("Colectivo", "Parada");
+	private String linea;
+    
     
 	public ParadaColectivo(Domicilio unDomicilio,Region unaRegion,Point unaCoordenada){
 	  coordenada = unaCoordenada;
@@ -26,11 +30,6 @@ public class ParadaColectivo implements Poi {
 		return false;
 	}
 
-	
-	public List<Poi> busquedaDePuntos(String unaBusqueda) {
-		
-		return null;
-	}
 	public Domicilio getDomicilio() {
 		return domicilio;
 	}
@@ -50,6 +49,17 @@ public class ParadaColectivo implements Poi {
 		this.coordenada = coordenada;
 	}
 	
-	
+	public void setLinea(String linea) {
+		this.linea = linea;
+	}
+
+	public String getLinea() {
+		return linea;
+	}
+
+	@Override
+	public boolean textoIncluido(String texto) {
+		return linea.contains(texto) || palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));
+	}
 
 }

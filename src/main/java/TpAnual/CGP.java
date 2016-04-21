@@ -1,5 +1,6 @@
 package TpAnual;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.uqbar.geodds.Point;
@@ -10,6 +11,8 @@ public class CGP implements Poi{
 	private Point coordenada;
 	private Domicilio domicilio;
 	private Region region;
+	List<String> palabrasClave = Arrays.asList("Rentas"); // Hay que cambiarlo
+
     
 	private Polygon zona;
 	public CGP (Domicilio unDomicilio,Region unaRegion,Point unaCoordenada,Polygon unaZona){
@@ -30,13 +33,6 @@ public class CGP implements Poi{
 		
 		return false;
 	}
-
-	
-	public List<Poi> busquedaDePuntos(String unaBusqueda) {
-		
-		return null;
-	}
-
 
 	public Region getRegion() {
 		return region;
@@ -76,5 +72,10 @@ public class CGP implements Poi{
 	public void setZona(Polygon zona) {
 		this.zona = zona;
 	}
+	
+	public boolean textoIncluido(String texto) {
+		return palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));
+	}
+	
 
 }

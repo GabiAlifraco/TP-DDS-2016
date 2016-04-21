@@ -1,5 +1,6 @@
 package TpAnual;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.uqbar.geodds.Point;
@@ -9,6 +10,7 @@ public class Banco implements Poi {
 	private Point coordenada;
     private Domicilio domicilio;
     private Region region;
+    List<String> palabrasClave = Arrays.asList("Cajero automatico", "Deposito");
 
 	public Banco(Domicilio unDomicilio,Region unaRegion,Point unaCoordenada){
 	  setCoordenada(unaCoordenada);
@@ -26,11 +28,6 @@ public class Banco implements Poi {
 		return false;
 	}
 
-	
-	public List<Poi> busquedaDePuntos(String unaBusqueda) {
-		
-		return null;
-	}
 	public Region getRegion() {
 		return region;
 	}
@@ -48,6 +45,9 @@ public class Banco implements Poi {
 	}
 	public void setCoordenada(Point coordenada) {
 		this.coordenada = coordenada;
+	}
+	public boolean textoIncluido(String texto){
+		return palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));
 	}
 
 }
