@@ -22,12 +22,6 @@ public abstract class Comercio implements Poi{
 	
 	public abstract boolean poiCercanoAOtro(Point otraCoordenada);
 	
-
-	
-	public List<Poi> busquedaDePuntos(String unaBusqueda) {
-		return null;
-	}
-
 	public Point getCoordenada() {
 		return coordenada;
 	}
