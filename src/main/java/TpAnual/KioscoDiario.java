@@ -14,4 +14,10 @@ public class KioscoDiario extends Comercio {
 		return this.coordenada.distance(otraCoordenada) < 500;
 	}
 
+	@Override
+	public boolean textoIncluido(String texto) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

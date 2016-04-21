@@ -12,6 +12,12 @@ public class Libreria extends Comercio {
 	public boolean poiCercanoAOtro(Point otraCoordenada) {
 		return this.coordenada.distance(otraCoordenada) < 200;
 	}
+
+	@Override
+	public boolean textoIncluido(String texto) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 	
 
