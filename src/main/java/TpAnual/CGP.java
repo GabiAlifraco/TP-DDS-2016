@@ -12,16 +12,16 @@ public class CGP implements Poi{
     private Point coordenada;
 	private Polygon zona;
 	public CGP (Domicilio unDomicilio,Region unaRegion,Point unaCoordenada,Polygon unaZona){
-		coordenada = unaCoordenada;
-		zona = unaZona;
+		setCoordenada(unaCoordenada);
+		setZona(unaZona);
 		setRegion(unaRegion);
 		setDomicilio(unDomicilio);
 	}
 	
 	
 	public boolean poiCercanoAOtro(Point otraCoordenada) {
-		
 		return this.zona.isInside(coordenada);
+		
 	}
 
 	
@@ -54,6 +54,26 @@ public class CGP implements Poi{
 
 	public void setDomicilio(Domicilio domicilio) {
 		this.domicilio = domicilio;
+	}
+
+
+	public Point getCoordenada() {
+		return coordenada;
+	}
+
+
+	public void setCoordenada(Point coordenada) {
+		this.coordenada = coordenada;
+	}
+
+
+	public Polygon getZona() {
+		return zona;
+	}
+
+
+	public void setZona(Polygon zona) {
+		this.zona = zona;
 	}
 
 }

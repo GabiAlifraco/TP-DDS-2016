@@ -11,7 +11,7 @@ public class Banco implements Poi {
     private Region region;
 
 	public Banco(Domicilio unDomicilio,Region unaRegion,Point unaCoordenada){
-	  coordenada = unaCoordenada;
+	  setCoordenada(unaCoordenada);
 	  setDomicilio(unDomicilio);
 	  setRegion(unaRegion);
 	  }
@@ -42,6 +42,12 @@ public class Banco implements Poi {
 	}
 	public void setDomicilio(Domicilio domicilio) {
 		this.domicilio = domicilio;
+	}
+	public Point getCoordenada() {
+		return coordenada;
+	}
+	public void setCoordenada(Point coordenada) {
+		this.coordenada = coordenada;
 	}
 
 }

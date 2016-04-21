@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.uqbar.geodds.Point;
 
-public class Comercio implements Poi{
+public abstract class Comercio implements Poi{
 
-	private Point coordenada;
+	protected Point coordenada;
     private Domicilio domicilio;
     private Region region;
 
@@ -16,20 +16,14 @@ public class Comercio implements Poi{
 	  setRegion(unaRegion);
 	  }
 	
-	public boolean poiCercanoAOtro(Point otraCoordenada) {
+	public abstract boolean poiCercanoAOtro(Point otraCoordenada);
 		
+    public boolean poiEstaDisponible() {
 		return false;
 	}
 
-	@Override
-	public boolean poiEstaDisponible() {
-		
-		return false;
-	}
-
-	@Override
+	
 	public List<Poi> busquedaDePuntos(String unaBusqueda) {
-		
 		return null;
 	}
 
