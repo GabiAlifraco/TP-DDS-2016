@@ -6,10 +6,10 @@ import org.uqbar.geodds.Point;
 
 public class ParadaColectivo implements Poi {
 
-	
+	private Point coordenada;
     private Domicilio domicilio;
     private Region region;
-    private Point coordenada;
+    
 	public ParadaColectivo(Domicilio unDomicilio,Region unaRegion,Point unaCoordenada){
 	  coordenada = unaCoordenada;
 	  setDomicilio(unDomicilio);

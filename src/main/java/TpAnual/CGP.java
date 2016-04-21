@@ -6,10 +6,11 @@ import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
 public class CGP implements Poi{
-
+	
+	private Point coordenada;
 	private Domicilio domicilio;
 	private Region region;
-    private Point coordenada;
+    
 	private Polygon zona;
 	public CGP (Domicilio unDomicilio,Region unaRegion,Point unaCoordenada,Polygon unaZona){
 		setCoordenada(unaCoordenada);
