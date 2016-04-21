@@ -1,37 +1,39 @@
 package TpAnual;
 
 import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.List;
 
 import org.uqbar.geodds.Point;
 
 public class Libreria extends Comercio {
 	private List<String> diasDeAtencion;
-    private Disponibilidad horarioDeAtencion;
+	private Disponibilidad horarioDeAtencion;
+	List<String> palabrasClave = Arrays.asList("Cuadernos", "Libros", "Lapiceras");
 
-	public Libreria(String unNombre,Domicilio unDomicilio,Region unaRegion,Point unaCoordenada,List<String> diasDeAtencion, Disponibilidad horarioDeAtencion) {
-		super(unNombre,unDomicilio, unaRegion, unaCoordenada);
-		this.diasDeAtencion= diasDeAtencion;
+	public Libreria(String unNombre, Domicilio unDomicilio, Region unaRegion, Point unaCoordenada,
+			List<String> diasDeAtencion, Disponibilidad horarioDeAtencion) {
+		super(unNombre, unDomicilio, unaRegion, unaCoordenada);
+		this.diasDeAtencion = diasDeAtencion;
 		this.horarioDeAtencion = horarioDeAtencion;
 	}
-	
+
 	public boolean poiCercanoAOtro(Point otraCoordenada) {
 		return this.coordenada.distance(otraCoordenada) < 200;
 	}
 
 	@Override
 	public boolean textoIncluido(String texto) {
-		// TODO Auto-generated method stub
-		return false;
+		return palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));
 	}
+
 	public boolean estaDisponible(String dia, String hora) {
 		return diasDeAtencion.contains(dia) && this.horaDentroDelRango(hora);
 	}
 
-	public boolean horaDentroDelRango(String hora){
-		return (horarioDeAtencion.getHorarioInicial().isBefore(LocalTime.parse(hora)) && horarioDeAtencion.getHorarioFinal().isAfter(LocalTime.parse(hora)));
+	public boolean horaDentroDelRango(String hora) {
+		return (horarioDeAtencion.getHorarioInicial().isBefore(LocalTime.parse(hora))
+				&& horarioDeAtencion.getHorarioFinal().isAfter(LocalTime.parse(hora)));
 	}
-	
-	
 
 }

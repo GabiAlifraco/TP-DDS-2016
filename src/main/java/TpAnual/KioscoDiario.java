@@ -1,6 +1,7 @@
 package TpAnual;
 
 import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.List;
 
 import org.uqbar.geodds.Point;
@@ -8,6 +9,8 @@ import org.uqbar.geodds.Point;
 public class KioscoDiario extends Comercio {
 	private List<String> diasDeAtencion;
     private Disponibilidad horarioDeAtencion;
+    List<String> palabrasClave = Arrays.asList("Revistas", "Diarios", "Crucigrama");
+
 
 	
 	public KioscoDiario(String unNombre,Domicilio unDomicilio,Region unaRegion,Point unaCoordenada,List<String> diasDeAtencion, Disponibilidad horarioDeAtencion) {
@@ -24,9 +27,9 @@ public class KioscoDiario extends Comercio {
 
 	@Override
 	public boolean textoIncluido(String texto) {
-		// TODO Auto-generated method stub
-		return false;
+		return palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));
 	}
+
 
 	public boolean estaDisponible(String dia, String hora) {
 		return diasDeAtencion.contains(dia) && this.horaDentroDelRango(hora);
