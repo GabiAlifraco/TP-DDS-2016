@@ -4,42 +4,39 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.*;
 
+import TpAnual.Banco;
 import TpAnual.Domicilio;
 import TpAnual.ParadaColectivo;
 import TpAnual.Poi;
 import TpAnual.Region;
 public class TestParada {
 
-	private Domicilio unDomicilio;
-	private Region unaRegion;
-	private Point unaCoordenada;
-	private Poi unaParada;
-	private Domicilio domicilioJuan;
-	private Region regionJuan;
-	private Point coordenadaJuan;
-	private Poi juan;
+	private Region regionParada;
+	private Domicilio domicilioParada;
+	private Point coordenadaParada;
 	private ParadaColectivo parada114;
+	private Domicilio domicilioBanco;
+	private Region regionBanco;
+	private Point coordenadaBanco;
+	private Banco bancoSantander;
 
 	@Before
 	public void initialize(){
-		unDomicilio = new Domicilio("Arenales", 1100, "Riobamba", "Lima", 2000, 0, 0, 0, 1112);
-		unaRegion = new Region("CABA","Villa Bosch","Bs As", "Argentina");
-		unaCoordenada = new Point(32.4354, 35.1264);
-		unaParada = new Poi(unDomicilio, unaRegion, unaCoordenada);
-		parada114 = new ParadaColectivo(unaCoordenada);
-		domicilioJuan = new Domicilio("Arenales", 1145,"Av.Las Heras","Riobamba", 2133, 3, 10, 2, 1123);
-		regionJuan = new Region("CABA","Recoleta","Bs As","Argentina");
-		coordenadaJuan = new Point(33.4264,32.6576);
-		juan = new Poi(domicilioJuan, regionJuan, coordenadaJuan);
+		domicilioParada = new Domicilio("Arenales",1141 , "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
+		regionParada = new Region("CABA", "Recoleta", "Bs As", "Argentina");
+		coordenadaParada = new Point(34.4353,25.4632);
+		parada114 = new ParadaColectivo(domicilioParada, regionParada, coordenadaParada);
+		
+		domicilioBanco = new Domicilio("Arenales",1245 , "M.T.De.Alvear", "Santa Fe", 2100, 0, 0, 0, 1111);
+		regionBanco = new Region("CABA", "Recoleta", "Bs As", "Argentina");
+		coordenadaBanco = new Point(34.3243,24.4657);
+		bancoSantander = new Banco(domicilioBanco, regionBanco, coordenadaBanco);
 	}
 	
 	@Test
-	public void juanEstaCercaDeLaParada114(){
-		Assert.assertEquals(false,parada114.poiCercanoAOtro(coordenadaJuan));
+	public void estaCercaElBancoDeLaParada(){
+		Assert.assertEquals(true,parada114.poiCercanoAOtro(coordenadaBanco));
 	}
 	
-	@Test
-	public void distanciaEntreJuanYParda114(){
-		Assert.assertEquals(255.39433377124993,unaParada.getCoordenada().distance(coordenadaJuan),0);
-	}
+	
 }
