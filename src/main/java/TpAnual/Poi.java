@@ -7,9 +7,11 @@ public interface Poi {
 
 	boolean textoIncluido(String texto);
 	
+	
 	public boolean estaDisponible(String dia,String hora);
 
-	public String getNombre();
 	public Point getCoordenada();
+
+	public boolean mismoNombre(String nombreServicio);
 
 }

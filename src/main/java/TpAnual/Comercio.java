@@ -17,7 +17,7 @@ public abstract class Comercio implements Poi{
 	  setCoordenada(unaCoordenada);
 	  setDomicilio(unDomicilio);
 	  setRegion(unaRegion);
-	  this.nombre = unNombre;
+	  nombre = unNombre;
 	  }
 	
 	public abstract boolean esCerca(Point otraCoordenada);
@@ -47,10 +47,10 @@ public abstract class Comercio implements Poi{
 
 	public void setRegion(Region region) {
 		this.region = region;
+	
 	}
-	public String getNombre() {
-		return nombre;
+	@Override
+	public boolean mismoNombre(String nombreServicio) {
+		return nombre.equals(nombreServicio);
 	}
-
-
 }

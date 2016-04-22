@@ -48,16 +48,12 @@ public class ParadaColectivo implements Poi {
 		this.linea = linea;
 	}
 
-	public String getLinea() {
-		return linea;
-	}
-
 	public boolean estaDisponible(String dia, String hora) {
 		return true;
-	}
-	
-	public String getNombre() {
-		return linea;
+	}	
+	@Override
+	public boolean mismoNombre(String nombreServicio) {
+		return linea.equals(nombreServicio);
 	}
 	public boolean textoIncluido(String texto) {
 		return linea.contains(texto) || palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));

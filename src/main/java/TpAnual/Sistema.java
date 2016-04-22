@@ -17,7 +17,7 @@ public class Sistema {
 	}
 
 	public boolean poiEstaDisponible(String nombreServicio, String dia, String hora) {
-		return (pois.stream().filter(poi -> poi.getNombre()== nombreServicio)).anyMatch(poi -> poi.estaDisponible(dia,hora));
+		return (pois.stream().filter(poi -> poi.mismoNombre(nombreServicio)).anyMatch(poi -> poi.estaDisponible(dia,hora)));
 
 	}
 

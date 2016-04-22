@@ -1,4 +1,5 @@
 package dds.TpAnual;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import TpAnual.Disponibilidad;
 import TpAnual.Domicilio;
 
 import TpAnual.Region;
+import TpAnual.ServicioCGP;
 public class TestCGP {
 	
 	private Domicilio domicilioCGP;
@@ -22,6 +24,12 @@ public class TestCGP {
 	private CGP comuna3;
 	private Polygon zonaCGP;
 	
+	private Disponibilidad disponibilidadCGPRentas;
+	private List<String> palabrasClaveRentas = Arrays.asList("Rentas","CGP");
+	private List<ServicioCGP> serviciosCGP = new ArrayList<ServicioCGP>();
+	private ServicioCGP rentas;
+	private List<String> diasDeAtencionCGPRentas = Arrays.asList("Lunes","Martes","Miercoles","Jueves","Viernes");
+	
 	private Domicilio domicilioBanco;
 	private Region regionBanco;
 	private Point coordenadaBanco;
@@ -29,9 +37,12 @@ public class TestCGP {
 	
 	private Disponibilidad disponibilidadBancaria;
 	private List<String> diasDeAtencionBancaria = Arrays.asList("Lunes","Martes","Miercoles","Jueves","Viernes");
-	private Disponibilidad disponibilidadCGPRentas;
-	private List<String> diasDeAtencionCGPRentas = Arrays.asList("Lunes","Martes","Miercoles","Jueves","Viernes");
+	
+	
 	private Sistema sistema;
+	
+	
+	
 
 	
 	@Before
@@ -40,8 +51,11 @@ public class TestCGP {
 		regionCGP = new Region("CABA", "Recoleta", "Bs As", "Argentina");
 		coordenadaCGP = new Point(34.4353,24.4856);
 		zonaCGP = new Polygon();
+		comuna3 = new CGP("CGP comuna3",domicilioCGP, regionCGP, coordenadaCGP,zonaCGP,serviciosCGP);
+		
 		disponibilidadCGPRentas = new Disponibilidad ("09:30","15:30");
-		comuna3 = new CGP("Rentas",domicilioCGP, regionCGP, coordenadaCGP,zonaCGP,diasDeAtencionCGPRentas,disponibilidadCGPRentas);
+		rentas = new ServicioCGP("Rentas",diasDeAtencionCGPRentas,disponibilidadCGPRentas,palabrasClaveRentas);
+		
 		
 		domicilioBanco = new Domicilio("Arenales",1245 , "M.T.De.Alvear", "Santa Fe", 2100, 0, 0, 0, 1111);
 		regionBanco = new Region("CABA", "Recoleta", "Bs As", "Argentina");
@@ -50,6 +64,7 @@ public class TestCGP {
 		bancoSantander = new Banco("Banco Santander",domicilioBanco, regionBanco, coordenadaBanco,diasDeAtencionBancaria,disponibilidadBancaria);
 	
 		sistema = new Sistema();
+		comuna3.serviciosCGP.add(rentas);
 	}
 	
 	@Test

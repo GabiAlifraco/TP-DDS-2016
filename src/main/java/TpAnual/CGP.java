@@ -1,9 +1,7 @@
 package TpAnual;
 
-import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
-
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
@@ -13,20 +11,19 @@ public class CGP implements Poi{
 	private Domicilio domicilio;
 	private Region region;
 	List<String> palabrasClave = Arrays.asList("Rentas"); 
-	private List<String> diasDeAtencion;
 	private String nombre;
-    private Disponibilidad horarioDeAtencion;
+	public List<ServicioCGP> serviciosCGP;
+	
     
 	private Polygon zona;
 	public CGP (String unNombre, Domicilio unDomicilio,Region unaRegion,Point unaCoordenada,
-			    Polygon unaZona,List<String> unosDiasDeAtencion, Disponibilidad unHorarioDeAtencion){
+			    Polygon unaZona, List<ServicioCGP> servicios){
 		setCoordenada(unaCoordenada);
 		setZona(unaZona);
 		setRegion(unaRegion);
 		setDomicilio(unDomicilio);
 		this.nombre = unNombre;
-		this.diasDeAtencion= unosDiasDeAtencion;
-		this.horarioDeAtencion= unHorarioDeAtencion;
+		serviciosCGP= servicios;
 	}
 	
 	
@@ -36,14 +33,12 @@ public class CGP implements Poi{
 	}
 
 	public boolean textoIncluido(String texto) {
-		return palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));
+		return serviciosCGP.stream().anyMatch(servicioCGP -> servicioCGP.getPalabrasClave().stream().anyMatch(palabra -> palabra.contains(texto)));
 	}
+	
 
 	public boolean estaDisponible(String dia, String hora) {
-		return diasDeAtencion.contains(dia)&& this.horarioDentroDelRango(hora);
-	}
-	public boolean horarioDentroDelRango(String hora){
-		return (horarioDeAtencion.getHorarioInicial().isBefore(LocalTime.parse(hora)) && horarioDeAtencion.getHorarioFinal().isAfter(LocalTime.parse(hora)));
+		return serviciosCGP.stream().anyMatch(servicioCGP -> (servicioCGP.getDiasDeAtencion().contains(dia) && servicioCGP.horarioDentroDelRango(hora)));
 	}
 	
 	public Region getRegion() {
@@ -87,6 +82,11 @@ public class CGP implements Poi{
 	
 	public String getNombre() {
 		return nombre;
+	}
+
+	@Override
+	public boolean mismoNombre(String nombreServicio) {
+		return serviciosCGP.stream().anyMatch(servicioCGP -> servicioCGP.igualNombre(nombreServicio));
 	}
 	
 

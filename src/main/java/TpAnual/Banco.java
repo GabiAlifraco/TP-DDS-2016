@@ -47,10 +47,7 @@ public class Banco implements Poi {
 	}
 	public void setCoordenada(Point coordenada) {
 		this.coordenada = coordenada;
-	}
-	
-	public String getNombre() {
-		return nombre;
+
 	}
 	public boolean textoIncluido(String texto){
 		return palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));
@@ -60,6 +57,10 @@ public class Banco implements Poi {
 	}
 	private boolean horaDentroDelRango(String hora) {
 		return (horarioDeAtencion.getHorarioInicial().isBefore(LocalTime.parse(hora)) && horarioDeAtencion.getHorarioFinal().isAfter(LocalTime.parse(hora)));
+	}
+	@Override
+	public boolean mismoNombre(String nombreServicio) {
+		return this.nombre.equals(nombreServicio);
 	}
 	
 
