@@ -14,8 +14,10 @@ public class CGP implements Poi{
 	private String nombre;
 	public List<ServicioCGP> serviciosCGP;
 	
-    
+    private Disponibilidad horarioDeAtencion;
+
 	private Polygon zona;
+	
 	public CGP (String unNombre, Domicilio unDomicilio,Region unaRegion,Point unaCoordenada,
 			    Polygon unaZona, List<ServicioCGP> servicios){
 		setCoordenada(unaCoordenada);

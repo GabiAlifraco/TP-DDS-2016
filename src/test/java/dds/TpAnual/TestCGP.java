@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import java.util.List;
-import TpAnual.Sistema;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,9 +39,10 @@ public class TestCGP {
 	private List<String> diasDeAtencionBancaria = Arrays.asList("Lunes","Martes","Miercoles","Jueves","Viernes");
 	
 	
-	private Sistema sistema;
 	
-	
+	private Point coordenadaCGP2;
+	private Point coordenadaCGP3;
+
 	
 
 	
@@ -49,32 +50,37 @@ public class TestCGP {
 	public void initialize(){
 		domicilioCGP = new Domicilio("Arenales",1141 , "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
 		regionCGP = new Region("CABA", "Recoleta", "Bs As", "Argentina");
-		coordenadaCGP = new Point(34.4353,24.4856);
+		coordenadaCGP = new Point(34.4124,24.4856);
+		coordenadaCGP2 = new Point(34.4124,24.4852);
+		coordenadaCGP3 = new Point(34.4120,24.4851);
 		zonaCGP = new Polygon();
 		comuna3 = new CGP("CGP comuna3",domicilioCGP, regionCGP, coordenadaCGP,zonaCGP,serviciosCGP);
-		
+		zonaCGP.add(coordenadaCGP);
+		zonaCGP.add(coordenadaCGP2);
+		zonaCGP.add(coordenadaCGP3);
+
 		disponibilidadCGPRentas = new Disponibilidad ("09:30","15:30");
 		rentas = new ServicioCGP("Rentas",diasDeAtencionCGPRentas,disponibilidadCGPRentas,palabrasClaveRentas);
 		
 		
 		domicilioBanco = new Domicilio("Arenales",1245 , "M.T.De.Alvear", "Santa Fe", 2100, 0, 0, 0, 1111);
 		regionBanco = new Region("CABA", "Recoleta", "Bs As", "Argentina");
-		coordenadaBanco = new Point(34.3243,24.4657);
+		coordenadaBanco = new Point(34.4120,24.4854);
 		disponibilidadBancaria = new Disponibilidad ("10:00","15:00");
 		bancoSantander = new Banco("Banco Santander",domicilioBanco, regionBanco, coordenadaBanco,diasDeAtencionBancaria,disponibilidadBancaria);
 	
-		sistema = new Sistema();
 		comuna3.serviciosCGP.add(rentas);
+
 	}
 	
 	@Test
 	public void estaCercaLaComunaDelBanco(){
-		Assert.assertEquals(false,sistema.poiCercanoAOtro(comuna3, bancoSantander));
+		Assert.assertEquals(true,comuna3.esCerca(bancoSantander.getCoordenada()));
 	}
 	
 	@Test
 	public void distanciaEntreLaComunaYElBanco(){
-		Assert.assertEquals(12.477011440513905,comuna3.getCoordenada().distance(coordenadaBanco),0);
+		Assert.assertEquals(0.0481134357081371,comuna3.getCoordenada().distance(coordenadaBanco),0);
 	}
 	
 	

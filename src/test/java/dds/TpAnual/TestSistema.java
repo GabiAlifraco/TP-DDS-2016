@@ -78,10 +78,7 @@ public class TestSistema {
 		comuna3.serviciosCGP.add(rentas);
 	}
 
-	@Test
-	public void estaCercaElBancoDeLaParada(){
-		Assert.assertEquals(true,sistema.poiCercanoAOtro(parada114,bancoSantander));
-	}
+	
 	
 	
 	@Test
