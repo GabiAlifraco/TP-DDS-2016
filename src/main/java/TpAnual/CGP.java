@@ -29,7 +29,7 @@ public class CGP implements Poi{
 	}
 	
 	
-	public boolean poiCercanoAOtro(Point otraCoordenada) {
+	public boolean esCerca(Point otraCoordenada) {
 		return this.zona.isInside(coordenada);
 		
 	}

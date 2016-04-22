@@ -25,7 +25,7 @@ public class Banco implements Poi {
 	  this.horarioDeAtencion=unHorarioDeAtencion;
 	  this.nombre = unNombre;
 	  }
-	public boolean poiCercanoAOtro(Point otraCoordenada) {
+	public boolean esCerca(Point otraCoordenada) {
 		
 		return this.coordenada.distance(otraCoordenada) < 500;
 	}

@@ -20,7 +20,7 @@ public class ParadaColectivo implements Poi {
 	  setRegion(unaRegion);
 	  setLinea(unaLinea);
 	  }
-	public boolean poiCercanoAOtro(Point otraCoordenada) {
+	public boolean esCerca(Point otraCoordenada) {
 		
 		return this.coordenada.distance(otraCoordenada) < 100;
 	}

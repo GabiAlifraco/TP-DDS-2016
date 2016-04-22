@@ -47,7 +47,7 @@ public class TestCGP {
 	
 	@Test
 	public void estaCercaLaComunaDelBanco(){
-		Assert.assertEquals(false,comuna3.poiCercanoAOtro(coordenadaBanco));
+		Assert.assertEquals(false,comuna3.esCerca(coordenadaBanco));
 	}
 	
 	@Test

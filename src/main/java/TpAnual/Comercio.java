@@ -10,7 +10,7 @@ public abstract class Comercio implements Poi{
     private Domicilio domicilio;
     private Region region;
     private String nombre;
-    
+    List<String> palabrasClave;
     
 
 	public Comercio(String unNombre,Domicilio unDomicilio,Region unaRegion,Point unaCoordenada){
@@ -20,8 +20,11 @@ public abstract class Comercio implements Poi{
 	  this.nombre = unNombre;
 	  }
 	
-	public abstract boolean poiCercanoAOtro(Point otraCoordenada);
+	public abstract boolean esCerca(Point otraCoordenada);
 	
+	public boolean textoIncluido(String texto) {
+		return palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));
+	}
 	public Point getCoordenada() {
 		return coordenada;
 	}

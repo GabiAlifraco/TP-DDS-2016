@@ -20,7 +20,7 @@ public class KioscoDiario extends Comercio {
 		
 	}
 
-	public boolean poiCercanoAOtro(Point otraCoordenada) {
+	public boolean esCerca(Point otraCoordenada) {
 		
 		return this.coordenada.distance(otraCoordenada) < 500;
 	}

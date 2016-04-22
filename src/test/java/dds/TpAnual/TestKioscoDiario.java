@@ -41,7 +41,7 @@ public class TestKioscoDiario {
 	
 	@Test
 	public void estaCercaElKioscoDiarioDeLaParada(){
-		Assert.assertEquals(true,elDiarioDelPueblo.poiCercanoAOtro(coordenadaParada));
+		Assert.assertEquals(true,elDiarioDelPueblo.esCerca(coordenadaParada));
 	}
 	
 	@Test

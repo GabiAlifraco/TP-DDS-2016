@@ -11,9 +11,9 @@ public class Sistema {
 
 	public List<Poi> pois = new ArrayList<Poi>();
 
-	public boolean poiCercanoAOtro(Point otraCoordenada) {
+	public boolean poiCercanoAOtro(Poi unPoi) {
 
-		return false;
+		return unPoi.esCerca(unPoi.getCoordenada());
 	}
 
 	public boolean poiEstaDisponible(String nombreServicio, String dia, String hora) {

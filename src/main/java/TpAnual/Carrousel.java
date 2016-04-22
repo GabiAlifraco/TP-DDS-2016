@@ -17,10 +17,9 @@ public class Carrousel extends Comercio {
 		this.horarioDeAtencion2 = otroIntervaloDeAtencion;
 	}
 
-	@Override
+	
 	public boolean textoIncluido(String texto) {
-		// TODO Auto-generated method stub
-		return false;
+		return palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));
 	}
 	
 	public boolean estaDisponible(String dia, String hora) {
@@ -33,7 +32,7 @@ public class Carrousel extends Comercio {
 		return (rango1 || rango2);
 	}
 
-	public boolean poiCercanoAOtro(Point otraCoordenada) {
+	public boolean esCerca(Point otraCoordenada) {
 		return this.coordenada.distance(otraCoordenada) < 200;
 	}
 	

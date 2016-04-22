@@ -42,7 +42,7 @@ public class TestBanco {
 	
 	@Test
 	public void estaCercaElBancoDeLaParada(){
-		Assert.assertEquals(true,bancoSantander.poiCercanoAOtro(coordenadaParada));
+		Assert.assertEquals(true,bancoSantander.esCerca(coordenadaParada));
 	}
 	
 	@Test
