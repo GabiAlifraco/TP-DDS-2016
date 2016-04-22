@@ -21,12 +21,14 @@ public class TestDisponibilidadDeUnPoi {
 	private Domicilio domicilioParada;
 	private Point coordenadaParada;
 	private ParadaColectivo parada114;
+	
 	private Domicilio domicilioBanco;
 	private Region regionBanco;
 	private Point coordenadaBanco;
 	private Banco bancoSantander;
 	private Disponibilidad disponibilidadBancaria;
 	private List<String> diasDeAtencionBancaria = Arrays.asList("Lunes","Martes","Miercoles","Jueves","Viernes");
+	
 	private Domicilio domicilioCarrousel;
 	private Region regionCarrousel;
 	private Point coordenadaCarrousel;
@@ -71,7 +73,7 @@ public class TestDisponibilidadDeUnPoi {
 	public void estaElBancoDisponible() {
 		Sistema sistema = new Sistema();
 		sistema.pois.add(parada114);
-		sistema.pois.add(bancoSantander);
+	    sistema.pois.add(bancoSantander);
 		sistema.pois.add(carrouselPlinPlin);
 		Assert.assertEquals(false, sistema.poiEstaDisponible("Banco Santander","Martes","20:30"));
 	}

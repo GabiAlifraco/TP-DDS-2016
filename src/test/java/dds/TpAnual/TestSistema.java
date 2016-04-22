@@ -9,12 +9,13 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 
 import TpAnual.Banco;
+import TpAnual.Sistema;
 import TpAnual.Disponibilidad;
 import TpAnual.Domicilio;
 import TpAnual.ParadaColectivo;
 import TpAnual.Poi;
 import TpAnual.Region;
-import TpAnual.Sistema;
+
 
 public class TestSistema {
 	private Sistema sistema;
@@ -42,13 +43,19 @@ public class TestSistema {
 		coordenadaBanco = new Point(34.3243, 24.4657);
 		disponibilidadBancaria = new Disponibilidad("10:00", "15:00");
 		bancoSantander = new Banco("Banco Santander", domicilioBanco, regionBanco, coordenadaBanco,
-				diasDeAtencionBancaria, disponibilidadBancaria);
+				                   diasDeAtencionBancaria, disponibilidadBancaria);
 
 		sistema = new Sistema();
 		sistema.pois.add(parada114);
 		sistema.pois.add(bancoSantander);
 	}
 
+	@Test
+	public void estaCercaElBancoDeLaParada(){
+		Assert.assertEquals(true,sistema.poiCercanoAOtro(parada114,bancoSantander));
+	}
+	
+	
 	@Test
 	public void busquedaDePoisPorClave() {
 

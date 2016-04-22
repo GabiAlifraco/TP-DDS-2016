@@ -12,6 +12,7 @@ import TpAnual.Domicilio;
 import TpAnual.KioscoDiario;
 import TpAnual.Libreria;
 import TpAnual.Region;
+import TpAnual.Sistema;
 public class TestLibreria {
 
 	private Region regionLibreria;
@@ -27,6 +28,7 @@ public class TestLibreria {
 	private List<String> diasDeAtencionKioscoDiario = Arrays.asList("Lunes","Martes","Miercoles","Jueves","Viernes");
 	private Disponibilidad disponibilidadLibreria;
 	private List<String> diasDeAtencionLibreria = Arrays.asList("Lunes","Martes","Miercoles","Jueves","Viernes","Sabado");
+	private Sistema sistema;
 
 	@Before
 	public void initialize(){
@@ -41,16 +43,19 @@ public class TestLibreria {
 		coordenadaKiosco = new Point(12.8741,21.0421);
 		disponibilidadKioscoDiario = new Disponibilidad ("06:00","12:00");
 		elDiarioDelPueblo = new KioscoDiario("El diario del pueblo", domicilioKiosco, regionKiosco, coordenadaKiosco,diasDeAtencionKioscoDiario,disponibilidadKioscoDiario);
+	
+		sistema = new Sistema();
+	
 	}
 	
 	@Test
 	public void estaCercaLaLibreriaDeLKioscoDiario(){
-		Assert.assertEquals(false,elDiarioDelPueblo.esCerca(coordenadaLibreria));
+		Assert.assertEquals(true,sistema.poiCercanoAOtro(elEstudiante, elDiarioDelPueblo));
 	}
 	
 	@Test
 	public void distanciaEntreLaLibreriaYElKioscoDiario(){
-		Assert.assertEquals(511.4121073196172,elEstudiante.getCoordenada().distance(coordenadaKiosco),0);
+		Assert.assertEquals(52.25135818766176,elEstudiante.getCoordenada().distance(coordenadaKiosco),0);
 	}
 	
 	

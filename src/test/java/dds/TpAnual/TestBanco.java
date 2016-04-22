@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.*;
-
+import TpAnual.Sistema;
 import TpAnual.Banco;
 import TpAnual.Disponibilidad;
 import TpAnual.Domicilio;
@@ -25,6 +25,7 @@ public class TestBanco {
 	private Banco bancoSantander;
 	private Disponibilidad disponibilidadBancaria;
 	private List<String> diasDeAtencionBancaria = Arrays.asList("Lunes","Martes","Miercoles","Jueves","Viernes");
+	private Sistema sistema;
 
 	@Before
 	public void initialize(){
@@ -38,11 +39,14 @@ public class TestBanco {
 		coordenadaBanco = new Point(34.3243,21.4484);
 		disponibilidadBancaria = new Disponibilidad ("10:00","15:00");
 		bancoSantander = new Banco("Banco Santander",domicilioBanco, regionBanco, coordenadaBanco,diasDeAtencionBancaria,disponibilidadBancaria);
+	
+		sistema = new Sistema();
 	}
+	
 	
 	@Test
 	public void estaCercaElBancoDeLaParada(){
-		Assert.assertEquals(true,bancoSantander.esCerca(coordenadaParada));
+		Assert.assertEquals(true,sistema.poiCercanoAOtro(bancoSantander, parada114));
 	}
 	
 	@Test

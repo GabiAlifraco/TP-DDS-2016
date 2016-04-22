@@ -12,6 +12,7 @@ import TpAnual.Domicilio;
 import TpAnual.KioscoDiario;
 import TpAnual.ParadaColectivo;
 import TpAnual.Region;
+import TpAnual.Sistema;
 public class TestKioscoDiario {
 
 	private Region regionParada;
@@ -24,6 +25,7 @@ public class TestKioscoDiario {
 	private KioscoDiario elDiarioDelPueblo;
 	private Disponibilidad disponibilidadKioscoDiario;
 	private List<String> diasDeAtencionKioscoDiario = Arrays.asList("Lunes","Martes","Miercoles","Jueves","Viernes");
+	private Sistema sistema;
 
 	@Before
 	public void initialize(){
@@ -37,11 +39,13 @@ public class TestKioscoDiario {
 		coordenadaKiosco = new Point(10.2478,14.2547);
 		disponibilidadKioscoDiario = new Disponibilidad ("06:00","12:00");
 		elDiarioDelPueblo = new KioscoDiario("El diario del pueblo", domicilioKiosco, regionKiosco, coordenadaKiosco,diasDeAtencionKioscoDiario,disponibilidadKioscoDiario);
+	
+	    sistema = new Sistema();
 	}
 	
 	@Test
 	public void estaCercaElKioscoDiarioDeLaParada(){
-		Assert.assertEquals(true,elDiarioDelPueblo.esCerca(coordenadaParada));
+		Assert.assertEquals(true,sistema.poiCercanoAOtro(elDiarioDelPueblo, parada114));
 	}
 	
 	@Test

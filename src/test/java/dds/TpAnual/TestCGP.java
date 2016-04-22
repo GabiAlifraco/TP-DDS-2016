@@ -1,7 +1,8 @@
 package dds.TpAnual;
 import java.util.Arrays;
-import java.util.List;
 
+import java.util.List;
+import TpAnual.Sistema;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,16 +20,20 @@ public class TestCGP {
 	private Region regionCGP;
 	private Point coordenadaCGP;
 	private CGP comuna3;
+	private Polygon zonaCGP;
+	
 	private Domicilio domicilioBanco;
 	private Region regionBanco;
 	private Point coordenadaBanco;
 	private Banco bancoSantander;
-	private Polygon zonaCGP;
+	
 	private Disponibilidad disponibilidadBancaria;
 	private List<String> diasDeAtencionBancaria = Arrays.asList("Lunes","Martes","Miercoles","Jueves","Viernes");
 	private Disponibilidad disponibilidadCGPRentas;
 	private List<String> diasDeAtencionCGPRentas = Arrays.asList("Lunes","Martes","Miercoles","Jueves","Viernes");
+	private Sistema sistema;
 
+	
 	@Before
 	public void initialize(){
 		domicilioCGP = new Domicilio("Arenales",1141 , "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
@@ -43,11 +48,13 @@ public class TestCGP {
 		coordenadaBanco = new Point(34.3243,24.4657);
 		disponibilidadBancaria = new Disponibilidad ("10:00","15:00");
 		bancoSantander = new Banco("Banco Santander",domicilioBanco, regionBanco, coordenadaBanco,diasDeAtencionBancaria,disponibilidadBancaria);
+	
+		sistema = new Sistema();
 	}
 	
 	@Test
 	public void estaCercaLaComunaDelBanco(){
-		Assert.assertEquals(false,comuna3.esCerca(coordenadaBanco));
+		Assert.assertEquals(false,sistema.poiCercanoAOtro(comuna3, bancoSantander));
 	}
 	
 	@Test
