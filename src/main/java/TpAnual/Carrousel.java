@@ -1,6 +1,7 @@
 package TpAnual;
 
 import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.List;
 
 import org.uqbar.geodds.Point;
@@ -9,7 +10,8 @@ public class Carrousel extends Comercio {
 	private List<String> diasDeAtencion;
     private Disponibilidad horarioDeAtencion;
     private Disponibilidad horarioDeAtencion2;
-
+    List<String> palabrasClave = Arrays.asList("Sortija", "Plaza", "Juegos");
+   
     public Carrousel(String unNombre,Domicilio unDomicilio,Region unaRegion,Point unaCoordenada,List<String> diasDeAtencion, Disponibilidad intervaloDeAtencion,Disponibilidad otroIntervaloDeAtencion) {
 		super(unNombre,unDomicilio, unaRegion, unaCoordenada);
 		this.diasDeAtencion= diasDeAtencion;
@@ -17,7 +19,6 @@ public class Carrousel extends Comercio {
 		this.horarioDeAtencion2 = otroIntervaloDeAtencion;
 	}
 
-	
 	public boolean textoIncluido(String texto) {
 		return palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));
 	}
