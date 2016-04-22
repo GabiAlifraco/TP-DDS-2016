@@ -50,10 +50,7 @@ public class TestSistema {
 		sistema.pois.add(bancoSantander);
 	}
 
-	@Test
-	public void estaCercaElBancoDeLaParada(){
-		Assert.assertEquals(true,sistema.poiCercanoAOtro(parada114,bancoSantander));
-	}
+	
 	
 	
 	@Test

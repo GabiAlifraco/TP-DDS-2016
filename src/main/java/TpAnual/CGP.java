@@ -16,8 +16,9 @@ public class CGP implements Poi{
 	private List<String> diasDeAtencion;
 	private String nombre;
     private Disponibilidad horarioDeAtencion;
-    
+   
 	private Polygon zona;
+	
 	public CGP (String unNombre, Domicilio unDomicilio,Region unaRegion,Point unaCoordenada,
 			    Polygon unaZona,List<String> unosDiasDeAtencion, Disponibilidad unHorarioDeAtencion){
 		setCoordenada(unaCoordenada);
@@ -36,7 +37,8 @@ public class CGP implements Poi{
 	}
 
 	public boolean textoIncluido(String texto) {
-		return palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));
+		return palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto)); 
+		
 	}
 
 	public boolean estaDisponible(String dia, String hora) {
