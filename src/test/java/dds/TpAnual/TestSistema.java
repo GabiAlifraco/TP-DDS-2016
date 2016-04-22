@@ -1,6 +1,5 @@
 package dds.TpAnual;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,6 +17,7 @@ import TpAnual.Region;
 import TpAnual.Sistema;
 
 public class TestSistema {
+	private Sistema sistema;
 	private Region regionParada;
 	private Domicilio domicilioParada;
 	private Point coordenadaParada;
@@ -43,18 +43,25 @@ public class TestSistema {
 		disponibilidadBancaria = new Disponibilidad("10:00", "15:00");
 		bancoSantander = new Banco("Banco Santander", domicilioBanco, regionBanco, coordenadaBanco,
 				diasDeAtencionBancaria, disponibilidadBancaria);
+
+		sistema = new Sistema();
+		sistema.pois.add(parada114);
+		sistema.pois.add(bancoSantander);
 	}
 
 	@Test
 	public void busquedaDePoisPorClave() {
 
-		Sistema sistema = new Sistema();
-		sistema.pois.add(parada114);
-		sistema.pois.add(bancoSantander);
-
 		List<Poi> resultadoEsperado = Arrays.asList(bancoSantander);
 
 		Assert.assertEquals(true, sistema.busquedaDePuntos("Cajero").equals(resultadoEsperado));
+
+	}
+
+	@Test
+	public void busquedaSinResultados() {
+		
+		Assert.assertEquals(true, sistema.busquedaDePuntos("Plaza").isEmpty());
 
 	}
 
