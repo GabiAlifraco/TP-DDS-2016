@@ -11,7 +11,7 @@ public abstract class Comercio implements Poi{
     private Region region;
     private String nombre;
     List<String> palabrasClave;
-    
+    private int distancia;
 
 	public Comercio(String unNombre,Domicilio unDomicilio,Region unaRegion,Point unaCoordenada){
 	  setCoordenada(unaCoordenada);
@@ -20,7 +20,9 @@ public abstract class Comercio implements Poi{
 	  nombre = unNombre;
 	  }
 	
-	public abstract boolean esCerca(Point otraCoordenada);
+	public boolean esCerca(Point otraCoordenada){
+		return this.coordenada.distance(otraCoordenada) < this.getDistancia();
+	}
 	
 	public boolean textoIncluido(String texto) {
 		return palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));
@@ -49,8 +51,14 @@ public abstract class Comercio implements Poi{
 		this.region = region;
 	
 	}
-	@Override
+	
 	public boolean mismoNombre(String nombreServicio) {
 		return nombre.equals(nombreServicio);
+	}
+
+	public abstract int getDistancia();
+		
+	public void setDistancia(int distancia) {
+		this.distancia = distancia;
 	}
 }

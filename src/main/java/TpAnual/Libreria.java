@@ -18,11 +18,11 @@ public class Libreria extends Comercio {
 		this.horarioDeAtencion = horarioDeAtencion;
 	}
 
-	public boolean esCerca(Point otraCoordenada) {
-		return this.coordenada.distance(otraCoordenada) < 200;
+	public int getDistancia(){
+		return 200;
 	}
-
 	
+
 	public boolean textoIncluido(String texto) {
 		return palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));
 	}

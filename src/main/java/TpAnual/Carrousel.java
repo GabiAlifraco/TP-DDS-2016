@@ -19,6 +19,9 @@ public class Carrousel extends Comercio {
 		this.horarioDeAtencion2 = otroIntervaloDeAtencion;
 	}
 
+    public int getDistancia() {
+		return 0;                  //Agregar alguna distancia a priori para el calculo de cercania
+	}
 	public boolean textoIncluido(String texto) {
 		return palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));
 	}
@@ -32,10 +35,5 @@ public class Carrousel extends Comercio {
 		boolean rango2 = horarioDeAtencion2.getHorarioInicial().isBefore(LocalTime.parse(hora)) && horarioDeAtencion2.getHorarioFinal().isAfter(LocalTime.parse(hora));
 		return (rango1 || rango2);
 	}
-
-	public boolean esCerca(Point otraCoordenada) {
-		return this.coordenada.distance(otraCoordenada) < 200;
-	}
-	
 
 }

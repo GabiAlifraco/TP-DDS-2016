@@ -86,7 +86,7 @@ public class CGP implements Poi{
 		return nombre;
 	}
 
-	@Override
+	
 	public boolean mismoNombre(String nombreServicio) {
 		return serviciosCGP.stream().anyMatch(servicioCGP -> servicioCGP.igualNombre(nombreServicio));
 	}

@@ -20,12 +20,11 @@ public class KioscoDiario extends Comercio {
 		
 	}
 
-	public boolean esCerca(Point otraCoordenada) {
-		
-		return this.coordenada.distance(otraCoordenada) < 500;
+	public int getDistancia() {
+		return 500;
 	}
 
-	@Override
+	
 	public boolean textoIncluido(String texto) {
 		return palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));
 	}
@@ -38,4 +37,5 @@ public class KioscoDiario extends Comercio {
 	public boolean horaDentroDelRango(String hora){
 		return (horarioDeAtencion.getHorarioInicial().isBefore(LocalTime.parse(hora)) && horarioDeAtencion.getHorarioFinal().isAfter(LocalTime.parse(hora)));
 	}
+
 }
