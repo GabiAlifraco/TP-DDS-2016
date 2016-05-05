@@ -14,9 +14,9 @@ public class ServicioCGP {
 	}
 
 	public ServicioCGP(String unNombre, List<String> unosDiasDeAtencion, Disponibilidad unaDisponibilidadHoraria,List<String> palabrasClave){
-    	setNombre(unNombre);
-    	setDiasDeAtencion(unosDiasDeAtencion);
-    	setHorarioDeAtencion(unaDisponibilidadHoraria);
+    	nombre=unNombre;
+    	diasDeAtencion=unosDiasDeAtencion;
+    	horarioDeAtencion=unaDisponibilidadHoraria;
     	this.palabrasClave = palabrasClave;
     }
 

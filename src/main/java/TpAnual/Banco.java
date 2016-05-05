@@ -6,11 +6,9 @@ import java.util.List;
 
 import org.uqbar.geodds.Point;
 
-public class Banco implements Poi {
+public class Banco extends Poi {
 
-	private Point coordenada;
-    private Domicilio domicilio;
-    private Region region;
+
     private String nombre;
     List<String> palabrasClave = Arrays.asList("Cajero automatico", "Deposito");
     private List<String> diasDeAtencion;
@@ -22,37 +20,20 @@ public class Banco implements Poi {
 	  setDomicilio(unDomicilio);
 	  setRegion(unaRegion);
 	  this.diasDeAtencion=diasDeAtencion;
-	  this.horarioDeAtencion=unHorarioDeAtencion;
-	  this.nombre = unNombre;
+	  horarioDeAtencion=unHorarioDeAtencion;
+	  nombre = unNombre;
 	  }
-	public boolean esCerca(Point otraCoordenada) {
-		
-		return this.coordenada.distance(otraCoordenada) < 500;
+	public int distanciaMinimaParaConsiderarmeCercano(){
+		return 500;
 	}
 
-	public Region getRegion() {
-		return region;
-	}
-	public void setRegion(Region region) {
-		this.region = region;
-	}
-	public Domicilio getDomicilio() {
-		return domicilio;
-	}
-	public void setDomicilio(Domicilio domicilio) {
-		this.domicilio = domicilio;
-	}
-	public Point getCoordenada() {
-		return coordenada;
-	}
-	public void setCoordenada(Point coordenada) {
-		this.coordenada = coordenada;
-
+	public boolean noTenesIdentificacion(){
+		return(nombre.equals(null));
 	}
 	public boolean textoIncluido(String texto){
 		return palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));
 	}
-	public boolean estaDisponible(String dia,String hora){
+	public boolean estaDisponible(String nombreBuscado,String dia,String hora){
 		return diasDeAtencion.contains(dia) && this.horaDentroDelRango(hora);
 	}
 	private boolean horaDentroDelRango(String hora) {

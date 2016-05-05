@@ -5,58 +5,43 @@ import java.util.List;
 
 import org.uqbar.geodds.Point;
 
-public class ParadaColectivo implements Poi {
+public class ParadaColectivo extends Poi {
 
-	private Point coordenada;
-    private Domicilio domicilio;
-    private Region region;
     List<String> palabrasClave = Arrays.asList("Colectivo", "Parada");
-	private String linea;
+	private String lineaDeColectivo;
     
     
 	public ParadaColectivo(Domicilio unDomicilio,Region unaRegion,Point unaCoordenada, String unaLinea){
-	  coordenada = unaCoordenada;
+	  setCoordenada(unaCoordenada);
 	  setDomicilio(unDomicilio);
 	  setRegion(unaRegion);
-	  setLinea(unaLinea);
+	  lineaDeColectivo=unaLinea;
 	  }
-	public boolean esCerca(Point otraCoordenada) {
-		
-		return this.coordenada.distance(otraCoordenada) < 100;
+	
+	
+	public void setLineaColectivo(String linea) {
+		this.lineaDeColectivo = linea;
 	}
 
-	public Domicilio getDomicilio() {
-		return domicilio;
-	}
-	public void setDomicilio(Domicilio domicilio) {
-		this.domicilio = domicilio;
-	}
-	public Region getRegion() {
-		return region;
-	}
-	public void setRegion(Region region) {
-		this.region = region;
-	}
-	public Point getCoordenada() {
-		return coordenada;
-	}
-	public void setCoordenada(Point coordenada) {
-		this.coordenada = coordenada;
+	public int distanciaMinimaParaConsiderarmeCercano(){
+		return 100;
 	}
 	
-	public void setLinea(String linea) {
-		this.linea = linea;
+	public boolean noTenesIdentificacion(){
+		return ((lineaDeColectivo.equals(null)));
 	}
-
-	public boolean estaDisponible(String dia, String hora) {
+	
+	public boolean estaDisponible(String nombreBuscado,String dia, String hora) {
 		return true;
 	}	
+	
 	@Override
 	public boolean mismoNombre(String nombreServicio) {
-		return linea.equals(nombreServicio);
+		return lineaDeColectivo.equals(nombreServicio);
 	}
 	public boolean textoIncluido(String texto) {
-		return linea.contains(texto) || palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));
+		return lineaDeColectivo.contains(texto) || palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));
 	}
+
 
 }

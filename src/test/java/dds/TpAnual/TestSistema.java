@@ -12,7 +12,7 @@ import org.uqbar.geodds.Polygon;
 
 import TpAnual.Banco;
 import TpAnual.CGP;
-import TpAnual.Sistema;
+import TpAnual.InfoFast;
 import TpAnual.Disponibilidad;
 import TpAnual.Domicilio;
 import TpAnual.ParadaColectivo;
@@ -22,7 +22,7 @@ import TpAnual.ServicioCGP;
 
 
 public class TestSistema {
-	private Sistema sistema;
+	private InfoFast sistema;
 	private Region regionParada;
 	private Domicilio domicilioParada;
 	private Point coordenadaParada;
@@ -52,7 +52,7 @@ public class TestSistema {
 		regionParada = new Region("CABA", "Recoleta", "Bs As", "Argentina");
 		coordenadaParada = new Point(34.4353, 25.4632);
 		parada114 = new ParadaColectivo(domicilioParada, regionParada, coordenadaParada, "114");
-		parada114.setLinea("Parada 114");
+		parada114.setLineaColectivo("Parada 114");
 		
 
 		domicilioBanco = new Domicilio("Arenales", 1245, "M.T.De.Alvear", "Santa Fe", 2100, 0, 0, 0, 1111);
@@ -71,10 +71,10 @@ public class TestSistema {
 		rentas = new ServicioCGP("Rentas",diasDeAtencionCGPRentas,disponibilidadCGPRentas,palabrasClaveRentas);
 		
 
-		sistema = new Sistema();
-		sistema.pois.add(parada114);
-		sistema.pois.add(bancoSantander);
-		sistema.pois.add(comuna3);
+		sistema = new InfoFast();
+		sistema.getBase().getPois().add(parada114);
+		sistema.getBase().getPois().add(bancoSantander);
+		sistema.getBase().getPois().add(comuna3);
 		comuna3.serviciosCGP.add(rentas);
 	}
 
@@ -86,14 +86,14 @@ public class TestSistema {
 
 		List<Poi> resultadoEsperado = Arrays.asList(bancoSantander);
 
-		Assert.assertEquals(true, sistema.busquedaDePuntos("Cajero").equals(resultadoEsperado));
+		Assert.assertTrue(sistema.busquedaDePuntos("Cajero").equals(resultadoEsperado));
 
 	}
 
 	@Test
 	public void busquedaSinResultados() {
 		
-		Assert.assertEquals(true, sistema.busquedaDePuntos("Plaza").isEmpty());
+		Assert.assertTrue(sistema.busquedaDePuntos("Plaza").isEmpty());
 
 	}
 	@Test
@@ -101,7 +101,7 @@ public class TestSistema {
 
 		List<Poi> resultadoEsperado = Arrays.asList(comuna3);
 
-		Assert.assertEquals(true, sistema.busquedaDePuntos("CGP").equals(resultadoEsperado));
+		Assert.assertTrue(sistema.busquedaDePuntos("CGP").equals(resultadoEsperado));
 
 	}
 

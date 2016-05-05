@@ -18,7 +18,7 @@ import TpAnual.Domicilio;
 import TpAnual.ParadaColectivo;
 import TpAnual.Region;
 import TpAnual.ServicioCGP;
-import TpAnual.Sistema;
+import TpAnual.InfoFast;
 
 public class TestDisponibilidadDeUnPoi {
 	private Region regionParada;
@@ -98,38 +98,38 @@ public class TestDisponibilidadDeUnPoi {
 	
 	@Test
 	public void estaElCarrouselDisponible() {
-		Sistema sistema = new Sistema();
-		sistema.pois.add(parada114);
-		sistema.pois.add(bancoSantander);
-		sistema.pois.add(carrouselPlinPlin);
-		sistema.pois.add(comuna3);
+		InfoFast sistema = new InfoFast();
+		sistema.getBase().getPois().add(parada114);
+		sistema.getBase().getPois().add(bancoSantander);
+		sistema.getBase().getPois().add(carrouselPlinPlin);
+		sistema.getBase().getPois().add(comuna3);
 		
-		Assert.assertEquals(true, sistema.poiEstaDisponible("Carrousel PlinPlin","Sabado","12:30"));
+		Assert.assertTrue(sistema.estaDisponiblePoi("Carrousel PlinPlin","Sabado","12:30"));
 
 	}
 	@Test
 	public void estaElBancoDisponible() {
-		Sistema sistema = new Sistema();
-		sistema.pois.add(parada114);
-	    sistema.pois.add(bancoSantander);
-		sistema.pois.add(carrouselPlinPlin);
-		Assert.assertEquals(true, sistema.poiEstaDisponible("Banco Santander","Martes","11:00"));
+		InfoFast sistema = new InfoFast();
+		sistema.getBase().getPois().add(parada114);
+	    sistema.getBase().getPois().add(bancoSantander);
+		sistema.getBase().getPois().add(carrouselPlinPlin);
+		Assert.assertTrue(sistema.estaDisponiblePoi("Banco Santander","Martes","11:00"));
 	}
 	@Test
 	public void estaElColectivoDisponible() {
-		Sistema sistema = new Sistema();
-		sistema.pois.add(parada114);
-		sistema.pois.add(bancoSantander);
-		sistema.pois.add(carrouselPlinPlin);
-		Assert.assertEquals(true, sistema.poiEstaDisponible("114","Sabado","12dsds:30"));
+		InfoFast sistema = new InfoFast();
+		sistema.getBase().getPois().add(parada114);
+		sistema.getBase().getPois().add(bancoSantander);
+		sistema.getBase().getPois().add(carrouselPlinPlin);
+		Assert.assertTrue( sistema.estaDisponiblePoi("114","Sabado","12dsds:30"));
 	}
 	@Test
 	public void estaRentasEstaDisponible() {
-		Sistema sistema = new Sistema();
-		sistema.pois.add(parada114);
-		sistema.pois.add(bancoSantander);
-		sistema.pois.add(carrouselPlinPlin);
-		sistema.pois.add(comuna3);
-		Assert.assertEquals(false, sistema.poiEstaDisponible("Tesoreria","Domingo","11:30"));
+		InfoFast sistema = new InfoFast();
+		sistema.getBase().getPois().add(parada114);
+		sistema.getBase().getPois().add(bancoSantander);
+		sistema.getBase().getPois().add(carrouselPlinPlin);
+		sistema.getBase().getPois().add(comuna3);
+		Assert.assertFalse(sistema.estaDisponiblePoi("Tesoreria","Domingo","11:30"));
 }
 }

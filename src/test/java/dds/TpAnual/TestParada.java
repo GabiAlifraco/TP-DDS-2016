@@ -46,7 +46,7 @@ public class TestParada {
 	
 	@Test
 	public void estaCercaElBancoDeLaParada(){
-		Assert.assertTrue(parada114.esCerca(bancoSantander.getCoordenada()));
+		Assert.assertTrue(parada114.estaCercaDe(bancoSantander.getCoordenada()));
 	}
 	
 	@Test
