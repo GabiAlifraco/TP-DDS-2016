@@ -1,10 +1,14 @@
-package TpAnual;
+package Pois;
 
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 
 import org.uqbar.geodds.Point;
+
+import TpAnual.Disponibilidad;
+import TpAnual.Domicilio;
+import TpAnual.Region;
 
 public class Carrousel extends Comercio {
 	private List<String> diasDeAtencion;

@@ -29,5 +29,8 @@ public class BaseDePois {
 		pois.remove(unPoi);
 	}
 	
-
+	public void modificarUnPoi(Poi poiAnterior, Poi nuevoPoi){
+		
+	}
+	
 }

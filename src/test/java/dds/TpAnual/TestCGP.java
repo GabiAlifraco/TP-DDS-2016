@@ -9,8 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.*;
 
-import TpAnual.Banco;
-import TpAnual.CGP;
+import Pois.Banco;
+import Pois.CGP;
 import TpAnual.Disponibilidad;
 import TpAnual.Domicilio;
 

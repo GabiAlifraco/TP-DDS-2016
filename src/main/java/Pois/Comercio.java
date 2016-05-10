@@ -1,9 +1,14 @@
-package TpAnual;
+package Pois;
 
 import java.time.LocalTime;
 import java.util.List;
 
 import org.uqbar.geodds.Point;
+
+import TpAnual.Disponibilidad;
+import TpAnual.Domicilio;
+import TpAnual.Poi;
+import TpAnual.Region;
 
 public abstract class Comercio extends Poi{
 	private List<String> palabrasClave;

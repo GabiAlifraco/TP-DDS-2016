@@ -7,10 +7,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.*;
 
-import TpAnual.Banco;
+import Pois.Banco;
+import Pois.ParadaColectivo;
 import TpAnual.Disponibilidad;
 import TpAnual.Domicilio;
-import TpAnual.ParadaColectivo;
 import TpAnual.Region;
 public class TestParada {
 

@@ -1,9 +1,13 @@
-package TpAnual;
+package Pois;
 
 import java.util.Arrays;
 import java.util.List;
 
 import org.uqbar.geodds.Point;
+
+import TpAnual.Domicilio;
+import TpAnual.Poi;
+import TpAnual.Region;
 
 public class ParadaColectivo extends Poi {
 

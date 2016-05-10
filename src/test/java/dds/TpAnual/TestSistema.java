@@ -10,12 +10,12 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import TpAnual.Banco;
-import TpAnual.CGP;
+import Pois.Banco;
+import Pois.CGP;
+import Pois.ParadaColectivo;
 import TpAnual.InfoFast;
 import TpAnual.Disponibilidad;
 import TpAnual.Domicilio;
-import TpAnual.ParadaColectivo;
 import TpAnual.Poi;
 import TpAnual.Region;
 import TpAnual.ServicioCGP;

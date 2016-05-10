@@ -7,10 +7,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.*;
 
+import Pois.KioscoDiario;
+import Pois.Libreria;
 import TpAnual.Disponibilidad;
 import TpAnual.Domicilio;
-import TpAnual.KioscoDiario;
-import TpAnual.Libreria;
 import TpAnual.Region;
 
 public class TestLibreria {

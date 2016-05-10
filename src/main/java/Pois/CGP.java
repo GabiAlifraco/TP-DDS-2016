@@ -1,10 +1,15 @@
-package TpAnual;
+package Pois;
 
 import java.util.Arrays;
 import java.util.List;
 
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
+
+import TpAnual.Domicilio;
+import TpAnual.Poi;
+import TpAnual.Region;
+import TpAnual.ServicioCGP;
 
 public class CGP extends Poi{
 	
