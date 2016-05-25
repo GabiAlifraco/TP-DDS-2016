@@ -10,7 +10,9 @@ import org.uqbar.geodds.Point;
 
 public class InfoFast {
 
-	private BaseDePois base;
+	private BaseDePois base = BaseDePois.getInstance();
+	
+	
 	private Point coordenadaDispositivoMovil;
 	
 	/*public String obtenerInfoDe(Poi unPuntoDeInteres){

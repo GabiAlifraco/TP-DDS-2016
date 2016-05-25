@@ -26,6 +26,10 @@ public class ParadaColectivo extends Poi {
 	public void setLineaColectivo(String linea) {
 		this.lineaDeColectivo = linea;
 	}
+	
+	public String getLineaColectivo(){
+		return this.lineaDeColectivo;
+	}
 
 	public int distanciaMinimaParaConsiderarmeCercano(){
 		return 100;

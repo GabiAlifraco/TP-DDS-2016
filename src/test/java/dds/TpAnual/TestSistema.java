@@ -83,7 +83,7 @@ public class TestSistema {
 	
 	@Test
 	public void busquedaDePoisPorClave() {
-
+	
 		List<Poi> resultadoEsperado = Arrays.asList(bancoSantander);
 
 		Assert.assertTrue(sistema.busquedaDePuntos("Cajero").equals(resultadoEsperado));
