@@ -70,20 +70,19 @@ public class TestSistema {
 		disponibilidadCGPRentas = new Disponibilidad ("09:30","15:30");
 		rentas = new ServicioCGP("Rentas",diasDeAtencionCGPRentas,disponibilidadCGPRentas,palabrasClaveRentas);
 		
-
 		sistema = new InfoFast();
-		sistema.getBase().getPois().add(parada114);
-		sistema.getBase().getPois().add(bancoSantander);
-		sistema.getBase().getPois().add(comuna3);
+		sistema.getBase().getPois().clear();
+		sistema.getBase().agregarUnPoi(parada114);
+		sistema.getBase().agregarUnPoi(bancoSantander);
+		sistema.getBase().agregarUnPoi(comuna3);
 		comuna3.serviciosCGP.add(rentas);
+		
 	}
 
 	
-	
-	
 	@Test
 	public void busquedaDePoisPorClave() {
-	
+		
 		List<Poi> resultadoEsperado = Arrays.asList(bancoSantander);
 
 		Assert.assertTrue(sistema.busquedaDePuntos("Cajero").equals(resultadoEsperado));
@@ -100,7 +99,7 @@ public class TestSistema {
 	public void busquedaDeServicioCGPPorClave() {
 
 		List<Poi> resultadoEsperado = Arrays.asList(comuna3);
-
+		
 		Assert.assertTrue(sistema.busquedaDePuntos("CGP").equals(resultadoEsperado));
 
 	}
