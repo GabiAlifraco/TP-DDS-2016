@@ -31,8 +31,6 @@ public class TestSistema {
 	private Region regionBanco;
 	private Point coordenadaBanco;
 	private Banco bancoSantander;
-	private Disponibilidad disponibilidadBancaria;
-	private List<String> diasDeAtencionBancaria = Arrays.asList("Lunes", "Martes", "Miercoles", "Jueves", "Viernes");
 	private Domicilio domicilioCGP;
 	private Region regionCGP;
 	private Point coordenadaCGP;
@@ -45,28 +43,36 @@ public class TestSistema {
 	private ServicioCGP rentas;
 	private List<String> diasDeAtencionCGPRentas = Arrays.asList("Lunes","Martes","Miercoles","Jueves","Viernes");
 
+	private List<String> palabrasClaveBanco = new ArrayList<String>();
+
 
 	@Before
 	public void initialize() {
 		domicilioParada = new Domicilio("Arenales", 1141, "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
 		regionParada = new Region("CABA", "Recoleta", "Bs As", "Argentina");
 		coordenadaParada = new Point(34.4353, 25.4632);
-		parada114 = new ParadaColectivo(domicilioParada, regionParada, coordenadaParada, "114");
+		List<String> palabrasClave114 = Arrays.asList("Colectivo", "Parada");
+		parada114 = new ParadaColectivo(domicilioParada, regionParada, coordenadaParada, "114", palabrasClave114);
+
 		parada114.setLineaColectivo("Parada 114");
 		
 
 		domicilioBanco = new Domicilio("Arenales", 1245, "M.T.De.Alvear", "Santa Fe", 2100, 0, 0, 0, 1111);
 		regionBanco = new Region("CABA", "Recoleta", "Bs As", "Argentina");
 		coordenadaBanco = new Point(34.3243, 24.4657);
-		disponibilidadBancaria = new Disponibilidad("10:00", "15:00");
-		bancoSantander = new Banco("Banco Santander", domicilioBanco, regionBanco, coordenadaBanco,
-				                   diasDeAtencionBancaria, disponibilidadBancaria);
+		palabrasClaveBanco.add("Cajero automatico");
+		palabrasClaveBanco.add("Deposito");		
+		bancoSantander = new Banco("Banco Santander", coordenadaBanco, palabrasClaveBanco);
+		bancoSantander.setDomicilio(domicilioBanco);
+		bancoSantander.setRegion(regionBanco);
+		
 		domicilioCGP = new Domicilio("Arenales",1141 , "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
 		regionCGP = new Region("CABA", "Recoleta", "Bs As", "Argentina");
 		coordenadaCGP = new Point(34.4353,24.4856);
 		zonaCGP = new Polygon();
-		comuna3 = new CGP("CGP comuna3",domicilioCGP, regionCGP, coordenadaCGP,zonaCGP,serviciosCGP);
-		
+		List<String> palabrasClaveCGP = Arrays.asList("Rentas");
+		comuna3 = new CGP("CGP comuna3", domicilioCGP, regionCGP, coordenadaCGP, zonaCGP, serviciosCGP,
+				palabrasClaveCGP);
 		disponibilidadCGPRentas = new Disponibilidad ("09:30","15:30");
 		rentas = new ServicioCGP("Rentas",diasDeAtencionCGPRentas,disponibilidadCGPRentas,palabrasClaveRentas);
 		

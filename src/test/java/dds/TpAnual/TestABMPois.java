@@ -29,18 +29,22 @@ public class TestABMPois {
 		domicilioParada = new Domicilio("Arenales", 1141, "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
 		regionParada = new Region("CABA", "Recoleta", "Bs As", "Argentina");
 		coordenadaParada = new Point(34.4353, 25.4632);
-		parada114 = new ParadaColectivo(domicilioParada, regionParada, coordenadaParada, "114");
+		List<String> palabrasClave114 = Arrays.asList("Colectivo", "Parada");
+		parada114 = new ParadaColectivo(domicilioParada, regionParada, coordenadaParada, "114", palabrasClave114);
 
 		domicilioParada = new Domicilio("Arenales", 1261, "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
 		regionParada = new Region("CABA", "Recoleta", "Bs As", "Argentina");
 		coordenadaParada = new Point(34.955, 25.555);
-		parada107 = new ParadaColectivo(domicilioParada, regionParada, coordenadaParada, "107");
+		List<String> palabrasClave107 = Arrays.asList("Colectivo", "Parada");
+		parada107 = new ParadaColectivo(domicilioParada, regionParada, coordenadaParada, "107", palabrasClave107);
 
 		
 		sistema = new InfoFast();
 		sistema2 = new InfoFast();
+		
+		sistema.getBase().getPois().clear();
 	}
-
+	
 	@Test
 	public void testAgregarPoi() {
 

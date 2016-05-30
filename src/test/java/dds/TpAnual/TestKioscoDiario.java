@@ -33,13 +33,15 @@ public class TestKioscoDiario {
 		domicilioParada = new Domicilio("Av.Monroe",1540 , "Olazabal", "Virrey del Pino", 1900, 0, 0, 0, 1111);
 		regionParada = new Region("CABA", "Palermo", "Bs As", "Argentina");
 		coordenadaParada = new Point(10.2758,16.2148);
-		parada114 = new ParadaColectivo(domicilioParada, regionParada, coordenadaParada,"114");
-		
+		List<String> palabrasClave114 = Arrays.asList("Colectivo", "Parada");
+		parada114 = new ParadaColectivo(domicilioParada, regionParada, coordenadaParada, "114", palabrasClave114);
+
 		domicilioKiosco = new Domicilio("Av.Monroe",1740 , "Olazabal", "Virrey del Pino", 1900, 0, 0, 0, 1111);
 		regionKiosco = new Region("CABA", "Palermo", "Bs As", "Argentina");
 		coordenadaKiosco = new Point(10.2478,14.2547);
 		disponibilidadKioscoDiario = new Disponibilidad ("06:00","12:00");
-		elDiarioDelPueblo = new KioscoDiario("El diario del pueblo", domicilioKiosco, regionKiosco, coordenadaKiosco,diasDeAtencionKioscoDiario,disponibilidadKioscoDiario);
+		List<String> palabrasClaveKioscoDiario = Arrays.asList("Revistas", "Diarios", "Crucigrama");
+		elDiarioDelPueblo = new KioscoDiario("El diario del pueblo", domicilioKiosco, regionKiosco, coordenadaKiosco,diasDeAtencionKioscoDiario,disponibilidadKioscoDiario, palabrasClaveKioscoDiario);
 	
 	    
 	}

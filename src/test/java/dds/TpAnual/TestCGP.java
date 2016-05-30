@@ -33,12 +33,8 @@ public class TestCGP {
 	private Domicilio domicilioBanco;
 	private Region regionBanco;
 	private Point coordenadaBanco;
-	private Banco bancoSantander;
-	
-	private Disponibilidad disponibilidadBancaria;
-	private List<String> diasDeAtencionBancaria = Arrays.asList("Lunes","Martes","Miercoles","Jueves","Viernes");
-	
-	
+	private Banco bancoSantander;	
+	private List<String> palabrasClaveBanco = new ArrayList<String>();
 	
 	private Point coordenadaCGP2;
 	private Point coordenadaCGP3;
@@ -54,7 +50,8 @@ public class TestCGP {
 		coordenadaCGP2 = new Point(34.4124,24.4852);
 		coordenadaCGP3 = new Point(34.4120,24.4851);
 		zonaCGP = new Polygon();
-		comuna3 = new CGP("CGP comuna3",domicilioCGP, regionCGP, coordenadaCGP,zonaCGP,serviciosCGP);
+		List<String> palabrasClaveCGP = Arrays.asList("Rentas");
+		comuna3 = new CGP("CGP comuna3",domicilioCGP, regionCGP, coordenadaCGP,zonaCGP,serviciosCGP, palabrasClaveCGP );
 		zonaCGP.add(coordenadaCGP);
 		zonaCGP.add(coordenadaCGP2);
 		zonaCGP.add(coordenadaCGP3);
@@ -66,9 +63,12 @@ public class TestCGP {
 		domicilioBanco = new Domicilio("Arenales",1245 , "M.T.De.Alvear", "Santa Fe", 2100, 0, 0, 0, 1111);
 		regionBanco = new Region("CABA", "Recoleta", "Bs As", "Argentina");
 		coordenadaBanco = new Point(34.4120,24.4854);
-		disponibilidadBancaria = new Disponibilidad ("10:00","15:00");
-		bancoSantander = new Banco("Banco Santander",domicilioBanco, regionBanco, coordenadaBanco,diasDeAtencionBancaria,disponibilidadBancaria);
-	
+		palabrasClaveBanco.add("Cajero automatico");
+		palabrasClaveBanco.add("Deposito");		
+		bancoSantander = new Banco("Banco Santander", coordenadaBanco, palabrasClaveBanco);
+		bancoSantander.setDomicilio(domicilioBanco);
+		bancoSantander.setRegion(regionBanco);
+		
 		comuna3.serviciosCGP.add(rentas);
 
 	}
