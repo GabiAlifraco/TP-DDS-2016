@@ -1,15 +1,15 @@
 package TpAnual;
-
 import java.util.ArrayList;
 import java.util.List;
-
 public class BaseDePois {
 
 	private static BaseDePois instance = null;
 	public List<Poi> pois = new ArrayList<Poi>();
 
+	public List<Poi> getPois() {
+		return pois;
+	}
 	protected BaseDePois() {
-
 	}
 
 	public static BaseDePois getInstance() {
@@ -19,12 +19,8 @@ public class BaseDePois {
 		return instance;
 	}
 
-	public List<Poi> getPois() {
-		return pois;
-	}
-
+	//Alta, Baja y Modificación de un Poi
 	public void agregarUnPoi(Poi unPoi) {
-
 		pois.add(unPoi);
 	}
 
