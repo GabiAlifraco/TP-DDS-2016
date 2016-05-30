@@ -1,5 +1,8 @@
 package TpAnual;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.uqbar.geodds.Point;
 
 public abstract class Poi {
@@ -7,7 +10,9 @@ public abstract class Poi {
 	private Point coordenada;
 	private Domicilio domicilio;
 	private Region region;
-	
+	private String nombre;
+	private List<String> palabrasClave = new ArrayList<String>();
+
 	public Domicilio getDomicilio() {
 		return domicilio;
 	}
@@ -40,11 +45,33 @@ public abstract class Poi {
 		this.coordenada = unaCoordenada;
 	}
 	
+	public void setNombre(String unNombre){
+		this.nombre = unNombre;
+	}
+	
+	public String getNombre(){
+		return this.nombre;
+	}
+	
+	public void setPalabrasClave(List<String> palabras){
+		this.palabrasClave = palabras;
+	}
+
+	public List<String> getPalabrasClave(){
+		return this.palabrasClave;
+	}
+	
+	public void agregarPalabraClave(String unaPalabra){
+		this.palabrasClave.add(unaPalabra);
+	}
+	
     public abstract boolean estaDisponible(String nombreABuscar,String dia,String hora);
     
     public abstract boolean textoIncluido(String texto);
 	
-    public abstract boolean mismoNombre(String nombreServicio);
+    public boolean mismoNombre(String nombreServicio) {
+		return getNombre().equals(nombreServicio);
+	}
 	
 	public abstract boolean noTenesIdentificacion();
 	

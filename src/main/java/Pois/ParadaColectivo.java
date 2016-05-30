@@ -1,6 +1,5 @@
 package Pois;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.uqbar.geodds.Point;
@@ -10,16 +9,16 @@ import TpAnual.Poi;
 import TpAnual.Region;
 
 public class ParadaColectivo extends Poi {
-
-    List<String> palabrasClave = Arrays.asList("Colectivo", "Parada");
+	
 	private String lineaDeColectivo;
     
     
-	public ParadaColectivo(Domicilio unDomicilio,Region unaRegion,Point unaCoordenada, String unaLinea){
+	public ParadaColectivo(Domicilio unDomicilio,Region unaRegion,Point unaCoordenada, String unaLinea, List<String> palabrasClave){
 	  setCoordenada(unaCoordenada);
 	  setDomicilio(unDomicilio);
 	  setRegion(unaRegion);
 	  lineaDeColectivo=unaLinea;
+	  setPalabrasClave(palabrasClave);
 	  }
 	
 	
@@ -48,7 +47,7 @@ public class ParadaColectivo extends Poi {
 		return lineaDeColectivo.equals(nombreServicio);
 	}
 	public boolean textoIncluido(String texto) {
-		return lineaDeColectivo.contains(texto) || palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));
+		return lineaDeColectivo.contains(texto) || getPalabrasClave().stream().anyMatch(palabra -> palabra.contains(texto));
 	}
 
 

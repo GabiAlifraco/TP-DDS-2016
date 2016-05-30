@@ -1,6 +1,5 @@
 package Pois;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.uqbar.geodds.Point;
@@ -14,21 +13,20 @@ import TpAnual.ServicioCGP;
 public class CGP extends Poi{
 	
 	
-	List<String> palabrasClave = Arrays.asList("Rentas"); 
-	private String nombre;
 	public List<ServicioCGP> serviciosCGP;
 	
 
 	private Polygon zona;
 	
 	public CGP (String unNombre, Domicilio unDomicilio,Region unaRegion,Point unaCoordenada,
-			    Polygon unaZona, List<ServicioCGP> servicios){
+			    Polygon unaZona, List<ServicioCGP> servicios, List<String> palabrasClave){
 		setCoordenada(unaCoordenada);
 		setZona(unaZona);
 		setRegion(unaRegion);
 		setDomicilio(unDomicilio);
-		nombre = unNombre;
+		setNombre(unNombre);
 		serviciosCGP= servicios;
+		setPalabrasClave(palabrasClave);
 	}
 	
 	public int distanciaMinimaParaConsiderarmeCercano(){
@@ -42,7 +40,7 @@ public class CGP extends Poi{
 	}
 	
 	public boolean noTenesIdentificacion(){
-		return(nombre.equals(null));
+		return(getNombre().equals(null));
 	}
 
 	public boolean textoIncluido(String texto) {
@@ -51,7 +49,7 @@ public class CGP extends Poi{
 	
 
 	public boolean estaDisponible(String nombreBuscado,String dia, String hora) {
-		if (nombre.equals(nombreBuscado)){
+		if (getNombre().equals(nombreBuscado)){
 			return serviciosCGP.stream().anyMatch(servicioCGP -> (servicioCGP.getDiasDeAtencion().contains(dia) && servicioCGP.horarioDentroDelRango(hora)));
 		}
 		return estaDisponibleEnHorario(nombreBuscado,dia,hora);
@@ -73,7 +71,7 @@ public class CGP extends Poi{
 
 	
 	public boolean mismoNombre(String nombreServicio) {
-		return nombre.equals(nombreServicio) || serviciosCGP.stream().anyMatch(servicioCGP -> servicioCGP.igualNombre(nombreServicio));
+		return getNombre().equals(nombreServicio) || serviciosCGP.stream().anyMatch(servicioCGP -> servicioCGP.igualNombre(nombreServicio));
 	}
 	
 

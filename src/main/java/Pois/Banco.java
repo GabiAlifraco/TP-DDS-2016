@@ -7,47 +7,43 @@ import java.util.List;
 import org.uqbar.geodds.Point;
 
 import TpAnual.Disponibilidad;
-import TpAnual.Domicilio;
 import TpAnual.Poi;
-import TpAnual.Region;
 
 public class Banco extends Poi {
 
+	private List<String> diasDeAtencion = Arrays.asList("Lunes", "Martes", "Miercoles", "Jueves", "Viernes");
+	private Disponibilidad horarioDeAtencion = new Disponibilidad("10:00", "15:00");
 
-    private String nombre;
-    List<String> palabrasClave = Arrays.asList("Cajero automatico", "Deposito");
-    private List<String> diasDeAtencion;
-    private Disponibilidad horarioDeAtencion;
-    
+	public Banco(String unNombre, Point unaCoordenada, List<String> serviciosBanco) {
+		setCoordenada(unaCoordenada);
+		setNombre(unNombre);
+		setPalabrasClave(serviciosBanco);
+	}
 
-	public Banco(String unNombre,Domicilio unDomicilio,Region unaRegion,Point unaCoordenada, List<String> diasDeAtencion,Disponibilidad unHorarioDeAtencion){
-	  setCoordenada(unaCoordenada);
-	  setDomicilio(unDomicilio);
-	  setRegion(unaRegion);
-	  this.diasDeAtencion=diasDeAtencion;
-	  horarioDeAtencion=unHorarioDeAtencion;
-	  nombre = unNombre;
-	  }
-	public int distanciaMinimaParaConsiderarmeCercano(){
+	public int distanciaMinimaParaConsiderarmeCercano() {
 		return 500;
 	}
 
-	public boolean noTenesIdentificacion(){
-		return(nombre.equals(null));
+	public boolean noTenesIdentificacion() {
+		return (getNombre().equals(null));
 	}
-	public boolean textoIncluido(String texto){
-		return palabrasClave.stream().anyMatch(palabra -> palabra.contains(texto));
+
+	public boolean textoIncluido(String texto) {
+		return getPalabrasClave().stream().anyMatch(palabra -> palabra.contains(texto));
 	}
-	public boolean estaDisponible(String nombreBuscado,String dia,String hora){
+
+	public boolean estaDisponible(String nombreBuscado, String dia, String hora) {
 		return diasDeAtencion.contains(dia) && this.horaDentroDelRango(hora);
 	}
+
 	private boolean horaDentroDelRango(String hora) {
-		return (horarioDeAtencion.getHorarioInicial().isBefore(LocalTime.parse(hora)) && horarioDeAtencion.getHorarioFinal().isAfter(LocalTime.parse(hora)));
+		return (horarioDeAtencion.getHorarioInicial().isBefore(LocalTime.parse(hora))
+				&& horarioDeAtencion.getHorarioFinal().isAfter(LocalTime.parse(hora)));
 	}
-	
+
 	public boolean mismoNombre(String nombreServicio) {
-		return this.nombre.equals(nombreServicio);
+		return this.getNombre().equals(nombreServicio);
 	}
-	
+
 
 }
