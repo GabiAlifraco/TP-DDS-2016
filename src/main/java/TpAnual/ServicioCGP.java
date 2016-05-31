@@ -7,17 +7,17 @@ public class ServicioCGP {
 	private String nombre;
 	private List<String> diasDeAtencion;
     private Disponibilidad horarioDeAtencion;
-	public List<String> palabrasClave;
+	
     
     public String getNombre() {
 		return nombre;
 	}
 
-	public ServicioCGP(String unNombre, List<String> unosDiasDeAtencion, Disponibilidad unaDisponibilidadHoraria,List<String> palabrasClave){
+	public ServicioCGP(String unNombre, List<String> unosDiasDeAtencion, Disponibilidad unaDisponibilidadHoraria){
     	nombre=unNombre;
     	diasDeAtencion=unosDiasDeAtencion;
     	horarioDeAtencion=unaDisponibilidadHoraria;
-    	this.palabrasClave = palabrasClave;
+    	
     }
 
 	public void setNombre(String nombre) {
@@ -36,9 +36,6 @@ public class ServicioCGP {
 		return diasDeAtencion;
 	}
 	
-	public List<String> getPalabrasClave() {
-		return palabrasClave;
-	}
 
 	public boolean horarioDentroDelRango(String hora){
 		return (horarioDeAtencion.getHorarioInicial().isBefore(LocalTime.parse(hora)) && horarioDeAtencion.getHorarioFinal().isAfter(LocalTime.parse(hora)));

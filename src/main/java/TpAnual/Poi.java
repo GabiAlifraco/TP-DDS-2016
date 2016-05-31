@@ -74,4 +74,5 @@ public abstract class Poi {
 		return getNombre().equals(nombreServicio);
 	}
 
+
 }

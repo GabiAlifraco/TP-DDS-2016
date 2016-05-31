@@ -40,18 +40,18 @@ public class TestDisponibilidadDeUnPoi {
 	private List<String> diasDeAtencionCarrousel = Arrays.asList("Lunes", "Martes", "Miercoles", "Jueves", "Viernes",
 			"Sabado");
 
-	private Domicilio domicilioCGP;
+	private Domicilio domicilioCGP;    //Hay que sacarlo
 	private Point coordenadaCGP;
 	private Region regionCGP;
-	private Polygon zonaCGP;
+	private Polygon zonaCGP;    //Hay que sacarlo
 	private CGP comuna3;
 
-	private List<String> palabrasClaveRentas = Arrays.asList("Rentas", "CGP");
+	private List<String> palabrasClaveRentas = Arrays.asList("Rentas", "CGP"); //Hay que sacarlo
 	private Disponibilidad disponibilidadCGPRentas;
 	private List<String> diasDeAtencionCGPRentas = Arrays.asList("Lunes", "Martes", "Miercoles", "Jueves", "Viernes");
 	private ServicioCGP rentas;
 
-	private List<String> palabrasClaveTesoreria = Arrays.asList("Rentas", "CGP");
+	private List<String> palabrasClaveTesoreria = Arrays.asList("Rentas", "CGP"); //Hay que sacarlo
 	private Disponibilidad disponibilidadTesoreria;
 	private ServicioCGP tesoreria;
 	private List<String> diasTesoreria = Arrays.asList("Lunes", "Martes", "Miercoles", "Jueves", "Viernes");
@@ -87,18 +87,19 @@ public class TestDisponibilidadDeUnPoi {
 		
 
 		disponibilidadTesoreria = new Disponibilidad("09:00", "15:00");
-		tesoreria = new ServicioCGP("Tesoreria", diasTesoreria, disponibilidadTesoreria, palabrasClaveTesoreria);
+		tesoreria = new ServicioCGP("Tesoreria", diasTesoreria, disponibilidadTesoreria);
 
 		disponibilidadCGPRentas = new Disponibilidad("09:30", "15:30");
-		rentas = new ServicioCGP("Rentas", diasDeAtencionCGPRentas, disponibilidadCGPRentas, palabrasClaveRentas);
+		rentas = new ServicioCGP("Rentas", diasDeAtencionCGPRentas, disponibilidadCGPRentas);
 
 		domicilioCGP = new Domicilio("Arenales", 1141, "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
 		regionCGP = new Region("CABA", "Recoleta", "Bs As", "Argentina");
 		coordenadaCGP = new Point(34.4353, 24.4856);
 		zonaCGP = new Polygon();
 		List<String> palabrasClaveCGP = Arrays.asList("Rentas");
-		comuna3 = new CGP("CGP comuna3", domicilioCGP, regionCGP, coordenadaCGP, zonaCGP, serviciosCGP,
-				palabrasClaveCGP);
+		comuna3 = new CGP("CGP comuna3",serviciosCGP);
+		comuna3.setDomicilio(domicilioCGP);
+		comuna3.setRegion(regionCGP);
 		comuna3.serviciosCGP.add(tesoreria);
 		comuna3.serviciosCGP.add(rentas);
 

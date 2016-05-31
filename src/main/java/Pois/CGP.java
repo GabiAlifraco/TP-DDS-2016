@@ -14,19 +14,14 @@ public class CGP extends Poi{
 	
 	
 	public List<ServicioCGP> serviciosCGP;
-	
-
+	private List<String> lasPalabrasClave;
+    
 	private Polygon zona;
-	
-	public CGP (String unNombre, Domicilio unDomicilio,Region unaRegion,Point unaCoordenada,
-			    Polygon unaZona, List<ServicioCGP> servicios, List<String> palabrasClave){
-		setCoordenada(unaCoordenada);
-		setZona(unaZona);
-		setRegion(unaRegion);
-		setDomicilio(unDomicilio);
+	public CGP (String unNombre,List<ServicioCGP> servicios){
+
 		setNombre(unNombre);
 		serviciosCGP= servicios;
-		setPalabrasClave(palabrasClave);
+		
 	}
 	
 	public int distanciaMinimaParaConsiderarmeCercano(){
@@ -35,7 +30,7 @@ public class CGP extends Poi{
 	
 	@Override
 	public boolean estaCercaDe(Point otraCoordenada) {
-		return this.zona.isInside(getCoordenada());
+		return this.getZona().isInside(otraCoordenada);
 		
 	}
 	
@@ -44,7 +39,7 @@ public class CGP extends Poi{
 	}
 
 	public boolean textoIncluido(String texto) {
-		return serviciosCGP.stream().anyMatch(servicioCGP -> servicioCGP.getPalabrasClave().stream().anyMatch(palabra -> palabra.contains(texto)));
+		return getPalabrasClave().stream().anyMatch(palabra -> palabra.contains(texto));
 	}
 	
 
@@ -67,12 +62,20 @@ public class CGP extends Poi{
 	public void setZona(Polygon zona) {
 		this.zona = zona;
 	}
-	
 
 	
 	public boolean mismoNombre(String nombreServicio) {
 		return getNombre().equals(nombreServicio) || serviciosCGP.stream().anyMatch(servicioCGP -> servicioCGP.igualNombre(nombreServicio));
 	}
+
+	public List<String> getLasPalabrasClave() {
+		return lasPalabrasClave;
+	}
+
+	public void setLasPalabrasClave(List<String> lasPalabrasClave) {
+		this.lasPalabrasClave = lasPalabrasClave;
+	}
+
 	
 
 

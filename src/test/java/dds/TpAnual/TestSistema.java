@@ -33,12 +33,12 @@ public class TestSistema {
 	private Banco bancoSantander;
 	private Domicilio domicilioCGP;
 	private Region regionCGP;
-	private Point coordenadaCGP;
+	private Point coordenadaCGP;   //Hay que sacarlo
 	private CGP comuna3;
-	private Polygon zonaCGP;
+	private Polygon zonaCGP;    //Hay que sacarlo
 	
 	private Disponibilidad disponibilidadCGPRentas;
-	private List<String> palabrasClaveRentas = Arrays.asList("Rentas","CGP");
+	private List<String> palabrasClaveRentas = Arrays.asList("Rentas","CGP"); //Hay que sacarlo
 	private List<ServicioCGP> serviciosCGP = new ArrayList<ServicioCGP>();
 	private ServicioCGP rentas;
 	private List<String> diasDeAtencionCGPRentas = Arrays.asList("Lunes","Martes","Miercoles","Jueves","Viernes");
@@ -71,10 +71,11 @@ public class TestSistema {
 		coordenadaCGP = new Point(34.4353,24.4856);
 		zonaCGP = new Polygon();
 		List<String> palabrasClaveCGP = Arrays.asList("Rentas");
-		comuna3 = new CGP("CGP comuna3", domicilioCGP, regionCGP, coordenadaCGP, zonaCGP, serviciosCGP,
-				palabrasClaveCGP);
+		comuna3 = new CGP("CGP comuna3",serviciosCGP);
+		comuna3.setDomicilio(domicilioCGP);
+		comuna3.setRegion(regionCGP);
 		disponibilidadCGPRentas = new Disponibilidad ("09:30","15:30");
-		rentas = new ServicioCGP("Rentas",diasDeAtencionCGPRentas,disponibilidadCGPRentas,palabrasClaveRentas);
+		rentas = new ServicioCGP("Rentas",diasDeAtencionCGPRentas,disponibilidadCGPRentas);
 		
 		sistema = new InfoFast();
 		sistema.getBase().getPois().clear();
@@ -82,7 +83,7 @@ public class TestSistema {
 		sistema.getBase().agregarUnPoi(bancoSantander);
 		sistema.getBase().agregarUnPoi(comuna3);
 		comuna3.serviciosCGP.add(rentas);
-		
+		comuna3.agregarPalabraClave("Rentas");
 	}
 
 	
@@ -106,7 +107,7 @@ public class TestSistema {
 
 		List<Poi> resultadoEsperado = Arrays.asList(comuna3);
 		
-		Assert.assertTrue(sistema.busquedaDePuntos("CGP").equals(resultadoEsperado));
+		Assert.assertTrue(sistema.busquedaDePuntos("Rentas").equals(resultadoEsperado));
 
 	}
 
