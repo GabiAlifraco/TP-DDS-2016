@@ -6,7 +6,7 @@ import java.util.List;
 public class ServiciosDTO {
 
 	private String nombreServicio;
-	private List<RangosServiciosDTO> rangosCGP = new ArrayList<RangosServiciosDTO>();
+	private List<RangosServiciosDTO> rangosDTO = new ArrayList<RangosServiciosDTO>();
 	
 	public String getNombreServicio() {
 		return nombreServicio;
@@ -14,10 +14,10 @@ public class ServiciosDTO {
 	public void setNombreServicio(String nombreServicio) {
 		this.nombreServicio = nombreServicio;
 	}
-	public List<RangosServiciosDTO> getRangosCGP() {
-		return rangosCGP;
+	public List<RangosServiciosDTO> getRangosDTO() {
+		return rangosDTO;
 	}
-	public void setRangosCGP(List<RangosServiciosDTO> rangosCGP) {
-		this.rangosCGP = rangosCGP;
+	public void setRangosDTO(List<RangosServiciosDTO> rangosCGP) {
+		this.rangosDTO = rangosCGP;
 	}
 }
