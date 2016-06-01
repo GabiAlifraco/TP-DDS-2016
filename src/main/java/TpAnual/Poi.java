@@ -54,9 +54,9 @@ public abstract class Poi {
 	public abstract boolean estaDisponible(String nombreABuscar, String dia, String hora);
 
 	// Esto es para la entrega 1: Busqueda de puntos
-	public boolean textoIncluido(String texto) {
-		return getPalabrasClave().stream().anyMatch(palabra -> palabra.contains(texto))
-				|| this.getNombre().equals(texto);
+	public boolean textoIncluido(String unNombre, String unaPalabraClave) {
+		return getPalabrasClave().stream().anyMatch(palabra -> palabra.contains(unaPalabraClave))
+				|| this.mismoNombre(unNombre);
 	}
 
 	// Verifico que sea un poi valido
@@ -94,10 +94,8 @@ public abstract class Poi {
 		return this.getCoordenada().equals(otraCoordenada);
 	}
 
-	
 	public boolean noSeRepite(List<Poi> listaPois) {
 		return !(listaPois.stream().anyMatch(poiLista -> poiLista.mismaCoordenada(this.getCoordenada())));
-		
-	}
 
+	}
 }

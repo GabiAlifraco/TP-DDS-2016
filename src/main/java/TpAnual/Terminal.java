@@ -58,15 +58,15 @@ public class Terminal {
 	}
 
 	// Esto es para la entrega 1: Busqueda de puntos
-	public List<Poi> busquedaDePuntos(String palabraClave, String otraPalabraClave) {
+	public List<Poi> busquedaDePuntos(String unNombre, String unaPalabraClave) {
 
-		return obtenerResultadosServicios(palabraClave, otraPalabraClave);
+		return obtenerResultadosServicios(unNombre, unaPalabraClave);
 	}
 
-	public List<Poi> obtenerResultadosServicios(String palabraClave, String otraPalabraClave) {
+	public List<Poi> obtenerResultadosServicios(String unNombre, String unaPalabraClave) {
 		resultadosConRepetidos.clear();
 
-		servicios.stream().forEach(servicio -> agregarResultados(servicio.buscarPois(palabraClave, otraPalabraClave)));
+		servicios.stream().forEach(servicio -> agregarResultados(servicio.buscarPois(unNombre, unaPalabraClave)));
 		resultadosConRepetidos.stream().forEach(resultado -> eliminarDuplicados(resultado, resultadosConRepetidos));
 
 		return resultadosSinRepetidos;

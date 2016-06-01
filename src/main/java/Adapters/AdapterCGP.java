@@ -1,19 +1,31 @@
 package Adapters;
+import java.util.ArrayList;
 import java.util.List;
 import DTOs.CentroDTO;
 import DTOs.RangoServicioDTO;
 import DTOs.ServicioDTO;
 import Pois.CGP;
 import TpAnual.Disponibilidad;
+import TpAnual.OrigenDeDatos;
+import TpAnual.Poi;
 import TpAnual.ServicioCGP;
 import seviciosExternos.CGPService;
 import java.util.stream.Collectors;
 import java.time.DayOfWeek;
 
 
-public class AdapterCGP {
+public class AdapterCGP implements OrigenDeDatos{
 	CGPService serviceCGP;
 
+
+	public List<Poi> buscarPois(String unNombre, String unaPalabraClave) {
+		
+		List<Poi> listaCGPs = new ArrayList<Poi>();
+		listaCGPs.add(buscarCGPs(unaPalabraClave));
+		
+		return listaCGPs;
+	}	
+	
 	public CGP buscarCGPs(String calleOBarrio) {
 
 		CentroDTO centroDTOEncontrado = serviceCGP.getCGPsByCalleOBarrio(calleOBarrio);
@@ -61,5 +73,6 @@ public class AdapterCGP {
 	public void setServiceCGP(CGPService serviceCGP) {
 		this.serviceCGP = serviceCGP;
 	}
+
 }
 

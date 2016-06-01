@@ -19,7 +19,7 @@ public class CGP extends Poi{
 		Region regionCGP = new Region("CABA", barrio, "Bs As", "Argentina");
 		super.setRegion(regionCGP);
 		setNombre(unNombre);
-		serviciosCGP= servicios;
+		serviciosCGP = servicios;
 		
 	}
 	
@@ -38,8 +38,8 @@ public class CGP extends Poi{
 	}
 	
 	@Override
-	public boolean textoIncluido(String texto) {
-		return super.textoIncluido(texto) || this.mismoNombreServicio(texto);
+	public boolean textoIncluido(String unNombre, String unaPalabraClave) {
+		return this.mismoNombre(unNombre) || this.mismoNombreServicio(unaPalabraClave);
 	}
 	
 

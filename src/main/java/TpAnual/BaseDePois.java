@@ -34,8 +34,8 @@ public class BaseDePois implements OrigenDeDatos{
 		pois.add(unPoi);
 	}
 
-	public List<Poi> buscarPois(String palabraClave, String otraPalabraClave) {
-		return this.getPois().stream().filter(poi ->
-		(poi.textoIncluido(palabraClave))|| poi.textoIncluido(otraPalabraClave)).collect(Collectors.toList());
+	public List<Poi> buscarPois(String unNombre, String unaPalabraClave) {
+		return getPois().stream().filter(poi ->
+	poi.textoIncluido(unNombre, unaPalabraClave)).collect(Collectors.toList());
 	}
 }

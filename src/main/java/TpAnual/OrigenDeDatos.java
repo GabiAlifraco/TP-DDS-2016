@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface OrigenDeDatos {
 
-	public List<Poi> buscarPois(String param1, String param2);
+	public List<Poi> buscarPois(String unNombre, String unaPalabraClave);
 	}
