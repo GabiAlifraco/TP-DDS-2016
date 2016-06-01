@@ -90,4 +90,14 @@ public abstract class Poi {
 		return getNombre().equals(nombreServicio);
 	}
 
+	public boolean mismaCoordenada(Point otraCoordenada) {
+		return this.getCoordenada().equals(otraCoordenada);
+	}
+
+	
+	public boolean noSeRepite(List<Poi> listaPois) {
+		return !(listaPois.stream().anyMatch(poiLista -> poiLista.mismaCoordenada(this.getCoordenada())));
+		
+	}
+
 }

@@ -74,7 +74,10 @@ public class CGP extends Poi{
 		this.lasPalabrasClave = lasPalabrasClave;
 	}
 
-	
+	public boolean noSeRepite(List<Poi> listaPois) {
+		return !(listaPois.stream().anyMatch(poiLista -> poiLista.mismoNombre(this.getNombre())));
+	}
+
 
 
 	

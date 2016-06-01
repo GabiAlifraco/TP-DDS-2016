@@ -14,8 +14,10 @@ import Pois.Banco;
 import Pois.CGP;
 import Pois.Carrousel;
 import Pois.ParadaColectivo;
+import TpAnual.BaseDePois;
 import TpAnual.Disponibilidad;
 import TpAnual.Domicilio;
+import TpAnual.OrigenDeDatos;
 import TpAnual.Region;
 import TpAnual.ServicioCGP;
 import TpAnual.Terminal;
@@ -59,6 +61,10 @@ public class TestDisponibilidadDeUnPoi {
 	private List<ServicioCGP> serviciosCGP = new ArrayList<ServicioCGP>();
 
 	private List<String> palabrasClaveBanco = new ArrayList<String>();
+	
+	BaseDePois base = BaseDePois.getInstance();
+	List<OrigenDeDatos> servicios = Arrays.asList(base);
+	
 
 	@Before
 	public void initialize() {
@@ -103,50 +109,53 @@ public class TestDisponibilidadDeUnPoi {
 		comuna3.serviciosCGP.add(tesoreria);
 		comuna3.serviciosCGP.add(rentas);
 
+		
 	}
 	
 	
 	@Test
 	public void estaElCarrouselDisponible() {
-		Terminal sistema = new Terminal();
-		sistema.getBase().getPois().clear();
-		sistema.getBase().getPois().add(parada114);
-		sistema.getBase().getPois().add(bancoSantander);
-		sistema.getBase().getPois().add(carrouselPlinPlin);
-		sistema.getBase().getPois().add(comuna3);
+		Terminal terminalFlorida = new Terminal("Terminal Florida", servicios);
+		terminalFlorida.getBase().getPois().clear();
+		terminalFlorida.getBase().getPois().add(parada114);
+		terminalFlorida.getBase().getPois().add(bancoSantander);
+		terminalFlorida.getBase().getPois().add(carrouselPlinPlin);
+		terminalFlorida.getBase().getPois().add(comuna3);
 
-		Assert.assertTrue(sistema.estaDisponiblePoi("Carrousel PlinPlin","Sabado","12:30"));
+		Assert.assertTrue(terminalFlorida.estaDisponiblePoi("Carrousel PlinPlin","Sabado","12:30"));
 
 	}
 	
 	@Test
 	public void estaElBancoDisponible() {
-		Terminal sistema = new Terminal();
-		sistema.getBase().getPois().clear();
-		sistema.getBase().getPois().add(parada114);
-		sistema.getBase().getPois().add(bancoSantander);
-		sistema.getBase().getPois().add(carrouselPlinPlin);
-		Assert.assertTrue(sistema.estaDisponiblePoi("Banco Santander", "Martes", "11:00"));
+		
+		Terminal terminalAbasto = new Terminal("Terminal Abasto", servicios);
+
+		terminalAbasto.getBase().getPois().clear();
+		terminalAbasto.getBase().getPois().add(parada114);
+		terminalAbasto.getBase().getPois().add(bancoSantander);
+		terminalAbasto.getBase().getPois().add(carrouselPlinPlin);
+		Assert.assertTrue(terminalAbasto.estaDisponiblePoi("Banco Santander", "Martes", "11:00"));
 	}
 
 	@Test
 	public void estaElColectivoDisponible() {
-		Terminal sistema = new Terminal();
-		sistema.getBase().getPois().clear();
-		sistema.getBase().getPois().add(parada114);
-		sistema.getBase().getPois().add(bancoSantander);
-		sistema.getBase().getPois().add(carrouselPlinPlin);
-		Assert.assertTrue(sistema.estaDisponiblePoi("114", "Sabado", "12dsds:30"));
+		Terminal terminalCampus = new Terminal("Terminal Campus", servicios);
+		terminalCampus.getBase().getPois().clear();
+		terminalCampus.getBase().getPois().add(parada114);
+		terminalCampus.getBase().getPois().add(bancoSantander);
+		terminalCampus.getBase().getPois().add(carrouselPlinPlin);
+		Assert.assertTrue(terminalCampus.estaDisponiblePoi("114", "Sabado", "12dsds:30"));
 	}
 
 	@Test
 	public void estaRentasEstaDisponible() {
-		Terminal sistema = new Terminal();
-		sistema.getBase().getPois().clear();
-		sistema.getBase().getPois().add(parada114);
-		sistema.getBase().getPois().add(bancoSantander);
-		sistema.getBase().getPois().add(carrouselPlinPlin);
-		sistema.getBase().getPois().add(comuna3);
-		Assert.assertFalse(sistema.estaDisponiblePoi("Tesoreria", "Domingo", "11:30"));
+		Terminal terminalTeatroColon = new Terminal("Terminal Teatro Colon", servicios);
+		terminalTeatroColon.getBase().getPois().clear();
+		terminalTeatroColon.getBase().getPois().add(parada114);
+		terminalTeatroColon.getBase().getPois().add(bancoSantander);
+		terminalTeatroColon.getBase().getPois().add(carrouselPlinPlin);
+		terminalTeatroColon.getBase().getPois().add(comuna3);
+		Assert.assertFalse(terminalTeatroColon.estaDisponiblePoi("Tesoreria", "Domingo", "11:30"));
 	}
 }

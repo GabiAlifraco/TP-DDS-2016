@@ -7,6 +7,7 @@ public class InfoFast {
 
 	private static InfoFast instance = null;
 	List<Terminal> terminales = new ArrayList<Terminal>();
+	private String mailAdministrador;
 
 	public static InfoFast getInstance() {
 		if (instance == null) {
@@ -21,5 +22,13 @@ public class InfoFast {
 
 	private List<Terminal> getTerminales() {
 		return this.terminales;
+	}
+
+	public String getMailAdministrador() {
+		return mailAdministrador;
+	}
+
+	public void setMailAdministrador(String mailAdministrador) {
+		this.mailAdministrador = mailAdministrador;
 	}
 }

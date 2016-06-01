@@ -6,16 +6,18 @@ import java.util.stream.Collectors;
 import org.uqbar.geodds.Point;
 import DTOs.BancoDTO;
 import Pois.Banco;
+import TpAnual.OrigenDeDatos;
+import TpAnual.Poi;
 import json.JsonFactory;
 import seviciosExternos.BankService;
 import com.sun.jersey.api.client.ClientResponse;
 
-public class AdapterBancos {
+public class AdapterBancos implements OrigenDeDatos{
 
 	BankService servicioBanco;
 	JsonFactory jsonFactory = new JsonFactory();
 
-	public List<Banco> buscarBancos(String nombreBanco, String servicio) {
+	public List<Poi> buscarPois(String nombreBanco, String servicio) {
 
 		String jsonRespuesta = this.obtenerRespuestaServicio(nombreBanco, servicio);
 		BancoDTO[] bancosDTO = jsonFactory.fromJson(jsonRespuesta, BancoDTO[].class);

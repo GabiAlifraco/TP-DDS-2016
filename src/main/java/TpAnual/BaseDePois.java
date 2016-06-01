@@ -1,13 +1,14 @@
 package TpAnual;
 import java.util.ArrayList;
 import java.util.List;
-public class BaseDePois {
+import java.util.stream.Collectors;
+public class BaseDePois implements OrigenDeDatos{
 
 	private static BaseDePois instance = null;
 	public List<Poi> pois = new ArrayList<Poi>();
 
 	public List<Poi> getPois() {
-		return pois;
+		return this.pois;
 	}
 	protected BaseDePois() {
 	}
@@ -19,7 +20,7 @@ public class BaseDePois {
 		return instance;
 	}
 
-	//Alta, Baja y Modificación de un Poi
+	//Alta, Baja y Modificaciï¿½n de un Poi
 	public void agregarUnPoi(Poi unPoi) {
 		pois.add(unPoi);
 	}
@@ -31,5 +32,10 @@ public class BaseDePois {
 	public void modificarUnPoi(Poi unPoi) {
 		pois.remove(unPoi);
 		pois.add(unPoi);
+	}
+
+	public List<Poi> buscarPois(String palabraClave, String otraPalabraClave) {
+		return this.getPois().stream().filter(poi ->
+		(poi.textoIncluido(palabraClave))|| poi.textoIncluido(otraPalabraClave)).collect(Collectors.toList());
 	}
 }

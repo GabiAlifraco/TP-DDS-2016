@@ -10,19 +10,22 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import Adapters.AdapterBancos;
 import Pois.Banco;
 import Pois.CGP;
 import Pois.ParadaColectivo;
 import TpAnual.Terminal;
+import TpAnual.BaseDePois;
 import TpAnual.Disponibilidad;
 import TpAnual.Domicilio;
+import TpAnual.OrigenDeDatos;
 import TpAnual.Poi;
 import TpAnual.Region;
 import TpAnual.ServicioCGP;
 
 
 public class TestSistema {
-	private Terminal sistema;
+	private Terminal terminalAbasto;
 	private Region regionParada;
 	private Domicilio domicilioParada;
 	private Point coordenadaParada;
@@ -77,11 +80,13 @@ public class TestSistema {
 		disponibilidadCGPRentas = new Disponibilidad ("09:30","15:30");
 		rentas = new ServicioCGP("Rentas",diasDeAtencionCGPRentas,disponibilidadCGPRentas);
 		
-		sistema = new Terminal();
-		sistema.getBase().getPois().clear();
-		sistema.getBase().agregarUnPoi(parada114);
-		sistema.getBase().agregarUnPoi(bancoSantander);
-		sistema.getBase().agregarUnPoi(comuna3);
+		BaseDePois base = BaseDePois.getInstance();
+		List<OrigenDeDatos> servicios = Arrays.asList(base);
+		terminalAbasto = new Terminal("Terminal Abasto", servicios);
+		terminalAbasto.getBase().getPois().clear();
+		terminalAbasto.getBase().agregarUnPoi(parada114);
+		terminalAbasto.getBase().agregarUnPoi(bancoSantander);
+		terminalAbasto.getBase().agregarUnPoi(comuna3);
 		comuna3.serviciosCGP.add(rentas);
 		comuna3.agregarPalabraClave("Rentas");
 	}
@@ -90,16 +95,17 @@ public class TestSistema {
 	@Test
 	public void busquedaDePoisPorClave() {
 		
+		terminalAbasto.getBase().agregarUnPoi(bancoSantander);
+		
 		List<Poi> resultadoEsperado = Arrays.asList(bancoSantander);
-
-		Assert.assertTrue(sistema.busquedaDePuntos("Cajero").equals(resultadoEsperado));
+		Assert.assertTrue(terminalAbasto.busquedaDePuntos("Cajero", "Cajero").equals(resultadoEsperado));
 
 	}
 
 	@Test
 	public void busquedaSinResultados() {
 		
-		Assert.assertTrue(sistema.busquedaDePuntos("Plaza").isEmpty());
+		Assert.assertTrue(terminalAbasto.busquedaDePuntos("Plaza", "Plaza").isEmpty());
 
 	}
 	@Test
@@ -107,7 +113,7 @@ public class TestSistema {
 
 		List<Poi> resultadoEsperado = Arrays.asList(comuna3);
 		
-		Assert.assertTrue(sistema.busquedaDePuntos("Rentas").equals(resultadoEsperado));
+		Assert.assertTrue(terminalAbasto.busquedaDePuntos("Rentas", "Rentas").equals(resultadoEsperado));
 
 	}
 
