@@ -8,9 +8,9 @@ public class CentroDTO {
 	private int numeroComuna;
 	private String zonasIncluidas;
 	private String director;
-	private String domicilioCompletoCGP;
-	private String telefonoCGP;
-	private List<ServiciosDTO> serviciosCGP = new ArrayList<ServiciosDTO>();
+	private String domicilioCompletoDTO;
+	private String telefonoDTO;
+	private List<ServicioDTO> serviciosDTO = new ArrayList<ServicioDTO>();
 	
 	public int getNumeroComuna() {
 		return numeroComuna;
@@ -31,22 +31,22 @@ public class CentroDTO {
 		this.director = director;
 	}
 	public String getDomicilioCompletoCGP() {
-		return domicilioCompletoCGP;
+		return domicilioCompletoDTO;
 	}
 	public void setDomicilioCompletoCGP(String domicilioCompletoCGP) {
-		this.domicilioCompletoCGP = domicilioCompletoCGP;
+		this.domicilioCompletoDTO = domicilioCompletoCGP;
 	}
 	public String getTelefonoCGP() {
-		return telefonoCGP;
+		return telefonoDTO;
 	}
 	public void setTelefonoCGP(String telefonoCGP) {
-		this.telefonoCGP = telefonoCGP;
+		this.telefonoDTO = telefonoCGP;
 	}
-	public List<ServiciosDTO> getServiciosCGP() {
-		return serviciosCGP;
+	public List<ServicioDTO> getServiciosDTO() {
+		return serviciosDTO;
 	}
-	public void setServiciosCGP(List<ServiciosDTO> serviciosCGP) {
-		this.serviciosCGP = serviciosCGP;
+	public void setServiciosDTO(List<ServicioDTO> serviciosDTO) {
+		this.serviciosDTO = serviciosDTO;
 	}
 	
 }

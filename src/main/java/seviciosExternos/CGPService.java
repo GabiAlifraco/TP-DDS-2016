@@ -1,7 +1,5 @@
 package seviciosExternos;
 
-
-
 import DTOs.CentroDTO;
 
 public interface CGPService {

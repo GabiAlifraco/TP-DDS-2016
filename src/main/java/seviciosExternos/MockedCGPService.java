@@ -7,7 +7,7 @@ public class MockedCGPService implements CGPService{
 	@Override
 	public CentroDTO getCGPsByCalleOBarrio(String calleOBarrio) {
 		
-		return new CentroDTO();
+		return (CentroDTO) new CentroDTO();
 	}
 
 }

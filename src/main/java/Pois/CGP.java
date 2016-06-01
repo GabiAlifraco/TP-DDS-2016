@@ -5,6 +5,7 @@ import java.util.List;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 import TpAnual.Poi;
+import TpAnual.Region;
 import TpAnual.ServicioCGP;
 
 public class CGP extends Poi{
@@ -14,8 +15,9 @@ public class CGP extends Poi{
 	private List<String> lasPalabrasClave;
     
 	private Polygon zona;
-	public CGP (String unNombre,List<ServicioCGP> servicios){
-
+	public CGP (String unNombre,String barrio,List<ServicioCGP> servicios){
+		Region regionCGP = new Region("CABA", barrio, "Bs As", "Argentina");
+		super.setRegion(regionCGP);
 		setNombre(unNombre);
 		serviciosCGP= servicios;
 		

@@ -13,7 +13,7 @@ public class ServicioCGP {
 		return nombre;
 	}
 
-	public ServicioCGP(String unNombre, List<String> unosDiasDeAtencion, Disponibilidad unaDisponibilidadHoraria){
+	public ServicioCGP(String unNombre, List<String> unosDiasDeAtencion,Disponibilidad unaDisponibilidadHoraria){
     	nombre=unNombre;
     	diasDeAtencion=unosDiasDeAtencion;
     	horarioDeAtencion=unaDisponibilidadHoraria;
