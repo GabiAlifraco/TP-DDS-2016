@@ -3,10 +3,10 @@ package DTOs;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiciosDTO {
+public class ServicioDTO {
 
 	private String nombreServicio;
-	private List<RangosServiciosDTO> rangosDTO = new ArrayList<RangosServiciosDTO>();
+	private List<RangoServicioDTO> rangosDTO = new ArrayList<RangoServicioDTO>();
 	
 	public String getNombreServicio() {
 		return nombreServicio;
@@ -14,10 +14,10 @@ public class ServiciosDTO {
 	public void setNombreServicio(String nombreServicio) {
 		this.nombreServicio = nombreServicio;
 	}
-	public List<RangosServiciosDTO> getRangosDTO() {
+	public List<RangoServicioDTO> getRangosDTO() {
 		return rangosDTO;
 	}
-	public void setRangosDTO(List<RangosServiciosDTO> rangosCGP) {
+	public void setRangosDTO(List<RangoServicioDTO> rangosCGP) {
 		this.rangosDTO = rangosCGP;
 	}
 }

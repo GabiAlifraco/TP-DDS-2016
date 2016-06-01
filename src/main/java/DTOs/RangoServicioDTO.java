@@ -1,6 +1,6 @@
 package DTOs;
 
-public class RangosServiciosDTO {
+public class RangoServicioDTO {
 
 	private int numeroSemana;
 	private int horarioDesde;

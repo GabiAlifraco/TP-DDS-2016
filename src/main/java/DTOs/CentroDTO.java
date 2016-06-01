@@ -10,7 +10,7 @@ public class CentroDTO {
 	private String director;
 	private String domicilioCompletoDTO;
 	private String telefonoDTO;
-	private List<ServiciosDTO> serviciosDTO = new ArrayList<ServiciosDTO>();
+	private List<ServicioDTO> serviciosDTO = new ArrayList<ServicioDTO>();
 	
 	public int getNumeroComuna() {
 		return numeroComuna;
@@ -42,10 +42,10 @@ public class CentroDTO {
 	public void setTelefonoCGP(String telefonoCGP) {
 		this.telefonoDTO = telefonoCGP;
 	}
-	public List<ServiciosDTO> getServiciosDTO() {
+	public List<ServicioDTO> getServiciosDTO() {
 		return serviciosDTO;
 	}
-	public void setServiciosDTO(List<ServiciosDTO> serviciosDTO) {
+	public void setServiciosDTO(List<ServicioDTO> serviciosDTO) {
 		this.serviciosDTO = serviciosDTO;
 	}
 	
