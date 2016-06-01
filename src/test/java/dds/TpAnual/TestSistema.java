@@ -13,7 +13,7 @@ import org.uqbar.geodds.Polygon;
 import Pois.Banco;
 import Pois.CGP;
 import Pois.ParadaColectivo;
-import TpAnual.InfoFast;
+import TpAnual.Terminal;
 import TpAnual.Disponibilidad;
 import TpAnual.Domicilio;
 import TpAnual.Poi;
@@ -22,7 +22,7 @@ import TpAnual.ServicioCGP;
 
 
 public class TestSistema {
-	private InfoFast sistema;
+	private Terminal sistema;
 	private Region regionParada;
 	private Domicilio domicilioParada;
 	private Point coordenadaParada;
@@ -77,7 +77,7 @@ public class TestSistema {
 		disponibilidadCGPRentas = new Disponibilidad ("09:30","15:30");
 		rentas = new ServicioCGP("Rentas",diasDeAtencionCGPRentas,disponibilidadCGPRentas);
 		
-		sistema = new InfoFast();
+		sistema = new Terminal();
 		sistema.getBase().getPois().clear();
 		sistema.getBase().agregarUnPoi(parada114);
 		sistema.getBase().agregarUnPoi(bancoSantander);

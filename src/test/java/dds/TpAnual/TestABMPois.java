@@ -10,7 +10,7 @@ import org.uqbar.geodds.Point;
 
 import Pois.ParadaColectivo;
 import TpAnual.Domicilio;
-import TpAnual.InfoFast;
+import TpAnual.Terminal;
 import TpAnual.Poi;
 import TpAnual.Region;
 
@@ -21,8 +21,8 @@ public class TestABMPois {
 	private Point coordenadaParada;
 	private ParadaColectivo parada114;
 	private ParadaColectivo parada107;
-	private InfoFast sistema;
-	private InfoFast sistema2;
+	private Terminal sistema;
+	private Terminal sistema2;
 
 	@Before
 	public void initialize() {
@@ -39,8 +39,8 @@ public class TestABMPois {
 		parada107 = new ParadaColectivo(domicilioParada, regionParada, coordenadaParada, "107", palabrasClave107);
 
 		
-		sistema = new InfoFast();
-		sistema2 = new InfoFast();
+		sistema = new Terminal();
+		sistema2 = new Terminal();
 		
 		sistema.getBase().getPois().clear();
 	}

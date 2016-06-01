@@ -18,7 +18,7 @@ import TpAnual.Disponibilidad;
 import TpAnual.Domicilio;
 import TpAnual.Region;
 import TpAnual.ServicioCGP;
-import TpAnual.InfoFast;
+import TpAnual.Terminal;
 
 public class TestDisponibilidadDeUnPoi {
 	private Region regionParada;
@@ -108,7 +108,7 @@ public class TestDisponibilidadDeUnPoi {
 	
 	@Test
 	public void estaElCarrouselDisponible() {
-		InfoFast sistema = new InfoFast();
+		Terminal sistema = new Terminal();
 		sistema.getBase().getPois().clear();
 		sistema.getBase().getPois().add(parada114);
 		sistema.getBase().getPois().add(bancoSantander);
@@ -121,7 +121,7 @@ public class TestDisponibilidadDeUnPoi {
 	
 	@Test
 	public void estaElBancoDisponible() {
-		InfoFast sistema = new InfoFast();
+		Terminal sistema = new Terminal();
 		sistema.getBase().getPois().clear();
 		sistema.getBase().getPois().add(parada114);
 		sistema.getBase().getPois().add(bancoSantander);
@@ -131,7 +131,7 @@ public class TestDisponibilidadDeUnPoi {
 
 	@Test
 	public void estaElColectivoDisponible() {
-		InfoFast sistema = new InfoFast();
+		Terminal sistema = new Terminal();
 		sistema.getBase().getPois().clear();
 		sistema.getBase().getPois().add(parada114);
 		sistema.getBase().getPois().add(bancoSantander);
@@ -141,7 +141,7 @@ public class TestDisponibilidadDeUnPoi {
 
 	@Test
 	public void estaRentasEstaDisponible() {
-		InfoFast sistema = new InfoFast();
+		Terminal sistema = new Terminal();
 		sistema.getBase().getPois().clear();
 		sistema.getBase().getPois().add(parada114);
 		sistema.getBase().getPois().add(bancoSantander);
