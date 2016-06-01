@@ -34,9 +34,10 @@ public class CGP extends Poi{
 	public boolean noTenesIdentificacion(){
 		return(getNombre().equals(null));
 	}
-
+	
+	@Override
 	public boolean textoIncluido(String texto) {
-		return getPalabrasClave().stream().anyMatch(palabra -> palabra.contains(texto));
+		return super.textoIncluido(texto) || this.mismoNombreServicio(texto);
 	}
 	
 
@@ -61,8 +62,8 @@ public class CGP extends Poi{
 	}
 
 	
-	public boolean mismoNombre(String nombreServicio) {
-		return getNombre().equals(nombreServicio) || serviciosCGP.stream().anyMatch(servicioCGP -> servicioCGP.igualNombre(nombreServicio));
+	public boolean mismoNombreServicio(String nombreServicio) {
+		return serviciosCGP.stream().anyMatch(servicioCGP -> servicioCGP.igualNombre(nombreServicio));
 	}
 
 	public List<String> getLasPalabrasClave() {

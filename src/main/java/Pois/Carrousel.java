@@ -26,10 +26,6 @@ public class Carrousel extends Comercio {
 					// cercania
 	}
 
-	public boolean textoIncluido(String texto) {
-		return getPalabrasClave().stream().anyMatch(palabra -> palabra.contains(texto));
-	}
-
 	public boolean estaDisponible(String nombreBuscado, String dia, String hora) {
 		return getDiasDeAtencion().contains(dia) && this.horaDentroDelRango(hora);
 	}

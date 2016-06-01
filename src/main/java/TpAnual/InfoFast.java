@@ -8,6 +8,7 @@ public class InfoFast {
 	private BaseDePois base = BaseDePois.getInstance();
 	private Point coordenadaDispositivoMovil;
 	
+	
 	//Getter de la base
 	public BaseDePois getBase(){
 		return base;

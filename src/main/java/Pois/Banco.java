@@ -28,10 +28,6 @@ public class Banco extends Poi {
 		return (getNombre().equals(null));
 	}
 
-	public boolean textoIncluido(String texto) {
-		return getPalabrasClave().stream().anyMatch(palabra -> palabra.contains(texto));
-	}
-
 	public boolean estaDisponible(String nombreBuscado, String dia, String hora) {
 		return diasDeAtencion.contains(dia) && this.horaDentroDelRango(hora);
 	}

@@ -31,10 +31,6 @@ public abstract class Comercio extends Poi {
 		return dameDistancia();
 	}
 
-	public boolean textoIncluido(String texto) {
-		return getPalabrasClave().stream().anyMatch(palabra -> palabra.contains(texto));
-	}
-
 	public abstract int dameDistancia();
 
 	public boolean noTenesIdentificacion() {
