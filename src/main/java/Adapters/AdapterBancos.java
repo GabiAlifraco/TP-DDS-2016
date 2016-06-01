@@ -8,6 +8,7 @@ import DTOs.BancoDTO;
 import Pois.Banco;
 import json.JsonFactory;
 import seviciosExternos.BankService;
+import com.sun.jersey.api.client.ClientResponse;
 
 public class AdapterBancos {
 
@@ -16,14 +17,18 @@ public class AdapterBancos {
 
 	public List<Banco> buscarBancos(String nombreBanco, String servicio) {
 
-		BancoDTO[] bancosDTO = jsonFactory.fromJson(servicioBanco.getSucursalesBancosByNombreBanco(nombreBanco, servicio),
-				BancoDTO[].class);
+		String jsonRespuesta = this.obtenerRespuestaServicio(nombreBanco, servicio);
+		BancoDTO[] bancosDTO = jsonFactory.fromJson(jsonRespuesta, BancoDTO[].class);
 		List<BancoDTO> bancosEncontrados = Arrays.asList(bancosDTO);
 
-		return bancosEncontrados.stream()
-				.map(bancoEncontrado -> mapearBancoDTOABanco(bancoEncontrado))
+		return bancosEncontrados.stream().map(bancoEncontrado -> mapearBancoDTOABanco(bancoEncontrado))
 				.collect(Collectors.toList());
 
+	}
+
+	private String obtenerRespuestaServicio(String nombreBanco, String servicio) {
+		ClientResponse respuestaServicio = servicioBanco.getSucursalesBancosByNombreBanco(nombreBanco, servicio);
+		return respuestaServicio.getEntity(String.class);
 	}
 
 	public Banco mapearBancoDTOABanco(BancoDTO bancoDTO) {
@@ -32,7 +37,7 @@ public class AdapterBancos {
 		double coordenadaY = Double.parseDouble(bancoDTO.getY());
 
 		Point coordenadas = new Point(coordenadaX, coordenadaY);
-		Banco banco = new Banco(bancoDTO.getBanco(),coordenadas, bancoDTO.getServicios());
+		Banco banco = new Banco(bancoDTO.getBanco(), coordenadas, bancoDTO.getServicios());
 		return banco;
 	}
 

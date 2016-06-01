@@ -1,19 +1,15 @@
 package dds.TpAnual;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.*;
-
 import Pois.Banco;
 import Pois.CGP;
 import TpAnual.Disponibilidad;
 import TpAnual.Domicilio;
-
 import TpAnual.Region;
 import TpAnual.ServicioCGP;
 public class TestCGP {
@@ -25,7 +21,6 @@ public class TestCGP {
 	private Polygon zonaCGP;
 	
 	private Disponibilidad disponibilidadCGPRentas;
-	private List<String> palabrasClaveRentas = Arrays.asList("Rentas","CGP"); //Hay que sacarlo
 	private List<ServicioCGP> serviciosCGP = new ArrayList<ServicioCGP>();
 	private ServicioCGP rentas;
 	private List<String> diasDeAtencionCGPRentas = Arrays.asList("Lunes","Martes","Miercoles","Jueves","Viernes");
@@ -52,7 +47,6 @@ public class TestCGP {
 		coordenadaCGP2 = new Point(34.4124,24.4852);
 		coordenadaCGP3 = new Point(34.4120,24.4851);
 		zonaCGP = new Polygon();
-		List<String> palabrasClaveCGP = Arrays.asList("Rentas");
 		comuna3 = new CGP("CGP comuna3",serviciosCGP);
 		
 		comuna3.setDomicilio(domicilioCGP);

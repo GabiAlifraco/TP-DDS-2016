@@ -1,8 +1,8 @@
 package seviciosExternos;
 
-import java.net.URL;
+import com.sun.jersey.api.client.ClientResponse;
 
 public interface BankService {
 
-	public URL getSucursalesBancosByNombreBanco(String nombreBanco, String nombreServicio);
+	public ClientResponse getSucursalesBancosByNombreBanco(String nombreBanco, String nombreServicio);
 }

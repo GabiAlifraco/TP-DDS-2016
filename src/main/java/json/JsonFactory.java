@@ -1,9 +1,6 @@
 package json;
 
 import java.io.IOException;
-import java.net.URL;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -20,19 +17,10 @@ public class JsonFactory {
 		return objectMapper;
 	}
 
-	public String toJson(Object object) {
+	public <T> T fromJson(String json, Class<T> typeReference) {
 		try {
-			String jsonString = this.objectMapper.writeValueAsString(object);
-			return jsonString;
-		} catch (JsonProcessingException e) {
-			throw new RuntimeException("Error creating a json", e);
-		}
-	}
 
-	public <T> T fromJson(URL linkServicio, Class<T> typeReference) {
-		try {
-			
-			return this.objectMapper.readValue(linkServicio, typeReference);
+			return this.objectMapper.readValue(json, typeReference);
 		} catch (IOException e) {
 
 			throw new RuntimeException("Error reading a json", e);
