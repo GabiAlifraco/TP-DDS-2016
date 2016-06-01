@@ -41,17 +41,12 @@ public class TestDisponibilidadDeUnPoi {
 			"Sabado");
 
 	private Domicilio domicilioCGP;    //Hay que sacarlo
-	private Point coordenadaCGP;
-	private Region regionCGP;
-	private Polygon zonaCGP;    //Hay que sacarlo
 	private CGP comuna3;
 
-	private List<String> palabrasClaveRentas = Arrays.asList("Rentas", "CGP"); //Hay que sacarlo
 	private Disponibilidad disponibilidadCGPRentas;
 	private List<String> diasDeAtencionCGPRentas = Arrays.asList("Lunes", "Martes", "Miercoles", "Jueves", "Viernes");
 	private ServicioCGP rentas;
 
-	private List<String> palabrasClaveTesoreria = Arrays.asList("Rentas", "CGP"); //Hay que sacarlo
 	private Disponibilidad disponibilidadTesoreria;
 	private ServicioCGP tesoreria;
 	private List<String> diasTesoreria = Arrays.asList("Lunes", "Martes", "Miercoles", "Jueves", "Viernes");
@@ -93,13 +88,10 @@ public class TestDisponibilidadDeUnPoi {
 		rentas = new ServicioCGP("Rentas", diasDeAtencionCGPRentas, disponibilidadCGPRentas);
 
 		domicilioCGP = new Domicilio("Arenales", 1141, "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
-		regionCGP = new Region("CABA", "Recoleta", "Bs As", "Argentina");
-		coordenadaCGP = new Point(34.4353, 24.4856);
-		zonaCGP = new Polygon();
-		List<String> palabrasClaveCGP = Arrays.asList("Rentas");
-		comuna3 = new CGP("CGP comuna3",serviciosCGP);
+		new Point(34.4353, 24.4856);
+		new Polygon();
+		comuna3 = new CGP("CGP comuna3","Recoleta",serviciosCGP);
 		comuna3.setDomicilio(domicilioCGP);
-		comuna3.setRegion(regionCGP);
 		comuna3.serviciosCGP.add(tesoreria);
 		comuna3.serviciosCGP.add(rentas);
 

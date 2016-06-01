@@ -23,27 +23,28 @@ import TpAnual.ServicioCGP;
 
 public class TestSistema {
 	private Terminal sistema;
+	
 	private Region regionParada;
 	private Domicilio domicilioParada;
 	private Point coordenadaParada;
 	private ParadaColectivo parada114;
+	
 	private Domicilio domicilioBanco;
 	private Region regionBanco;
 	private Point coordenadaBanco;
 	private Banco bancoSantander;
+	private List<String> palabrasClaveBanco = new ArrayList<String>();
+	
 	private Domicilio domicilioCGP;
 	private Region regionCGP;
-	private Point coordenadaCGP;   //Hay que sacarlo
 	private CGP comuna3;
-	private Polygon zonaCGP;    //Hay que sacarlo
 	
 	private Disponibilidad disponibilidadCGPRentas;
-	private List<String> palabrasClaveRentas = Arrays.asList("Rentas","CGP"); //Hay que sacarlo
 	private List<ServicioCGP> serviciosCGP = new ArrayList<ServicioCGP>();
 	private ServicioCGP rentas;
 	private List<String> diasDeAtencionCGPRentas = Arrays.asList("Lunes","Martes","Miercoles","Jueves","Viernes");
 
-	private List<String> palabrasClaveBanco = new ArrayList<String>();
+	
 
 
 	@Before
@@ -67,11 +68,9 @@ public class TestSistema {
 		bancoSantander.setRegion(regionBanco);
 		
 		domicilioCGP = new Domicilio("Arenales",1141 , "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
-		regionCGP = new Region("CABA", "Recoleta", "Bs As", "Argentina");
-		coordenadaCGP = new Point(34.4353,24.4856);
-		zonaCGP = new Polygon();
-		List<String> palabrasClaveCGP = Arrays.asList("Rentas");
-		comuna3 = new CGP("CGP comuna3",serviciosCGP);
+		new Point(34.4353,24.4856);
+		new Polygon();
+		comuna3 = new CGP("CGP comuna3","Recoleta",serviciosCGP);
 		comuna3.setDomicilio(domicilioCGP);
 		comuna3.setRegion(regionCGP);
 		disponibilidadCGPRentas = new Disponibilidad ("09:30","15:30");
@@ -87,6 +86,7 @@ public class TestSistema {
 	}
 
 	
+
 	@Test
 	public void busquedaDePoisPorClave() {
 		

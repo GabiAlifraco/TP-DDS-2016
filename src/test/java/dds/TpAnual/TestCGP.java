@@ -15,7 +15,6 @@ import TpAnual.ServicioCGP;
 public class TestCGP {
 	
 	private Domicilio domicilioCGP;
-	private Region regionCGP;
 	private Point coordenadaCGP;
 	private CGP comuna3;
 	private Polygon zonaCGP;
@@ -41,16 +40,14 @@ public class TestCGP {
 	@Before
 	public void initialize(){
 		domicilioCGP = new Domicilio("Arenales",1141 , "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
-		regionCGP = new Region("CABA", "Recoleta", "Bs As", "Argentina");
 		
 		coordenadaCGP = new Point(34.4124,24.4856);
 		coordenadaCGP2 = new Point(34.4124,24.4852);
 		coordenadaCGP3 = new Point(34.4120,24.4851);
 		zonaCGP = new Polygon();
-		comuna3 = new CGP("CGP comuna3",serviciosCGP);
+		comuna3 = new CGP("CGP comuna3","Recoleta",serviciosCGP);
 		
 		comuna3.setDomicilio(domicilioCGP);
-		comuna3.setRegion(regionCGP);
 	    comuna3.setCoordenada(coordenadaCGP);
 		comuna3.setZona(zonaCGP);
 		
