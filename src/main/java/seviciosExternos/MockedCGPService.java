@@ -1,13 +1,15 @@
 package seviciosExternos;
 
+import java.util.List;
+
 import DTOs.CentroDTO;
 
 public class MockedCGPService implements CGPService{
 
 	@Override
-	public CentroDTO getCGPsByCalleOBarrio(String calleOBarrio) {
+	public List<CentroDTO> getCGPsByCalleOBarrio(String calleOBarrio) {
 		
-		return (CentroDTO) new CentroDTO();
+		return null;
 	}
 
 }

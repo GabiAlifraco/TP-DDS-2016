@@ -1,8 +1,10 @@
 package seviciosExternos;
 
+import java.util.List;
+
 import DTOs.CentroDTO;
 
 public interface CGPService {
 
-	public CentroDTO getCGPsByCalleOBarrio(String calleOBarrio);
+	public List<CentroDTO> getCGPsByCalleOBarrio(String calleOBarrio);
 }

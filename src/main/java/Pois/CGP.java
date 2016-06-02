@@ -12,13 +12,12 @@ public class CGP extends Poi{
 	
 	
 	public List<ServicioCGP> serviciosCGP;
-	private List<String> lasPalabrasClave;
     
 	private Polygon zona;
-	public CGP (String unNombre,String barrio,List<ServicioCGP> servicios){
+	public CGP (String unaComuna,String barrio,List<ServicioCGP> servicios){
 		Region regionCGP = new Region("CABA", barrio, "Bs As", "Argentina");
 		super.setRegion(regionCGP);
-		setNombre(unNombre);
+		setNombre("CGP Comuna "+ unaComuna);
 		serviciosCGP = servicios;
 		
 	}
@@ -68,19 +67,13 @@ public class CGP extends Poi{
 		return serviciosCGP.stream().anyMatch(servicioCGP -> servicioCGP.igualNombre(nombreServicio));
 	}
 
-	public List<String> getLasPalabrasClave() {
-		return lasPalabrasClave;
-	}
-
-	public void setLasPalabrasClave(List<String> lasPalabrasClave) {
-		this.lasPalabrasClave = lasPalabrasClave;
-	}
-
 	public boolean noSeRepite(List<Poi> listaPois) {
 		return !(listaPois.stream().anyMatch(poiLista -> poiLista.mismoNombre(this.getNombre())));
 	}
 
-
+	public List<ServicioCGP> getServicios(){
+		return this.serviciosCGP;
+	}
 
 	
 

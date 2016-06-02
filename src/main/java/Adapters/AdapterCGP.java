@@ -1,4 +1,5 @@
 package Adapters;
+
 import java.util.ArrayList;
 import java.util.List;
 import DTOs.CentroDTO;
@@ -13,61 +14,87 @@ import seviciosExternos.CGPService;
 import java.util.stream.Collectors;
 import java.time.DayOfWeek;
 
-
-public class AdapterCGP implements OrigenDeDatos{
+public class AdapterCGP implements OrigenDeDatos {
 	CGPService serviceCGP;
 
-
 	public List<Poi> buscarPois(String unNombre, String unaPalabraClave) {
-		
-		List<Poi> listaCGPs = new ArrayList<Poi>();
-		listaCGPs.add(buscarCGPs(unaPalabraClave));
-		
-		return listaCGPs;
-	}	
-	
-	public CGP buscarCGPs(String calleOBarrio) {
 
-		CentroDTO centroDTOEncontrado = serviceCGP.getCGPsByCalleOBarrio(calleOBarrio);
-		return this.deCentroDTOaCGP(centroDTOEncontrado);
+		List<Poi> listaCGPs = new ArrayList<Poi>();
+		listaCGPs.addAll(buscarCGPs(unaPalabraClave));
+
+		return listaCGPs;
 	}
 
-	public CGP deCentroDTOaCGP(CentroDTO centroDTO){
-		List<ServicioCGP> serviciosCGP = this.obtenerServiciosCGP(centroDTO);
-		List<String> palabrasClave = this.obtenerPalabrasClave(serviciosCGP);
+	public List<Poi> buscarCGPs(String calleOBarrio) {
 
-		CGP unCGP = new CGP("Comuna "+(centroDTO.getNumeroComuna()),centroDTO.getZonasIncluidas(),serviciosCGP);
-		unCGP.setLasPalabrasClave(palabrasClave);
+		List<CentroDTO> centrosDTOEncontrados = serviceCGP.getCGPsByCalleOBarrio(calleOBarrio);
+
+		return centrosDTOEncontrados.stream().map(centro -> deCentroDTOaCGP(centro)).collect(Collectors.toList());
+
+	}
+
+	public CGP deCentroDTOaCGP(CentroDTO centroDTO) {
+
+		CGP unCGP = new CGP(Integer.toString(centroDTO.getNumeroComuna()), centroDTO.getZonasIncluidas(),
+				obtenerServiciosCGP(centroDTO));
 		return unCGP;
 	}
 
+	public List<ServicioCGP> obtenerServiciosCGP(CentroDTO centroDTO) {
 
-	private List<ServicioCGP> obtenerServiciosCGP(CentroDTO centroDTO) {
 		List<ServicioCGP> serviciosCGP = centroDTO.getServiciosDTO().stream().map(servicioDTO -> this.deServicioDTOaServicioCGP(servicioDTO)).collect(Collectors.toList());
 		return serviciosCGP;
 	}
-	private ServicioCGP deServicioDTOaServicioCGP(ServicioDTO servicioDTO) {
-		List<String> diasAtencion= this.obtenerDiasDeAtencion(servicioDTO);
-		Disponibilidad disponibilidadHoraria = this.aDisponibilidad(servicioDTO.getRangosDTO());
 
-		ServicioCGP servicioCGP = new ServicioCGP(servicioDTO.getNombreServicio(),diasAtencion, disponibilidadHoraria);
+	public ServicioCGP deServicioDTOaServicioCGP(ServicioDTO servicioDTO) {
+
+		ServicioCGP servicioCGP = new ServicioCGP(servicioDTO.getNombreServicio(), obtenerDiasDeAtencion(servicioDTO),
+				aDisponibilidad(servicioDTO.getRangosDTO()));
 		return servicioCGP;
 	}
-	public List<String> obtenerPalabrasClave(List<ServicioCGP> serviciosCGP){
-		return serviciosCGP.stream().map(servicioCGP -> servicioCGP.getNombre()).collect(Collectors.toList());
-	}
-	
+
 	public List<String> obtenerDiasDeAtencion(ServicioDTO servicioDTO) {
-		List<Integer> numDias= servicioDTO.getRangosDTO().stream().map(rangoDTO -> rangoDTO.getNumeroSemana()).collect(Collectors.toList());
-		return numDias.stream().map(numero -> DayOfWeek.of(numero)).map(day -> day.toString()).collect(Collectors.toList());
+
+		List<Integer> numeroDias = servicioDTO.getRangosDTO().getNumeroSemana();
+		return numeroDias.stream().map(numero -> convertirEnElDia(numero)).collect(Collectors.toList());
 	}
-	
-	private Disponibilidad aDisponibilidad(List<RangoServicioDTO> rangosDTO) {
-		RangoServicioDTO rango = rangosDTO.get(0);
-		String horarioInicial = (rango.getHorarioDesde())+":"+(rango.getMinutosDesde());
-		String horarioCierre = (rango.getHorarioHasta())+":"+(rango.getMinutosHasta());
-		Disponibilidad unaDisponibilidadCGP= new Disponibilidad(horarioInicial,horarioCierre);
+
+	public String convertirEnElDia(int numero) {
+		return DayOfWeek.of(numero).toString();
+	}
+
+	public Disponibilidad aDisponibilidad(RangoServicioDTO rango) {
+
+		String horarioInicial = (completarHora(rango.getHorarioDesde())) + ":"
+				+ completarMinutos((rango.getMinutosDesde()));
+		String horarioCierre = (completarHora(rango.getHorarioHasta())) + ":"
+				+ completarMinutos((rango.getMinutosHasta()));
+
+		Disponibilidad unaDisponibilidadCGP = new Disponibilidad(horarioInicial, horarioCierre);
+
 		return unaDisponibilidadCGP;
+	}
+
+	public String completarHora(int hora) {
+		if (hora < 10) {
+			String nuevaHora = "0" + Integer.toString(hora);
+
+			return nuevaHora;
+		} else {
+			return Integer.toString(hora);
+		}
+
+	}
+
+	public String completarMinutos(int minutos) {
+		if (minutos < 10) {
+			String nuevosMinutos = "0" + Integer.toString(minutos);
+
+			return nuevosMinutos;
+		} else {
+			return Integer.toString(minutos);
+		}
+
 	}
 
 	public void setServiceCGP(CGPService serviceCGP) {
@@ -75,4 +102,3 @@ public class AdapterCGP implements OrigenDeDatos{
 	}
 
 }
-
