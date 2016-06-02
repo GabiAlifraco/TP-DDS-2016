@@ -65,38 +65,26 @@ public class AdapterCGP implements OrigenDeDatos {
 
 	public Disponibilidad aDisponibilidad(RangoServicioDTO rango) {
 
-		String horarioInicial = (completarHora(rango.getHorarioDesde())) + ":"
-				+ completarMinutos((rango.getMinutosDesde()));
-		String horarioCierre = (completarHora(rango.getHorarioHasta())) + ":"
-				+ completarMinutos((rango.getMinutosHasta()));
+		String horarioInicial = (mapearAStringHorario(rango.getHorarioDesde())) + ":"
+				+ mapearAStringHorario((rango.getMinutosDesde()));
+		String horarioCierre = (mapearAStringHorario(rango.getHorarioHasta())) + ":"
+				+ mapearAStringHorario((rango.getMinutosHasta()));
 
 		Disponibilidad unaDisponibilidadCGP = new Disponibilidad(horarioInicial, horarioCierre);
 
 		return unaDisponibilidadCGP;
 	}
 
-	public String completarHora(int hora) {
-		if (hora < 10) {
-			String nuevaHora = "0" + Integer.toString(hora);
+	public String mapearAStringHorario(int intHorario) {
+		if (intHorario < 10) {
+			String stringHorario = "0" + Integer.toString(intHorario);
 
-			return nuevaHora;
+			return stringHorario;
 		} else {
-			return Integer.toString(hora);
+			return Integer.toString(intHorario);
 		}
-
 	}
-
-	public String completarMinutos(int minutos) {
-		if (minutos < 10) {
-			String nuevosMinutos = "0" + Integer.toString(minutos);
-
-			return nuevosMinutos;
-		} else {
-			return Integer.toString(minutos);
-		}
-
-	}
-
+	
 	public void setServiceCGP(CGPService serviceCGP) {
 		this.serviceCGP = serviceCGP;
 	}
