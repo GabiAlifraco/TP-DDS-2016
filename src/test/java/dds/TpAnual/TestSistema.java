@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import Adapters.AdapterBancos;
 import Pois.Banco;
 import Pois.CGP;
 import Pois.ParadaColectivo;
