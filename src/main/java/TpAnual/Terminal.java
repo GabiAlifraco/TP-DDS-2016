@@ -60,17 +60,16 @@ public class Terminal {
 		List<Poi> listaResutados = obtenerResultadosServicios(unNombre, unaPalabraClave);
 		long finalizacion = segundoActual();
 
-		instanciarResultado(LocalDate.now(), (finalizacion - comienzo),
-				unNombre + " " + unaPalabraClave, listaResutados.size());
+		instanciarResultado(LocalDate.now(), (finalizacion - comienzo), unNombre + " " + unaPalabraClave,
+				listaResutados.size());
 
 		return listaResutados;
 	}
 
-	private Resultado instanciarResultado(LocalDate fechaActual, long segundosBusqueda, 
-			String frase, int cantidadResultados){
-		 Resultado resultadoBusqueda = new Resultado(fechaActual, segundosBusqueda,
-					frase, cantidadResultados);
-			 return resultadoBusqueda;
+	private Resultado instanciarResultado(LocalDate fechaActual, long segundosBusqueda, String frase,
+			int cantidadResultados) {
+		Resultado resultadoBusqueda = new Resultado(fechaActual, segundosBusqueda, frase, cantidadResultados);
+		return resultadoBusqueda;
 	}
 
 	public List<Poi> obtenerResultadosServicios(String unNombre, String unaPalabraClave) {
@@ -116,4 +115,16 @@ public class Terminal {
 	public long segundoActual() {
 		return 1000 * System.currentTimeMillis();
 	}
+
+	public List<Resultado> getBusquedas() {
+		return this.busquedas;
+	}
+
+	public List<Integer> obtenerResultadosParciales() {
+		List<Integer> resultadosParciales = getBusquedas().stream()
+				.map(resultado -> resultado.getCantidadResultados())
+				.collect(Collectors.toList());
+		return resultadosParciales;
+	}
+
 }
