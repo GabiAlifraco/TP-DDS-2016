@@ -51,7 +51,7 @@ public class InfoFast {
 		Iterator<LocalDate> it = busquedaFecha.keySet().iterator();
 		while (it.hasNext()) {
 			LocalDate key = it.next();
-			System.out.println("Fecha: " + key.toString() + "Cantidad de Resultados: " + busquedaFecha.get(key));
+			System.out.println("Fecha: " + key.toString() + " Cantidad de Resultados: " + busquedaFecha.get(key));
 		}
 	}
 
@@ -83,7 +83,7 @@ public class InfoFast {
 	}
 
 	public void imprimirResultadosTotales(Terminal terminal) {
-		System.out.println("Usuario: " + terminal.getNombreTerminal() + "Cantidad de Resultados Totales"
+		System.out.println("Usuario: " + terminal.getNombreTerminal() + " "+ " Cantidad de Resultados Totales: "
 				+ obtenerSumatoriaBusquedas(terminal));
 	}
 
