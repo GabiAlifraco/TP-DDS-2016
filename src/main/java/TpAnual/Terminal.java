@@ -15,7 +15,7 @@ public class Terminal {
 	List<OrigenDeDatos> servicios = new ArrayList<OrigenDeDatos>();
 	List<Poi> resultadosConRepetidos = new ArrayList<Poi>();
 	List<Poi> resultadosSinRepetidos = new ArrayList<Poi>();
-	List<Resultado> busquedas = new ArrayList<Resultado>();
+	private List<Resultado> busquedas = new ArrayList<Resultado>();
 
 	public List<OrigenDeDatos> getServicios() {
 		return this.servicios;

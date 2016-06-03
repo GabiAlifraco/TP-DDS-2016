@@ -29,6 +29,10 @@ public class InfoFast {
 		return this.terminales;
 	}
 
+	public void setTerminales(List<Terminal> terminales) {
+		this.terminales = terminales;
+	}
+
 	public String getMailAdministrador() {
 		return mailAdministrador;
 	}
