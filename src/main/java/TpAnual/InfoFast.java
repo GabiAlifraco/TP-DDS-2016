@@ -11,6 +11,7 @@ public class InfoFast {
 
 	private static InfoFast instance = null;
 	List<Terminal> terminales = new ArrayList<Terminal>();
+	public String mailAdministrador;
 	
 	Map<LocalDate, Integer> busquedaFecha = new HashMap<LocalDate, Integer>();
 
@@ -33,8 +34,8 @@ public class InfoFast {
 		this.terminales = terminales;
 	}
 
-	public void getMailAdministrador() {
-		System.out.println("Su busqueda ha excedido el tiempo de carga de resultados");
+	public String getMailAdministrador() {
+		return mailAdministrador;
 	}
 
 	

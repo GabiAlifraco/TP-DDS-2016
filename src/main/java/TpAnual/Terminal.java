@@ -62,8 +62,11 @@ public class Terminal {
 		List<Poi> listaResutados = obtenerResultadosServicios(unNombre, unaPalabraClave);
 		long finalizacion = segundoActual();
 
-		instanciarResultado(LocalDate.now(), (finalizacion - comienzo), unNombre + " " + unaPalabraClave,
+		Resultado resultado = instanciarResultado(LocalDate.now(), (finalizacion - comienzo), unNombre + " " + unaPalabraClave,
 				listaResutados.size());
+		
+		busquedas.add(resultado);
+		notificarBusqueda(resultado);
 
 		return listaResutados;
 	}
@@ -131,8 +134,8 @@ public class Terminal {
 
 	List<ObserverBusqueda> losObserverBusqueda = new ArrayList<ObserverBusqueda>();
 	
-	public void notificar(){
-		losObserverBusqueda.stream().forEach(observerBusqueda->observerBusqueda.notificarBusqueda());
+	public void notificarBusqueda(Resultado resultado){
+		losObserverBusqueda.stream().forEach(observerBusqueda->observerBusqueda.notificarBusqueda(resultado));
 	}
 	
 	public void agregarObserver(ObserverBusqueda observer){

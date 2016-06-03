@@ -33,11 +33,10 @@ public class TestMandarMailAlAdministrador {
 		terminal.getObserverBusquedas().add(observerDemora);
 		observerDemora.setTiempoMaximoBusqueda(5);
 		observerDemora.setSistema(sistema);
-		observerDemora.setResultado(resultado);
 	}
 	@Test
 	public void seLeNotificaraAlAdministrador(){
-		terminal.notificar();
+		terminal.notificarBusqueda(resultado);
 	}
 
 }

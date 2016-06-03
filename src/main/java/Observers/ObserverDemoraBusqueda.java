@@ -7,18 +7,23 @@ public class ObserverDemoraBusqueda implements ObserverBusqueda{
 
 	private long tiempoMaximoBusqueda;
     private InfoFast sistema;
-    private Resultado resultado;
-	@Override
-	public void notificarBusqueda() {
-		if(busquedaSuperaTiempoMaximoDemora()){
-			sistema.getMailAdministrador();
+	
+    @Override
+	public void notificarBusqueda(Resultado resultado) {
+		if(busquedaSuperaTiempoMaximoDemora(resultado.getSegundosBusqueda())){
+			sendMail(sistema.getMailAdministrador());
 		}
 		
 	}
 
-	private boolean busquedaSuperaTiempoMaximoDemora() {
+	private void sendMail(String mailAdministrador) {
 		
-		return resultado.getSegundosBusqueda() > this.getTiempoMaximoBusqueda();
+		
+	}
+
+	private boolean busquedaSuperaTiempoMaximoDemora(long tiempoBusqueda) {
+		
+		return tiempoBusqueda > this.getTiempoMaximoBusqueda();
 	}
 
 	public long getTiempoMaximoBusqueda() {
@@ -37,11 +42,4 @@ public class ObserverDemoraBusqueda implements ObserverBusqueda{
 		this.sistema = sistema;
 	}
 
-	public Resultado getResultado() {
-		return resultado;
-	}
-
-	public void setResultado(Resultado resultado) {
-		this.resultado = resultado;
-	}
 }
