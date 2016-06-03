@@ -40,11 +40,5 @@ public class TestMockedCGPService {
 		
 		Assert.assertTrue(resultado.get(0).getRegion().getBarrio().equals("Villa Crespo"));
 	}
-	public void definirNombreTest() {
-		adapterCGP.setServiceCGP(servicioExternoCGP);
-		List<Poi> resultado = terminal.obtenerResultadosServicios("Rentas", "Villa Crespo");
-		
-		Assert.assertTrue(resultado.get(0).getRegion().getBarrio().equals("Villa Crespo"));
-	}
 
 }
