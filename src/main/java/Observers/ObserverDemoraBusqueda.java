@@ -18,7 +18,7 @@ public class ObserverDemoraBusqueda implements ObserverBusqueda{
 
 	private void sendMail(String mailAdministrador) {
 		
-		
+		System.out.println("Mail Enviado");
 	}
 
 	private boolean busquedaSuperaTiempoMaximoDemora(long tiempoBusqueda) {

@@ -143,7 +143,7 @@ public class Terminal {
 	}
 	
 	public void eliminarObserver(ObserverBusqueda observer){
-		losObserverBusqueda.add(observer);
+		losObserverBusqueda.remove(observer);
 	}
 	
 	public List<ObserverBusqueda> getObserverBusquedas() {
