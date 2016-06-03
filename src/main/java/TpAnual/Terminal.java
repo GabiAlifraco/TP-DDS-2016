@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.uqbar.geodds.Point;
 
+import Observers.ObserverBusqueda;
+
 public class Terminal {
 
 	// Se agrega el getInstance del singleton de la base
@@ -127,4 +129,17 @@ public class Terminal {
 		return resultadosParciales;
 	}
 
+	List<ObserverBusqueda> losObserverBusqueda = new ArrayList<ObserverBusqueda>();
+	
+	public void notificar(){
+		losObserverBusqueda.stream().forEach(observerBusqueda->observerBusqueda.notificarBusqueda());
+	}
+	
+	public void agregarObserver(ObserverBusqueda observer){
+		losObserverBusqueda.add(observer);
+	}
+	
+	public void eliminarObserver(ObserverBusqueda observer){
+		losObserverBusqueda.add(observer);
+	}
 }

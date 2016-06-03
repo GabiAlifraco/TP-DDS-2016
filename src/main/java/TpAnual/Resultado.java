@@ -47,4 +47,8 @@ public class Resultado {
 		return fecha;
 	}
 
+	public long getSegundosBusqueda() {
+		return segundosBusqueda;
+	}
+
 }
