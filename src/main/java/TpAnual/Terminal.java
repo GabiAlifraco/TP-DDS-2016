@@ -142,4 +142,8 @@ public class Terminal {
 	public void eliminarObserver(ObserverBusqueda observer){
 		losObserverBusqueda.add(observer);
 	}
+	
+	public List<ObserverBusqueda> getObserverBusquedas() {
+		return this.losObserverBusqueda;
+	}
 }

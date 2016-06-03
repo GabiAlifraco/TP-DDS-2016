@@ -10,7 +10,9 @@ import org.junit.Test;
 import Observers.ObserverBusqueda;
 import Observers.ObserverDemoraBusqueda;
 import TpAnual.InfoFast;
+import TpAnual.OrigenDeDatos;
 import TpAnual.Resultado;
+import TpAnual.Terminal;
 
 public class TestMandarMailAlAdministrador {
 	
@@ -19,20 +21,23 @@ public class TestMandarMailAlAdministrador {
 	private LocalDate fecha;
 	private List<ObserverBusqueda> observers = new ArrayList<ObserverBusqueda>();
 	private ObserverDemoraBusqueda observerDemora;
+	private Terminal terminal;
+	private List<OrigenDeDatos> servicios;
 	@Before
 	public void initialize(){
 		sistema = new InfoFast();
 		fecha = LocalDate.parse("2016-10-16");
 		resultado = new Resultado(fecha, 10, "sarasa", 4);
 		observerDemora = new ObserverDemoraBusqueda();
-		observers.add(observerDemora);
+		terminal = new Terminal("Terminal Abasto", servicios);
+		terminal.getObserverBusquedas().add(observerDemora);
 		observerDemora.setTiempoMaximoBusqueda(5);
 		observerDemora.setSistema(sistema);
 		observerDemora.setResultado(resultado);
 	}
 	@Test
 	public void seLeNotificaraAlAdministrador(){
-		observerDemora.notificarBusqueda();
+		terminal.notificar();
 	}
 
 }
