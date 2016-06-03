@@ -29,7 +29,7 @@ public class TestReportes {
 	List<Terminal> terminales = new ArrayList<Terminal>();
 	List<Resultado> busquedas = new ArrayList<Resultado>();
 	Terminal terminalAbasto = new Terminal("Terminal Abasto", servicios);
-	Terminal pinpanpun = new Terminal("Terminal pinpanpun",servic);
+	Terminal terminalFlorida = new Terminal("Terminal pinpanpun",servic);
 	sistema.setTerminales(terminales);
 	fecha = LocalDate.parse("2016-10-16");
 	fecha2 = LocalDate.parse("2016-10-17");
@@ -38,11 +38,11 @@ public class TestReportes {
 	Resultado resultado3 = new Resultado(fecha2,10,"sarasa",8);
 	Resultado resultado4 = new Resultado(fecha2,10,"sarasa",15);
 	terminales.add(terminalAbasto);
-	terminales.add(pinpanpun);
+	terminales.add(terminalFlorida);
 	terminalAbasto.getBusquedas().add(resultado);
 	terminalAbasto.getBusquedas().add(resultado2);
 	terminalAbasto.getBusquedas().add(resultado3);
-	pinpanpun.getBusquedas().add(resultado4);
+	terminalFlorida.getBusquedas().add(resultado4);
 	
 	}
 	
