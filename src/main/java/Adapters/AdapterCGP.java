@@ -20,16 +20,16 @@ public class AdapterCGP implements OrigenDeDatos {
 	public List<Poi> buscarPois(String unNombre, String unaPalabraClave) {
 
 		List<Poi> listaCGPs = new ArrayList<Poi>();
-		listaCGPs.addAll(buscarCGPs(unaPalabraClave));
+		listaCGPs.add(buscarCGPs(unaPalabraClave));
 
 		return listaCGPs;
 	}
 
-	public List<Poi> buscarCGPs(String calleOBarrio) {
+	public CGP buscarCGPs(String calleOBarrio) {
 
-		List<CentroDTO> centrosDTOEncontrados = serviceCGP.getCGPsByCalleOBarrio(calleOBarrio);
+		CentroDTO centroDTOEncontrado = serviceCGP.getCGPsByCalleOBarrio(calleOBarrio);
 
-		return centrosDTOEncontrados.stream().map(centro -> deCentroDTOaCGP(centro)).collect(Collectors.toList());
+		return deCentroDTOaCGP(centroDTOEncontrado);
 
 	}
 
@@ -45,17 +45,16 @@ public class AdapterCGP implements OrigenDeDatos {
 		List<ServicioCGP> serviciosCGP = centroDTO.getServiciosDTO().stream().map(servicioDTO -> this.deServicioDTOaServicioCGP(servicioDTO)).collect(Collectors.toList());
 		return serviciosCGP;
 	}
+	private ServicioCGP deServicioDTOaServicioCGP(ServicioDTO servicioDTO) {
 
-	public ServicioCGP deServicioDTOaServicioCGP(ServicioDTO servicioDTO) {
-
-		ServicioCGP servicioCGP = new ServicioCGP(servicioDTO.getNombreServicio(), obtenerDiasDeAtencion(servicioDTO),
-				aDisponibilidad(servicioDTO.getRangosDTO()));
+		ServicioCGP servicioCGP = new ServicioCGP(servicioDTO.getNombreServicio(),this.obtenerDiasDeAtencion(servicioDTO),
+				this.aDisponibilidad(servicioDTO.getRangosDTO()));
+		
 		return servicioCGP;
 	}
 
 	public List<String> obtenerDiasDeAtencion(ServicioDTO servicioDTO) {
-
-		List<Integer> numeroDias = servicioDTO.getRangosDTO().getNumeroSemana();
+		List<Integer> numeroDias= servicioDTO.getRangosDTO().stream().map(rangoDTO -> rangoDTO.getNumeroSemana()).collect(Collectors.toList());
 		return numeroDias.stream().map(numero -> convertirEnElDia(numero)).collect(Collectors.toList());
 	}
 
@@ -63,8 +62,8 @@ public class AdapterCGP implements OrigenDeDatos {
 		return DayOfWeek.of(numero).toString();
 	}
 
-	public Disponibilidad aDisponibilidad(RangoServicioDTO rango) {
-
+	public Disponibilidad aDisponibilidad(List<RangoServicioDTO> rangos) {
+		RangoServicioDTO rango = rangos.get(0);
 		String horarioInicial = (mapearAStringHorario(rango.getHorarioDesde())) + ":"
 				+ mapearAStringHorario((rango.getMinutosDesde()));
 		String horarioCierre = (mapearAStringHorario(rango.getHorarioHasta())) + ":"

@@ -1,20 +1,17 @@
 package DTOs;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class RangoServicioDTO {
 
-	private List<Integer> numeroSemana = new ArrayList<Integer>();
+	private int numeroSemana;
 	private int horarioDesde;
 	private int minutosDesde;
 	private int horarioHasta;
 	private int minutosHasta;
 	
-	public List<Integer>  getNumeroSemana() {
+	public int getNumeroSemana() {
 		return numeroSemana;
 	}
-	public void setNumeroSemana(List<Integer> numeroSemana) {
+	public void setNumeroSemana(int numeroSemana) {
 		this.numeroSemana = numeroSemana;
 	}
 	public int getHorarioDesde() {

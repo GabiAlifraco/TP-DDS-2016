@@ -16,15 +16,21 @@ public class TestAdapterCGP {
 	AdapterCGP adapterCGP = new AdapterCGP();
 
 	private List<ServicioDTO> serviciosDTO = new ArrayList<ServicioDTO>();
-	private List<RangoServicioDTO> rangosAtencionCiudadana = new ArrayList<RangoServicioDTO>();
-	private List<RangoServicioDTO> rangosInfracciones = new ArrayList<RangoServicioDTO>();
 	
 	private ServicioDTO atencionCiudadana = new ServicioDTO();
+	private RangoServicioDTO rango1AtencionCiudadana = new RangoServicioDTO();
+	private RangoServicioDTO rango2AtencionCiudadana = new RangoServicioDTO();
+	private List<RangoServicioDTO> rangosAtencionCiudadana = new ArrayList<RangoServicioDTO>();
+	
 	private ServicioDTO infracciones = new ServicioDTO();
-	private RangoServicioDTO rangoAtencionCiudadana = new RangoServicioDTO();
-	private RangoServicioDTO rangoInfracciones = new RangoServicioDTO();
+	private RangoServicioDTO rango1Infracciones = new RangoServicioDTO();
+	private List<RangoServicioDTO> rangosInfracciones = new ArrayList<RangoServicioDTO>();
+
 	private CentroDTO centroDTO = new CentroDTO();
+	
 	private CGP cgpMapeado;
+
+	
 	
 	@Before
 	public void initialize() {
@@ -35,31 +41,35 @@ public class TestAdapterCGP {
 		centroDTO.setDomicilioCompletoCGP("Junín 521");
 		centroDTO.setTelefonoCGP("4375-0644/45");
 
-		List<Integer> numeroDiasAtencionCiudadana = new ArrayList<Integer>();
-		numeroDiasAtencionCiudadana.add(1);
-		numeroDiasAtencionCiudadana.add(3);
-		rangoAtencionCiudadana.setNumeroSemana(numeroDiasAtencionCiudadana);
-		rangoAtencionCiudadana.setHorarioDesde(9);
-		rangoAtencionCiudadana.setMinutosDesde(0);
-		rangoAtencionCiudadana.setHorarioHasta(15);
-		rangoAtencionCiudadana.setMinutosHasta(0);
-		rangosAtencionCiudadana.add(rangoAtencionCiudadana);
+		
+		rango1AtencionCiudadana.setNumeroSemana(1);
+		rango1AtencionCiudadana.setHorarioDesde(9);
+		rango1AtencionCiudadana.setMinutosDesde(0);
+		rango1AtencionCiudadana.setHorarioHasta(15);
+		rango2AtencionCiudadana.setMinutosHasta(0);
+		
+		rango2AtencionCiudadana.setNumeroSemana(2);
+		rango2AtencionCiudadana.setHorarioDesde(10);
+		rango2AtencionCiudadana.setMinutosDesde(0);
+		rango2AtencionCiudadana.setHorarioHasta(18);
+		rango2AtencionCiudadana.setMinutosHasta(0);
+		
+		rangosAtencionCiudadana.add(rango1AtencionCiudadana);
+		rangosAtencionCiudadana.add(rango2AtencionCiudadana);
+		
+		atencionCiudadana.setRangosDTO(rangosAtencionCiudadana);
 		
 		atencionCiudadana.setNombreServicio("Atención ciudadana");
-		atencionCiudadana.setRangosDTO(rangoAtencionCiudadana);
 	
-		List<Integer> numeroDiasInfracciones = new ArrayList<Integer>();
-		numeroDiasInfracciones.add(1);
-		numeroDiasInfracciones.add(3);
-		rangoInfracciones.setNumeroSemana(numeroDiasInfracciones);
-		rangoInfracciones.setHorarioDesde(10);
-		rangoInfracciones.setMinutosDesde(20);
-		rangoInfracciones.setHorarioHasta(9);
-		rangoInfracciones.setMinutosHasta(5);
-		rangosInfracciones.add(rangoInfracciones);
+		rango1Infracciones.setNumeroSemana(1);
+		rango1Infracciones.setHorarioDesde(10);
+		rango1Infracciones.setMinutosDesde(20);
+		rango1Infracciones.setHorarioHasta(9);
+		rango1Infracciones.setMinutosHasta(5);
+		rangosInfracciones.add(rango1Infracciones);
 		
+		infracciones.setRangosDTO(rangosInfracciones);
 		infracciones.setNombreServicio("Infracciones");
-		infracciones.setRangosDTO(rangoInfracciones);
 
 		serviciosDTO.add(infracciones);
 		serviciosDTO.add(atencionCiudadana);
