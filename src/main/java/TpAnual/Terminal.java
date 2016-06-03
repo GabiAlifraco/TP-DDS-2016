@@ -1,5 +1,6 @@
 package TpAnual;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,6 +15,7 @@ public class Terminal {
 	List<OrigenDeDatos> servicios = new ArrayList<OrigenDeDatos>();
 	List<Poi> resultadosConRepetidos = new ArrayList<Poi>();
 	List<Poi> resultadosSinRepetidos = new ArrayList<Poi>();
+	List<Resultado> busquedas = new ArrayList<Resultado>();
 
 	public List<OrigenDeDatos> getServicios() {
 		return this.servicios;
@@ -38,15 +40,9 @@ public class Terminal {
 		this.servicios = servicios;
 	}
 
-	/*
-	 * public String obtenerInfoDe(Poi unPuntoDeInteres){
-	 * 
-	 * return ""; } HAY QUE TERMINAR ESTE METODO SI ES QUE EN ALGUN MOMENTO SE
-	 * ESPECIFICA LA FUNCION
-	 */
-
 	// Esto es para la entrega 1: Calculo de Cercania
 	public List<Poi> consultaDeCercania() {
+
 		return base.getPois().stream().filter(poi -> poi.estaCercaDe(coordenadaDispositivoMovil))
 				.collect(Collectors.toList());
 	}
@@ -60,7 +56,21 @@ public class Terminal {
 	// Esto es para la entrega 1: Busqueda de puntos
 	public List<Poi> busquedaDePuntos(String unNombre, String unaPalabraClave) {
 
-		return obtenerResultadosServicios(unNombre, unaPalabraClave);
+		long comienzo = segundoActual();
+		List<Poi> listaResutados = obtenerResultadosServicios(unNombre, unaPalabraClave);
+		long finalizacion = segundoActual();
+
+		instanciarResultado(LocalDate.now(), (finalizacion - comienzo),
+				unNombre + " " + unaPalabraClave, listaResutados.size());
+
+		return listaResutados;
+	}
+
+	private Resultado instanciarResultado(LocalDate fechaActual, long segundosBusqueda, 
+			String frase, int cantidadResultados){
+		 Resultado resultadoBusqueda = new Resultado(fechaActual, segundosBusqueda,
+					frase, cantidadResultados);
+			 return resultadoBusqueda;
 	}
 
 	public List<Poi> obtenerResultadosServicios(String unNombre, String unaPalabraClave) {
@@ -103,4 +113,7 @@ public class Terminal {
 		this.nombreTerminal = nombreTerminal;
 	}
 
+	public long segundoActual() {
+		return 1000 * System.currentTimeMillis();
+	}
 }
