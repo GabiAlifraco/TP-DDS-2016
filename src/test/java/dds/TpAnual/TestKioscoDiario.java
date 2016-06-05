@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.*;
 
-import Pois.KioscoDiario;
+import Pois.Comercio;
 import Pois.ParadaColectivo;
 import TpAnual.Disponibilidad;
 import UbicacionPoi.Domicilio;
@@ -25,7 +25,7 @@ public class TestKioscoDiario {
 	
 	private Region regionKiosco;
 	private Point coordenadaKiosco;
-	private KioscoDiario elDiarioDelPueblo;
+	private Comercio elDiarioDelPueblo;
 	private Disponibilidad disponibilidadKioscoDiario;
 	private List<String> diasDeAtencionKioscoDiario = Arrays.asList("Lunes","Martes","Miercoles","Jueves","Viernes");
 	
@@ -44,13 +44,16 @@ public class TestKioscoDiario {
 		coordenadaKiosco = new Point(10.2478,14.2547);
 		disponibilidadKioscoDiario = new Disponibilidad ("06:00","12:00");
 		List<String> palabrasClaveKioscoDiario = Arrays.asList("Revistas", "Diarios", "Crucigrama");
-		elDiarioDelPueblo = new KioscoDiario("El diario del pueblo", domicilioKiosco, regionKiosco, coordenadaKiosco,diasDeAtencionKioscoDiario,disponibilidadKioscoDiario, palabrasClaveKioscoDiario);
+		elDiarioDelPueblo = new Comercio("El diario del pueblo", domicilioKiosco, regionKiosco, coordenadaKiosco,
+				                diasDeAtencionKioscoDiario,disponibilidadKioscoDiario, palabrasClaveKioscoDiario);
+				                         
 	
 	    
 	}
 	
 	@Test
 	public void estaCercaElKioscoDiarioDeLaParada(){
+		elDiarioDelPueblo.setDistancia(300);
 		Assert.assertTrue(elDiarioDelPueblo.estaCercaDe(coordenadaParada));
 	}
 	

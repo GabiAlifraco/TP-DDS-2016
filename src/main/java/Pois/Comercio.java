@@ -11,10 +11,11 @@ import TpAnual.Poi;
 import UbicacionPoi.Domicilio;
 import UbicacionPoi.Region;
 
-public abstract class Comercio extends Poi {
+public class Comercio extends Poi {
 	private String nombre;
 	private List<String> diasDeAtencion = new ArrayList<String>();
 	private Disponibilidad horarioDeAtencion;
+	private int distancia;
 
 	public Comercio(String unNombre, Domicilio unDomicilio, Region unaRegion, Point unaCoordenada,
 			List<String> diasDeAtencion, Disponibilidad horarioDeAtencion, List<String> palabrasClave) {
@@ -28,12 +29,11 @@ public abstract class Comercio extends Poi {
 	}
 
 	public int distanciaMinimaParaConsiderarmeCercano() {
-		return dameDistancia();
+		return this.getDistancia();
 	}
 
-	public abstract int dameDistancia();
-
-	public boolean noTenesIdentificacion() {
+	
+    public boolean noTenesIdentificacion() {
 		return (nombre.equals(null));
 	}
 
@@ -60,6 +60,14 @@ public abstract class Comercio extends Poi {
 	public boolean horaDentroDelRango(String hora) {
 		return (getHorarioDeAtencion().getHorarioInicial().isBefore(LocalTime.parse(hora))
 				&& getHorarioDeAtencion().getHorarioFinal().isAfter(LocalTime.parse(hora)));
+	}
+
+	public int getDistancia() {
+		return distancia;
+	}
+
+	public void setDistancia(int distancia) {
+		this.distancia = distancia;
 	}
 
 }
