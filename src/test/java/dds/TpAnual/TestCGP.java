@@ -9,9 +9,9 @@ import org.uqbar.geodds.*;
 import Pois.Banco;
 import Pois.CGP;
 import TpAnual.Disponibilidad;
-import TpAnual.Domicilio;
-import TpAnual.Region;
 import TpAnual.ServicioCGP;
+import UbicacionPoi.Domicilio;
+import UbicacionPoi.Region;
 public class TestCGP {
 	
 	private Domicilio domicilioCGP;

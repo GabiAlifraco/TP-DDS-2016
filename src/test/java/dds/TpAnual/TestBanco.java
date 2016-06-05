@@ -10,8 +10,9 @@ import org.uqbar.geodds.*;
 
 import Pois.Banco;
 import Pois.ParadaColectivo;
-import TpAnual.Domicilio;
-import TpAnual.Region;
+import UbicacionPoi.Domicilio;
+import UbicacionPoi.Region;
+import UbicacionPoi.Ubicacion;
 public class TestBanco {
 
 	private Region regionParada;
@@ -22,6 +23,7 @@ public class TestBanco {
 	private Region regionBanco;
 	private Point coordenadaBanco;
 	private Banco bancoSantander;
+	private Ubicacion ubicacionParada;
 	private List<String> palabrasClaveBanco = new ArrayList<String>();
 		
 
@@ -31,7 +33,8 @@ public class TestBanco {
 		regionParada = new Region("CABA", "Recoleta", "Bs As", "Argentina");
 		coordenadaParada = new Point(34.4353,25.4632);
 		List<String> palabrasClave114 = Arrays.asList("Colectivo", "Parada");
-		parada114 = new ParadaColectivo(domicilioParada, regionParada, coordenadaParada, "114", palabrasClave114);
+		ubicacionParada = new Ubicacion(domicilioParada, regionParada, coordenadaParada);
+		parada114 = new ParadaColectivo(ubicacionParada, "114", palabrasClave114);
 
 		domicilioBanco = new Domicilio("Arenales",1245 , "M.T.De.Alvear", "Santa Fe", 2100, 0, 0, 0, 1111);
 		regionBanco = new Region("CABA", "Recoleta", "Bs As", "Argentina");
@@ -47,7 +50,7 @@ public class TestBanco {
 	@Test
 	public void estaCercaElBancoDeLaParada(){
 		//Assert.assertEquals(true,bancoSantander.esCerca(coordenadaParada));
-		Assert.assertTrue(bancoSantander.estaCercaDe(coordenadaParada));
+		Assert.assertTrue(bancoSantander.estaCercaDe(parada114.getCoordenada()));
 	}
 	
 	@Test

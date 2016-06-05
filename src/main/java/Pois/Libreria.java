@@ -5,8 +5,8 @@ import java.util.List;
 import org.uqbar.geodds.Point;
 
 import TpAnual.Disponibilidad;
-import TpAnual.Domicilio;
-import TpAnual.Region;
+import UbicacionPoi.Domicilio;
+import UbicacionPoi.Region;
 
 public class Libreria extends Comercio {
 	

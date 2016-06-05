@@ -11,8 +11,8 @@ import org.uqbar.geodds.*;
 import Pois.KioscoDiario;
 import Pois.Libreria;
 import TpAnual.Disponibilidad;
-import TpAnual.Domicilio;
-import TpAnual.Region;
+import UbicacionPoi.Domicilio;
+import UbicacionPoi.Region;
 
 public class TestLibreria {
 

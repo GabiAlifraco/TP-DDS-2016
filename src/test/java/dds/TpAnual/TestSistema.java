@@ -14,12 +14,13 @@ import Pois.Banco;
 import Pois.CGP;
 import Pois.ParadaColectivo;
 import TpAnual.Terminal;
+import UbicacionPoi.Domicilio;
+import UbicacionPoi.Region;
+import UbicacionPoi.Ubicacion;
 import TpAnual.BaseDePois;
 import TpAnual.Disponibilidad;
-import TpAnual.Domicilio;
 import TpAnual.OrigenDeDatos;
 import TpAnual.Poi;
-import TpAnual.Region;
 import TpAnual.ServicioCGP;
 
 
@@ -31,6 +32,7 @@ public class TestSistema {
 	private Domicilio domicilioParada;
 	private Point coordenadaParada;
 	private ParadaColectivo parada114;
+	private Ubicacion ubicacionParada;
 	
 	private Domicilio domicilioBanco;
 	private Region regionBanco;
@@ -55,9 +57,9 @@ public class TestSistema {
 		domicilioParada = new Domicilio("Arenales", 1141, "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
 		regionParada = new Region("CABA", "Recoleta", "Bs As", "Argentina");
 		coordenadaParada = new Point(34.4353, 25.4632);
+		ubicacionParada = new Ubicacion(domicilioParada, regionParada, coordenadaParada);
 		List<String> palabrasClave114 = Arrays.asList("Colectivo", "Parada");
-		parada114 = new ParadaColectivo(domicilioParada, regionParada, coordenadaParada, "114", palabrasClave114);
-
+		parada114 = new ParadaColectivo(ubicacionParada, "114", palabrasClave114);
 		parada114.setLineaColectivo("Parada 114");
 		
 

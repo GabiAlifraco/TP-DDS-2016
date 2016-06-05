@@ -1,4 +1,4 @@
-package TpAnual;
+package UbicacionPoi;
 
 public class Domicilio {
 	

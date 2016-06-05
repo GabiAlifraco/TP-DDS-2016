@@ -10,8 +10,9 @@ import org.uqbar.geodds.*;
 import Pois.KioscoDiario;
 import Pois.ParadaColectivo;
 import TpAnual.Disponibilidad;
-import TpAnual.Domicilio;
-import TpAnual.Region;
+import UbicacionPoi.Domicilio;
+import UbicacionPoi.Region;
+import UbicacionPoi.Ubicacion;
 
 public class TestKioscoDiario {
 
@@ -19,6 +20,7 @@ public class TestKioscoDiario {
 	private Domicilio domicilioParada;
 	private Point coordenadaParada;
 	private ParadaColectivo parada114;
+	private Ubicacion ubicacionParada;
 	private Domicilio domicilioKiosco;
 	
 	private Region regionKiosco;
@@ -33,9 +35,10 @@ public class TestKioscoDiario {
 		domicilioParada = new Domicilio("Av.Monroe",1540 , "Olazabal", "Virrey del Pino", 1900, 0, 0, 0, 1111);
 		regionParada = new Region("CABA", "Palermo", "Bs As", "Argentina");
 		coordenadaParada = new Point(10.2758,16.2148);
+		ubicacionParada = new Ubicacion(domicilioParada, regionParada, coordenadaParada);
 		List<String> palabrasClave114 = Arrays.asList("Colectivo", "Parada");
-		parada114 = new ParadaColectivo(domicilioParada, regionParada, coordenadaParada, "114", palabrasClave114);
-
+		parada114 = new ParadaColectivo(ubicacionParada, "114", palabrasClave114);
+		
 		domicilioKiosco = new Domicilio("Av.Monroe",1740 , "Olazabal", "Virrey del Pino", 1900, 0, 0, 0, 1111);
 		regionKiosco = new Region("CABA", "Palermo", "Bs As", "Argentina");
 		coordenadaKiosco = new Point(10.2478,14.2547);

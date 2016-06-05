@@ -16,16 +16,18 @@ import Pois.Carrousel;
 import Pois.ParadaColectivo;
 import TpAnual.BaseDePois;
 import TpAnual.Disponibilidad;
-import TpAnual.Domicilio;
 import TpAnual.OrigenDeDatos;
-import TpAnual.Region;
 import TpAnual.ServicioCGP;
 import TpAnual.Terminal;
+import UbicacionPoi.Domicilio;
+import UbicacionPoi.Region;
+import UbicacionPoi.Ubicacion;
 
 public class TestDisponibilidadDeUnPoi {
 	private Region regionParada;
 	private Domicilio domicilioParada;
 	private Point coordenadaParada;
+	private Ubicacion ubicacionParada;
 	private ParadaColectivo parada114;
 
 	private Domicilio domicilioBanco;
@@ -66,8 +68,9 @@ public class TestDisponibilidadDeUnPoi {
 		domicilioParada = new Domicilio("Arenales", 1141, "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
 		regionParada = new Region("CABA", "Recoleta", "Bs As", "Argentina");
 		coordenadaParada = new Point(34.4353, 25.4632);
+		ubicacionParada = new Ubicacion(domicilioParada, regionParada, coordenadaParada);
 		List<String> palabrasClave114 = Arrays.asList("Colectivo", "Parada");
-		parada114 = new ParadaColectivo(domicilioParada, regionParada, coordenadaParada, "114", palabrasClave114);
+		parada114 = new ParadaColectivo(ubicacionParada, "114", palabrasClave114);
 
 		domicilioBanco = new Domicilio("Arenales", 1245, "M.T.De.Alvear", "Santa Fe", 2100, 0, 0, 0, 1111);
 		regionBanco = new Region("CABA", "Recoleta", "Bs As", "Argentina");
@@ -78,7 +81,7 @@ public class TestDisponibilidadDeUnPoi {
 		bancoSantander.setDomicilio(domicilioBanco);
 		bancoSantander.setRegion(regionBanco);
 
-		domicilioCarrousel = new Domicilio("Av. Estado de Israel",4560, "Lambaré","Guardia Vieja",1200,0,0,0,1414);
+		domicilioCarrousel = new Domicilio("Av. Estado de Israel",4560, "LambarÃ©","Guardia Vieja",1200,0,0,0,1414);
 		regionCarrousel = new Region ("CABA","Almagro","Bs.As","Argentina");
 		coordenadaCarrousel = new Point (34.599434, 58.4296912);
 		disponibilidadCarrousel = new Disponibilidad ("10:00","13:00");

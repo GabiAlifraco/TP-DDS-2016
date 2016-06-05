@@ -4,23 +4,35 @@ import java.util.List;
 
 import org.uqbar.geodds.Point;
 
-import TpAnual.Domicilio;
 import TpAnual.Poi;
-import TpAnual.Region;
+import UbicacionPoi.Domicilio;
+import UbicacionPoi.Region;
+import UbicacionPoi.Ubicacion;
 
 public class ParadaColectivo extends Poi {
 
 	private String lineaColectivo;
+	private Ubicacion ubicacion;
 
-	public ParadaColectivo(Domicilio unDomicilio, Region unaRegion, Point unaCoordenada, String unNombre,
-			List<String> palabrasClave) {
-		setCoordenada(unaCoordenada);
-		setDomicilio(unDomicilio);
-		setRegion(unaRegion);
+	public ParadaColectivo(Ubicacion unaUbicacion, String unNombre, List<String> palabrasClave) {
+		setUbicacion(unaUbicacion);
 		setNombre(unNombre);
 		setPalabrasClave(palabrasClave);
 	}
 
+	public void setUbicacion(Ubicacion unaUbicacion) {
+		this.ubicacion = unaUbicacion;		
+	}
+	public Ubicacion getUbicacion() {
+		return this.ubicacion;		
+	}
+	
+	@Override
+	public Point getCoordenada(){
+		return this.ubicacion.getCoordenadas();
+	}
+
+	
 	public int distanciaMinimaParaConsiderarmeCercano() {
 		return 100;
 	}

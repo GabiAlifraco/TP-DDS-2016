@@ -5,8 +5,8 @@ import java.util.List;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 import TpAnual.Poi;
-import TpAnual.Region;
 import TpAnual.ServicioCGP;
+import UbicacionPoi.Region;
 
 public class CGP extends Poi{
 	

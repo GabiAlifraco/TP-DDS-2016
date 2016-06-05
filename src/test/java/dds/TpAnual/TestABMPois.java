@@ -10,19 +10,25 @@ import org.uqbar.geodds.Point;
 
 import Pois.ParadaColectivo;
 import TpAnual.BaseDePois;
-import TpAnual.Domicilio;
 import TpAnual.OrigenDeDatos;
 import TpAnual.Terminal;
+import UbicacionPoi.Domicilio;
+import UbicacionPoi.Region;
+import UbicacionPoi.Ubicacion;
 import TpAnual.Poi;
-import TpAnual.Region;
 
 public class TestABMPois {
 
 	private Region regionParada;
 	private Domicilio domicilioParada;
 	private Point coordenadaParada;
+	private Region regionParada107;
+	private Domicilio domicilioParada107;
+	private Point coordenadaParada107;
 	private ParadaColectivo parada114;
+	private Ubicacion ubicacion114;
 	private ParadaColectivo parada107;
+	private Ubicacion ubicacion107;
 	private Terminal terminalAbasto;
 	private Terminal terminalFlorida;
 	BaseDePois base = BaseDePois.getInstance();
@@ -33,14 +39,16 @@ public class TestABMPois {
 		domicilioParada = new Domicilio("Arenales", 1141, "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
 		regionParada = new Region("CABA", "Recoleta", "Bs As", "Argentina");
 		coordenadaParada = new Point(34.4353, 25.4632);
+		ubicacion114 = new Ubicacion(domicilioParada, regionParada, coordenadaParada);
 		List<String> palabrasClave114 = Arrays.asList("Colectivo", "Parada");
-		parada114 = new ParadaColectivo(domicilioParada, regionParada, coordenadaParada, "114", palabrasClave114);
+		parada114 = new ParadaColectivo(ubicacion114, "114", palabrasClave114);
 
-		domicilioParada = new Domicilio("Arenales", 1261, "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
-		regionParada = new Region("CABA", "Recoleta", "Bs As", "Argentina");
-		coordenadaParada = new Point(34.955, 25.555);
+		domicilioParada107 = new Domicilio("Arenales", 1261, "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
+		regionParada107 = new Region("CABA", "Recoleta", "Bs As", "Argentina");
+		coordenadaParada107 = new Point(34.955, 25.555);
+		ubicacion114 = new Ubicacion(domicilioParada107, regionParada107, coordenadaParada107);
 		List<String> palabrasClave107 = Arrays.asList("Colectivo", "Parada");
-		parada107 = new ParadaColectivo(domicilioParada, regionParada, coordenadaParada, "107", palabrasClave107);
+		parada107 = new ParadaColectivo(ubicacion107, "107", palabrasClave107);
 
 		
 		terminalAbasto = new Terminal("Terminal Abasto", servicios);

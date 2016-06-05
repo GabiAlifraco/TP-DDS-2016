@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.uqbar.geodds.Point;
 
+import UbicacionPoi.Domicilio;
+import UbicacionPoi.Region;
+
 public abstract class Poi {
 
 	// Declaramos los atributos principales del poi
@@ -45,7 +48,7 @@ public abstract class Poi {
 	}
 
 	public boolean estaCercaDe(Point otraCoordenada) {
-		return this.coordenada.distance(otraCoordenada) < distanciaMinimaParaConsiderarmeCercano();
+		return this.getCoordenada().distance(otraCoordenada) < distanciaMinimaParaConsiderarmeCercano();
 	}
 
 	public abstract int distanciaMinimaParaConsiderarmeCercano();
@@ -98,4 +101,31 @@ public abstract class Poi {
 		return !(listaPois.stream().anyMatch(poiLista -> poiLista.mismaCoordenada(this.getCoordenada())));
 
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((coordenada == null) ? 0 : coordenada.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Poi other = (Poi) obj;
+		if (coordenada == null) {
+			if (other.coordenada != null)
+				return false;
+		} else if (!coordenada.equals(other.coordenada))
+			return false;
+		return true;
+	}
+
+	
 }
