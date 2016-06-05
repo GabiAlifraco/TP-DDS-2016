@@ -8,14 +8,26 @@ public class Resultado {
 	long segundosBusqueda;
 	String fraseBuscada;
 	int cantidadDeResultados;
-
-	public Resultado(LocalDate unaFecha, long unTiempoBusqueda, String unaFraseBuscada, int totalResultados) {
+	Terminal terminal;
+	
+	public Resultado(LocalDate unaFecha, long unTiempoBusqueda, String unaFraseBuscada, int totalResultados,
+			Terminal terminal) {
 
 		this.setFecha(unaFecha);
 		this.setTiempoBusqueda(unTiempoBusqueda);
 		this.setFraseBuscada(unaFraseBuscada);
 		this.setCantidadResultados(totalResultados);
+		this.setTerminal(terminal);
 
+	}
+
+	private void setTerminal(Terminal terminal) {
+		this.terminal = terminal;
+
+	}
+
+	public Terminal getTerminal(){
+		return terminal;
 	}
 
 	private void setCantidadResultados(int totalResultados) {
@@ -35,14 +47,14 @@ public class Resultado {
 
 	}
 
-	public int getCantidadResultados(){
+	public int getCantidadResultados() {
 		return cantidadDeResultados;
 	}
-	
-	public String getFraseBuscada(){
+
+	public String getFraseBuscada() {
 		return fraseBuscada;
 	}
-	
+
 	public LocalDate getFecha() {
 		return fecha;
 	}

@@ -11,12 +11,12 @@ import Observers.ObserverBusqueda;
 public class Terminal {
 
 	// Se agrega el getInstance del singleton de la base
-	private BaseDePois base = BaseDePois.getInstance();
+	public BaseDePois base = BaseDePois.getInstance();
 	private Point coordenadaDispositivoMovil;
 	private String nombreTerminal;
 	List<OrigenDeDatos> servicios = new ArrayList<OrigenDeDatos>();
-	List<Poi> resultadosConRepetidos = new ArrayList<Poi>();
-	List<Poi> resultadosSinRepetidos = new ArrayList<Poi>();
+	public List<Poi> resultadosConRepetidos = new ArrayList<Poi>();
+	public List<Poi> resultadosSinRepetidos = new ArrayList<Poi>();
 	private List<Resultado> busquedas = new ArrayList<Resultado>();
 
 	public List<OrigenDeDatos> getServicios() {
@@ -63,17 +63,20 @@ public class Terminal {
 		long finalizacion = segundoActual();
 
 		Resultado resultado = instanciarResultado(LocalDate.now(), (finalizacion - comienzo), unNombre + " " + unaPalabraClave,
-				listaResutados.size());
+				listaResutados.size(), getThis());
 		
-		busquedas.add(resultado);
 		notificarBusqueda(resultado);
 
 		return listaResutados;
 	}
+	
+	private Terminal getThis(){
+		return this;
+	}
 
 	private Resultado instanciarResultado(LocalDate fechaActual, long segundosBusqueda, String frase,
-			int cantidadResultados) {
-		Resultado resultadoBusqueda = new Resultado(fechaActual, segundosBusqueda, frase, cantidadResultados);
+			int cantidadResultados, Terminal terminal) {
+		Resultado resultadoBusqueda = new Resultado(fechaActual, segundosBusqueda, frase, cantidadResultados, terminal);
 		return resultadoBusqueda;
 	}
 
@@ -124,7 +127,6 @@ public class Terminal {
 	public List<Resultado> getBusquedas() {
 		return this.busquedas;
 	}
-
 	public List<Integer> obtenerResultadosParciales() {
 		List<Integer> resultadosParciales = getBusquedas().stream()
 				.map(resultado -> resultado.getCantidadResultados())
@@ -148,5 +150,9 @@ public class Terminal {
 	
 	public List<ObserverBusqueda> getObserverBusquedas() {
 		return this.losObserverBusqueda;
+	}
+	
+	public void agregarBusqueda(Resultado resultado){
+		busquedas.add(resultado);
 	}
 }

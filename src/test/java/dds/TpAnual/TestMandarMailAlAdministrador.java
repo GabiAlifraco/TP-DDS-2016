@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import Observers.ObserverAlmacenarResultados;
 import Observers.ObserverBusqueda;
 import Observers.ObserverDemoraBusqueda;
 import TpAnual.InfoFast;
@@ -21,16 +22,19 @@ public class TestMandarMailAlAdministrador {
 	private LocalDate fecha;
 	private List<ObserverBusqueda> observers = new ArrayList<ObserverBusqueda>();
 	private ObserverDemoraBusqueda observerDemora;
+	private ObserverAlmacenarResultados observerAlmacenar;
 	private Terminal terminal;
 	private List<OrigenDeDatos> servicios;
 	@Before
 	public void initialize(){
 		sistema = new InfoFast();
 		fecha = LocalDate.parse("2016-10-16");
-		resultado = new Resultado(fecha, 10, "sarasa", 4);
 		observerDemora = new ObserverDemoraBusqueda();
+		observerAlmacenar = new ObserverAlmacenarResultados();
 		terminal = new Terminal("Terminal Abasto", servicios);
 		terminal.getObserverBusquedas().add(observerDemora);
+		terminal.getObserverBusquedas().add(observerAlmacenar);
+		resultado = new Resultado(fecha, 10, "sarasa", 4, terminal);
 		observerDemora.setTiempoMaximoBusqueda(5);
 		observerDemora.setSistema(sistema);
 	}
