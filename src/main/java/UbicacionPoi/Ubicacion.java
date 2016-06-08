@@ -4,9 +4,9 @@ import org.uqbar.geodds.Point;
 
 public class Ubicacion {
 
-	public Point coordenadas;
-	public Domicilio domicilio;
-	public Region region;
+	private Point coordenadas;
+	private Domicilio domicilio;
+	private Region region;
 	
 	public Ubicacion(Domicilio domicilio, Region region, Point coordenadas){
 		setDomicilio(domicilio);

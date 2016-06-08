@@ -1,4 +1,4 @@
-package TpAnual;
+package Pois;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,13 +60,6 @@ public abstract class Poi {
 	public boolean textoIncluido(String unNombre, String unaPalabraClave) {
 		return getPalabrasClave().stream().anyMatch(palabra -> palabra.contains(unaPalabraClave))
 				|| this.mismoNombre(unNombre);
-	}
-
-	// Verifico que sea un poi valido
-	public abstract boolean noTenesIdentificacion();
-
-	public boolean sosValido() {
-		return !((noTenesIdentificacion()) || (coordenada.equals(null)));
 	}
 
 	public String getNombre() {

@@ -1,8 +1,10 @@
 package seviciosExternos;
 
-import com.sun.jersey.api.client.ClientResponse;
+import java.util.List;
+
+import DTOs.BancoDTO;
 
 public interface BankService {
 
-	public ClientResponse getSucursalesBancosByNombreBanco(String nombreBanco, String nombreServicio);
+	public List<BancoDTO> getSucursalesBancosByNombreBanco(String nombreBanco, String nombreServicio);
 }

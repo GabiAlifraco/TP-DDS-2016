@@ -7,6 +7,9 @@ import java.util.stream.Collectors;
 import org.uqbar.geodds.Point;
 
 import Observers.ObserverBusqueda;
+import OrigenesDeDatos.BaseDePois;
+import OrigenesDeDatos.OrigenDeDatos;
+import Pois.Poi;
 
 public class Terminal {
 

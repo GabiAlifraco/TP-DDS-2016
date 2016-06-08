@@ -5,19 +5,20 @@ import java.util.Arrays;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
-import Adapters.AdapterBancos;
-import TpAnual.BaseDePois;
-import TpAnual.OrigenDeDatos;
-import TpAnual.Poi;
+
+import OrigenesDeDatos.BaseDePois;
+import OrigenesDeDatos.OrigenDeDatos;
+import OrigenesDeDatos.ProveedorBancos;
+import Pois.Poi;
 import TpAnual.Terminal;
 import seviciosExternos.BankService;
-import seviciosExternos.MockedBankService;
+import seviciosExternos.BankServiceImplementation;
 
 public class TestAdapterBanco {
 
 	
-	AdapterBancos adapterBanco = new AdapterBancos();
-	BankService servicio = new MockedBankService();
+	ProveedorBancos adapterBanco = new ProveedorBancos();
+	BankService servicio = new BankServiceImplementation();
 	
 	BaseDePois base = BaseDePois.getInstance();
 	List<OrigenDeDatos> servicios = Arrays.asList(base, adapterBanco);

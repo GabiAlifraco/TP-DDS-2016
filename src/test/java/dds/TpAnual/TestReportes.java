@@ -11,12 +11,12 @@ import org.uqbar.geodds.Point;
 
 import Observers.ObserverAlmacenarResultados;
 import Observers.ObserverBusqueda;
+import OrigenesDeDatos.BaseDePois;
+import OrigenesDeDatos.OrigenDeDatos;
 import Pois.Banco;
 import Pois.ParadaColectivo;
-import TpAnual.BaseDePois;
+import Pois.Poi;
 import TpAnual.InfoFast;
-import TpAnual.OrigenDeDatos;
-import TpAnual.Poi;
 import TpAnual.Resultado;
 import TpAnual.Terminal;
 import UbicacionPoi.Domicilio;

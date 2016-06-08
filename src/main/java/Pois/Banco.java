@@ -7,7 +7,6 @@ import java.util.List;
 import org.uqbar.geodds.Point;
 
 import TpAnual.Disponibilidad;
-import TpAnual.Poi;
 
 public class Banco extends Poi {
 

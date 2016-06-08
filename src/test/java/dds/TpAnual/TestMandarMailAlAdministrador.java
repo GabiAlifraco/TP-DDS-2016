@@ -10,8 +10,8 @@ import org.junit.Test;
 import Observers.ObserverAlmacenarResultados;
 import Observers.ObserverBusqueda;
 import Observers.ObserverDemoraBusqueda;
+import OrigenesDeDatos.OrigenDeDatos;
 import TpAnual.InfoFast;
-import TpAnual.OrigenDeDatos;
 import TpAnual.Resultado;
 import TpAnual.Terminal;
 

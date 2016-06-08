@@ -1,7 +1,9 @@
-package TpAnual;
+package Pois;
 
 import java.time.LocalTime;
 import java.util.List;
+
+import TpAnual.Disponibilidad;
 
 public class ServicioCGP {
 	private String nombre;

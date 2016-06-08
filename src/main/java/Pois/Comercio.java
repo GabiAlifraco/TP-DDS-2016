@@ -7,12 +7,10 @@ import java.util.List;
 import org.uqbar.geodds.Point;
 
 import TpAnual.Disponibilidad;
-import TpAnual.Poi;
 import UbicacionPoi.Domicilio;
 import UbicacionPoi.Region;
 
 public abstract class Comercio extends Poi {
-	private String nombre;
 	private List<String> diasDeAtencion = new ArrayList<String>();
 	private Disponibilidad horarioDeAtencion;
 
@@ -32,10 +30,6 @@ public abstract class Comercio extends Poi {
 	}
 
 	public abstract int dameDistancia();
-
-	public boolean noTenesIdentificacion() {
-		return (nombre.equals(null));
-	}
 
 	public void setDiasDeAtencion(List<String> dias) {
 		this.diasDeAtencion = dias;

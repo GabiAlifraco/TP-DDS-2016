@@ -8,8 +8,8 @@ import org.junit.Test;
 import org.uqbar.geodds.*;
 import Pois.Banco;
 import Pois.CGP;
+import Pois.ServicioCGP;
 import TpAnual.Disponibilidad;
-import TpAnual.ServicioCGP;
 import UbicacionPoi.Domicilio;
 import UbicacionPoi.Region;
 public class TestCGP {

@@ -8,14 +8,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 
+import OrigenesDeDatos.BaseDePois;
+import OrigenesDeDatos.OrigenDeDatos;
 import Pois.ParadaColectivo;
-import TpAnual.BaseDePois;
-import TpAnual.OrigenDeDatos;
+import Pois.Poi;
 import TpAnual.Terminal;
 import UbicacionPoi.Domicilio;
 import UbicacionPoi.Region;
 import UbicacionPoi.Ubicacion;
-import TpAnual.Poi;
 
 public class TestABMPois {
 

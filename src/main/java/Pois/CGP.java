@@ -4,8 +4,7 @@ import java.util.List;
 
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
-import TpAnual.Poi;
-import TpAnual.ServicioCGP;
+
 import UbicacionPoi.Region;
 
 public class CGP extends Poi{
@@ -31,11 +30,7 @@ public class CGP extends Poi{
 		return this.getZona().isInside(otraCoordenada);
 		
 	}
-	
-	public boolean noTenesIdentificacion(){
-		return(getNombre().equals(null));
-	}
-	
+
 	@Override
 	public boolean textoIncluido(String unNombre, String unaPalabraClave) {
 		return this.mismoNombre(unNombre) || this.mismoNombreServicio(unaPalabraClave);

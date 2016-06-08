@@ -10,18 +10,18 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import OrigenesDeDatos.BaseDePois;
+import OrigenesDeDatos.OrigenDeDatos;
 import Pois.Banco;
 import Pois.CGP;
 import Pois.ParadaColectivo;
+import Pois.Poi;
+import Pois.ServicioCGP;
 import TpAnual.Terminal;
 import UbicacionPoi.Domicilio;
 import UbicacionPoi.Region;
 import UbicacionPoi.Ubicacion;
-import TpAnual.BaseDePois;
 import TpAnual.Disponibilidad;
-import TpAnual.OrigenDeDatos;
-import TpAnual.Poi;
-import TpAnual.ServicioCGP;
 
 
 public class TestSistema {

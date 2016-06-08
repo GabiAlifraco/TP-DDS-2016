@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.uqbar.geodds.Point;
 
-import TpAnual.Poi;
 import UbicacionPoi.Domicilio;
 import UbicacionPoi.Region;
 import UbicacionPoi.Ubicacion;
@@ -36,11 +35,7 @@ public class ParadaColectivo extends Poi {
 	public int distanciaMinimaParaConsiderarmeCercano() {
 		return 100;
 	}
-
-	public boolean noTenesIdentificacion() {
-		return ((getNombre().equals(null)));
-	}
-
+	
 	public boolean estaDisponible(String nombreBuscado, String dia, String hora) {
 		return true;
 	}

@@ -1,6 +1,8 @@
-package TpAnual;
+package OrigenesDeDatos;
 
 import java.util.List;
+
+import Pois.Poi;
 
 public interface OrigenDeDatos {
 
