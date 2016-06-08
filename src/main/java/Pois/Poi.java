@@ -1,10 +1,13 @@
 package Pois;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.uqbar.geodds.Point;
 
+import TpAnual.Disponibilidad;
 import UbicacionPoi.Domicilio;
 import UbicacionPoi.Region;
 
@@ -15,11 +18,17 @@ public abstract class Poi {
 	private Domicilio domicilio;
 	private Region region;
 	private String nombre;
-	List<String> palabrasClave = new ArrayList<String>();
+	private List<String> palabrasClave = new ArrayList<String>();
+	private List<Disponibilidad> horariosDeAtencion  = new ArrayList<Disponibilidad>();
 
 	// Setters y getters de los atributos
+	
 	public Domicilio getDomicilio() {
 		return domicilio;
+	}
+
+	public String getNombre() {
+		return nombre;
 	}
 
 	public void setDomicilio(Domicilio domicilio) {
@@ -42,6 +51,14 @@ public abstract class Poi {
 		this.coordenada = unaCoordenada;
 	}
 
+	public List<Disponibilidad> getHorariosDeAtencion() {
+		return horariosDeAtencion;
+	}
+
+	public void setHorariosDeAtencion(List<Disponibilidad> horariosDeAtencion) {
+		this.horariosDeAtencion = horariosDeAtencion;
+	}
+
 	// Esto es para la entrega 1: Calculo de Cercania
 	public boolean estaCercaDeOtroPoi(Poi unPoi) {
 		return estaCercaDe(unPoi.getCoordenada());
@@ -54,16 +71,15 @@ public abstract class Poi {
 	public abstract int distanciaMinimaParaConsiderarmeCercano();
 
 	// Esto es para la entrega 1: Calculo de la disponibilidad
-	public abstract boolean estaDisponible(String nombreABuscar, String dia, String hora);
+	
+	public boolean estaDisponible(String nombreServicio, DayOfWeek dia, LocalTime hora){ 
+		return horariosDeAtencion.stream().anyMatch(disponibilidad -> disponibilidad.disponibleEnDiayHora(dia,hora));
+	}
 
 	// Esto es para la entrega 1: Busqueda de puntos
 	public boolean textoIncluido(String unNombre, String unaPalabraClave) {
 		return getPalabrasClave().stream().anyMatch(palabra -> palabra.contains(unaPalabraClave))
 				|| this.mismoNombre(unNombre);
-	}
-
-	public String getNombre() {
-		return nombre;
 	}
 
 	public void setNombre(String nombre) {
