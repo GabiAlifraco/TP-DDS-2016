@@ -12,34 +12,33 @@ import OrigenesDeDatos.ProveedorBancos;
 import Pois.Poi;
 import TpAnual.Terminal;
 import seviciosExternos.BankService;
-import seviciosExternos.BankServiceImplementation;
+import seviciosExternos.MockBankService;
 
 public class TestAdapterBanco {
 
 	
-	ProveedorBancos adapterBanco = new ProveedorBancos();
-	BankService servicio = new BankServiceImplementation();
+	ProveedorBancos proveedorBancos = new ProveedorBancos();
+	BankService servicio = new MockBankService();
 	
 	BaseDePois base = BaseDePois.getInstance();
-	List<OrigenDeDatos> servicios = Arrays.asList(base, adapterBanco);
+	List<OrigenDeDatos> servicios = Arrays.asList(base, proveedorBancos);
 	
 	Terminal terminal = new Terminal("Terminal abasto", servicios);
 	
 	@Test
-	public void testJSONConvertidoABanco(){
+	public void testJSONMapeadoABanco(){
 		
-		adapterBanco.setBankService(servicio);
+		proveedorBancos.setBankService(servicio);
 		List<Poi> bancos = new ArrayList<Poi>(); 
-		bancos = adapterBanco.buscarPois("NOMBREDEBANCO", "TIPODESERVICIO");
+		bancos = proveedorBancos.buscarPois("Banco", "Servicio");
 		Assert.assertTrue(bancos.get(0).getNombre().equals("Banco de la Plaza"));
 		Assert.assertTrue(bancos.get(0).getPalabrasClave().size() == 5);
 		Assert.assertTrue(bancos.get(0).getPalabrasClave().get(0).equals("cobro cheques"));
 		
 	}
-	
 	public void busquedaPoisDesdeTerminal(){
 		
-		adapterBanco.setBankService(servicio);
+		proveedorBancos.setBankService(servicio);
 		List<Poi> bancos = new ArrayList<Poi>(); 
 		bancos = terminal.busquedaDePuntos("NOMBREDEBANCO", "TIPODESERVICIO");
 		Assert.assertTrue(bancos.get(0).getNombre().equals("Banco de la Plaza"));
