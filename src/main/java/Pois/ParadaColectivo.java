@@ -1,11 +1,12 @@
 package Pois;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.uqbar.geodds.Point;
 
-import UbicacionPoi.Domicilio;
-import UbicacionPoi.Region;
+import Pois.Poi;
 import UbicacionPoi.Ubicacion;
 
 public class ParadaColectivo extends Poi {
@@ -35,8 +36,9 @@ public class ParadaColectivo extends Poi {
 	public int distanciaMinimaParaConsiderarmeCercano() {
 		return 100;
 	}
-	
-	public boolean estaDisponible(String nombreBuscado, String dia, String hora) {
+
+	@Override
+	public boolean estaDisponible(String nombreABuscar, DayOfWeek dia, LocalTime hora) {
 		return true;
 	}
 
