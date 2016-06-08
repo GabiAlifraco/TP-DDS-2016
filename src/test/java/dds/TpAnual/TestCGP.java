@@ -1,4 +1,6 @@
 package dds.TpAnual;
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,10 +21,11 @@ public class TestCGP {
 	private CGP comuna3;
 	private Polygon zonaCGP;
 	
-	private Disponibilidad disponibilidadCGPRentas;
+	private Disponibilidad disponibilidad1;
+	private List<Disponibilidad> horariosCGPRentas = new ArrayList<Disponibilidad>();
 	private List<ServicioCGP> serviciosCGP = new ArrayList<ServicioCGP>();
 	private ServicioCGP rentas;
-	private List<String> diasDeAtencionCGPRentas = Arrays.asList("Lunes","Martes","Miercoles","Jueves","Viernes");
+	private List<DayOfWeek> diasDeAtencionCGPRentas = Arrays.asList(DayOfWeek.MONDAY,DayOfWeek.TUESDAY,DayOfWeek.WEDNESDAY,DayOfWeek.THURSDAY,DayOfWeek.FRIDAY);
 	
 	private Domicilio domicilioBanco;
 	private Region regionBanco;
@@ -54,9 +57,10 @@ public class TestCGP {
 		zonaCGP.add(coordenadaCGP);
 		zonaCGP.add(coordenadaCGP2);
 		zonaCGP.add(coordenadaCGP3);
-
-		disponibilidadCGPRentas = new Disponibilidad ("09:30","15:30");
-		rentas = new ServicioCGP("Rentas",diasDeAtencionCGPRentas,disponibilidadCGPRentas);
+		
+		disponibilidad1 = new Disponibilidad (diasDeAtencionCGPRentas,LocalTime.of(9,30),LocalTime.of(15,30));
+		horariosCGPRentas.add(disponibilidad1);
+		rentas = new ServicioCGP("Rentas",horariosCGPRentas);
 		
 		
 		domicilioBanco = new Domicilio("Arenales",1245 , "M.T.De.Alvear", "Santa Fe", 2100, 0, 0, 0, 1111);
