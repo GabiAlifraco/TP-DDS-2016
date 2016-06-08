@@ -1,14 +1,12 @@
 package dds.TpAnual;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import Observers.ObserverAlmacenarResultados;
-import Observers.ObserverBusqueda;
 import Observers.ObserverDemoraBusqueda;
 import OrigenesDeDatos.OrigenDeDatos;
 import TpAnual.InfoFast;
@@ -20,7 +18,6 @@ public class TestMandarMailAlAdministrador {
 	private InfoFast sistema;
 	private Resultado resultado;
 	private LocalDate fecha;
-	private List<ObserverBusqueda> observers = new ArrayList<ObserverBusqueda>();
 	private ObserverDemoraBusqueda observerDemora;
 	private ObserverAlmacenarResultados observerAlmacenar;
 	private Terminal terminal;

@@ -1,15 +1,19 @@
 package TpAnual;
 
 
+import java.time.DayOfWeek;
 import java.time.LocalTime;
+import java.util.List;
 
 public class Disponibilidad {
+	private List<DayOfWeek> dias;
 	private LocalTime horarioInicial;
 	private LocalTime horarioFinal;
 
-	public Disponibilidad (String unHorarioInicial, String unHorarioFinal){
-		this.horarioInicial = LocalTime.parse(unHorarioInicial);
-		this.horarioFinal = LocalTime.parse(unHorarioFinal);
+	public Disponibilidad (List<DayOfWeek> unosDias,LocalTime unHorarioInicial, LocalTime unHorarioFinal){
+		this.horarioInicial = unHorarioInicial;
+		this.horarioFinal = unHorarioFinal;
+		this.dias = unosDias;
 
 	}
 
@@ -19,6 +23,13 @@ public class Disponibilidad {
 
 	public LocalTime getHorarioFinal() {
 		return horarioFinal;
+	}
+
+	public List<DayOfWeek> getDias() {
+		return dias;
+	}
+	public boolean disponibleEnDiayHora (DayOfWeek diaConsulta,LocalTime horaConsulta){
+	 return (dias.contains(diaConsulta)&&(horaConsulta.isAfter(horarioInicial) && horaConsulta.isBefore(horarioFinal)));
 	}
 
 }

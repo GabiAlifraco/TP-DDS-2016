@@ -1,14 +1,13 @@
 package Pois;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.List;
-
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
-
 import UbicacionPoi.Region;
 
 public class CGP extends Poi{
-	
 	
 	public List<ServicioCGP> serviciosCGP;
     
@@ -20,7 +19,21 @@ public class CGP extends Poi{
 		serviciosCGP = servicios;
 		
 	}
+	@Override
+	public boolean estaDisponible(String nombreServicio, DayOfWeek dia, LocalTime hora) {
+		if (this.contieneServicio(nombreServicio)){
+			return serviciosCGP.stream().filter(servicio -> servicio.getNombre().contains(nombreServicio)).anyMatch(servicio -> servicio.horarioDisponible(dia,hora));
+		}
+		else{
+			return false;
+		}
+	}
 	
+	private boolean contieneServicio(String nombreABuscar) {
+		return serviciosCGP.stream().anyMatch(servicio -> servicio.getNombre().equals(nombreABuscar));
+	}
+
+
 	public int distanciaMinimaParaConsiderarmeCercano(){
 		return 0;
 	};
@@ -30,23 +43,13 @@ public class CGP extends Poi{
 		return this.getZona().isInside(otraCoordenada);
 		
 	}
-
+	
+	
 	@Override
 	public boolean textoIncluido(String unNombre, String unaPalabraClave) {
-		return this.mismoNombre(unNombre) || this.mismoNombreServicio(unaPalabraClave);
+		return this.mismoNombre(unNombre) || this.contieneServicio(unaPalabraClave);
 	}
 	
-
-	public boolean estaDisponible(String nombreBuscado,String dia, String hora) {
-		if (getNombre().equals(nombreBuscado)){
-			return serviciosCGP.stream().anyMatch(servicioCGP -> (servicioCGP.getDiasDeAtencion().contains(dia) && servicioCGP.horarioDentroDelRango(hora)));
-		}
-		return estaDisponibleEnHorario(nombreBuscado,dia,hora);
-	}
-	
-	public boolean estaDisponibleEnHorario(String servicio, String dia, String hora){
-		return  serviciosCGP.stream().anyMatch(servicioCGP->(servicioCGP.getNombre().equals(servicio)) && (servicioCGP.getDiasDeAtencion().contains(dia) && servicioCGP.horarioDentroDelRango(hora)));
-	}
 
 	public Polygon getZona() {
 		return zona;
@@ -55,11 +58,6 @@ public class CGP extends Poi{
 
 	public void setZona(Polygon zona) {
 		this.zona = zona;
-	}
-
-	
-	public boolean mismoNombreServicio(String nombreServicio) {
-		return serviciosCGP.stream().anyMatch(servicioCGP -> servicioCGP.igualNombre(nombreServicio));
 	}
 
 	public boolean noSeRepite(List<Poi> listaPois) {

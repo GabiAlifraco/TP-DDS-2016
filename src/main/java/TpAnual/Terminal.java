@@ -1,6 +1,8 @@
 package TpAnual;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -53,9 +55,8 @@ public class Terminal {
 	}
 
 	// Esto es para la entrega 1: Calculo de la disponibilidad
-	public boolean estaDisponiblePoi(String nombreServicio, String dia, String hora) {
-		return base.getPois().stream().filter(poi -> poi.mismoNombre(nombreServicio))
-				.anyMatch(poi -> poi.estaDisponible(nombreServicio, dia, hora));
+	public boolean estaDisponiblePoi(String nombreServicio, DayOfWeek dia, String unaHora) {
+		return base.getPois().stream().filter(poi -> poi.getNombre().equals(nombreServicio)).anyMatch(poi -> poi.estaDisponible(nombreServicio,dia,LocalTime.parse(unaHora)));
 	}
 
 	// Esto es para la entrega 1: Busqueda de puntos

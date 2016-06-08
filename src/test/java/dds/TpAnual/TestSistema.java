@@ -1,5 +1,7 @@
 package dds.TpAnual;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -44,10 +46,11 @@ public class TestSistema {
 	private Region regionCGP;
 	private CGP comuna3;
 	
-	private Disponibilidad disponibilidadCGPRentas;
 	private List<ServicioCGP> serviciosCGP = new ArrayList<ServicioCGP>();
+	private Disponibilidad disponibilidadCGPRentas;
+	private List<DayOfWeek> diasRentas = Arrays.asList(DayOfWeek.MONDAY,DayOfWeek.TUESDAY,DayOfWeek.WEDNESDAY,DayOfWeek.THURSDAY,DayOfWeek.FRIDAY);
+	private List<Disponibilidad> horariosRentas = new ArrayList<Disponibilidad>();
 	private ServicioCGP rentas;
-	private List<String> diasDeAtencionCGPRentas = Arrays.asList("Lunes","Martes","Miercoles","Jueves","Viernes");
 
 	
 
@@ -72,14 +75,16 @@ public class TestSistema {
 		bancoSantander.setDomicilio(domicilioBanco);
 		bancoSantander.setRegion(regionBanco);
 		
-		domicilioCGP = new Domicilio("Arenales",1141 , "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
-		new Point(34.4353,24.4856);
+		disponibilidadCGPRentas = new Disponibilidad (diasRentas,LocalTime.of(9,30),LocalTime.of(15,30));
+		horariosRentas.add(disponibilidadCGPRentas);
+		rentas = new ServicioCGP("Rentas",horariosRentas);
+
+		new Domicilio("Arenales", 1141, "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
+		new Point(34.4353, 24.4856);
 		new Polygon();
 		comuna3 = new CGP("CGP comuna3","Recoleta",serviciosCGP);
-		comuna3.setDomicilio(domicilioCGP);
-		comuna3.setRegion(regionCGP);
-		disponibilidadCGPRentas = new Disponibilidad ("09:30","15:30");
-		rentas = new ServicioCGP("Rentas",diasDeAtencionCGPRentas,disponibilidadCGPRentas);
+		comuna3.serviciosCGP.add(rentas);
+		
 		
 		BaseDePois base = BaseDePois.getInstance();
 		List<OrigenDeDatos> servicios = Arrays.asList(base);
