@@ -8,8 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.*;
 
-import Pois.KioscoDiario;
-import Pois.Libreria;
+import Pois.Comercio;
 import TpAnual.Disponibilidad;
 import UbicacionPoi.Domicilio;
 import UbicacionPoi.Region;
@@ -19,12 +18,12 @@ public class TestLibreria {
 	private Region regionLibreria;
 	private Domicilio domicilioLibreria;
 	private Point coordenadaLibreria;
-	private Libreria elEstudiante;
+	private Comercio elEstudiante;
 
 	private Domicilio domicilioKiosco;
 	private Region regionKiosco;
 	private Point coordenadaKiosco;
-	private KioscoDiario elDiarioDelPueblo;
+	private Comercio elDiarioDelPueblo;
 	private Disponibilidad disponibilidadKioscoDiario;
 	private List<String> diasDeAtencionKioscoDiario = Arrays.asList("Lunes", "Martes", "Miercoles", "Jueves",
 			"Viernes");
@@ -39,21 +38,23 @@ public class TestLibreria {
 		coordenadaLibreria = new Point(12.4541, 21.2581);
 		disponibilidadLibreria = new Disponibilidad("10:00", "19:00");
 		List<String> palabrasClaveLibreria = Arrays.asList("Cuadernos", "Libros", "Lapiceras");
-		elEstudiante = new Libreria("El estudiante", domicilioLibreria, regionLibreria, coordenadaLibreria,
+		elEstudiante = new Comercio("El estudiante", domicilioLibreria, regionLibreria, coordenadaLibreria,
 				diasDeAtencionLibreria, disponibilidadLibreria, palabrasClaveLibreria);
-
+        
 		domicilioKiosco = new Domicilio("Junin", 541, "Av.Corrientes", "Lavalle", 2000, 0, 0, 0, 1111);
 		regionKiosco = new Region("CABA", "Palermo", "Bs As", "Argentina");
 		coordenadaKiosco = new Point(12.8741, 21.0421);
 		disponibilidadKioscoDiario = new Disponibilidad("06:00", "12:00");
 		List<String> palabrasClaveKioscoDiario = Arrays.asList("Revistas", "Diarios", "Crucigrama");
-		elDiarioDelPueblo = new KioscoDiario("El diario del pueblo", domicilioKiosco, regionKiosco, coordenadaKiosco,
+		elDiarioDelPueblo = new Comercio("El diario del pueblo", domicilioKiosco, regionKiosco, coordenadaKiosco,
 				diasDeAtencionKioscoDiario, disponibilidadKioscoDiario, palabrasClaveKioscoDiario);
 
 	}
 
 	@Test
 	public void estaCercaLaLibreriaDeLKioscoDiario() {
+		elEstudiante.setDistancia(200);
+		elDiarioDelPueblo.setDistancia(100);
 		Assert.assertTrue(elEstudiante.estaCercaDe(elDiarioDelPueblo.getCoordenada()));
 	}
 
