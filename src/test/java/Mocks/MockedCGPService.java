@@ -1,6 +1,7 @@
-package seviciosExternos;
+package Mocks;
 
 import DTOs.CentroDTO;
+import seviciosExternos.CGPService;
 
 public class MockedCGPService implements CGPService{
 

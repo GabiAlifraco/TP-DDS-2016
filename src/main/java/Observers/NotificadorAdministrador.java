@@ -3,7 +3,7 @@ package Observers;
 import TpAnual.InfoFast;
 import TpAnual.Resultado;
 
-public class ObserverDemoraBusqueda implements ObserverBusqueda{
+public class NotificadorAdministrador implements ObserverBusqueda{
 
 	private long tiempoMaximoBusqueda;
     private InfoFast sistema;

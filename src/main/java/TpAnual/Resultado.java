@@ -1,6 +1,8 @@
 package TpAnual;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 public class Resultado {
 
@@ -10,11 +12,11 @@ public class Resultado {
 	int cantidadDeResultados;
 	Terminal terminal;
 	
-	public Resultado(LocalDate unaFecha, long unTiempoBusqueda, String unaFraseBuscada, int totalResultados,
+	public Resultado(LocalDate unaFecha, LocalTime tiempoInicio, LocalTime tiempoFinalizacion, String unaFraseBuscada, int totalResultados,
 			Terminal terminal) {
 
 		this.setFecha(unaFecha);
-		this.setTiempoBusqueda(unTiempoBusqueda);
+		this.setTiempoBusqueda(tiempoFinalizacion, tiempoInicio);
 		this.setFraseBuscada(unaFraseBuscada);
 		this.setCantidadResultados(totalResultados);
 		this.setTerminal(terminal);
@@ -38,8 +40,8 @@ public class Resultado {
 		this.fraseBuscada = unaFraseBuscada;
 	}
 
-	private void setTiempoBusqueda(long unTiempoBusqueda) {
-		this.segundosBusqueda = unTiempoBusqueda;
+	private void setTiempoBusqueda(LocalTime comienzo, LocalTime finalizacion) {
+		this.segundosBusqueda = ChronoUnit.SECONDS.between(finalizacion, comienzo);
 	}
 
 	private void setFecha(LocalDate unaFecha) {

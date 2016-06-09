@@ -23,6 +23,11 @@ public class Terminal {
 	List<OrigenDeDatos> servicios = new ArrayList<OrigenDeDatos>();
 	private List<Resultado> busquedas = new ArrayList<Resultado>();
 
+	public Terminal(String nombre, List<OrigenDeDatos> servicios) {
+		setNombreTerminal(nombre);
+		setServicios(servicios);
+	}
+	
 	public List<OrigenDeDatos> getServicios() {
 		return this.servicios;
 	}
@@ -34,12 +39,6 @@ public class Terminal {
 	// Getter de la base
 	public BaseDePois getBase() {
 		return base;
-	}
-
-	public Terminal(String nombre, List<OrigenDeDatos> servicios) {
-		setNombreTerminal(nombre);
-		setServicios(servicios);
-
 	}
 
 	private void setServicios(List<OrigenDeDatos> servicios) {
@@ -62,22 +61,17 @@ public class Terminal {
 	// Esto es para la entrega 1: Busqueda de puntos
 	public List<Poi> busquedaDePuntos(String unNombre, String unaPalabraClave) {
 
-		long comienzo = segundoActual();
+		LocalTime comienzo = LocalTime.now();
 		List<Poi> listaResutados = obtenerResultadosServicios(unNombre, unaPalabraClave).stream().collect(Collectors.toList());
-		long finalizacion = segundoActual();
+		LocalTime finalizacion = LocalTime .now();
 
-		Resultado resultado = instanciarResultado(LocalDate.now(), (finalizacion - comienzo),
+		Resultado resultado = new Resultado(LocalDate.now(), finalizacion, comienzo,
 				unNombre + " " + unaPalabraClave, listaResutados.size(), this);
 
+		agregarBusqueda(resultado);
 		notificarBusqueda(resultado);
 
 		return listaResutados;
-	}
-
-	private Resultado instanciarResultado(LocalDate fechaActual, long segundosBusqueda, String frase,
-			int cantidadResultados, Terminal terminal) {
-		Resultado resultadoBusqueda = new Resultado(fechaActual, segundosBusqueda, frase, cantidadResultados, terminal);
-		return resultadoBusqueda;
 	}
 
 	public Set<Poi> obtenerResultadosServicios(String unNombre, String unaPalabraClave) {
@@ -85,11 +79,6 @@ public class Terminal {
 		return servicios.stream().map(servicio -> servicio.buscarPois(unNombre, unaPalabraClave))
 				.flatMap(pois -> pois.stream()).collect(Collectors.toSet());
 	}
-	
-	public void agregarPoi(List<Poi> lista, Poi unPoi) {
-		lista.add(unPoi);
-	}
-
 	public String getNombreTerminal() {
 		return nombreTerminal;
 	}
@@ -97,11 +86,6 @@ public class Terminal {
 	public void setNombreTerminal(String nombreTerminal) {
 		this.nombreTerminal = nombreTerminal;
 	}
-
-	public long segundoActual() {
-		return 1000 * System.currentTimeMillis();
-	}
-
 	public List<Resultado> getBusquedas() {
 		return this.busquedas;
 	}

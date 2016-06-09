@@ -1,10 +1,11 @@
-package seviciosExternos;
+package Mocks;
 
 import java.util.Arrays;
 import java.util.List;
 
 import DTOs.BancoDTO;
 import json.JsonFactory;
+import seviciosExternos.BankService;
 
 public class MockBankService implements BankService {
 

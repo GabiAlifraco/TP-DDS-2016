@@ -6,13 +6,13 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import Mocks.MockBankService;
 import OrigenesDeDatos.BaseDePois;
 import OrigenesDeDatos.OrigenDeDatos;
 import OrigenesDeDatos.ProveedorBancos;
 import Pois.Poi;
 import TpAnual.Terminal;
 import seviciosExternos.BankService;
-import seviciosExternos.MockBankService;
 
 public class TestAdapterBanco {
 
