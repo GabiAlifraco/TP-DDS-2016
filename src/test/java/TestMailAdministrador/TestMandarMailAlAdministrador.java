@@ -8,7 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import ConsultasPoi.ResultadosConsultasPoi;
+import EstadisticasReportes.ResultadosReportes;
 import Mocks.MockNotificadorAdministrador;
 import OrigenesDeDatos.OrigenDeDatos;
 import Requerimientos.NotificarAdministrador;
@@ -18,7 +18,7 @@ import Requerimientos.AlmacenarResultadosDeBusquedas;
 
 public class TestMandarMailAlAdministrador {
 	
-	private ResultadosConsultasPoi sistema;
+	private ResultadosReportes sistema;
 	private Resultado resultado;
 	private LocalDate fecha;
 	private MockNotificadorAdministrador notificadorAdministrador;
@@ -26,7 +26,7 @@ public class TestMandarMailAlAdministrador {
 	private List<OrigenDeDatos> servicios;
 	@Before
 	public void initialize(){
-		sistema = new ResultadosConsultasPoi();
+		sistema = new ResultadosReportes();
 		fecha = LocalDate.parse("2016-10-16");
 		notificadorAdministrador = new MockNotificadorAdministrador();
 		terminal = new Terminal("Terminal Abasto", servicios);

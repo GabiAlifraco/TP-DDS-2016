@@ -1,4 +1,4 @@
-package ConsultasPoi;
+package EstadisticasReportes;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,19 +10,19 @@ import java.util.Map;
 import Resultado.Resultado;
 import Terminal.Terminal;
 
-public class ResultadosConsultasPoi {
+public class ResultadosReportes {
 	private boolean reporteFechaActivado;
 	private boolean reporteParcial;
 	private boolean reporteTotal;
-	private static ResultadosConsultasPoi instance = null;
+	private static ResultadosReportes instance = null;
 	List<Terminal> terminales = new ArrayList<Terminal>();
 	public String mailAdministrador;
 
 	Map<LocalDate, Integer> busquedaFecha = new HashMap<LocalDate, Integer>();
 
-	public static ResultadosConsultasPoi getInstance() {
+	public static ResultadosReportes getInstance() {
 		if (instance == null) {
-			instance = new ResultadosConsultasPoi();
+			instance = new ResultadosReportes();
 		}
 		return instance;
 	}

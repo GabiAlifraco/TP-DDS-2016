@@ -1,6 +1,6 @@
 package Mocks;
 
-import ConsultasPoi.ResultadosConsultasPoi;
+import EstadisticasReportes.ResultadosReportes;
 import Requerimientos.NotificacionBusqueda;
 import Resultado.Resultado;
 
@@ -9,7 +9,7 @@ public class MockNotificadorAdministrador implements NotificacionBusqueda{
 
 	public boolean administradorNotificado;
 	private long tiempoMaximoBusqueda;
-    private ResultadosConsultasPoi sistema;
+    private ResultadosReportes sistema;
 	
 
 	@Override
@@ -19,7 +19,7 @@ public class MockNotificadorAdministrador implements NotificacionBusqueda{
 	public void setTiempoMaximoBusqueda(long tiempoMaximoBusqueda) {
 		this.tiempoMaximoBusqueda = tiempoMaximoBusqueda;
 	}
-	public void setSistema(ResultadosConsultasPoi sistema) {
+	public void setSistema(ResultadosReportes sistema) {
 		this.sistema = sistema;
 	}
 

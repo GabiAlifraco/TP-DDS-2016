@@ -1,14 +1,14 @@
 package Requerimientos;
 
 
-import ConsultasPoi.ResultadosConsultasPoi;
+import EstadisticasReportes.ResultadosReportes;
 import Resultado.Resultado;
 
 
 public class NotificarAdministrador implements NotificacionBusqueda{
 
 	private long tiempoMaximoBusqueda;
-    private ResultadosConsultasPoi sistema;
+    private ResultadosReportes sistema;
 	
     @Override
 	public void notificarBusqueda(Resultado resultado) {
@@ -36,11 +36,11 @@ public class NotificarAdministrador implements NotificacionBusqueda{
 		this.tiempoMaximoBusqueda = tiempoMaximoBusqueda;
 	}
 
-	public ResultadosConsultasPoi getSistema() {
+	public ResultadosReportes getSistema() {
 		return sistema;
 	}
 
-	public void setSistema(ResultadosConsultasPoi sistema) {
+	public void setSistema(ResultadosReportes sistema) {
 		this.sistema = sistema;
 	}
 
