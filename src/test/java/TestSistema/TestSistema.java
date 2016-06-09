@@ -12,6 +12,9 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import CaracteristicaPoi.Domicilio;
+import CaracteristicaPoi.Region;
+import CaracteristicaPoi.Ubicacion;
 import OrigenesDeDatos.BaseDePois;
 import OrigenesDeDatos.OrigenDeDatos;
 import Pois.Banco;
@@ -20,9 +23,7 @@ import Pois.ParadaColectivo;
 import Pois.Poi;
 import Pois.ServicioCGP;
 import TpAnual.Terminal;
-import UbicacionPoi.Domicilio;
-import UbicacionPoi.Region;
-import UbicacionPoi.Ubicacion;
+
 import TpAnual.Disponibilidad;
 
 

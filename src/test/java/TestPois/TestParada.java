@@ -9,11 +9,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.*;
 
+import CaracteristicaPoi.Domicilio;
+import CaracteristicaPoi.Region;
+import CaracteristicaPoi.Ubicacion;
 import Pois.Banco;
 import Pois.ParadaColectivo;
-import UbicacionPoi.Domicilio;
-import UbicacionPoi.Region;
-import UbicacionPoi.Ubicacion;
+
 public class TestParada{
 
 	private Region regionParada;

@@ -5,7 +5,9 @@ import java.time.LocalTime;
 import java.util.List;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
-import UbicacionPoi.Region;
+
+import CaracteristicaPoi.Region;
+
 
 public class CGP extends Poi{
 	

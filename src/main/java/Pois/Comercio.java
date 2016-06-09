@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.uqbar.geodds.Point;
 
+import CaracteristicaPoi.Ubicacion;
 import TpAnual.Disponibilidad;
 import Pois.Poi;
-import UbicacionPoi.Ubicacion;
+
 
 public class Comercio extends Poi {
 

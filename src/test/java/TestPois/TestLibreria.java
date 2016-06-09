@@ -11,11 +11,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.*;
 
+import CaracteristicaPoi.Domicilio;
+import CaracteristicaPoi.Region;
+import CaracteristicaPoi.Ubicacion;
 import Pois.Comercio;
 import TpAnual.Disponibilidad;
-import UbicacionPoi.Domicilio;
-import UbicacionPoi.Region;
-import UbicacionPoi.Ubicacion;
+
 
 public class TestLibreria {
 

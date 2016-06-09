@@ -7,10 +7,11 @@ import java.util.List;
 
 import org.uqbar.geodds.Point;
 
+import CaracteristicaPoi.Domicilio;
+import CaracteristicaPoi.Region;
+import CaracteristicaPoi.Ubicacion;
 import TpAnual.Disponibilidad;
-import UbicacionPoi.Domicilio;
-import UbicacionPoi.Region;
-import UbicacionPoi.Ubicacion;
+
 
 public abstract class Poi {
 
