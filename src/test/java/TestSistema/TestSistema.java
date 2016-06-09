@@ -103,7 +103,6 @@ public class TestSistema {
 	public void busquedaDePoisPorClave() {
 		
 		terminalAbasto.getBase().agregarUnPoi(bancoSantander);
-		
 		List<Poi> resultadoEsperado = Arrays.asList(bancoSantander);
 		Assert.assertTrue(terminalAbasto.busquedaDePuntos("Cajero", "Cajero").equals(resultadoEsperado));
 

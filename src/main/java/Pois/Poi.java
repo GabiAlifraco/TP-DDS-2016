@@ -19,7 +19,7 @@ public abstract class Poi {
 	private Domicilio domicilio;
 	private Region region;
 	protected Ubicacion ubicacion;
-	private String nombre;
+	protected String nombre;
 	private List<String> palabrasClave = new ArrayList<String>();
 	private List<Disponibilidad> horariosDeAtencion  = new ArrayList<Disponibilidad>();
 

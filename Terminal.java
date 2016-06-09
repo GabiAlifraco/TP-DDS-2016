@@ -21,6 +21,8 @@ public class Terminal {
 	private Point coordenadaDispositivoMovil;
 	private String nombreTerminal;
 	List<OrigenDeDatos> servicios = new ArrayList<OrigenDeDatos>();
+	public List<Poi> resultadosConRepetidos = new ArrayList<Poi>();
+	public List<Poi> resultadosSinRepetidos = new ArrayList<Poi>();
 	private List<Resultado> busquedas = new ArrayList<Resultado>();
 
 	public List<OrigenDeDatos> getServicios() {
@@ -85,7 +87,37 @@ public class Terminal {
 		return servicios.stream().map(servicio -> servicio.buscarPois(unNombre, unaPalabraClave))
 				.flatMap(pois -> pois.stream()).collect(Collectors.toSet());
 	}
-	
+	/*
+	 * public List<Poi> obtenerResultadosServicios(String unNombre, String
+	 * unaPalabraClave) { resultadosConRepetidos.clear();
+	 * 
+	 * servicios.stream().forEach(servicio ->
+	 * agregarResultados(servicio.buscarPois(unNombre, unaPalabraClave)));
+	 * resultadosConRepetidos.stream().forEach(resultado ->
+	 * eliminarDuplicados(resultado, resultadosConRepetidos));
+	 * 
+	 * return resultadosSinRepetidos; }
+	 
+
+	public List<Poi> agregarResultados(List<Poi> lista) {
+
+		if (lista != null) {
+			resultadosConRepetidos = lista;
+		}
+		return resultadosConRepetidos;
+
+	}
+
+	private List<Poi> eliminarDuplicados(Poi poi, List<Poi> listaPois) {
+
+		resultadosSinRepetidos = listaPois.stream().filter(poiLista -> poiLista.noSeRepite(listaPois))
+				.collect(Collectors.toList());
+		this.agregarPoi(resultadosSinRepetidos, poi);
+
+		return resultadosSinRepetidos;
+
+	}*/
+
 	public void agregarPoi(List<Poi> lista, Poi unPoi) {
 		lista.add(unPoi);
 	}

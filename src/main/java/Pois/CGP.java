@@ -11,6 +11,7 @@ public class CGP extends Poi{
 	
 	public List<ServicioCGP> serviciosCGP;
     
+	private String nombre;
 	private Polygon zona;
 	public CGP (String unaComuna,String barrio,List<ServicioCGP> servicios){
 		Region regionCGP = new Region("CABA", barrio, "Bs As", "Argentina");
@@ -66,6 +67,29 @@ public class CGP extends Poi{
 
 	public List<ServicioCGP> getServicios(){
 		return this.serviciosCGP;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CGP other = (CGP) obj;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		return true;
 	}
 
 	
