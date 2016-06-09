@@ -1,4 +1,4 @@
-package Adapters;
+package OrigenesDeDatos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,6 @@ import DTOs.RangoServicioDTO;
 import DTOs.ServicioDTO;
 import Pois.CGP;
 import TpAnual.Disponibilidad;
-import OrigenesDeDatos.OrigenDeDatos;
 import Pois.Poi;
 import Pois.ServicioCGP;
 import seviciosExternos.CGPService;
@@ -15,7 +14,7 @@ import java.util.stream.Collectors;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 
-public class AdapterCGP implements OrigenDeDatos {
+public class ProveedorCGPs implements OrigenDeDatos {
 	CGPService serviceCGP;
 
 	public List<Poi> buscarPois(String unNombre, String unaPalabraClave) {

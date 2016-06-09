@@ -9,10 +9,11 @@ import java.util.stream.Collectors;
 
 import org.junit.Assert;
 import org.junit.Test;
-import Adapters.AdapterCGP;
+
 import Mocks.MockedCGPService;
 import OrigenesDeDatos.BaseDePois;
 import OrigenesDeDatos.OrigenDeDatos;
+import OrigenesDeDatos.ProveedorCGPs;
 import Pois.CGP;
 import Pois.Poi;
 import Pois.ServicioCGP;
@@ -20,7 +21,7 @@ import TpAnual.Terminal;
 import seviciosExternos.CGPService;
 
 public class TestMockedCGPService {
-	AdapterCGP adapterCGP = new AdapterCGP();
+	ProveedorCGPs adapterCGP = new ProveedorCGPs();
 	CGPService servicioExternoCGP = new MockedCGPService();
 	
 	BaseDePois base = BaseDePois.getInstance();

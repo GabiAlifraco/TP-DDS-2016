@@ -5,15 +5,15 @@ import java.util.List;
 
 import org.junit.*;
 
-import Adapters.AdapterCGP;
 import DTOs.CentroDTO;
 import DTOs.RangoServicioDTO;
 import DTOs.ServicioDTO;
+import OrigenesDeDatos.ProveedorCGPs;
 import Pois.CGP;
 
 public class TestAdapterCGP {
 	
-	AdapterCGP adapterCGP = new AdapterCGP();
+	ProveedorCGPs adapterCGP = new ProveedorCGPs();
 
 	private List<ServicioDTO> serviciosDTO = new ArrayList<ServicioDTO>();
 	
