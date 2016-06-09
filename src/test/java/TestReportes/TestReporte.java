@@ -18,7 +18,7 @@ import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
 import Pois.Banco;
 import Pois.ParadaColectivo;
-import Requerimientos.AlmacenarResultadosDeBusquedas;
+
 import Requerimientos.NotificacionBusqueda;
 import Resultado.Resultado;
 import Terminal.Terminal;
@@ -39,7 +39,7 @@ public class TestReporte {
 	private Banco bancoSantander;
 	private Banco bancoSantander2;
 	List<NotificacionBusqueda> observers = new ArrayList<NotificacionBusqueda>();
-	AlmacenarResultadosDeBusquedas observerAlmacenar = new AlmacenarResultadosDeBusquedas();
+	
 	private Domicilio domicilioParada;
 	private Region regionParada;
 	private Point coordenadaParada;
@@ -77,7 +77,7 @@ public class TestReporte {
 
 
 
-		terminalAbasto.agregarObserver(observerAlmacenar);
+		
 		terminales.add(terminalAbasto);
 		terminales.add(terminalFlorida);
 		baseInterna.getPois().add(bancoSantander);

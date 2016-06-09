@@ -11,10 +11,10 @@ import org.junit.Test;
 import EstadisticasReportes.ResultadosReportes;
 import Mocks.MockNotificadorAdministrador;
 import OrigenesDeDatos.OrigenDeDatos;
-import Requerimientos.NotificarAdministrador;
+
 import Resultado.Resultado;
 import Terminal.Terminal;
-import Requerimientos.AlmacenarResultadosDeBusquedas;
+
 
 public class TestMandarMailAlAdministrador {
 	

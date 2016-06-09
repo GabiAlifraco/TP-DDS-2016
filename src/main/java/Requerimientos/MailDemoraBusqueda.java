@@ -5,7 +5,7 @@ import EstadisticasReportes.ResultadosReportes;
 import Resultado.Resultado;
 
 
-public class NotificarAdministrador implements NotificacionBusqueda{
+public class MailDemoraBusqueda implements NotificacionBusqueda{
 
 	private long tiempoMaximoBusqueda;
     private ResultadosReportes sistema;
