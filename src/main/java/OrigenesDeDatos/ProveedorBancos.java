@@ -3,9 +3,11 @@ package OrigenesDeDatos;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.uqbar.geodds.Point;
+
+import CaracteristicaPoi.Poi;
 import DTOs.BancoDTO;
 import Pois.Banco;
-import Pois.Poi;
+
 import seviciosExternos.BankService;
 
 public class ProveedorBancos implements OrigenDeDatos {

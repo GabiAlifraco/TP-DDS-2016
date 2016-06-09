@@ -10,12 +10,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.*;
 
+import CaracteristicaPoi.Disponibilidad;
 import CaracteristicaPoi.Domicilio;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.Ubicacion;
 import Pois.Comercio;
 import Pois.ParadaColectivo;
-import TpAnual.Disponibilidad;
 
 
 public class TestKioscoDiario {

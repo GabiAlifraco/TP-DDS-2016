@@ -6,7 +6,9 @@ import java.util.List;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import CaracteristicaPoi.Poi;
 import CaracteristicaPoi.Region;
+import CaracteristicaPoi.ServicioCGP;
 
 
 public class CGP extends Poi{

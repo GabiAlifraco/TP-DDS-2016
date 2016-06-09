@@ -10,12 +10,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.*;
 
+import CaracteristicaPoi.Disponibilidad;
 import CaracteristicaPoi.Domicilio;
 import CaracteristicaPoi.Region;
+import CaracteristicaPoi.ServicioCGP;
 import Pois.Banco;
 import Pois.CGP;
-import Pois.ServicioCGP;
-import TpAnual.Disponibilidad;
+
+
 
 public class TestCGP {
 	

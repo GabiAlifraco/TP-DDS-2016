@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import Pois.Poi;
+import CaracteristicaPoi.Poi;
+
+
 
 public class BaseDePois implements OrigenDeDatos {
 

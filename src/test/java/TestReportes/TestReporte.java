@@ -19,7 +19,7 @@ import OrigenesDeDatos.BaseDePois;
 import OrigenesDeDatos.OrigenDeDatos;
 import Pois.Banco;
 import Pois.ParadaColectivo;
-import Pois.Poi;
+
 import TpAnual.Mapa;
 import TpAnual.Resultado;
 import TpAnual.Terminal;

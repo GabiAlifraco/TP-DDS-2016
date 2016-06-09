@@ -2,7 +2,9 @@ package Pois;
 
 import java.util.List;
 import org.uqbar.geodds.Point;
-import Pois.Poi;
+
+import CaracteristicaPoi.Poi;
+
 
 public class Banco extends Poi {
 	

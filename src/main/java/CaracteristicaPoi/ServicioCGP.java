@@ -3,7 +3,7 @@ package CaracteristicaPoi;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.List;
-import TpAnual.Disponibilidad;
+
 
 
 public class ServicioCGP {

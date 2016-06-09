@@ -9,12 +9,13 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 
 import CaracteristicaPoi.Domicilio;
+import CaracteristicaPoi.Poi;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.Ubicacion;
 import OrigenesDeDatos.BaseDePois;
 import OrigenesDeDatos.OrigenDeDatos;
 import Pois.ParadaColectivo;
-import Pois.Poi;
+
 import TpAnual.Terminal;
 
 

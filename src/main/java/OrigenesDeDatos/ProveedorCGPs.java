@@ -6,11 +6,15 @@ import DTOs.CentroDTO;
 import DTOs.RangoServicioDTO;
 import DTOs.ServicioDTO;
 import Pois.CGP;
-import TpAnual.Disponibilidad;
-import Pois.Poi;
-import Pois.ServicioCGP;
+
+
 import seviciosExternos.CGPService;
 import java.util.stream.Collectors;
+
+import CaracteristicaPoi.Disponibilidad;
+import CaracteristicaPoi.Poi;
+import CaracteristicaPoi.ServicioCGP;
+
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.uqbar.geodds.Point;
 
-import TpAnual.Disponibilidad;
+
 
 
 public abstract class Poi {

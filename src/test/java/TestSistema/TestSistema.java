@@ -12,19 +12,22 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import CaracteristicaPoi.Disponibilidad;
 import CaracteristicaPoi.Domicilio;
+import CaracteristicaPoi.Poi;
 import CaracteristicaPoi.Region;
+import CaracteristicaPoi.ServicioCGP;
 import CaracteristicaPoi.Ubicacion;
 import OrigenesDeDatos.BaseDePois;
 import OrigenesDeDatos.OrigenDeDatos;
 import Pois.Banco;
 import Pois.CGP;
 import Pois.ParadaColectivo;
-import Pois.Poi;
-import Pois.ServicioCGP;
+
+
 import TpAnual.Terminal;
 
-import TpAnual.Disponibilidad;
+
 
 
 public class TestSistema {
