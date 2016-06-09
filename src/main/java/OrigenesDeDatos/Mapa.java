@@ -8,21 +8,21 @@ import CaracteristicaPoi.Poi;
 
 
 
-public class BaseDePois implements OrigenDeDatos {
+public class Mapa implements OrigenDeDatos {
 
-	private static BaseDePois instance = null;
+	private static Mapa instance = null;
 	public List<Poi> pois = new ArrayList<Poi>();
 
 	public List<Poi> getPois() {
 		return this.pois;
 	}
 
-	protected BaseDePois() {
+	protected Mapa() {
 	}
 
-	public static BaseDePois getInstance() {
+	public static Mapa getInstance() {
 		if (instance == null) {
-			instance = new BaseDePois();
+			instance = new Mapa();
 		}
 		return instance;
 	}

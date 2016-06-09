@@ -1,12 +1,14 @@
 package Requerimientos;
 
-import TpAnual.Mapa;
-import TpAnual.Resultado;
 
-public class NotificadorAdministrador implements ObserverBusqueda{
+import ConsultasPoi.ResultadosConsultasPoi;
+import Resultado.Resultado;
+
+
+public class NotificarAdministrador implements NotificacionBusqueda{
 
 	private long tiempoMaximoBusqueda;
-    private Mapa sistema;
+    private ResultadosConsultasPoi sistema;
 	
     @Override
 	public void notificarBusqueda(Resultado resultado) {
@@ -34,11 +36,11 @@ public class NotificadorAdministrador implements ObserverBusqueda{
 		this.tiempoMaximoBusqueda = tiempoMaximoBusqueda;
 	}
 
-	public Mapa getSistema() {
+	public ResultadosConsultasPoi getSistema() {
 		return sistema;
 	}
 
-	public void setSistema(Mapa sistema) {
+	public void setSistema(ResultadosConsultasPoi sistema) {
 		this.sistema = sistema;
 	}
 

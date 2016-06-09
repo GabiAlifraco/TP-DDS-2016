@@ -1,14 +1,15 @@
 package Mocks;
 
-import Requerimientos.ObserverBusqueda;
-import TpAnual.Mapa;
-import TpAnual.Resultado;
+import ConsultasPoi.ResultadosConsultasPoi;
+import Requerimientos.NotificacionBusqueda;
+import Resultado.Resultado;
 
-public class MockNotificadorAdministrador implements ObserverBusqueda{
+
+public class MockNotificadorAdministrador implements NotificacionBusqueda{
 
 	public boolean administradorNotificado;
 	private long tiempoMaximoBusqueda;
-    private Mapa sistema;
+    private ResultadosConsultasPoi sistema;
 	
 
 	@Override
@@ -18,7 +19,7 @@ public class MockNotificadorAdministrador implements ObserverBusqueda{
 	public void setTiempoMaximoBusqueda(long tiempoMaximoBusqueda) {
 		this.tiempoMaximoBusqueda = tiempoMaximoBusqueda;
 	}
-	public void setSistema(Mapa sistema) {
+	public void setSistema(ResultadosConsultasPoi sistema) {
 		this.sistema = sistema;
 	}
 

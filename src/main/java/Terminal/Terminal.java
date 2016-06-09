@@ -1,4 +1,4 @@
-package TpAnual;
+package Terminal;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -10,15 +10,16 @@ import java.util.stream.Collectors;
 import org.uqbar.geodds.Point;
 
 import CaracteristicaPoi.Poi;
-import OrigenesDeDatos.BaseDePois;
+import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
-import Requerimientos.ObserverBusqueda;
+import Requerimientos.NotificacionBusqueda;
+import Resultado.Resultado;
 
 
 public class Terminal {
 
 	// Se agrega el getInstance del singleton de la base
-	public BaseDePois base = BaseDePois.getInstance();
+	public Mapa base = Mapa.getInstance();
 	private Point coordenadaDispositivoMovil;
 	private String nombreTerminal;
 	List<OrigenDeDatos> servicios = new ArrayList<OrigenDeDatos>();
@@ -38,7 +39,7 @@ public class Terminal {
 	}
 
 	// Getter de la base
-	public BaseDePois getBase() {
+	public Mapa getBase() {
 		return base;
 	}
 
@@ -97,21 +98,21 @@ public class Terminal {
 		return resultadosParciales;
 	}
 
-	List<ObserverBusqueda> losObserverBusqueda = new ArrayList<ObserverBusqueda>();
+	List<NotificacionBusqueda> losObserverBusqueda = new ArrayList<NotificacionBusqueda>();
 
 	public void notificarBusqueda(Resultado resultado) {
 		losObserverBusqueda.stream().forEach(observerBusqueda -> observerBusqueda.notificarBusqueda(resultado));
 	}
 
-	public void agregarObserver(ObserverBusqueda observer) {
+	public void agregarObserver(NotificacionBusqueda observer) {
 		losObserverBusqueda.add(observer);
 	}
 
-	public void eliminarObserver(ObserverBusqueda observer) {
+	public void eliminarObserver(NotificacionBusqueda observer) {
 		losObserverBusqueda.remove(observer);
 	}
 
-	public List<ObserverBusqueda> getObserverBusquedas() {
+	public List<NotificacionBusqueda> getObserverBusquedas() {
 		return this.losObserverBusqueda;
 	}
 

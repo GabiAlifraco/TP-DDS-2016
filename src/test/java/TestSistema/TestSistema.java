@@ -18,14 +18,12 @@ import CaracteristicaPoi.Poi;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.ServicioCGP;
 import CaracteristicaPoi.Ubicacion;
-import OrigenesDeDatos.BaseDePois;
+import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
 import Pois.Banco;
 import Pois.CGP;
 import Pois.ParadaColectivo;
-
-
-import TpAnual.Terminal;
+import Terminal.Terminal;
 
 
 
@@ -90,7 +88,7 @@ public class TestSistema {
 		comuna3.serviciosCGP.add(rentas);
 		
 		
-		BaseDePois base = BaseDePois.getInstance();
+		Mapa base = Mapa.getInstance();
 		List<OrigenDeDatos> servicios = Arrays.asList(base);
 		terminalAbasto = new Terminal("Terminal Abasto", servicios);
 		terminalAbasto.getBase().getPois().clear();

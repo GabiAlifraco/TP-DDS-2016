@@ -8,11 +8,10 @@ import org.junit.Test;
 
 import CaracteristicaPoi.Poi;
 import Mocks.MockBankService;
-import OrigenesDeDatos.BaseDePois;
+import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
 import OrigenesDeDatos.ProveedorBancos;
-
-import TpAnual.Terminal;
+import Terminal.Terminal;
 import seviciosExternos.BankService;
 
 public class TestAdapterBanco {
@@ -21,7 +20,7 @@ public class TestAdapterBanco {
 	ProveedorBancos proveedorBancos = new ProveedorBancos();
 	BankService servicio = new MockBankService();
 	
-	BaseDePois base = BaseDePois.getInstance();
+	Mapa base = Mapa.getInstance();
 	List<OrigenDeDatos> servicios = Arrays.asList(base, proveedorBancos);
 	
 	Terminal terminal = new Terminal("Terminal abasto", servicios);

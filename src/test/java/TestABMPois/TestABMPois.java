@@ -12,11 +12,10 @@ import CaracteristicaPoi.Domicilio;
 import CaracteristicaPoi.Poi;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.Ubicacion;
-import OrigenesDeDatos.BaseDePois;
+import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
 import Pois.ParadaColectivo;
-
-import TpAnual.Terminal;
+import Terminal.Terminal;
 
 
 public class TestABMPois {
@@ -33,7 +32,7 @@ public class TestABMPois {
 	private Ubicacion ubicacion107;
 	private Terminal terminalAbasto;
 	private Terminal terminalFlorida;
-	BaseDePois base = BaseDePois.getInstance();
+	Mapa base = Mapa.getInstance();
 	List<OrigenDeDatos> servicios = Arrays.asList(base);
 
 	@Before

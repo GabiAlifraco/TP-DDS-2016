@@ -13,20 +13,18 @@ import org.junit.Test;
 import CaracteristicaPoi.Poi;
 import CaracteristicaPoi.ServicioCGP;
 import Mocks.MockedCGPService;
-import OrigenesDeDatos.BaseDePois;
+import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
 import OrigenesDeDatos.ProveedorCGPs;
 import Pois.CGP;
-
-
-import TpAnual.Terminal;
+import Terminal.Terminal;
 import seviciosExternos.CGPService;
 
 public class TestMockedCGPService {
 	ProveedorCGPs adapterCGP = new ProveedorCGPs();
 	CGPService servicioExternoCGP = new MockedCGPService();
 	
-	BaseDePois base = BaseDePois.getInstance();
+	Mapa base = Mapa.getInstance();
 	List<OrigenDeDatos> servicios = Arrays.asList(base, adapterCGP);
 	
 	Terminal terminal = new Terminal("Terminal Villa Crespo", servicios);

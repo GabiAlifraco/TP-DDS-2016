@@ -7,9 +7,6 @@ import java.util.List;
 
 import org.uqbar.geodds.Point;
 
-
-
-
 public abstract class Poi {
 
 	// Declaramos los atributos principales del poi
@@ -21,7 +18,55 @@ public abstract class Poi {
 	private List<String> palabrasClave = new ArrayList<String>();
 	private List<Disponibilidad> horariosDeAtencion  = new ArrayList<Disponibilidad>();
 
+	
+	// Esto es para la entrega 1: Calculo de Cercania
+	
+	public boolean estaCercaDeOtroPoi(Poi unPoi) {
+		return estaCercaDe(unPoi.getCoordenada());
+	}
+
+	public boolean estaCercaDe(Point otraCoordenada) {
+		return this.getCoordenada().distance(otraCoordenada) < distanciaMinimaParaConsiderarmeCercano();
+	}
+
+	public abstract int distanciaMinimaParaConsiderarmeCercano();
+
+	// Esto es para la entrega 1: Calculo de la disponibilidad
+	
+	public boolean estaDisponible(String nombreServicio, DayOfWeek dia, LocalTime hora){ 
+		return horariosDeAtencion.stream().anyMatch(disponibilidad -> disponibilidad.disponibleEnDiayHora(dia,hora));
+	}
+
+	// Esto es para la entrega 1: Busqueda de puntos
+	public boolean textoIncluido(String unNombre, String unaPalabraClave) {
+		return getPalabrasClave().stream().anyMatch(palabra -> palabra.contains(unaPalabraClave))
+				|| this.mismoNombre(unNombre);
+	}
+
 	// Setters y getters de los atributos
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setPalabrasClave(List<String> palabras) {
+		this.palabrasClave = palabras;
+	}
+
+	public List<String> getPalabrasClave() {
+		return this.palabrasClave;
+	}
+
+	public void agregarPalabraClave(String unaPalabra) {
+		this.palabrasClave.add(unaPalabra);
+	}
+
+	public boolean mismoNombre(String nombreServicio) {
+		return getNombre().equals(nombreServicio);
+	}
+
+	public boolean mismaCoordenada(Point otraCoordenada) {
+		return this.getCoordenada().equals(otraCoordenada);
+	}
 	
 	public Domicilio getDomicilio() {
 		return domicilio;
@@ -57,53 +102,6 @@ public abstract class Poi {
 
 	public void setHorariosDeAtencion(List<Disponibilidad> horariosDeAtencion) {
 		this.horariosDeAtencion = horariosDeAtencion;
-	}
-
-	// Esto es para la entrega 1: Calculo de Cercania
-	public boolean estaCercaDeOtroPoi(Poi unPoi) {
-		return estaCercaDe(unPoi.getCoordenada());
-	}
-
-	public boolean estaCercaDe(Point otraCoordenada) {
-		return this.getCoordenada().distance(otraCoordenada) < distanciaMinimaParaConsiderarmeCercano();
-	}
-
-	public abstract int distanciaMinimaParaConsiderarmeCercano();
-
-	// Esto es para la entrega 1: Calculo de la disponibilidad
-	
-	public boolean estaDisponible(String nombreServicio, DayOfWeek dia, LocalTime hora){ 
-		return horariosDeAtencion.stream().anyMatch(disponibilidad -> disponibilidad.disponibleEnDiayHora(dia,hora));
-	}
-
-	// Esto es para la entrega 1: Busqueda de puntos
-	public boolean textoIncluido(String unNombre, String unaPalabraClave) {
-		return getPalabrasClave().stream().anyMatch(palabra -> palabra.contains(unaPalabraClave))
-				|| this.mismoNombre(unNombre);
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public void setPalabrasClave(List<String> palabras) {
-		this.palabrasClave = palabras;
-	}
-
-	public List<String> getPalabrasClave() {
-		return this.palabrasClave;
-	}
-
-	public void agregarPalabraClave(String unaPalabra) {
-		this.palabrasClave.add(unaPalabra);
-	}
-
-	public boolean mismoNombre(String nombreServicio) {
-		return getNombre().equals(nombreServicio);
-	}
-
-	public boolean mismaCoordenada(Point otraCoordenada) {
-		return this.getCoordenada().equals(otraCoordenada);
 	}
 
 	@Override

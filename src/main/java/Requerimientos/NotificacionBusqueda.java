@@ -1,8 +1,8 @@
 package Requerimientos;
 
-import TpAnual.Resultado;
+import Resultado.Resultado;
 
-public interface ObserverBusqueda {
+public interface NotificacionBusqueda {
 
 	public void notificarBusqueda(Resultado resultado);
 }

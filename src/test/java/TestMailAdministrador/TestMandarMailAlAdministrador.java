@@ -8,17 +8,17 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import ConsultasPoi.ResultadosConsultasPoi;
 import Mocks.MockNotificadorAdministrador;
 import OrigenesDeDatos.OrigenDeDatos;
-import Requerimientos.NotificadorAdministrador;
+import Requerimientos.NotificarAdministrador;
+import Resultado.Resultado;
+import Terminal.Terminal;
 import Requerimientos.AlmacenarResultadosDeBusquedas;
-import TpAnual.Mapa;
-import TpAnual.Resultado;
-import TpAnual.Terminal;
 
 public class TestMandarMailAlAdministrador {
 	
-	private Mapa sistema;
+	private ResultadosConsultasPoi sistema;
 	private Resultado resultado;
 	private LocalDate fecha;
 	private MockNotificadorAdministrador notificadorAdministrador;
@@ -26,7 +26,7 @@ public class TestMandarMailAlAdministrador {
 	private List<OrigenDeDatos> servicios;
 	@Before
 	public void initialize(){
-		sistema = new Mapa();
+		sistema = new ResultadosConsultasPoi();
 		fecha = LocalDate.parse("2016-10-16");
 		notificadorAdministrador = new MockNotificadorAdministrador();
 		terminal = new Terminal("Terminal Abasto", servicios);

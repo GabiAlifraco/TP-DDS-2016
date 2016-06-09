@@ -13,22 +13,22 @@ import org.uqbar.geodds.Point;
 import CaracteristicaPoi.Domicilio;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.Ubicacion;
-import OrigenesDeDatos.BaseDePois;
+import ConsultasPoi.ResultadosConsultasPoi;
+import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
 import Pois.Banco;
 import Pois.ParadaColectivo;
 import Requerimientos.AlmacenarResultadosDeBusquedas;
-import Requerimientos.ObserverBusqueda;
-import TpAnual.Mapa;
-import TpAnual.Resultado;
-import TpAnual.Terminal;
+import Requerimientos.NotificacionBusqueda;
+import Resultado.Resultado;
+import Terminal.Terminal;
 
 
 public class TestReporte {
 
 	private List<OrigenDeDatos> servicios = new ArrayList<OrigenDeDatos>();
-	private BaseDePois baseInterna = BaseDePois.getInstance();
-	private Mapa sistema;
+	private Mapa baseInterna = Mapa.getInstance();
+	private ResultadosConsultasPoi sistema;
 	private LocalDate fecha;
 	private List<OrigenDeDatos> servic;
 	private LocalDate fecha2;
@@ -38,7 +38,7 @@ public class TestReporte {
 	private List<String> palabrasClaveBanco = new ArrayList<String>();
 	private Banco bancoSantander;
 	private Banco bancoSantander2;
-	List<ObserverBusqueda> observers = new ArrayList<ObserverBusqueda>();
+	List<NotificacionBusqueda> observers = new ArrayList<NotificacionBusqueda>();
 	AlmacenarResultadosDeBusquedas observerAlmacenar = new AlmacenarResultadosDeBusquedas();
 	private Domicilio domicilioParada;
 	private Region regionParada;
@@ -48,7 +48,7 @@ public class TestReporte {
 
 	@Before
 	public void initialize() {
-		sistema = new Mapa();
+		sistema = new ResultadosConsultasPoi();
 		List<Terminal> terminales = new ArrayList<Terminal>();
 		List<Resultado> busquedas = new ArrayList<Resultado>();
 		servicios.add(baseInterna);

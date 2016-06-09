@@ -17,15 +17,13 @@ import CaracteristicaPoi.Domicilio;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.ServicioCGP;
 import CaracteristicaPoi.Ubicacion;
-import OrigenesDeDatos.BaseDePois;
+import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
 import Pois.Banco;
 import Pois.CGP;
 import Pois.Comercio;
 import Pois.ParadaColectivo;
-
-
-import TpAnual.Terminal;
+import Terminal.Terminal;
 
 
 public class TestDisponibilidadDeUnPoi {
@@ -70,7 +68,7 @@ public class TestDisponibilidadDeUnPoi {
 
 	private List<String> palabrasClaveBanco = new ArrayList<String>();
 	
-	BaseDePois base = BaseDePois.getInstance();
+	Mapa base = Mapa.getInstance();
 	List<OrigenDeDatos> servicios = Arrays.asList(base);
 	
 
