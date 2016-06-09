@@ -1,4 +1,4 @@
-package Observers;
+package Requerimientos;
 
 import TpAnual.Mapa;
 import TpAnual.Resultado;

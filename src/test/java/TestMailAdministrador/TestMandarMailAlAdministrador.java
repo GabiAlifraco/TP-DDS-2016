@@ -9,9 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import Mocks.MockNotificadorAdministrador;
-import Observers.ObserverAlmacenarResultados;
-import Observers.NotificadorAdministrador;
 import OrigenesDeDatos.OrigenDeDatos;
+import Requerimientos.NotificadorAdministrador;
+import Requerimientos.AlmacenarResultadosDeBusquedas;
 import TpAnual.Mapa;
 import TpAnual.Resultado;
 import TpAnual.Terminal;

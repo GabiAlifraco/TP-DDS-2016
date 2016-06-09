@@ -13,13 +13,12 @@ import org.uqbar.geodds.Point;
 import CaracteristicaPoi.Domicilio;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.Ubicacion;
-import Observers.ObserverAlmacenarResultados;
-import Observers.ObserverBusqueda;
 import OrigenesDeDatos.BaseDePois;
 import OrigenesDeDatos.OrigenDeDatos;
 import Pois.Banco;
 import Pois.ParadaColectivo;
-
+import Requerimientos.AlmacenarResultadosDeBusquedas;
+import Requerimientos.ObserverBusqueda;
 import TpAnual.Mapa;
 import TpAnual.Resultado;
 import TpAnual.Terminal;
@@ -40,7 +39,7 @@ public class TestReporte {
 	private Banco bancoSantander;
 	private Banco bancoSantander2;
 	List<ObserverBusqueda> observers = new ArrayList<ObserverBusqueda>();
-	ObserverAlmacenarResultados observerAlmacenar = new ObserverAlmacenarResultados();
+	AlmacenarResultadosDeBusquedas observerAlmacenar = new AlmacenarResultadosDeBusquedas();
 	private Domicilio domicilioParada;
 	private Region regionParada;
 	private Point coordenadaParada;

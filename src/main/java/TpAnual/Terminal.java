@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 import org.uqbar.geodds.Point;
 
 import CaracteristicaPoi.Poi;
-import Observers.ObserverBusqueda;
 import OrigenesDeDatos.BaseDePois;
 import OrigenesDeDatos.OrigenDeDatos;
+import Requerimientos.ObserverBusqueda;
 
 
 public class Terminal {

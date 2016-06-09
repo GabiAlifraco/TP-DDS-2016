@@ -1,9 +1,9 @@
-package Observers;
+package Requerimientos;
 
 import TpAnual.Resultado;
 
 
-public class ObserverAlmacenarResultados implements ObserverBusqueda {
+public class AlmacenarResultadosDeBusquedas implements ObserverBusqueda {
 
 	@Override
 	public void notificarBusqueda(Resultado resultado) {

@@ -1,6 +1,6 @@
 package Mocks;
 
-import Observers.ObserverBusqueda;
+import Requerimientos.ObserverBusqueda;
 import TpAnual.Mapa;
 import TpAnual.Resultado;
 
