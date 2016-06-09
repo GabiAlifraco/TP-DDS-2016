@@ -108,11 +108,6 @@ public abstract class Poi {
 		return this.getCoordenada().equals(otraCoordenada);
 	}
 
-	public boolean noSeRepite(List<Poi> listaPois) {
-		return !(listaPois.stream().anyMatch(poiLista -> poiLista.mismaCoordenada(this.getCoordenada())));
-
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;

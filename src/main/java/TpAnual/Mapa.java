@@ -7,19 +7,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class InfoFast {
+public class Mapa {
 	private boolean reporteFechaActivado;
 	private boolean reporteParcial;
 	private boolean reporteTotal;
-	private static InfoFast instance = null;
+	private static Mapa instance = null;
 	List<Terminal> terminales = new ArrayList<Terminal>();
 	public String mailAdministrador;
 
 	Map<LocalDate, Integer> busquedaFecha = new HashMap<LocalDate, Integer>();
 
-	public static InfoFast getInstance() {
+	public static Mapa getInstance() {
 		if (instance == null) {
-			instance = new InfoFast();
+			instance = new Mapa();
 		}
 		return instance;
 	}

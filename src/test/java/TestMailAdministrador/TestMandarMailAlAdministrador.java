@@ -12,13 +12,13 @@ import Mocks.MockNotificadorAdministrador;
 import Observers.ObserverAlmacenarResultados;
 import Observers.NotificadorAdministrador;
 import OrigenesDeDatos.OrigenDeDatos;
-import TpAnual.InfoFast;
+import TpAnual.Mapa;
 import TpAnual.Resultado;
 import TpAnual.Terminal;
 
 public class TestMandarMailAlAdministrador {
 	
-	private InfoFast sistema;
+	private Mapa sistema;
 	private Resultado resultado;
 	private LocalDate fecha;
 	private MockNotificadorAdministrador notificadorAdministrador;
@@ -26,7 +26,7 @@ public class TestMandarMailAlAdministrador {
 	private List<OrigenDeDatos> servicios;
 	@Before
 	public void initialize(){
-		sistema = new InfoFast();
+		sistema = new Mapa();
 		fecha = LocalDate.parse("2016-10-16");
 		notificadorAdministrador = new MockNotificadorAdministrador();
 		terminal = new Terminal("Terminal Abasto", servicios);

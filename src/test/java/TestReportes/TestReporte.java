@@ -17,7 +17,7 @@ import OrigenesDeDatos.OrigenDeDatos;
 import Pois.Banco;
 import Pois.ParadaColectivo;
 import Pois.Poi;
-import TpAnual.InfoFast;
+import TpAnual.Mapa;
 import TpAnual.Resultado;
 import TpAnual.Terminal;
 import UbicacionPoi.Domicilio;
@@ -28,7 +28,7 @@ public class TestReporte {
 
 	private List<OrigenDeDatos> servicios = new ArrayList<OrigenDeDatos>();
 	private BaseDePois baseInterna = BaseDePois.getInstance();
-	private InfoFast sistema;
+	private Mapa sistema;
 	private LocalDate fecha;
 	private List<OrigenDeDatos> servic;
 	private LocalDate fecha2;
@@ -48,7 +48,7 @@ public class TestReporte {
 
 	@Before
 	public void initialize() {
-		sistema = new InfoFast();
+		sistema = new Mapa();
 		List<Terminal> terminales = new ArrayList<Terminal>();
 		List<Resultado> busquedas = new ArrayList<Resultado>();
 		servicios.add(baseInterna);

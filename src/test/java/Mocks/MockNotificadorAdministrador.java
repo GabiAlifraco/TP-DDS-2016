@@ -1,14 +1,14 @@
 package Mocks;
 
 import Observers.ObserverBusqueda;
-import TpAnual.InfoFast;
+import TpAnual.Mapa;
 import TpAnual.Resultado;
 
 public class MockNotificadorAdministrador implements ObserverBusqueda{
 
 	public boolean administradorNotificado;
 	private long tiempoMaximoBusqueda;
-    private InfoFast sistema;
+    private Mapa sistema;
 	
 
 	@Override
@@ -18,7 +18,7 @@ public class MockNotificadorAdministrador implements ObserverBusqueda{
 	public void setTiempoMaximoBusqueda(long tiempoMaximoBusqueda) {
 		this.tiempoMaximoBusqueda = tiempoMaximoBusqueda;
 	}
-	public void setSistema(InfoFast sistema) {
+	public void setSistema(Mapa sistema) {
 		this.sistema = sistema;
 	}
 

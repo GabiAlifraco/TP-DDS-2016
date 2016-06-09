@@ -61,10 +61,6 @@ public class CGP extends Poi{
 		this.zona = zona;
 	}
 
-	public boolean noSeRepite(List<Poi> listaPois) {
-		return !(listaPois.stream().anyMatch(poiLista -> poiLista.mismoNombre(this.getNombre())));
-	}
-
 	public List<ServicioCGP> getServicios(){
 		return this.serviciosCGP;
 	}

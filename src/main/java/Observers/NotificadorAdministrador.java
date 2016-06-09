@@ -1,12 +1,12 @@
 package Observers;
 
-import TpAnual.InfoFast;
+import TpAnual.Mapa;
 import TpAnual.Resultado;
 
 public class NotificadorAdministrador implements ObserverBusqueda{
 
 	private long tiempoMaximoBusqueda;
-    private InfoFast sistema;
+    private Mapa sistema;
 	
     @Override
 	public void notificarBusqueda(Resultado resultado) {
@@ -34,11 +34,11 @@ public class NotificadorAdministrador implements ObserverBusqueda{
 		this.tiempoMaximoBusqueda = tiempoMaximoBusqueda;
 	}
 
-	public InfoFast getSistema() {
+	public Mapa getSistema() {
 		return sistema;
 	}
 
-	public void setSistema(InfoFast sistema) {
+	public void setSistema(Mapa sistema) {
 		this.sistema = sistema;
 	}
 
