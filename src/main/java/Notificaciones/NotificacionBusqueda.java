@@ -1,4 +1,4 @@
-package Requerimientos;
+package Notificaciones;
 
 import Resultado.Resultado;
 

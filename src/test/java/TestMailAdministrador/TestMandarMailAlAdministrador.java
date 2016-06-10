@@ -8,10 +8,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import EstadisticasReportes.ResultadosReportes;
 import Mocks.MockNotificadorAdministrador;
 import OrigenesDeDatos.OrigenDeDatos;
-
+import Reportes.ResultadosReportes;
 import Resultado.Resultado;
 import Terminal.Terminal;
 

@@ -1,4 +1,4 @@
-package EstadisticasReportes;
+package Reportes;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

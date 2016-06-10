@@ -1,7 +1,7 @@
 package Mocks;
 
-import EstadisticasReportes.ResultadosReportes;
-import Requerimientos.NotificacionBusqueda;
+import Notificaciones.NotificacionBusqueda;
+import Reportes.ResultadosReportes;
 import Resultado.Resultado;
 
 

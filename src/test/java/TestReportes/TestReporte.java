@@ -13,13 +13,12 @@ import org.uqbar.geodds.Point;
 import CaracteristicaPoi.Domicilio;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.Ubicacion;
-import EstadisticasReportes.ResultadosReportes;
+import Notificaciones.NotificacionBusqueda;
 import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
 import Pois.Banco;
 import Pois.ParadaColectivo;
-
-import Requerimientos.NotificacionBusqueda;
+import Reportes.ResultadosReportes;
 import Resultado.Resultado;
 import Terminal.Terminal;
 

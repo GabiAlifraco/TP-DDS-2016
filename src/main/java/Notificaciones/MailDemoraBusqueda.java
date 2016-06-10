@@ -1,7 +1,7 @@
-package Requerimientos;
+package Notificaciones;
 
 
-import EstadisticasReportes.ResultadosReportes;
+import Reportes.ResultadosReportes;
 import Resultado.Resultado;
 
 
