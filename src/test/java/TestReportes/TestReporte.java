@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.HashMap;
 import org.junit.Assert;
 import org.junit.Before;
@@ -52,6 +53,7 @@ public class TestReporte {
 	private List<Resultado> busquedas; 
 	private Reporte reporteCantResPorBusqYTerm;
 	private ReporteTotalCantBusquedasPorFecha reporteFecha;
+	private LocalDate fecha3;
 	@Before
 	public void initialize() {
 		sistema = new ResultadosReportes();
@@ -90,10 +92,12 @@ public class TestReporte {
 
 	@Test
 	public void imprimirReportesPorFecha() {
-
+		Map<LocalDate,Integer> resultadoEsperado =  new HashMap<LocalDate,Integer>(); 
+		fecha3 = LocalDate.parse("2016-06-10");
+		 resultadoEsperado.put(fecha3,1);
 		terminalAbasto.busquedaDePuntos("Santander", "Cajero");
-		System.out.println("Resultados por Fecha");
-		System.out.println(reporteFecha.obtenerReporte(terminales));
+		
+		Assert.assertEquals(resultadoEsperado,reporteFecha.obtenerReporte(terminales));
 		
 		
 		}
@@ -108,9 +112,12 @@ public class TestReporte {
 
 	@Test
 	public void imprimirResultadosTotales() {
+		Map<String,Integer> resultadoEsperado = new HashMap<String,Integer>(); 
+		resultadoEsperado.put("Terminal Abasto",1);
+		resultadoEsperado.put("Terminal Florida", 0);
 		terminalAbasto.busquedaDePuntos("Santander", "Cajero");
-		System.out.println("Resultados Totales");
-		System.out.println(reporteCantResPorBusqYTerm.obtenerReportePorTerminal(terminales));
+		
+		Assert.assertEquals(resultadoEsperado,reporteCantResPorBusqYTerm.obtenerReportePorTerminal(terminales));
 		
 	}
 	
