@@ -89,13 +89,7 @@ public class TestMappercCGP {
 		Assert.assertTrue(cgpMapeado.getServicios().get(0).getNombre().equals("Infracciones"));
 		Assert.assertTrue(cgpMapeado.getServicios().get(1).getNombre().equals("Atención ciudadana"));
 		Assert.assertTrue(cgpMapeado.getServicios().size() == 2);
-	}
-	@Test
-	public void testCentroDTOMapejhnadoaCGP(){
-		
-		cgpMapeado = adapterCGP.deCentroDTOaCGP(centroDTO);
-		List<DayOfWeek> dias = Arrays.asList(DayOfWeek.of(1));
-		Assert.assertEquals(dias,cgpMapeado.getServicios().get(0).getHorariosDeAtencion().get(0).getDias());
+		Assert.assertTrue(cgpMapeado.getServicios().get(0).getHorariosDeAtencion().get(0).getDias().equals(Arrays.asList(DayOfWeek.of(1))));
 	}
 	
 }
