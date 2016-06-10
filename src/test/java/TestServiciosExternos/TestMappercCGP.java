@@ -1,4 +1,4 @@
-package TestAdapters;
+package TestServiciosExternos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import DTOs.ServicioDTO;
 import OrigenesDeDatos.ProveedorCGPs;
 import Pois.CGP;
 
-public class TestAdapterCGP {
+public class TestMappercCGP {
 	
 	ProveedorCGPs adapterCGP = new ProveedorCGPs();
 
