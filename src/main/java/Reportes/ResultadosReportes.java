@@ -11,14 +11,11 @@ import Resultado.Resultado;
 import Terminal.Terminal;
 
 public class ResultadosReportes {
-	private boolean reporteFechaActivado;
-	private boolean reporteParcial;
-	private boolean reporteTotal;
+	private Reporte reporteFecha;
+	private Reporte reporteCantidadBusquedaYTerminal;
 	private static ResultadosReportes instance = null;
 	List<Terminal> terminales = new ArrayList<Terminal>();
 	public String mailAdministrador;
-
-	Map<LocalDate, Integer> busquedaFecha = new HashMap<LocalDate, Integer>();
 
 	public static ResultadosReportes getInstance() {
 		if (instance == null) {
@@ -26,8 +23,6 @@ public class ResultadosReportes {
 		}
 		return instance;
 	}
-
-	
 
 	public void agregarTerminal(Terminal nuevaTerminal) {
 		this.getTerminales().add(nuevaTerminal);
@@ -45,55 +40,36 @@ public class ResultadosReportes {
 		return mailAdministrador;
 	}
 
-	public void obtenerReporteTotalBusquedasPorFecha() {
-		if (reporteFechaActivado) {
-			terminales.stream().forEach(terminal -> completarHashMap(terminal));
-			imprimirReportePorFecha(busquedaFecha);
-		} else {
-			System.out.println("El reporte está desactivado");
-		}
-	}
-
-	public void imprimirReportePorFecha(Map<LocalDate, Integer> busquedaFecha) {
-		Iterator<LocalDate> it = busquedaFecha.keySet().iterator();
-		while (it.hasNext()) {
-			LocalDate key = it.next();
-			System.out.println("Fecha: " + key.toString() + " Cantidad de Resultados: " + busquedaFecha.get(key));
-		}
-	}
-
-	public void completarHashMap(Terminal terminal) {
-
-		terminal.getBusquedas().stream().forEach(resultado -> totalizarBusqueda(resultado));
-	}
-
-	public void totalizarBusqueda(Resultado resultado) {
-
-		if (busquedaFecha.containsKey(resultado.getFecha())) {
-			this.busquedaFecha.replace(resultado.getFecha(),
-					busquedaFecha.get(resultado.getFecha()) + resultado.getCantidadResultados());
-		} else {
-			busquedaFecha.put(resultado.getFecha(), resultado.getCantidadResultados());
-		}
+	public Map<LocalDate, Integer> obtenerReporteTotalBusquedasPorFecha() {
+		return reporteFecha.obtenerReporte(terminales);
 	}
 
 	public void obtenerResultadosParcialesPorTerminal(Terminal terminal) {
-		if (reporteParcial) {
 
-			System.out.println("Usuario: " + terminal.getNombreTerminal());
-			System.out.println("Cantidad Resultados Parciales");
-			terminal.obtenerResultadosParciales().stream().forEach(resultado -> System.out.println(resultado));
-		} else {
-			System.out.println("El reporte está desactivado");
-		}
+		System.out.println("Usuario: " + terminal.getNombreTerminal());
+		System.out.println("Cantidad Resultados Parciales");
+		terminal.obtenerResultadosParciales().stream().forEach(resultado -> System.out.println(resultado));
 	}
 
+	public Reporte getReporteFecha() {
+		return reporteFecha;
+	}
+
+	public void setReporteFecha(Reporte reporteFecha) {
+		this.reporteFecha = reporteFecha;
+	}
+	
+	public void activarReporteFecha() {
+		this.reporteFecha = new ReporteTotalCantBusquedasPorFecha();
+	}
+
+	public void desactivarReporteFecha() {
+		this.reporteFecha = new ReporteDesactivado();
+	}
+
+	
 	public void obtenerResultadosTotales() {
-		if (reporteTotal) {
-			terminales.stream().forEach(terminal -> imprimirResultadosTotales(terminal));
-		} else {
-			System.out.println("El reporte está desactivado");
-		}
+		terminales.stream().forEach(terminal -> imprimirResultadosTotales(terminal));
 	}
 
 	public void imprimirResultadosTotales(Terminal terminal) {
@@ -105,15 +81,4 @@ public class ResultadosReportes {
 		return terminal.obtenerResultadosParciales().stream().mapToInt(i -> i).sum();
 	}
 
-	public void setReporteFechaActivado(boolean reporteFechaActivado) {
-		this.reporteFechaActivado = reporteFechaActivado;
-	}
-
-	public void setReporteParcial(boolean reporteParcial) {
-		this.reporteParcial = reporteParcial;
-	}
-
-	public void setReporteTotal(boolean reporteTotal) {
-		this.reporteTotal = reporteTotal;
-	}
 }

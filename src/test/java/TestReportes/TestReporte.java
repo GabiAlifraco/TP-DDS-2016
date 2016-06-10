@@ -44,11 +44,12 @@ public class TestReporte {
 	private Point coordenadaParada;
 	private ParadaColectivo parada114;
 	private Ubicacion ubicacionParada; 
-
+	private List<Terminal> terminales;
+	private List<Resultado> busquedas; 
 	@Before
 	public void initialize() {
 		sistema = new ResultadosReportes();
-		List<Terminal> terminales = new ArrayList<Terminal>();
+		terminales = new ArrayList<Terminal>();
 		List<Resultado> busquedas = new ArrayList<Resultado>();
 		servicios.add(baseInterna);
 		terminalAbasto = new Terminal("Terminal Abasto", servicios);
@@ -57,10 +58,6 @@ public class TestReporte {
 		fecha = LocalDate.parse("2016-10-16");
 		fecha2 = LocalDate.parse("2016-10-17");
         
-		sistema.setReporteFechaActivado(true);
-		sistema.setReporteParcial(true);
-		sistema.setReporteTotal(true);
-		
 		coordenadaBanco = new Point(34.3243, 21.4484);
 		coordenadaBanco = new Point(37.2, 28.2);
 		palabrasClaveBanco.add("Cajero automatico");
@@ -73,14 +70,13 @@ public class TestReporte {
 		List<String> palabrasClave114 = Arrays.asList("Colectivo", "Parada");
 		ubicacionParada = new Ubicacion(domicilioParada, regionParada, coordenadaParada);
 		parada114 = new ParadaColectivo(ubicacionParada, "114", palabrasClave114);
-
-
-
 		
 		terminales.add(terminalAbasto);
 		terminales.add(terminalFlorida);
 		baseInterna.getPois().add(bancoSantander);
 		baseInterna.getPois().add(parada114);
+		
+		sistema.activarReporteFecha();
 
 		}
 
@@ -90,7 +86,8 @@ public class TestReporte {
 		terminalAbasto.busquedaDePuntos("Santander", "Cajero");
 		System.out.println("Resultados por Fecha");
 		sistema.obtenerReporteTotalBusquedasPorFecha();
-		System.out.println("--------------------------------------");
+		System.out.println(sistema.getReporteFecha().obtenerReporte(terminales));
+		
 	}
 
 	@Test
@@ -108,13 +105,5 @@ public class TestReporte {
 		sistema.obtenerResultadosTotales();
 	}
 	
-	@Test
-	public void imprimirResultadosTotalesNoActivo() {
-		
-		sistema.setReporteTotal(false);
-		terminalAbasto.busquedaDePuntos("Santander", "Cajero");
-		System.out.println("Resultados Totales");
-		sistema.obtenerResultadosTotales();
-		System.out.println("--------------------------------------");
-	}
+
 }
