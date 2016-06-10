@@ -1,6 +1,7 @@
 package OrigenesDeDatos;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import DTOs.CentroDTO;
 import DTOs.RangoServicioDTO;
@@ -63,7 +64,7 @@ public class ProveedorCGPs implements OrigenDeDatos {
 		
 		LocalTime horarioInicial = LocalTime.of(rango.getHorarioDesde(),rango.getMinutosDesde());
 		LocalTime horarioCierre = LocalTime.of(rango.getHorarioHasta(),rango.getMinutosHasta());
-		List<DayOfWeek> dia = new ArrayList<DayOfWeek>(rango.getNumeroSemana());
+		List<DayOfWeek> dia = Arrays.asList(DayOfWeek.of(rango.getNumeroSemana()));
 		Disponibilidad unaDisponibilidadCGP = new Disponibilidad(dia,horarioInicial, horarioCierre);
 		
 		return unaDisponibilidadCGP;
