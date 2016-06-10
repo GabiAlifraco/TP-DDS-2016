@@ -5,7 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+import java.util.HashMap;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
@@ -18,6 +19,9 @@ import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
 import Pois.Banco;
 import Pois.ParadaColectivo;
+import Reportes.Reporte;
+import Reportes.ReporteCantResultadosPorBusquedaYTerminal;
+import Reportes.ReporteTotalCantBusquedasPorFecha;
 import Reportes.ResultadosReportes;
 import Resultado.Resultado;
 import Terminal.Terminal;
@@ -46,6 +50,8 @@ public class TestReporte {
 	private Ubicacion ubicacionParada; 
 	private List<Terminal> terminales;
 	private List<Resultado> busquedas; 
+	private Reporte reporteCantResPorBusqYTerm;
+	private ReporteTotalCantBusquedasPorFecha reporteFecha;
 	@Before
 	public void initialize() {
 		sistema = new ResultadosReportes();
@@ -70,14 +76,16 @@ public class TestReporte {
 		List<String> palabrasClave114 = Arrays.asList("Colectivo", "Parada");
 		ubicacionParada = new Ubicacion(domicilioParada, regionParada, coordenadaParada);
 		parada114 = new ParadaColectivo(ubicacionParada, "114", palabrasClave114);
-		
+		baseInterna.getPois().clear();
 		terminales.add(terminalAbasto);
 		terminales.add(terminalFlorida);
 		baseInterna.getPois().add(bancoSantander);
 		baseInterna.getPois().add(parada114);
 		
 		sistema.activarReporteFecha();
-
+		sistema.activarReporteBusqPorTerminal();
+        reporteCantResPorBusqYTerm = new ReporteCantResultadosPorBusquedaYTerminal();
+        reporteFecha = new ReporteTotalCantBusquedasPorFecha();
 		}
 
 	@Test
@@ -85,14 +93,14 @@ public class TestReporte {
 
 		terminalAbasto.busquedaDePuntos("Santander", "Cajero");
 		System.out.println("Resultados por Fecha");
-		sistema.obtenerReporteTotalBusquedasPorFecha();
-		System.out.println(sistema.getReporteFecha().obtenerReporte(terminales));
+		System.out.println(reporteFecha.obtenerReporte(terminales));
 		
-	}
+		
+		}
 
 	@Test
 	public void imprimirResultadosParciales() {
-
+		
 		terminalAbasto.busquedaDePuntos("Santander", "Cajero");
 		sistema.obtenerResultadosParcialesPorTerminal(terminalAbasto);
 		System.out.println("--------------------------------------");
@@ -102,7 +110,8 @@ public class TestReporte {
 	public void imprimirResultadosTotales() {
 		terminalAbasto.busquedaDePuntos("Santander", "Cajero");
 		System.out.println("Resultados Totales");
-		sistema.obtenerResultadosTotales();
+		System.out.println(reporteCantResPorBusqYTerm.obtenerReportePorTerminal(terminales));
+		
 	}
 	
 

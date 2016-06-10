@@ -66,7 +66,10 @@ public class ResultadosReportes {
 	public void desactivarReporteFecha() {
 		this.reporteFecha = new ReporteDesactivado();
 	}
-
+    
+	public void activarReporteBusqPorTerminal(){
+		this.reporteCantidadBusquedaYTerminal = new ReporteCantResultadosPorBusquedaYTerminal();
+	}
 	
 	public void obtenerResultadosTotales() {
 		terminales.stream().forEach(terminal -> imprimirResultadosTotales(terminal));

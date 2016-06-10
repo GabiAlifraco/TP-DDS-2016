@@ -9,5 +9,5 @@ import Terminal.Terminal;
 public abstract class Reporte {
 	
 	public abstract Map<LocalDate, Integer> obtenerReporte(List<Terminal> terminales);
-
+    public abstract Map<String, Integer> obtenerReportePorTerminal(List<Terminal> terminales);
 }

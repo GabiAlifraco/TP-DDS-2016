@@ -16,4 +16,10 @@ public class ReporteDesactivado extends Reporte{
 		return null;
 	}
 
+	@Override
+	public Map<String, Integer> obtenerReportePorTerminal(List<Terminal> terminales) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
