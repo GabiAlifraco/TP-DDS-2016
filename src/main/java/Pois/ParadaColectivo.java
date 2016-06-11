@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.uqbar.geodds.Point;
 
-import CaracteristicaPoi.Poi;
 import CaracteristicaPoi.Ubicacion;
 
 

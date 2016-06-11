@@ -93,7 +93,7 @@ public class TestReporte {
 	@Test
 	public void imprimirReportesPorFecha() {
 		Map<LocalDate,Integer> resultadoEsperado =  new HashMap<LocalDate,Integer>(); 
-		fecha3 = LocalDate.parse("2016-06-10");
+		fecha3 = LocalDate.now();
 		 resultadoEsperado.put(fecha3,1);
 		terminalAbasto.busquedaDePuntos("Santander", "Cajero");
 		
@@ -101,14 +101,6 @@ public class TestReporte {
 		
 		
 		}
-
-	@Test
-	public void imprimirResultadosParciales() {
-		
-		terminalAbasto.busquedaDePuntos("Santander", "Cajero");
-		sistema.obtenerResultadosParcialesPorTerminal(terminalAbasto);
-		System.out.println("--------------------------------------");
-	}
 
 	@Test
 	public void imprimirResultadosTotales() {

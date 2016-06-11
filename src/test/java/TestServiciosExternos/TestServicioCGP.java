@@ -9,13 +9,13 @@ import java.util.stream.Collectors;
 import org.junit.Assert;
 import org.junit.Test;
 
-import CaracteristicaPoi.Poi;
 import CaracteristicaPoi.ServicioCGP;
 import Mocks.MockedCGPService;
 import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
 import OrigenesDeDatos.ProveedorCGPs;
 import Pois.CGP;
+import Pois.Poi;
 import Terminal.Terminal;
 import seviciosExternos.CGPService;
 

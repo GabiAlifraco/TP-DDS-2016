@@ -2,7 +2,7 @@ package OrigenesDeDatos;
 
 import java.util.List;
 
-import CaracteristicaPoi.Poi;
+import Pois.Poi;
 
 
 

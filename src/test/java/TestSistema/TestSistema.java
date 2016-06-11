@@ -14,7 +14,6 @@ import org.uqbar.geodds.Polygon;
 
 import CaracteristicaPoi.Disponibilidad;
 import CaracteristicaPoi.Domicilio;
-import CaracteristicaPoi.Poi;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.ServicioCGP;
 import CaracteristicaPoi.Ubicacion;
@@ -23,6 +22,7 @@ import OrigenesDeDatos.OrigenDeDatos;
 import Pois.Banco;
 import Pois.CGP;
 import Pois.ParadaColectivo;
+import Pois.Poi;
 import Terminal.Terminal;
 
 

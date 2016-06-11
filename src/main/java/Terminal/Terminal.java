@@ -9,10 +9,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import org.uqbar.geodds.Point;
 
-import CaracteristicaPoi.Poi;
 import Notificaciones.NotificacionBusqueda;
 import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
+import Pois.Poi;
 import Resultado.Resultado;
 
 

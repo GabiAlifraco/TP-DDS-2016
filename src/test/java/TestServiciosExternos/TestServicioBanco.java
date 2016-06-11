@@ -6,11 +6,11 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import CaracteristicaPoi.Poi;
 import Mocks.MockBankService;
 import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
 import OrigenesDeDatos.ProveedorBancos;
+import Pois.Poi;
 import Terminal.Terminal;
 import seviciosExternos.BankService;
 

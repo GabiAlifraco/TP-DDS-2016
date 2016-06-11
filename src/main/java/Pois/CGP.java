@@ -6,7 +6,6 @@ import java.util.List;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import CaracteristicaPoi.Poi;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.ServicioCGP;
 
@@ -26,18 +25,12 @@ public class CGP extends Poi{
 	}
 	@Override
 	public boolean estaDisponible(String nombreServicio, DayOfWeek dia, LocalTime hora) {
-		if (this.contieneServicio(nombreServicio)){
 			return serviciosCGP.stream().filter(servicio -> servicio.getNombre().contains(nombreServicio)).anyMatch(servicio -> servicio.horarioDisponible(dia,hora));
-		}
-		else{
-			return false;
-		}
 	}
 	
 	private boolean contieneServicio(String nombreABuscar) {
 		return serviciosCGP.stream().anyMatch(servicio -> servicio.getNombre().equals(nombreABuscar));
 	}
-
 
 	public int distanciaMinimaParaConsiderarmeCercano(){
 		return 0;
