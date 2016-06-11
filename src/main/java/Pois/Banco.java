@@ -15,8 +15,5 @@ public class Banco extends Poi {
 	public int distanciaMinimaParaConsiderarmeCercano() {
 		return 500;
 	}
-	
-	public boolean mismoNombre(String nombreServicio) {
-		return this.getNombre().equals(nombreServicio);
-	}
+
 }
