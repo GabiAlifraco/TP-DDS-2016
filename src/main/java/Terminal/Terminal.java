@@ -116,7 +116,7 @@ public class Terminal {
 		return this.losObserverBusqueda;
 	}
 
-	public void agregarBusqueda(Resultado resultado) {
+	private void agregarBusqueda(Resultado resultado) {
 		busquedas.add(resultado);
 	}
 }
