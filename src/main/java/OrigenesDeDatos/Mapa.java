@@ -13,20 +13,6 @@ public class Mapa implements OrigenDeDatos {
 	private static Mapa instance = null;
 	public List<Poi> pois = new ArrayList<Poi>();
 
-	public List<Poi> getPois() {
-		return this.pois;
-	}
-
-	protected Mapa() {
-	}
-
-	public static Mapa getInstance() {
-		if (instance == null) {
-			instance = new Mapa();
-		}
-		return instance;
-	}
-
 	// Alta, Baja y Modificaci�n de un Poi
 	public void agregarUnPoi(Poi unPoi) {
 		pois.add(unPoi);
@@ -46,5 +32,20 @@ public class Mapa implements OrigenDeDatos {
 	public List<Poi> buscarPois(String unNombre, String unaPalabraClave) {
 		return getPois().stream().filter(poi -> poi.textoIncluido(unNombre, unaPalabraClave))
 				.collect(Collectors.toList());
+	}
+	
+
+	public List<Poi> getPois() {
+		return this.pois;
+	}
+
+	protected Mapa() {
+	}
+
+	public static Mapa getInstance() {
+		if (instance == null) {
+			instance = new Mapa();
+		}
+		return instance;
 	}
 }

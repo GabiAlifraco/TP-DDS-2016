@@ -24,7 +24,7 @@ public class ReporteCantResultadosPorBusquedaYTerminal extends Reporte{
 		
 	}
 
-	public void obtenerCantidadResultadosTotales(Terminal terminal) {
+	private void obtenerCantidadResultadosTotales(Terminal terminal) {
 		if(busquedaPorTerminal.containsKey(terminal.getNombreTerminal())){
 			this.busquedaPorTerminal.replace(terminal.getNombreTerminal(),
 					busquedaPorTerminal.get(terminal.getNombreTerminal()) + cantidadTotalBusquedas(terminal));

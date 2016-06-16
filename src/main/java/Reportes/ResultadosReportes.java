@@ -17,6 +17,31 @@ public class ResultadosReportes {
 	List<Terminal> terminales = new ArrayList<Terminal>();
 	public String mailAdministrador;
 
+	
+	public Map<LocalDate, Integer> obtenerReporteTotalBusquedasPorFecha() {
+		return reporteFecha.obtenerReporte(terminales);
+	}
+
+	public void obtenerResultadosParcialesPorTerminal(Terminal terminal) {
+
+		System.out.println("Usuario: " + terminal.getNombreTerminal());
+		System.out.println("Cantidad Resultados Parciales");
+		terminal.obtenerResultadosParciales().stream().forEach(resultado -> System.out.println(resultado));
+	}
+	
+	public void obtenerResultadosTotales() {
+		terminales.stream().forEach(terminal -> imprimirResultadosTotales(terminal));
+	}
+
+	private void imprimirResultadosTotales(Terminal terminal) {
+		System.out.println("Usuario: " + terminal.getNombreTerminal() + " " + " Cantidad de Resultados Totales: "
+				+ obtenerSumatoriaBusquedas(terminal));
+	}
+
+	private int obtenerSumatoriaBusquedas(Terminal terminal) {
+		return terminal.obtenerResultadosParciales().stream().mapToInt(i -> i).sum();
+	}
+	
 	public static ResultadosReportes getInstance() {
 		if (instance == null) {
 			instance = new ResultadosReportes();
@@ -40,17 +65,6 @@ public class ResultadosReportes {
 		return mailAdministrador;
 	}
 
-	public Map<LocalDate, Integer> obtenerReporteTotalBusquedasPorFecha() {
-		return reporteFecha.obtenerReporte(terminales);
-	}
-
-	public void obtenerResultadosParcialesPorTerminal(Terminal terminal) {
-
-		System.out.println("Usuario: " + terminal.getNombreTerminal());
-		System.out.println("Cantidad Resultados Parciales");
-		terminal.obtenerResultadosParciales().stream().forEach(resultado -> System.out.println(resultado));
-	}
-
 	public Reporte getReporteFecha() {
 		return reporteFecha;
 	}
@@ -70,18 +84,6 @@ public class ResultadosReportes {
 	public void activarReporteBusqPorTerminal(){
 		this.reporteCantidadBusquedaYTerminal = new ReporteCantResultadosPorBusquedaYTerminal();
 	}
-	
-	public void obtenerResultadosTotales() {
-		terminales.stream().forEach(terminal -> imprimirResultadosTotales(terminal));
-	}
 
-	public void imprimirResultadosTotales(Terminal terminal) {
-		System.out.println("Usuario: " + terminal.getNombreTerminal() + " " + " Cantidad de Resultados Totales: "
-				+ obtenerSumatoriaBusquedas(terminal));
-	}
-
-	public int obtenerSumatoriaBusquedas(Terminal terminal) {
-		return terminal.obtenerResultadosParciales().stream().mapToInt(i -> i).sum();
-	}
 
 }

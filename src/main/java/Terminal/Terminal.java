@@ -24,27 +24,11 @@ public class Terminal {
 	private String nombreTerminal;
 	List<OrigenDeDatos> servicios = new ArrayList<OrigenDeDatos>();
 	private List<Resultado> busquedas = new ArrayList<Resultado>();
+	List<NotificacionBusqueda> losObserverBusqueda = new ArrayList<NotificacionBusqueda>();
 
 	public Terminal(String nombre, List<OrigenDeDatos> servicios) {
 		setNombreTerminal(nombre);
 		setServicios(servicios);
-	}
-	
-	public List<OrigenDeDatos> getServicios() {
-		return this.servicios;
-	}
-
-	public void agregarNuevoServicio(OrigenDeDatos nuevoOrigen) {
-		this.getServicios().add(nuevoOrigen);
-	}
-
-	// Getter de la base
-	public Mapa getBase() {
-		return base;
-	}
-
-	private void setServicios(List<OrigenDeDatos> servicios) {
-		this.servicios = servicios;
 	}
 
 	// Esto es para la entrega 1: Calculo de Cercania
@@ -81,16 +65,6 @@ public class Terminal {
 		return servicios.stream().map(servicio -> servicio.buscarPois(unNombre, unaPalabraClave))
 				.flatMap(pois -> pois.stream()).collect(Collectors.toSet());
 	}
-	public String getNombreTerminal() {
-		return nombreTerminal;
-	}
-
-	public void setNombreTerminal(String nombreTerminal) {
-		this.nombreTerminal = nombreTerminal;
-	}
-	public List<Resultado> getBusquedas() {
-		return this.busquedas;
-	}
 
 	public List<Integer> obtenerResultadosParciales() {
 		List<Integer> resultadosParciales = getBusquedas().stream().map(resultado -> resultado.getCantidadResultados())
@@ -98,8 +72,7 @@ public class Terminal {
 		return resultadosParciales;
 	}
 
-	List<NotificacionBusqueda> losObserverBusqueda = new ArrayList<NotificacionBusqueda>();
-
+	
 	public void notificarBusqueda(Resultado resultado) {
 		losObserverBusqueda.stream().forEach(observerBusqueda -> observerBusqueda.notificarBusqueda(resultado));
 	}
@@ -111,12 +84,38 @@ public class Terminal {
 	public void eliminarObserver(NotificacionBusqueda observer) {
 		losObserverBusqueda.remove(observer);
 	}
-
-	public List<NotificacionBusqueda> getObserverBusquedas() {
-		return this.losObserverBusqueda;
-	}
-
+	
 	private void agregarBusqueda(Resultado resultado) {
 		busquedas.add(resultado);
 	}
+
+	public void agregarNuevoServicio(OrigenDeDatos nuevoOrigen) {
+		this.getServicios().add(nuevoOrigen);
+	}
+
+	public List<OrigenDeDatos> getServicios() {
+		return this.servicios;
+	}
+	
+	public List<NotificacionBusqueda> getObserverBusquedas() {
+		return this.losObserverBusqueda;
+	}
+	public Mapa getBase() {
+		return base;
+	}
+	private void setServicios(List<OrigenDeDatos> servicios) {
+		this.servicios = servicios;
+	}
+
+	public String getNombreTerminal() {
+		return nombreTerminal;
+	}
+
+	public void setNombreTerminal(String nombreTerminal) {
+		this.nombreTerminal = nombreTerminal;
+	}
+	public List<Resultado> getBusquedas() {
+		return this.busquedas;
+	}
+
 }

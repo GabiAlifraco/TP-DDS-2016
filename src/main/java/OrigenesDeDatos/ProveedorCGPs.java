@@ -28,7 +28,7 @@ public class ProveedorCGPs implements OrigenDeDatos {
 		return listaCGPs;
 	}
 
-	public CGP buscarCGPs(String calleOBarrio) {
+	private CGP buscarCGPs(String calleOBarrio) {
 
 		CentroDTO centroDTOEncontrado = serviceCGP.getCGPsByCalleOBarrio(calleOBarrio);
 
@@ -43,7 +43,7 @@ public class ProveedorCGPs implements OrigenDeDatos {
 		return unCGP;
 	}
 
-	public List<ServicioCGP> obtenerServiciosCGP(CentroDTO centroDTO) {
+	private List<ServicioCGP> obtenerServiciosCGP(CentroDTO centroDTO) {
 		
 		List<ServicioCGP> serviciosCGP = centroDTO.getServiciosDTO().stream().map(servicioDTO -> this.deServicioDTOaServicioCGP(servicioDTO)).collect(Collectors.toList());
 		return serviciosCGP;
@@ -54,11 +54,11 @@ public class ProveedorCGPs implements OrigenDeDatos {
 		
 		return servicioCGP;
 	}
-	public List<Disponibilidad> deRangosADisponibilidades (List<RangoServicioDTO> rangos){
+	private List<Disponibilidad> deRangosADisponibilidades (List<RangoServicioDTO> rangos){
 		return rangos.stream().map(rango -> this.aDisponibilidad(rango)).collect(Collectors.toList());
 	}
 
-	public Disponibilidad aDisponibilidad(RangoServicioDTO rango) {
+	private Disponibilidad aDisponibilidad(RangoServicioDTO rango) {
 		
 		LocalTime horarioInicial = LocalTime.of(rango.getHorarioDesde(),rango.getMinutosDesde());
 		LocalTime horarioCierre = LocalTime.of(rango.getHorarioHasta(),rango.getMinutosHasta());

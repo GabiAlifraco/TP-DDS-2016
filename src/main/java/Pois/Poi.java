@@ -55,10 +55,7 @@ public abstract class Poi {
 	public void agregarPalabraClave(String unaPalabra) {
 		this.palabrasClave.add(unaPalabra);
 	}
-
-	public boolean mismaCoordenada(Point otraCoordenada) {
-		return this.getCoordenada().equals(otraCoordenada);
-	}
+	
 	// Setters y getters de los atributos
 	public Point getCoordenada() {
 		return coordenada;

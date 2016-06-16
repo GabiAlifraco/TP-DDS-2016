@@ -33,7 +33,6 @@ public class ReporteTotalCantBusquedasPorFecha extends Reporte {
 
 	@Override
 	public Map<String, Integer> obtenerReportePorTerminal(List<Terminal> terminales) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
