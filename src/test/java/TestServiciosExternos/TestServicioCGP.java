@@ -14,7 +14,6 @@ import Mocks.MockedCGPService;
 import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
 import OrigenesDeDatos.ProveedorCGPs;
-import Pois.CGP;
 import Pois.Poi;
 import Terminal.Terminal;
 import seviciosExternos.CGPService;
@@ -34,8 +33,8 @@ public class TestServicioCGP {
 	@Test
 	public void buscarCGPAdapterCGP() {
 		proveedorCGPs.setServiceCGP(servicioExternoCGP);
-		CGP resultado = proveedorCGPs.buscarCGPs("Villa Crespo");
-		Assert.assertTrue(resultado.getRegion().getBarrio().equals("Villa Crespo"));
+		List<Poi> resultado = proveedorCGPs.buscarPois("CGP comuna 15","Villa Crespo");
+		Assert.assertTrue(resultado.get(0).getRegion().getBarrio().equals("Villa Crespo"));
 	}
 	public void buscarPOIxTerminal() {
 		proveedorCGPs.setServiceCGP(servicioExternoCGP);
