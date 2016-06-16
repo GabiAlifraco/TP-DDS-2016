@@ -138,6 +138,29 @@ public abstract class CreadorDeObjetos {
 		carrouselPlinPlin = new Comercio("Carrousel PlinPlin", ubicacionCarrousel, horariosCarrousel,
 				palabrasClaveCarrousel);
 	}
+	//Kiosco Diario
+
+	private Domicilio domicilioKiosco;
+	private Region regionKiosco;
+	private List<Disponibilidad> horariosDiario = new ArrayList<Disponibilidad>();
+	private Disponibilidad disponibilidadDiario;
+	private List<DayOfWeek> diasDiario = Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,
+			DayOfWeek.THURSDAY, DayOfWeek.FRIDAY, DayOfWeek.SATURDAY);
+	private Ubicacion ubicacionKiosco;
+	
+	protected Comercio elDiarioDelPueblo;
+	protected void crearElDiarioDelPueblo(Point coordenada){
+
+		domicilioKiosco = new Domicilio("Av.Monroe", 1740, "Olazabal", "Virrey del Pino", 1900, 0, 0, 0, 1111);
+		regionKiosco = new Region("CABA", "Palermo", "Bs As", "Argentina");
+		disponibilidadDiario = new Disponibilidad(diasDiario, LocalTime.of(6, 0), LocalTime.of(12, 0));
+		horariosDiario.add(disponibilidadDiario);
+		List<String> palabrasClaveKioscoDiario = Arrays.asList("Revistas", "Diarios", "Crucigrama");
+		ubicacionKiosco = new Ubicacion(domicilioKiosco, regionKiosco, coordenada);
+		elDiarioDelPueblo = new Comercio("El diario del pueblo", ubicacionKiosco, horariosDiario,
+				palabrasClaveKioscoDiario);
+	}
+	
 	
 	//Crear DTO
 

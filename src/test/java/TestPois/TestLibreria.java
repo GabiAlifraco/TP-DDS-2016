@@ -15,11 +15,12 @@ import CaracteristicaPoi.Disponibilidad;
 import CaracteristicaPoi.Domicilio;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.Ubicacion;
+import Inicializacion.CreadorDeObjetos;
 import Pois.Comercio;
 
 
 
-public class TestLibreria {
+public class TestLibreria extends CreadorDeObjetos {
 
 	private Region regionLibreria;
 	private Domicilio domicilioLibreria;
@@ -30,14 +31,8 @@ public class TestLibreria {
 	private List<DayOfWeek> diasLibreria = Arrays.asList(DayOfWeek.MONDAY,DayOfWeek.TUESDAY,DayOfWeek.WEDNESDAY,DayOfWeek.THURSDAY,DayOfWeek.FRIDAY,DayOfWeek.SATURDAY);
 	private Ubicacion ubicacionLibreria;
 	
-	private Domicilio domicilioKiosco;
-	private Region regionKiosco;
-	private Point coordenadaKiosco;
-	private Comercio elDiarioDelPueblo;
-	private List<Disponibilidad> horariosDiario = new ArrayList<Disponibilidad>();
-	private Disponibilidad disponibilidadDiario;
-	private List<DayOfWeek> diasDiario = Arrays.asList(DayOfWeek.MONDAY,DayOfWeek.TUESDAY,DayOfWeek.WEDNESDAY,DayOfWeek.THURSDAY,DayOfWeek.FRIDAY,DayOfWeek.SATURDAY);
-	private Ubicacion ubicacionKiosco;
+	private Point coordenadaKioscoDiario;
+
 
 	@Before
 	public void initialize() {
@@ -49,20 +44,15 @@ public class TestLibreria {
 		List<String> palabrasClaveLibreria = Arrays.asList("Cuadernos", "Libros", "Lapiceras");
 		ubicacionLibreria = new Ubicacion(domicilioLibreria, regionLibreria, coordenadaLibreria);
 		elEstudiante = new Comercio("El estudiante", ubicacionLibreria,horariosLibreria, palabrasClaveLibreria);
-        
-		domicilioKiosco = new Domicilio("Junin", 541, "Av.Corrientes", "Lavalle", 2000, 0, 0, 0, 1111);
-		regionKiosco = new Region("CABA", "Palermo", "Bs As", "Argentina");
-		coordenadaKiosco = new Point(12.8741, 21.0421);
-		disponibilidadDiario = new Disponibilidad (diasDiario,LocalTime.of(6,0),LocalTime.of(12, 0));
-		horariosDiario.add(disponibilidadDiario);
-		List<String> palabrasClaveKioscoDiario = Arrays.asList("Revistas", "Diarios", "Crucigrama");
-		ubicacionKiosco = new Ubicacion(domicilioKiosco, regionKiosco, coordenadaKiosco);
-		elDiarioDelPueblo = new Comercio("El diario del pueblo", ubicacionKiosco,horariosDiario, palabrasClaveKioscoDiario);
+		coordenadaKioscoDiario = new Point(12.8741, 21.0421);
+		this.crearElDiarioDelPueblo(coordenadaKioscoDiario);
+		
 
 	}
 
 	@Test
 	public void estaCercaLaLibreriaDeLKioscoDiario() {
+		
 		elEstudiante.setDistancia(200);
 		elDiarioDelPueblo.setDistancia(100);
 		Assert.assertTrue(elEstudiante.estaCercaDe(elDiarioDelPueblo.getCoordenada()));
@@ -70,6 +60,7 @@ public class TestLibreria {
 
 	@Test
 	public void distanciaEntreLaLibreriaYElKioscoDiario() {
+		
 		Assert.assertEquals(52.25135818766176, elEstudiante.getUbicacion().getCoordenadas()
 				.distance(elDiarioDelPueblo.getCoordenada()), 0);
 	}
