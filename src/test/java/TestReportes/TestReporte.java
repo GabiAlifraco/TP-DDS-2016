@@ -15,6 +15,7 @@ import org.uqbar.geodds.Point;
 import CaracteristicaPoi.Domicilio;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.Ubicacion;
+import Inicializacion.CreadorDeObjetos;
 import Notificaciones.NotificacionBusqueda;
 import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
@@ -28,7 +29,7 @@ import Resultado.Resultado;
 import Terminal.Terminal;
 
 
-public class TestReporte {
+public class TestReporte extends CreadorDeObjetos {
 
 	private List<OrigenDeDatos> servicios = new ArrayList<OrigenDeDatos>();
 	private Mapa baseInterna = Mapa.getInstance();
@@ -38,17 +39,9 @@ public class TestReporte {
 	private LocalDate fecha2;
 	private Terminal terminalAbasto;
 	private Terminal terminalFlorida;
-	private Point coordenadaBanco;
-	private List<String> palabrasClaveBanco = new ArrayList<String>();
-	private Banco bancoSantander;
-	private Banco bancoSantander2;
+
 	List<NotificacionBusqueda> observers = new ArrayList<NotificacionBusqueda>();
-	
-	private Domicilio domicilioParada;
-	private Region regionParada;
-	private Point coordenadaParada;
-	private ParadaColectivo parada114;
-	private Ubicacion ubicacionParada; 
+	 
 	private List<Terminal> terminales;
 	private List<Resultado> busquedas; 
 	private Reporte reporteCantResPorBusqYTerm;
@@ -56,6 +49,10 @@ public class TestReporte {
 	private LocalDate fecha3;
 	@Before
 	public void initialize() {
+		
+		this.crearBancoSantander();
+		this.crearParada114();
+		
 		sistema = new ResultadosReportes();
 		terminales = new ArrayList<Terminal>();
 		List<Resultado> busquedas = new ArrayList<Resultado>();
@@ -65,19 +62,7 @@ public class TestReporte {
 		sistema.setTerminales(terminales);
 		fecha = LocalDate.parse("2016-10-16");
 		fecha2 = LocalDate.parse("2016-10-17");
-        
-		coordenadaBanco = new Point(34.3243, 21.4484);
-		coordenadaBanco = new Point(37.2, 28.2);
-		palabrasClaveBanco.add("Cajero automatico");
-		palabrasClaveBanco.add("Deposito");
-		bancoSantander = new Banco("Banco Santander", coordenadaBanco, palabrasClaveBanco);
-
-		domicilioParada = new Domicilio("Arenales",1141 , "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
-		regionParada = new Region("CABA", "Recoleta", "Bs As", "Argentina");
-		coordenadaParada = new Point(34.4353,25.4632);
-		List<String> palabrasClave114 = Arrays.asList("Colectivo", "Parada");
-		ubicacionParada = new Ubicacion(domicilioParada, regionParada, coordenadaParada);
-		parada114 = new ParadaColectivo(ubicacionParada, "114", palabrasClave114);
+		
 		baseInterna.getPois().clear();
 		terminales.add(terminalAbasto);
 		terminales.add(terminalFlorida);
