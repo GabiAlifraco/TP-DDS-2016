@@ -47,64 +47,57 @@ public abstract class Poi {
 		return getPalabrasClave().stream().anyMatch(palabra -> palabra.contains(unaPalabraClave))
 				|| this.mismoNombre(unNombre);
 	}
-
-	// Setters y getters de los atributos
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public void setPalabrasClave(List<String> palabras) {
-		this.palabrasClave = palabras;
-	}
-
-	public List<String> getPalabrasClave() {
-		return this.palabrasClave;
-	}
-
-	public void agregarPalabraClave(String unaPalabra) {
-		this.palabrasClave.add(unaPalabra);
-	}
-
+	
 	public boolean mismoNombre(String nombreServicio) {
 		return getNombre().equals(nombreServicio);
+	}
+	//Estos metodos no se estan utilizando
+	public void agregarPalabraClave(String unaPalabra) {
+		this.palabrasClave.add(unaPalabra);
 	}
 
 	public boolean mismaCoordenada(Point otraCoordenada) {
 		return this.getCoordenada().equals(otraCoordenada);
 	}
+	// Setters y getters de los atributos
+	public Point getCoordenada() {
+		return coordenada;
+	}
+	public void setCoordenada(Point unaCoordenada) {
+		this.coordenada = unaCoordenada;
+	}
 	
 	public Domicilio getDomicilio() {
 		return domicilio;
 	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
 	public void setDomicilio(Domicilio domicilio) {
 		this.domicilio = domicilio;
 	}
-
+	
 	public Region getRegion() {
 		return region;
 	}
-
 	public void setRegion(Region region) {
 		this.region = region;
 	}
-
-	public Point getCoordenada() {
-		return coordenada;
+	
+	public String getNombre() {
+		return nombre;
 	}
-
-	public void setCoordenada(Point unaCoordenada) {
-		this.coordenada = unaCoordenada;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
-
+	
+	public List<String> getPalabrasClave() {
+		return this.palabrasClave;
+	}
+	public void setPalabrasClave(List<String> palabras) {
+		this.palabrasClave = palabras;
+	}
+	
 	public List<Disponibilidad> getHorariosDeAtencion() {
 		return horariosDeAtencion;
 	}
-
 	public void setHorariosDeAtencion(List<Disponibilidad> horariosDeAtencion) {
 		this.horariosDeAtencion = horariosDeAtencion;
 	}
@@ -133,6 +126,4 @@ public abstract class Poi {
 			return false;
 		return true;
 	}
-
-	
 }

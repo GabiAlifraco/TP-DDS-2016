@@ -7,9 +7,6 @@ import org.uqbar.geodds.Point;
 import CaracteristicaPoi.Disponibilidad;
 import CaracteristicaPoi.Ubicacion;
 
-
-
-
 public class Comercio extends Poi {
 
 	private int distancia;
@@ -21,31 +18,27 @@ public class Comercio extends Poi {
 		setHorariosDeAtencion(horariosDeAtencion);
 		setPalabrasClave(palabrasClave);
 	}
-
-	private void setUbicacion(Ubicacion unaUbicacion) {
-		this.ubicacion = unaUbicacion;
-
-	}
-
-	public Ubicacion getUbicacion() {
-		return this.ubicacion;
-	}
-
+    
 	public int distanciaMinimaParaConsiderarmeCercano() {
 		return this.getDistancia();
 	}
-
-	public int getDistancia() {
-		return distancia;
-	}
-
-	public void setDistancia(int distancia) {
-		this.distancia = distancia;
-	}
-
+	
 	@Override
 	public Point getCoordenada() {
 		return this.ubicacion.getCoordenadas();
 	}
-
+	
+	public int getDistancia() {
+		return distancia;
+	}
+    public void setDistancia(int distancia) {
+		this.distancia = distancia;
+	}
+    
+    public Ubicacion getUbicacion() {
+		return this.ubicacion;
+	}
+    private void setUbicacion(Ubicacion unaUbicacion) {
+		this.ubicacion = unaUbicacion;
+    }
 }

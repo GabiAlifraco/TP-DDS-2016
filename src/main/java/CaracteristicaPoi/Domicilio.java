@@ -24,7 +24,7 @@ public class Domicilio {
 		this.unidad = unaUnidad;
 		this.codigoPostal = unCodigoPostal;
 	}
-
+    //Getters
 	public String getCallePrincipal() {
 		return callePrincipal;
 	}

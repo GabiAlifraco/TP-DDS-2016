@@ -13,7 +13,7 @@ public class Region {
 		this.provincia = unaProvincia;
 		this.pais = unPais;
 	}
-
+    //Getters
 	public String getLocalidad() {
 		return localidad;
 	}
@@ -29,5 +29,4 @@ public class Region {
 	public String getPais() {
 		return pais;
 	}
-
 }

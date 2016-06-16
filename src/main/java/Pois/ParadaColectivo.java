@@ -8,8 +8,6 @@ import org.uqbar.geodds.Point;
 
 import CaracteristicaPoi.Ubicacion;
 
-
-
 public class ParadaColectivo extends Poi {
 
 	private String lineaColectivo;
@@ -21,11 +19,13 @@ public class ParadaColectivo extends Poi {
 		setPalabrasClave(palabrasClave);
 	}
 
-	public void setUbicacion(Ubicacion unaUbicacion) {
-		this.ubicacion = unaUbicacion;		
+	public int distanciaMinimaParaConsiderarmeCercano() {
+		return 100;
 	}
-	public Ubicacion getUbicacion() {
-		return this.ubicacion;		
+	
+	@Override
+	public boolean estaDisponible(String nombreABuscar, DayOfWeek dia, LocalTime hora) {
+		return true;
 	}
 	
 	@Override
@@ -33,21 +33,18 @@ public class ParadaColectivo extends Poi {
 		return this.ubicacion.getCoordenadas();
 	}
 
-	
-	public int distanciaMinimaParaConsiderarmeCercano() {
-		return 100;
-	}
-
-	@Override
-	public boolean estaDisponible(String nombreABuscar, DayOfWeek dia, LocalTime hora) {
-		return true;
-	}
-
 	public String getLineaColectivo() {
 		return lineaColectivo;
 	}
-
-	public void setLineaColectivo(String lineaColectivo) {
+    public void setLineaColectivo(String lineaColectivo) {
 		this.lineaColectivo = lineaColectivo;
 	}
+	
+	public Ubicacion getUbicacion() {
+		return this.ubicacion;		
+	}
+	private void setUbicacion(Ubicacion unaUbicacion) {
+		this.ubicacion = unaUbicacion;		
+	}
+	
 }

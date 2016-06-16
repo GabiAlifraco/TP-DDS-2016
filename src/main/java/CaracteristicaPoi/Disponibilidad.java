@@ -15,7 +15,15 @@ public class Disponibilidad {
 		this.dias = unosDias;
 
 	}
-
+	
+	public boolean disponibleEnDiayHora (DayOfWeek diaConsulta,LocalTime horaConsulta){
+		 return (dias.contains(diaConsulta)&&(horaConsulta.isAfter(horarioInicial) && horaConsulta.isBefore(horarioFinal)));
+	}
+	//Getters
+	public List<DayOfWeek> getDias() {
+		return dias;
+	}
+	
 	public LocalTime getHorarioInicial() {
 		return horarioInicial;
 	}
@@ -24,11 +32,7 @@ public class Disponibilidad {
 		return horarioFinal;
 	}
 
-	public List<DayOfWeek> getDias() {
-		return dias;
-	}
-	public boolean disponibleEnDiayHora (DayOfWeek diaConsulta,LocalTime horaConsulta){
-	 return (dias.contains(diaConsulta)&&(horaConsulta.isAfter(horarioInicial) && horaConsulta.isBefore(horarioFinal)));
-	}
+	
+	
 
 }
