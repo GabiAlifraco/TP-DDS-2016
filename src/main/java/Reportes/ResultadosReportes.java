@@ -2,12 +2,8 @@ package Reportes;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import Resultado.Resultado;
 import Terminal.Terminal;
 
 public class ResultadosReportes {
@@ -48,31 +44,7 @@ public class ResultadosReportes {
 		}
 		return instance;
 	}
-
-	public void agregarTerminal(Terminal nuevaTerminal) {
-		this.getTerminales().add(nuevaTerminal);
-	}
-
-	private List<Terminal> getTerminales() {
-		return this.terminales;
-	}
-
-	public void setTerminales(List<Terminal> terminales) {
-		this.terminales = terminales;
-	}
-
-	public String getMailAdministrador() {
-		return mailAdministrador;
-	}
-
-	public Reporte getReporteFecha() {
-		return reporteFecha;
-	}
-
-	public void setReporteFecha(Reporte reporteFecha) {
-		this.reporteFecha = reporteFecha;
-	}
-	
+    
 	public void activarReporteFecha() {
 		this.reporteFecha = new ReporteTotalCantBusquedasPorFecha();
 	}
@@ -82,8 +54,41 @@ public class ResultadosReportes {
 	}
     
 	public void activarReporteBusqPorTerminal(){
-		this.reporteCantidadBusquedaYTerminal = new ReporteCantResultadosPorBusquedaYTerminal();
+		this.setReporteCantidadBusquedaYTerminal(new ReporteCantResultadosPorBusquedaYTerminal());
 	}
+	
+	public String getMailAdministrador() {
+		return mailAdministrador;
+	}
+
+	public Reporte getReporteFecha() {
+		return reporteFecha;
+	}
+    public void setReporteFecha(Reporte reporteFecha) {
+		this.reporteFecha = reporteFecha;
+	}
+    
+    public Reporte getReporteCantidadBusquedaYTerminal() {
+		return reporteCantidadBusquedaYTerminal;
+	}
+    public void setReporteCantidadBusquedaYTerminal(Reporte reporteCantidadBusquedaYTerminal) {
+		this.reporteCantidadBusquedaYTerminal = reporteCantidadBusquedaYTerminal;
+	}
+    
+    private List<Terminal> getTerminales() {
+		return this.terminales;
+	}
+    public void setTerminales(List<Terminal> terminales) {
+		this.terminales = terminales;
+	}
+    
+    public void agregarTerminal(Terminal nuevaTerminal) {
+		this.getTerminales().add(nuevaTerminal);
+	}
+
+	
+
+	
 
 
 }

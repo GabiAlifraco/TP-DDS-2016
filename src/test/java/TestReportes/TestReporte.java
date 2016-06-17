@@ -3,31 +3,22 @@ package TestReportes;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.uqbar.geodds.Point;
-
-import CaracteristicaPoi.Domicilio;
-import CaracteristicaPoi.Region;
-import CaracteristicaPoi.Ubicacion;
 import Inicializacion.CreadorDeObjetos;
 import Notificaciones.NotificacionBusqueda;
 import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
-import Pois.Banco;
-import Pois.ParadaColectivo;
 import Reportes.Reporte;
 import Reportes.ReporteCantResultadosPorBusquedaYTerminal;
 import Reportes.ReporteTotalCantBusquedasPorFecha;
 import Reportes.ResultadosReportes;
 import Resultado.Resultado;
 import Terminal.Terminal;
-
 
 public class TestReporte extends CreadorDeObjetos {
 

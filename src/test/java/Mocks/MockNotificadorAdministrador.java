@@ -14,7 +14,9 @@ public class MockNotificadorAdministrador implements NotificacionBusqueda{
 
 	@Override
 	public void notificarBusqueda(Resultado resultado) {
-		this.administradorNotificado = true;	
+		if(resultado.getSegundosBusqueda() > tiempoMaximoBusqueda){
+			this.administradorNotificado = true;
+		}
 	}
 	public void setTiempoMaximoBusqueda(long tiempoMaximoBusqueda) {
 		this.tiempoMaximoBusqueda = tiempoMaximoBusqueda;
