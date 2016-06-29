@@ -24,7 +24,6 @@ import Pois.Banco;
 import Pois.CGP;
 import Pois.Comercio;
 import Pois.ParadaColectivo;
-import Reportes.ResultadosReportes;
 import Resultado.Resultado;
 import Terminal.Terminal;
 
@@ -228,7 +227,7 @@ public abstract class CreadorDeObjetos {
 	}
 
 	//Envio de Mail
-	private ResultadosReportes sistema;
+	
 	private Resultado resultado;
 	private LocalDate fecha;
 	protected MockNotificadorAdministrador notificadorAdministrador;
@@ -236,14 +235,14 @@ public abstract class CreadorDeObjetos {
 	private List<OrigenDeDatos> servicios;
 	
 	protected void crearMail(){
-		sistema = new ResultadosReportes();
+		
 		fecha = LocalDate.parse("2016-10-16");
 		notificadorAdministrador = new MockNotificadorAdministrador();
 		terminal = new Terminal("Terminal Abasto", servicios);
 		terminal.getObserverBusquedas().add(notificadorAdministrador);
 		resultado = new Resultado(fecha, LocalTime.of(10, 40, 02), LocalTime.of(10, 40, 10), "sarasa", 4, terminal);
 		notificadorAdministrador.setTiempoMaximoBusqueda(5);
-		notificadorAdministrador.setSistema(sistema);
+		
 		terminal.notificarBusqueda(resultado);
 	}
 }

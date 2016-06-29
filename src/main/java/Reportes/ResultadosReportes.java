@@ -9,7 +9,6 @@ import Terminal.Terminal;
 public class ResultadosReportes {
 	private Reporte reporteFecha;
 	private Reporte reporteCantidadBusquedaYTerminal;
-	private static ResultadosReportes instance = null;
 	List<Terminal> terminales = new ArrayList<Terminal>();
 	public String mailAdministrador;
 
@@ -18,34 +17,8 @@ public class ResultadosReportes {
 		return reporteFecha.obtenerReporte(terminales);
 	}
 
-	public void obtenerResultadosParcialesPorTerminal(Terminal terminal) {
 
-		System.out.println("Usuario: " + terminal.getNombreTerminal());
-		System.out.println("Cantidad Resultados Parciales");
-		terminal.obtenerResultadosParciales().stream().forEach(resultado -> System.out.println(resultado));
-	}
-	
-	public void obtenerResultadosTotales() {
-		terminales.stream().forEach(terminal -> imprimirResultadosTotales(terminal));
-	}
-
-	private void imprimirResultadosTotales(Terminal terminal) {
-		System.out.println("Usuario: " + terminal.getNombreTerminal() + " " + " Cantidad de Resultados Totales: "
-				+ obtenerSumatoriaBusquedas(terminal));
-	}
-
-	private int obtenerSumatoriaBusquedas(Terminal terminal) {
-		return terminal.obtenerResultadosParciales().stream().mapToInt(i -> i).sum();
-	}
-	
-	public static ResultadosReportes getInstance() {
-		if (instance == null) {
-			instance = new ResultadosReportes();
-		}
-		return instance;
-	}
-    
-	public void activarReporteFecha() {
+    public void activarReporteFecha() {
 		this.reporteFecha = new ReporteTotalCantBusquedasPorFecha();
 	}
 
@@ -57,10 +30,6 @@ public class ResultadosReportes {
 		this.setReporteCantidadBusquedaYTerminal(new ReporteCantResultadosPorBusquedaYTerminal());
 	}
 	
-	public String getMailAdministrador() {
-		return mailAdministrador;
-	}
-
 	public Reporte getReporteFecha() {
 		return reporteFecha;
 	}

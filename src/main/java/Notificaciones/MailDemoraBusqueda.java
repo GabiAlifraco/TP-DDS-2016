@@ -13,12 +13,12 @@ public class MailDemoraBusqueda implements NotificacionBusqueda{
     @Override
 	public void notificarBusqueda(Resultado resultado) {
 		if(busquedaSuperaTiempoMaximoDemora(resultado.getSegundosBusqueda())){
-			sendMail(sistema.getMailAdministrador());
+			sendMail();
 		}
 		
 	}
 
-	private void sendMail(String mailAdministrador) {
+	private void sendMail() {
 		
 		System.out.println("Mail Enviado");
 	}
