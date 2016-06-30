@@ -152,17 +152,31 @@ public abstract class CreadorDeObjetos {
 	private List<DayOfWeek> diasDiario = Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,
 			DayOfWeek.THURSDAY, DayOfWeek.FRIDAY, DayOfWeek.SATURDAY);
 	private Ubicacion ubicacionKiosco;
+	private Point coordenadaKioscoDiario;
 	
 	protected Comercio elDiarioDelPueblo;
-	protected void crearElDiarioDelPueblo(Point coordenada){
-
+	protected void crearElDiarioDelPueblo(){
+		coordenadaKioscoDiario = new Point (34.5553, 33.5422);
 		domicilioKiosco = new Domicilio("Av.Monroe", 1740, "Olazabal", "Virrey del Pino", 1900, 0, 0, 0, 1111);
 		regionKiosco = new Region("CABA", "Palermo", "Bs As", "Argentina");
 		disponibilidadDiario = new Disponibilidad(diasDiario, LocalTime.of(6, 0), LocalTime.of(12, 0));
 		horariosDiario.add(disponibilidadDiario);
 		List<String> palabrasClaveKioscoDiario = Arrays.asList("Revistas", "Diarios", "Crucigrama");
-		ubicacionKiosco = new Ubicacion(domicilioKiosco, regionKiosco, coordenada);
+		ubicacionKiosco = new Ubicacion(domicilioKiosco, regionKiosco, coordenadaKioscoDiario);
 		elDiarioDelPueblo = new Comercio("El diario del pueblo", ubicacionKiosco, horariosDiario,
+				palabrasClaveKioscoDiario);
+	}
+	protected Comercio KioscoPepe;
+	protected void crearKioscoPepe(){
+
+		coordenadaKioscoDiario = new Point(12.8741, 21.0421);
+		domicilioKiosco = new Domicilio("gfd", 4554, "Ofddf", "Vfffgino", 200, 0, 0, 0, 1241);
+		regionKiosco = new Region("CABA", "Villa Crespo", "Bs As", "Argentina");
+		disponibilidadDiario = new Disponibilidad(diasDiario, LocalTime.of(6, 0), LocalTime.of(20, 0));
+		horariosDiario.add(disponibilidadDiario);
+		List<String> palabrasClaveKioscoDiario = Arrays.asList("kiosco", "caramelos", "comida", "bebidas");
+		ubicacionKiosco = new Ubicacion(domicilioKiosco, regionKiosco, coordenadaKioscoDiario);
+		KioscoPepe = new Comercio("El Pepe", ubicacionKiosco, horariosDiario,
 				palabrasClaveKioscoDiario);
 	}
 	

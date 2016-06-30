@@ -31,7 +31,6 @@ public class TestLibreria extends CreadorDeObjetos {
 	private List<DayOfWeek> diasLibreria = Arrays.asList(DayOfWeek.MONDAY,DayOfWeek.TUESDAY,DayOfWeek.WEDNESDAY,DayOfWeek.THURSDAY,DayOfWeek.FRIDAY,DayOfWeek.SATURDAY);
 	private Ubicacion ubicacionLibreria;
 	
-	private Point coordenadaKioscoDiario;
 
 
 	@Before
@@ -44,25 +43,23 @@ public class TestLibreria extends CreadorDeObjetos {
 		List<String> palabrasClaveLibreria = Arrays.asList("Cuadernos", "Libros", "Lapiceras");
 		ubicacionLibreria = new Ubicacion(domicilioLibreria, regionLibreria, coordenadaLibreria);
 		elEstudiante = new Comercio("El estudiante", ubicacionLibreria,horariosLibreria, palabrasClaveLibreria);
-		coordenadaKioscoDiario = new Point(12.8741, 21.0421);
-		this.crearElDiarioDelPueblo(coordenadaKioscoDiario);
+		this.crearKioscoPepe();
 		
 
 	}
 
 	@Test
 	public void estaCercaLaLibreriaDeLKioscoDiario() {
-		
 		elEstudiante.setDistancia(200);
-		elDiarioDelPueblo.setDistancia(100);
-		Assert.assertTrue(elEstudiante.estaCercaDe(elDiarioDelPueblo.getCoordenada()));
+		KioscoPepe.setDistancia(100);
+		Assert.assertTrue(elEstudiante.estaCercaDe(KioscoPepe.getCoordenada()));
 	}
 
 	@Test
 	public void distanciaEntreLaLibreriaYElKioscoDiario() {
 		
 		Assert.assertEquals(52.25135818766176, elEstudiante.getUbicacion().getCoordenadas()
-				.distance(elDiarioDelPueblo.getCoordenada()), 0);
+				.distance(KioscoPepe.getCoordenada()), 0);
 	}
 
 }

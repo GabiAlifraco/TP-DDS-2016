@@ -5,18 +5,15 @@ import java.time.LocalTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.uqbar.geodds.Point;
 
 import Inicializacion.CreadorDeObjetos;
 
 public class TestKioscoDiario extends CreadorDeObjetos {
-	private Point coordenadaKioscoDiario;
 
 	@Before
 	public void initialize() {
 		this.crearParada114();
-		coordenadaKioscoDiario = new Point (34.5553, 33.5422);
-		this.crearElDiarioDelPueblo(coordenadaKioscoDiario);
+		this.crearElDiarioDelPueblo();
 	}
 
 	@Test

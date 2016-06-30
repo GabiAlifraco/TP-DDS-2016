@@ -11,7 +11,7 @@ import Pois.Poi;
 public class Mapa implements OrigenDeDatos {
 
 	private static Mapa instance = null;
-	public List<Poi> pois = new ArrayList<Poi>();
+	private List<Poi> pois = new ArrayList<Poi>();
 
 	// Alta, Baja y Modificaci�n de un Poi
 	public void agregarUnPoi(Poi unPoi) {
