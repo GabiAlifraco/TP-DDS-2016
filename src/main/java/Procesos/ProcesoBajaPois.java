@@ -6,7 +6,7 @@ import OrigenesDeDatos.Mapa;
 import Pois.Poi;
 import seviciosExternos.ServicioBajas;
 
-public class ProcesoBajaPois {
+public class ProcesoBajaPois extends Proceso{
 
 	private ServicioBajas servicioRESTBajas;
 	Mapa mapa = Mapa.getInstance();
@@ -15,9 +15,10 @@ public class ProcesoBajaPois {
 		this.servicioRESTBajas = servicioBajas;
 	}
 	
-	public void ejecutar() {
+	public boolean ejecutar() {
 		List<Poi> poisADarDeBaja = servicioRESTBajas.consultarBajas();
 		poisADarDeBaja.stream().forEach(poiDTO -> mapa.eliminarUnPoi(poiDTO));
+		return finalizoOK;
 	}
 
 }
