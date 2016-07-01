@@ -25,6 +25,8 @@ public class Terminal {
 	List<OrigenDeDatos> servicios = new ArrayList<OrigenDeDatos>();
 	private List<Resultado> busquedas = new ArrayList<Resultado>();
 	List<NotificacionBusqueda> losObserverBusqueda = new ArrayList<NotificacionBusqueda>();
+	private String comunaTerminal;
+
 
 	public Terminal(String nombre, List<OrigenDeDatos> servicios) {
 		setNombreTerminal(nombre);
@@ -118,4 +120,14 @@ public class Terminal {
 		return this.busquedas;
 	}
 
+	public boolean seRealizoBusqueda(LocalDate fecha){
+		return getBusquedas().stream().anyMatch(busqueda -> busqueda.getFecha().equals(fecha));
+	}
+	public String getComunaTerminal() {
+		return comunaTerminal;
+	}
+	
+	public void setComunaTerminal(String comunaTerminal) {
+		this.comunaTerminal = comunaTerminal;
+	}
 }

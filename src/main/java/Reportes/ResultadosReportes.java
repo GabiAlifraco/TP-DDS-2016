@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import Terminal.Terminal;
 
 public class ResultadosReportes {
@@ -12,52 +14,53 @@ public class ResultadosReportes {
 	List<Terminal> terminales = new ArrayList<Terminal>();
 	public String mailAdministrador;
 
-	
 	public Map<LocalDate, Integer> obtenerReporteTotalBusquedasPorFecha() {
 		return reporteFecha.obtenerReporte(terminales);
 	}
 
-
-    public void activarReporteFecha() {
+	public void activarReporteFecha() {
 		this.reporteFecha = new ReporteTotalCantBusquedasPorFecha();
 	}
 
 	public void desactivarReporteFecha() {
 		this.reporteFecha = new ReporteDesactivado();
 	}
-    
-	public void activarReporteBusqPorTerminal(){
+
+	public void activarReporteBusqPorTerminal() {
 		this.setReporteCantidadBusquedaYTerminal(new ReporteCantResultadosPorBusquedaYTerminal());
 	}
-	
+
 	public Reporte getReporteFecha() {
 		return reporteFecha;
 	}
-    public void setReporteFecha(Reporte reporteFecha) {
+
+	public void setReporteFecha(Reporte reporteFecha) {
 		this.reporteFecha = reporteFecha;
 	}
-    
-    public Reporte getReporteCantidadBusquedaYTerminal() {
+
+	public Reporte getReporteCantidadBusquedaYTerminal() {
 		return reporteCantidadBusquedaYTerminal;
 	}
-    public void setReporteCantidadBusquedaYTerminal(Reporte reporteCantidadBusquedaYTerminal) {
+
+	public void setReporteCantidadBusquedaYTerminal(Reporte reporteCantidadBusquedaYTerminal) {
 		this.reporteCantidadBusquedaYTerminal = reporteCantidadBusquedaYTerminal;
 	}
-    
-    private List<Terminal> getTerminales() {
+
+	private List<Terminal> getTerminales() {
 		return this.terminales;
 	}
-    public void setTerminales(List<Terminal> terminales) {
+
+	public void setTerminales(List<Terminal> terminales) {
 		this.terminales = terminales;
 	}
-    
-    public void agregarTerminal(Terminal nuevaTerminal) {
+
+	public void agregarTerminal(Terminal nuevaTerminal) {
 		this.getTerminales().add(nuevaTerminal);
 	}
 
-	
-
-	
-
+	public List<Terminal> terminalesQueEjecutaronBusquedas(LocalDate fecha) {
+		return terminales.stream().filter(terminal -> terminal.seRealizoBusqueda(fecha))
+				.collect(Collectors.toList());
+	}
 
 }

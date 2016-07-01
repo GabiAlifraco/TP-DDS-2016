@@ -8,8 +8,8 @@ import Resultado.Resultado;
 public class MailDemoraBusqueda implements NotificacionBusqueda{
 
 	private long tiempoMaximoBusqueda;
-    private ResultadosReportes sistema;
-	
+	private ResultadosReportes sistema;
+    	
     @Override
 	public void notificarBusqueda(Resultado resultado) {
 		if(busquedaSuperaTiempoMaximoDemora(resultado.getSegundosBusqueda())){
