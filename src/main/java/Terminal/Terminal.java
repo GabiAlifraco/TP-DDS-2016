@@ -15,7 +15,6 @@ import OrigenesDeDatos.OrigenDeDatos;
 import Pois.Poi;
 import Resultado.Resultado;
 
-
 public class Terminal {
 
 	// Se agrega el getInstance del singleton de la base
@@ -27,7 +26,6 @@ public class Terminal {
 	List<NotificacionBusqueda> losObserverBusqueda = new ArrayList<NotificacionBusqueda>();
 	private String comunaTerminal;
 
-
 	public Terminal(String nombre, List<OrigenDeDatos> servicios) {
 		setNombreTerminal(nombre);
 		setServicios(servicios);
@@ -35,7 +33,6 @@ public class Terminal {
 
 	// Esto es para la entrega 1: Calculo de Cercania
 	public List<Poi> consultaDeCercania() {
-
 		return base.getPois().stream().filter(poi -> poi.estaCercaDe(coordenadaDispositivoMovil))
 				.collect(Collectors.toList());
 	}

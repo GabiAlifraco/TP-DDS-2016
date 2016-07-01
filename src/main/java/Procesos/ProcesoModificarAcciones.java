@@ -11,16 +11,12 @@ public class ProcesoModificarAcciones extends Proceso {
 	private Criterio criterio;
 	
 	public ProcesoModificarAcciones(Cronograma cronograma, Criterio criterio) {
-
 		this.cronograma = cronograma;
 		this.criterio = criterio;
 	}
 
 	public boolean ejecutar() {
-		
 		criterio.aplicarConfiguracion(resultados.terminalesQueEjecutaronBusquedas(LocalDate.now()));
-		
-		
 		return finalizoOK;
 	}
 
