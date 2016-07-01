@@ -119,7 +119,7 @@ public abstract class Poi {
 		if (coordenada == null) {
 			if (other.coordenada != null)
 				return false;
-		} else if (!coordenada.equals(other.coordenada))
+		} else if (!(coordenada.distance(other.coordenada) == 0))
 			return false;
 		return true;
 	}

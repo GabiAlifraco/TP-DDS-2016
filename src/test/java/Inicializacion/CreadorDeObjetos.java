@@ -104,7 +104,7 @@ public abstract class CreadorDeObjetos {
 		rentas = new ServicioCGP("Rentas", horariosRentas);
 		serviciosCGP = Arrays.asList(rentas, tesoreria);
 
-		comuna3 = new CGP("CGP comuna3", "Recoleta", serviciosCGP);
+		comuna3 = new CGP("3", "Recoleta", serviciosCGP);
 		comuna3.setCoordenada(new Point(34.4124, 24.4856));
 		Point coordenadaCGP = new Point(34.4124, 24.4856);
 		Point coordenadaCGP2 = new Point(34.4124, 24.4852);

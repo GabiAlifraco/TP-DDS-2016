@@ -6,8 +6,6 @@ import java.util.stream.Collectors;
 
 import Pois.Poi;
 
-
-
 public class Mapa implements OrigenDeDatos {
 
 	private static Mapa instance = null;
@@ -33,7 +31,6 @@ public class Mapa implements OrigenDeDatos {
 		return getPois().stream().filter(poi -> poi.textoIncluido(unNombre, unaPalabraClave))
 				.collect(Collectors.toList());
 	}
-	
 
 	public List<Poi> getPois() {
 		return this.pois;
