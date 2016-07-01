@@ -66,6 +66,7 @@ public class TestProcesoActualizarPalabrasClave extends CreadorDeObjetos {
 		actualizarPalabrasClave.ejecutar();
 		List<String> palabrasNoEsperadas = Arrays.asList("Revistas","Crucigrama");
 		Assert.assertFalse(base.getPois().get(0).getPalabrasClave().equals(palabrasNoEsperadas));
+		Assert.assertTrue(actualizarPalabrasClave.finalizoOK);
 		
 	}
 	@Test
@@ -74,8 +75,8 @@ public class TestProcesoActualizarPalabrasClave extends CreadorDeObjetos {
 		terminalAbasto.getBase().agregarUnPoi(KioscoPepe);
 		terminalAbasto.getBase().agregarUnPoi(elDiarioDelPueblo);
 		terminalAbasto.getBase().agregarUnPoi(carrouselPlinPlin);
-		archivo.toFile().setExecutable(false);
-		actualizarPalabrasClave.ejecutar ();
+		archivo.toFile().delete();
+		actualizarPalabrasClave.ejecutar();
 		Assert.assertFalse(actualizarPalabrasClave.finalizoOK);
 		
 	}

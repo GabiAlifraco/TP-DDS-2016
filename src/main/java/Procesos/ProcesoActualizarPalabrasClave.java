@@ -20,6 +20,7 @@ public class ProcesoActualizarPalabrasClave extends Proceso {
 	public boolean ejecutar() {
 		try {
 			this.leerPalabrasAModificar(archivoConActualizaciones);
+			finalizoOK=true;
 		} catch (IOException e) {
 			finalizoOK=false;
 		}
