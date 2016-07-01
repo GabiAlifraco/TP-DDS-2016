@@ -11,13 +11,22 @@ import OrigenesDeDatos.Mapa;
 public class ProcesoActualizarPalabrasClave extends Proceso {
 
 	private Mapa base= Mapa.getInstance();
+	private Path archivoConActualizaciones;
 	
+	public ProcesoActualizarPalabrasClave(Path archivo){
+		archivoConActualizaciones= archivo;
+	}
 	@Override
 	public boolean ejecutar() {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			this.leerPalabrasAModificar(archivoConActualizaciones);
+		} catch (IOException e) {
+			finalizoOK=false;
+		}
+		return finalizoOK;
 	}
-	public void leerPalabrasAModificar(Path archivo) throws IOException{
+
+	private void leerPalabrasAModificar(Path archivo) throws IOException{
 		Files.lines(archivo).forEachOrdered(linea -> modificarPalabrasClave(linea));
 	}
 
@@ -27,4 +36,5 @@ public class ProcesoActualizarPalabrasClave extends Proceso {
 		base.getPois().stream().filter(poi -> poi.mismoNombre(nombre)).forEach(poi -> poi.setPalabrasClave(nuevasPClaves));
 	}
 
+	
 }
