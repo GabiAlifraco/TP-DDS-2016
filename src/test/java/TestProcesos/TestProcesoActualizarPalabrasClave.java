@@ -18,8 +18,8 @@ public class TestProcesoActualizarPalabrasClave extends CreadorDeObjetos {
 	private Terminal terminalAbasto;
 	Mapa base = Mapa.getInstance();
 	List<OrigenDeDatos> servicios = Arrays.asList(base);
-	private ProcesoActualizarPalabrasClave actualizarPalabrasClave = new ProcesoActualizarPalabrasClave();
 	private Path archivo;
+	private ProcesoActualizarPalabrasClave actualizarPalabrasClave;
 	private List<String> lineas =Arrays.asList("Carrousel PlinPlin;colegio escolar uniformes modas", "El diario del pueblo;Revistas Diarios Crucigrama Peliculas","El kiosco de Pepe;Revistas Crucigrama");
 
 	@Before
@@ -29,6 +29,7 @@ public class TestProcesoActualizarPalabrasClave extends CreadorDeObjetos {
 		this.crearCarrouselPlinPlin();
 		this.crearElDiarioDelPueblo();
 		this.crearKioscoPepe();
+		actualizarPalabrasClave = new ProcesoActualizarPalabrasClave(archivo);
 		terminalAbasto = new Terminal("Terminal Abasto",servicios);
 		terminalAbasto.getBase().getPois().clear();
 		archivo.toFile().deleteOnExit();
@@ -39,7 +40,7 @@ public class TestProcesoActualizarPalabrasClave extends CreadorDeObjetos {
 		terminalAbasto.getBase().agregarUnPoi(KioscoPepe);
 		terminalAbasto.getBase().agregarUnPoi(elDiarioDelPueblo);
 		terminalAbasto.getBase().agregarUnPoi(carrouselPlinPlin);
-		actualizarPalabrasClave.leerPalabrasAModificar(archivo);
+		actualizarPalabrasClave.ejecutar();
 		List<String> palabrasEsperadas = Arrays.asList("colegio","escolar","uniformes","modas");
 		Assert.assertTrue(base.getPois().get(2).getPalabrasClave().equals(palabrasEsperadas));
 		
@@ -51,7 +52,7 @@ public class TestProcesoActualizarPalabrasClave extends CreadorDeObjetos {
 		terminalAbasto.getBase().agregarUnPoi(KioscoPepe);
 		terminalAbasto.getBase().agregarUnPoi(elDiarioDelPueblo);
 		terminalAbasto.getBase().agregarUnPoi(carrouselPlinPlin);
-		actualizarPalabrasClave.leerPalabrasAModificar(archivo);
+		actualizarPalabrasClave.ejecutar();
 		List<String> palabrasEsperadas = Arrays.asList("Revistas","Diarios","Crucigrama","Peliculas");
 		Assert.assertTrue(base.getPois().get(1).getPalabrasClave().equals(palabrasEsperadas));
 		
@@ -62,10 +63,21 @@ public class TestProcesoActualizarPalabrasClave extends CreadorDeObjetos {
 		terminalAbasto.getBase().agregarUnPoi(KioscoPepe);
 		terminalAbasto.getBase().agregarUnPoi(elDiarioDelPueblo);
 		terminalAbasto.getBase().agregarUnPoi(carrouselPlinPlin);
-		actualizarPalabrasClave.leerPalabrasAModificar(archivo);
+		actualizarPalabrasClave.ejecutar();
 		List<String> palabrasNoEsperadas = Arrays.asList("Revistas","Crucigrama");
 		Assert.assertFalse(base.getPois().get(0).getPalabrasClave().equals(palabrasNoEsperadas));
+		Assert.assertTrue(actualizarPalabrasClave.finalizoOK);
 		
 	}
-	
+	@Test
+	public void testNoFinalizaOK() throws IOException{
+		
+		terminalAbasto.getBase().agregarUnPoi(KioscoPepe);
+		terminalAbasto.getBase().agregarUnPoi(elDiarioDelPueblo);
+		terminalAbasto.getBase().agregarUnPoi(carrouselPlinPlin);
+		archivo.toFile().delete();
+		actualizarPalabrasClave.ejecutar();
+		Assert.assertFalse(actualizarPalabrasClave.finalizoOK);
+		
+	}
 }
