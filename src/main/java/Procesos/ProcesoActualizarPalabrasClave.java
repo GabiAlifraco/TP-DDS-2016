@@ -7,15 +7,27 @@ import java.util.Arrays;
 import java.util.List;
 
 import OrigenesDeDatos.Mapa;
+import PoliticasReejecucion.Politica;
 
 public class ProcesoActualizarPalabrasClave extends Proceso {
+	
+	public ProcesoActualizarPalabrasClave(Path archivo, Politica politica, Almacenador almacenador){
+		this.archivo = archivo;
+		this.politicaFallo = politica;
+		this.almacenadorResultados = almacenador;
+	}
 
 	private Mapa base= Mapa.getInstance();
+	private Path archivo;
 	
-	@Override
-	public boolean ejecutar() {
-		// TODO Auto-generated method stub
-		return false;
+	
+	
+	public void ejecutarProceso() {
+			try {
+				this.leerPalabrasAModificar(archivo);
+			} catch (IOException e) {
+				
+			}
 	}
 	public void leerPalabrasAModificar(Path archivo) throws IOException{
 		Files.lines(archivo).forEachOrdered(linea -> modificarPalabrasClave(linea));

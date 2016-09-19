@@ -6,7 +6,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import Mocks.MockBankService;
+import MocksServicios.MockBankService;
 import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
 import OrigenesDeDatos.ProveedorBancos;

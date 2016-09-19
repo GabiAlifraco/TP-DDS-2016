@@ -10,7 +10,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import CaracteristicaPoi.ServicioCGP;
-import Mocks.MockedCGPService;
+import MocksServicios.MockedCGPService;
 import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
 import OrigenesDeDatos.ProveedorCGPs;

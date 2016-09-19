@@ -1,6 +1,5 @@
 package TestProcesos;
 
-
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -8,64 +7,77 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import java.nio.file.*;
+
+import Procesos.Almacenador;
 import Procesos.ProcesoActualizarPalabrasClave;
 import Inicializacion.CreadorDeObjetos;
+import MocksProcesos.MockAlmacenadorResultados;
 import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
+import PoliticasReejecucion.NingunaAccion;
+import PoliticasReejecucion.Politica;
 import Terminal.Terminal;
 
 public class TestProcesoActualizarPalabrasClave extends CreadorDeObjetos {
 	private Terminal terminalAbasto;
 	Mapa base = Mapa.getInstance();
 	List<OrigenDeDatos> servicios = Arrays.asList(base);
-	private ProcesoActualizarPalabrasClave actualizarPalabrasClave = new ProcesoActualizarPalabrasClave();
+	Politica politica;
+	Almacenador almacenador;
+	private ProcesoActualizarPalabrasClave actualizarPalabrasClave;
 	private Path archivo;
-	private List<String> lineas =Arrays.asList("Carrousel PlinPlin;colegio escolar uniformes modas", "El diario del pueblo;Revistas Diarios Crucigrama Peliculas","El kiosco de Pepe;Revistas Crucigrama");
+	private List<String> lineas = Arrays.asList("Carrousel PlinPlin;colegio escolar uniformes modas",
+			"El diario del pueblo;Revistas Diarios Crucigrama Peliculas", "El kiosco de Pepe;Revistas Crucigrama");
 
 	@Before
-	public void initialize() throws IOException{
+	public void initialize() throws IOException {
 		archivo = Paths.get("actualizarPalabrasClave.txt");
 		Files.write(archivo, lineas);
 		this.crearCarrouselPlinPlin();
 		this.crearElDiarioDelPueblo();
 		this.crearKioscoPepe();
-		terminalAbasto = new Terminal("Terminal Abasto",servicios);
+		politica = new NingunaAccion();
+		almacenador = new MockAlmacenadorResultados();
+		actualizarPalabrasClave = new ProcesoActualizarPalabrasClave(archivo, politica, almacenador);
+		terminalAbasto = new Terminal("Terminal Abasto", servicios);
 		terminalAbasto.getBase().getPois().clear();
 		archivo.toFile().deleteOnExit();
 	}
+
 	@Test
-	public void testActualizaCarrousel() throws IOException{
-		
+	public void testActualizaCarrousel() throws IOException {
+
 		terminalAbasto.getBase().agregarUnPoi(KioscoPepe);
 		terminalAbasto.getBase().agregarUnPoi(elDiarioDelPueblo);
 		terminalAbasto.getBase().agregarUnPoi(carrouselPlinPlin);
 		actualizarPalabrasClave.leerPalabrasAModificar(archivo);
-		List<String> palabrasEsperadas = Arrays.asList("colegio","escolar","uniformes","modas");
+		List<String> palabrasEsperadas = Arrays.asList("colegio", "escolar", "uniformes", "modas");
 		Assert.assertTrue(base.getPois().get(2).getPalabrasClave().equals(palabrasEsperadas));
-		
-		
+
 	}
+
 	@Test
-	public void testActualizaElDiarioDelPueblo() throws IOException{
-		
+	public void testActualizaElDiarioDelPueblo() throws IOException {
+
 		terminalAbasto.getBase().agregarUnPoi(KioscoPepe);
 		terminalAbasto.getBase().agregarUnPoi(elDiarioDelPueblo);
 		terminalAbasto.getBase().agregarUnPoi(carrouselPlinPlin);
 		actualizarPalabrasClave.leerPalabrasAModificar(archivo);
-		List<String> palabrasEsperadas = Arrays.asList("Revistas","Diarios","Crucigrama","Peliculas");
+		List<String> palabrasEsperadas = Arrays.asList("Revistas", "Diarios", "Crucigrama", "Peliculas");
 		Assert.assertTrue(base.getPois().get(1).getPalabrasClave().equals(palabrasEsperadas));
-		
+
 	}
+
 	@Test
-	public void testNoActualizoKioscoPepe() throws IOException{
-		
+	public void testNoActualizoKioscoPepe() throws IOException {
+
 		terminalAbasto.getBase().agregarUnPoi(KioscoPepe);
 		terminalAbasto.getBase().agregarUnPoi(elDiarioDelPueblo);
 		terminalAbasto.getBase().agregarUnPoi(carrouselPlinPlin);
 		actualizarPalabrasClave.leerPalabrasAModificar(archivo);
-		List<String> palabrasNoEsperadas = Arrays.asList("Revistas","Crucigrama");
+		List<String> palabrasNoEsperadas = Arrays.asList("Revistas", "Crucigrama");
 		Assert.assertFalse(base.getPois().get(0).getPalabrasClave().equals(palabrasNoEsperadas));
-		
+
 	}
-	
+
 }

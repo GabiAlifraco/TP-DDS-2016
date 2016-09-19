@@ -18,7 +18,7 @@ import CaracteristicaPoi.Ubicacion;
 import DTOs.CentroDTO;
 import DTOs.RangoServicioDTO;
 import DTOs.ServicioDTO;
-import Mocks.MockNotificadorAdministrador;
+import MocksServicios.MockNotificadorAdministrador;
 import OrigenesDeDatos.OrigenDeDatos;
 import Pois.Banco;
 import Pois.CGP;

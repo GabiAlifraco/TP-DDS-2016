@@ -1,4 +1,4 @@
-package Mocks;
+package MocksServicios;
 
 import DTOs.CentroDTO;
 import seviciosExternos.CGPService;

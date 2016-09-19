@@ -1,4 +1,4 @@
-package Mocks;
+package MocksServicios;
 
 import Notificaciones.NotificacionBusqueda;
 import Resultado.Resultado;
