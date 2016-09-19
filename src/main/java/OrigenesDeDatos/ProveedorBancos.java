@@ -14,7 +14,6 @@ public class ProveedorBancos implements OrigenDeDatos {
 	private BankService servicioBanco;
 
 	public List<Poi> buscarPois(String nombreBanco, String servicio) {
-
 		List<BancoDTO> bancosEncontrados = servicioBanco.getSucursalesBancosByNombreBanco(nombreBanco, servicio);
 		return bancosEncontrados
 				.stream()
