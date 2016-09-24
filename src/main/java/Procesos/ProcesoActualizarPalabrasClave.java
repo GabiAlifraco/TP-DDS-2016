@@ -5,8 +5,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import OrigenesDeDatos.Mapa;
+import Pois.Poi;
 import PoliticasReejecucion.Politica;
 
 public class ProcesoActualizarPalabrasClave extends Proceso {
@@ -36,7 +38,12 @@ public class ProcesoActualizarPalabrasClave extends Proceso {
 	private void modificarPalabrasClave(String linea) {
 		String nombre = linea.split("[;]")[0];
 		List<String> nuevasPClaves = Arrays.asList(linea.split("[;]")[1].split("[ ]"));
-		base.getPois().stream().filter(poi -> poi.mismoNombre(nombre)).forEach(poi -> poi.setPalabrasClave(nuevasPClaves));
+		List<Poi> poisAModificar = base.getPois().stream().filter(poi -> poi.mismoNombre(nombre)).collect(Collectors.toList());
+		
+		for(Poi poi: poisAModificar){
+			poi.setPalabrasClave(nuevasPClaves);
+			cantidadElementosAfectados++;
+		}
 	}
 
 }

@@ -26,9 +26,11 @@ public class ProcesoBajaPois extends Proceso {
 	public void ejecutarProceso(){
 	
 		poisADarDeBaja = servicioRESTBajas.consultarBajas();
-		cantidadElementosAfectados = poisADarDeBaja.size();
-		poisADarDeBaja.stream().forEach(poi -> mapa.eliminarUnPoi(poi));
 		
+		for (Poi poi: poisADarDeBaja){
+		mapa.eliminarUnPoi(poi);
+		cantidadElementosAfectados++;
+		}
 	}
 	
 }

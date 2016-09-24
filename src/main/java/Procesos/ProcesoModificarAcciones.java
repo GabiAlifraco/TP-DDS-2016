@@ -24,7 +24,7 @@ public class ProcesoModificarAcciones extends Proceso {
 	}
 		
 	public void ejecutarProceso() {
-		criterio.aplicarConfiguracion(resultados.terminalesQueEjecutaronBusquedas(LocalDate.now()));		
+		cantidadElementosAfectados = criterio.aplicarConfiguracion(resultados.terminalesQueEjecutaronBusquedas(LocalDate.now()));		
 	}
 
 }

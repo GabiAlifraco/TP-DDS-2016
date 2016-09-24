@@ -35,7 +35,6 @@ public abstract class Proceso {
 
 		catch (Exception e) {
 
-			cantidadElementosAfectados = 0;
 			finalizoOK = false;
 			politicaFallo.aplicarPolitica(this);
 
