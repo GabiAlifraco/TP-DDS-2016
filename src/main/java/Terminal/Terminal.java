@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import org.uqbar.geodds.Point;
 
+import Notificaciones.AlmacenadorBusquedas;
 import Notificaciones.NotificacionBusqueda;
 import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
@@ -19,6 +20,7 @@ public class Terminal {
 
 	// Se agrega el getInstance del singleton de la base
 	public Mapa base = Mapa.getInstance();
+	private AlmacenadorBusquedas almacenador;
 	private Point coordenadaDispositivoMovil;
 	private String nombreTerminal;
 	List<OrigenDeDatos> servicios = new ArrayList<OrigenDeDatos>();
@@ -31,30 +33,28 @@ public class Terminal {
 		setServicios(servicios);
 	}
 
-	// Esto es para la entrega 1: Calculo de Cercania
 	public List<Poi> consultaDeCercania() {
 		return base.getPois().stream().filter(poi -> poi.estaCercaDe(coordenadaDispositivoMovil))
 				.collect(Collectors.toList());
 	}
 
-	// Esto es para la entrega 1: Calculo de la disponibilidad
 	public boolean estaDisponiblePoi(String nombreServicio, DayOfWeek dia, String unaHora) {
 		return base.getPois().stream().filter(poi -> poi.getNombre().equals(nombreServicio))
 				.anyMatch(poi -> poi.estaDisponible(nombreServicio, dia, LocalTime.parse(unaHora)));
 	}
 
-	// Esto es para la entrega 1: Busqueda de puntos
 	public List<Poi> busquedaDePuntos(String unNombre, String unaPalabraClave) {
 
 		LocalTime comienzo = LocalTime.now();
-		List<Poi> listaResutados = obtenerResultadosServicios(unNombre, unaPalabraClave).stream().collect(Collectors.toList());
-		LocalTime finalizacion = LocalTime .now();
+		List<Poi> listaResutados = obtenerResultadosServicios(unNombre, unaPalabraClave).stream()
+				.collect(Collectors.toList());
+		LocalTime finalizacion = LocalTime.now();
 
-		Resultado resultado = new Resultado(LocalDate.now(), finalizacion, comienzo,
-				unNombre + " " + unaPalabraClave, listaResutados.size(), this);
+		Resultado resultado = new Resultado(LocalDate.now(), finalizacion, comienzo, unNombre + " " + unaPalabraClave,
+				listaResutados.size(), this);
 
 		agregarBusqueda(resultado);
-		notificarBusqueda(resultado,this);
+		notificarBusqueda(resultado, this);
 
 		return listaResutados;
 	}
@@ -71,9 +71,16 @@ public class Terminal {
 		return resultadosParciales;
 	}
 
-	
+	public void activarReportes() {
+		this.almacenador.activarReportes(this);
+	}
+
+	public void desactivarReportes() {
+		this.almacenador.desactivarReportes(this);
+	}
+
 	public void notificarBusqueda(Resultado resultado, Terminal terminal) {
-		losObserverBusqueda.stream().forEach(observerBusqueda -> observerBusqueda.actualizar(resultado,terminal));
+		losObserverBusqueda.stream().forEach(observerBusqueda -> observerBusqueda.actualizar(resultado, terminal));
 	}
 
 	public void agregarObserver(NotificacionBusqueda observer) {
@@ -83,7 +90,7 @@ public class Terminal {
 	public void eliminarObserver(NotificacionBusqueda observer) {
 		losObserverBusqueda.remove(observer);
 	}
-	
+
 	private void agregarBusqueda(Resultado resultado) {
 		busquedas.add(resultado);
 	}
@@ -95,13 +102,15 @@ public class Terminal {
 	public List<OrigenDeDatos> getServicios() {
 		return this.servicios;
 	}
-	
+
 	public List<NotificacionBusqueda> getObserverBusquedas() {
 		return this.losObserverBusqueda;
 	}
+
 	public Mapa getBase() {
 		return base;
 	}
+
 	private void setServicios(List<OrigenDeDatos> servicios) {
 		this.servicios = servicios;
 	}
@@ -113,18 +122,24 @@ public class Terminal {
 	public void setNombreTerminal(String nombreTerminal) {
 		this.nombreTerminal = nombreTerminal;
 	}
+
 	public List<Resultado> getBusquedas() {
 		return this.busquedas;
 	}
 
-	public boolean seRealizoBusqueda(LocalDate fecha){
+	public boolean seRealizoBusqueda(LocalDate fecha) {
 		return getBusquedas().stream().anyMatch(busqueda -> busqueda.getFecha().equals(fecha));
 	}
+
 	public String getComunaTerminal() {
 		return comunaTerminal;
 	}
-	
+
 	public void setComunaTerminal(String comunaTerminal) {
 		this.comunaTerminal = comunaTerminal;
+	}
+
+	public void setAlmacenadorBusquedas(AlmacenadorBusquedas almacenador) {
+		this.almacenador = almacenador;
 	}
 }
