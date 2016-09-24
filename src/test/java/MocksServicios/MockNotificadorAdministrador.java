@@ -2,6 +2,7 @@ package MocksServicios;
 
 import Notificaciones.NotificacionBusqueda;
 import Resultado.Resultado;
+import Terminal.Terminal;
 
 
 public class MockNotificadorAdministrador implements NotificacionBusqueda{
@@ -12,7 +13,7 @@ public class MockNotificadorAdministrador implements NotificacionBusqueda{
 	
 
 	@Override
-	public void notificarBusqueda(Resultado resultado) {
+	public void actualizar(Resultado resultado,Terminal terminal) {
 		if(resultado.getSegundosBusqueda() > tiempoMaximoBusqueda){
 			this.administradorNotificado = true;
 		}

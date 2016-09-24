@@ -54,7 +54,7 @@ public class Terminal {
 				unNombre + " " + unaPalabraClave, listaResutados.size(), this);
 
 		agregarBusqueda(resultado);
-		notificarBusqueda(resultado);
+		notificarBusqueda(resultado,this);
 
 		return listaResutados;
 	}
@@ -72,8 +72,8 @@ public class Terminal {
 	}
 
 	
-	public void notificarBusqueda(Resultado resultado) {
-		losObserverBusqueda.stream().forEach(observerBusqueda -> observerBusqueda.notificarBusqueda(resultado));
+	public void notificarBusqueda(Resultado resultado, Terminal terminal) {
+		losObserverBusqueda.stream().forEach(observerBusqueda -> observerBusqueda.actualizar(resultado,terminal));
 	}
 
 	public void agregarObserver(NotificacionBusqueda observer) {

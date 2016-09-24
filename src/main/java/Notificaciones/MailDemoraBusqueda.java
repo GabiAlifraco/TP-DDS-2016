@@ -2,6 +2,7 @@ package Notificaciones;
 
 import Reportes.ResultadosReportes;
 import Resultado.Resultado;
+import Terminal.Terminal;
 
 public class MailDemoraBusqueda implements NotificacionBusqueda{
 
@@ -10,7 +11,7 @@ public class MailDemoraBusqueda implements NotificacionBusqueda{
     
 	//En caso de que el tiempo que tarda en buscar supere al maximo estipulado, manda mail	
     @Override
-	public void notificarBusqueda(Resultado resultado) {
+	public void actualizar(Resultado resultado,Terminal terminal) {
 		if(busquedaSuperaTiempoMaximoDemora(resultado.getSegundosBusqueda())){
 			sendMail();
 		}

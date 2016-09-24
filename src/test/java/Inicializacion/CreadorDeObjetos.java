@@ -257,6 +257,6 @@ public abstract class CreadorDeObjetos {
 		resultado = new Resultado(fecha, LocalTime.of(10, 40, 02), LocalTime.of(10, 40, 10), "sarasa", 4, terminal);
 		notificadorAdministrador.setTiempoMaximoBusqueda(5);
 		
-		terminal.notificarBusqueda(resultado);
+		terminal.notificarBusqueda(resultado,terminal);
 	}
 }

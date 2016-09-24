@@ -13,6 +13,8 @@ public class Resultado {
 	String fraseBuscada;
 	int cantidadDeResultados;
 	Terminal terminal;
+	LocalTime unTiempoInicio;
+	LocalTime unTiempoFinalizacion;
 	
 	public Resultado(LocalDate unaFecha, LocalTime tiempoInicio, LocalTime tiempoFinalizacion, String unaFraseBuscada, int totalResultados,
 			Terminal terminal) {
@@ -24,6 +26,32 @@ public class Resultado {
 		this.setTerminal(terminal);
 
 	}
+	
+	
+
+	public LocalTime getUnTiempoInicio() {
+		return unTiempoInicio;
+	}
+
+
+
+	public void setUnTiempoInicio(LocalTime unTiempoInicio) {
+		this.unTiempoInicio = unTiempoInicio;
+	}
+
+
+
+	public LocalTime getUnTiempoFinalizacion() {
+		return unTiempoFinalizacion;
+	}
+
+
+
+	public void setUnTiempoFinalizacion(LocalTime unTiempoFinalizacion) {
+		this.unTiempoFinalizacion = unTiempoFinalizacion;
+	}
+
+
 
 	private void setTerminal(Terminal terminal) {
 		this.terminal = terminal;
