@@ -6,13 +6,13 @@ import java.time.LocalDate;
 
 import org.joda.time.LocalDateTime;
 
+import Notificaciones.AlmacenadorBusquedas;
 import PoliticasReejecucion.Politica;
 import ProcesoAgregarAcciones.Criterio;
-import Reportes.ResultadosReportes;
 
 public class ProcesoModificarAcciones extends Proceso {
 
-	private ResultadosReportes resultados = new ResultadosReportes();
+	private AlmacenadorBusquedas resultados = AlmacenadorBusquedas.getInstance();
 	private Criterio criterio;
 	
 	public ProcesoModificarAcciones(LocalDateTime cronograma, Criterio criterio, Politica politica, AlmacenadorResultados almacenador) {

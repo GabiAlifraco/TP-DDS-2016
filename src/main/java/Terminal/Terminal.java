@@ -18,7 +18,6 @@ import Resultado.Resultado;
 
 public class Terminal {
 
-	// Se agrega el getInstance del singleton de la base
 	public Mapa base = Mapa.getInstance();
 	private AlmacenadorBusquedas almacenador;
 	private Point coordenadaDispositivoMovil;
@@ -64,12 +63,6 @@ public class Terminal {
 		return servicios.stream().map(servicio -> servicio.buscarPois(unNombre, unaPalabraClave))
 				.flatMap(pois -> pois.stream()).collect(Collectors.toSet());
 	}
-
-	/*public List<Integer> obtenerResultadosParciales() {
-		List<Integer> resultadosParciales = getBusquedas().stream().map(resultado -> resultado.getCantidadResultados())
-				.collect(Collectors.toList());
-		return resultadosParciales;
-	}*/
 
 	public void activarReportes() {
 		this.almacenador.activarReportes(this);

@@ -2,6 +2,7 @@ package TestReportes;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
@@ -15,28 +16,18 @@ import Notificaciones.NotificacionBusqueda;
 import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
 import ProcesoAgregarAcciones.ActivarNotificacion;
-import Procesos.Almacenador;
-import Reportes.Reporte;
-import Reportes.ReporteCantResultadosPorBusquedaYTerminal;
-import Reportes.ReporteTotalCantBusquedasPorFecha;
-import Reportes.ResultadosReportes;
-import Resultado.Resultado;
 import Terminal.Terminal;
 
 public class TestReporte extends CreadorDeObjetos {
 
 	private List<OrigenDeDatos> servicios = new ArrayList<OrigenDeDatos>();
 	private Mapa baseInterna = Mapa.getInstance();
-	private ResultadosReportes sistema;
 	private Terminal terminalAbasto;
 	private Terminal terminalFlorida;
 
 	List<NotificacionBusqueda> observers = new ArrayList<NotificacionBusqueda>();
 
-	private List<Terminal> terminales;
-	private Reporte reporteCantResPorBusqYTerm;
-	private ReporteTotalCantBusquedasPorFecha reporteFecha;
-	private LocalDate fecha3;
+	private LocalDate fecha;
 
 	@Before
 	public void initialize() {
@@ -44,52 +35,20 @@ public class TestReporte extends CreadorDeObjetos {
 		this.crearBancoSantander();
 		this.crearParada114();
 
-		sistema = new ResultadosReportes();
-		terminales = new ArrayList<Terminal>();
 		servicios.add(baseInterna);
 		terminalAbasto = new Terminal("Terminal Abasto", servicios);
 		terminalFlorida = new Terminal("Terminal Florida", servicios);
-		sistema.setTerminales(terminales);
 
 		baseInterna.getPois().clear();
-		terminales.add(terminalAbasto);
-		terminales.add(terminalFlorida);
 		baseInterna.getPois().add(bancoSantander);
 		baseInterna.getPois().add(parada114);
 
-		sistema.activarReporteFecha();
-		sistema.activarReporteBusqPorTerminal();
-		reporteCantResPorBusqYTerm = new ReporteCantResultadosPorBusquedaYTerminal();
-		reporteFecha = new ReporteTotalCantBusquedasPorFecha();
 	}
-
 	@Test
-	public void imprimirReportesPorFecha() {
+	public void testObtenerReportesPorFecha() {
 		Map<LocalDate, Integer> resultadoEsperado = new HashMap<LocalDate, Integer>();
-		fecha3 = LocalDate.now();
-		resultadoEsperado.put(fecha3, 1);
-		terminalAbasto.busquedaDePuntos("Santander", "Cajero");
-
-		Assert.assertEquals(resultadoEsperado, reporteFecha.obtenerReporte(terminales));
-
-	}
-
-	/*@Test
-	public void imprimirResultadosTotales() {
-		Map<String, Integer> resultadoEsperado = new HashMap<String, Integer>();
-		resultadoEsperado.put("Terminal Abasto", 1);
-		resultadoEsperado.put("Terminal Florida", 0);
-		terminalAbasto.busquedaDePuntos("Santander", "Cajero");
-
-		Assert.assertEquals(resultadoEsperado, reporteCantResPorBusqYTerm.obtenerReportePorTerminal(terminales));
-
-	}*/
-
-	@Test
-	public void testAlmacenadorBusquedas() {
-		Map<LocalDate, Integer> resultadoEsperado = new HashMap<LocalDate, Integer>();
-		fecha3 = LocalDate.now();
-		resultadoEsperado.put(fecha3, 1);
+		fecha = LocalDate.now();
+		resultadoEsperado.put(fecha, 1);
 		AlmacenadorBusquedas almacenador = AlmacenadorBusquedas.getInstance();
 		terminalAbasto.agregarObserver(almacenador);
 		terminalAbasto.busquedaDePuntos("Santander", "Cajero");
@@ -110,14 +69,17 @@ public class TestReporte extends CreadorDeObjetos {
 	
 	@Test
 	public void obtenerReportePorTerminal(){
-		Map<String,Integer> resultadoEsperado = new HashMap<String,Integer>();
-		resultadoEsperado.put("Terminal Abasto",1);
-		resultadoEsperado.put("Terminal Florida", 0);
 		AlmacenadorBusquedas almacenador = AlmacenadorBusquedas.getInstance();
+		almacenador.getTerminalesActivadas().clear();
 		terminalAbasto.agregarObserver(almacenador);
 		terminalFlorida.agregarObserver(almacenador);
 		terminalAbasto.busquedaDePuntos("Santander", "Cajero");
-		
-		Assert.assertEquals(resultadoEsperado,almacenador.getReportePorTerminal(terminales));
+		terminalFlorida.busquedaDePuntos("Facultad", "UTN");
+		List<Integer> resultadoAbasto = Arrays.asList(1);
+		List<Integer> resultadoFlorida = Arrays.asList(0);
+
+		Assert.assertEquals(almacenador.getReportePorTerminal().size(), 2);
+		Assert.assertEquals(almacenador.getReportePorTerminal().get(terminalAbasto), resultadoAbasto);
+		Assert.assertEquals(almacenador.getReportePorTerminal().get(terminalFlorida), resultadoFlorida);
 	}
 }

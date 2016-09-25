@@ -1,13 +1,11 @@
 package Notificaciones;
 
-import Reportes.ResultadosReportes;
 import Resultado.Resultado;
 import Terminal.Terminal;
 
 public class MailDemoraBusqueda implements NotificacionBusqueda{
 
 	private long tiempoMaximoBusqueda;
-	private ResultadosReportes sistema;
     
 	//En caso de que el tiempo que tarda en buscar supere al maximo estipulado, manda mail	
     @Override
@@ -31,18 +29,9 @@ public class MailDemoraBusqueda implements NotificacionBusqueda{
 	public long getTiempoMaximoBusqueda() {
 		return tiempoMaximoBusqueda;
 	}
-	
-	public ResultadosReportes getSistema() {
-		return sistema;
-	}
-	
 	//Setters
 	public void setTiempoMaximoBusqueda(long tiempoMaximoBusqueda) {
 		this.tiempoMaximoBusqueda = tiempoMaximoBusqueda;
-	}
-	
-	public void setSistema(ResultadosReportes sistema) {
-		this.sistema = sistema;
 	}
 
 }

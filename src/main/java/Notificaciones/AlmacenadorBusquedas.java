@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import Resultado.Resultado;
@@ -14,9 +15,8 @@ public class AlmacenadorBusquedas implements NotificacionBusqueda {
 
 	private static AlmacenadorBusquedas instance = null;
 	private Map<Terminal, List<Resultado>> resultadosEncontrados = new HashMap<Terminal, List<Resultado>>();
-	public List<Terminal> terminalesActivadas = new ArrayList<Terminal>();
-    private Map<String,Integer> reportePorTerminal = new HashMap<String,Integer>();
-    
+	private List<Terminal> terminalesActivadas = new ArrayList<Terminal>();
+
 	protected AlmacenadorBusquedas() {
 	}
 
@@ -36,9 +36,7 @@ public class AlmacenadorBusquedas implements NotificacionBusqueda {
 
 			List<Resultado> resultados = new ArrayList<Resultado>();
 			resultados.add(resultado);
-
 			resultadosEncontrados.put(terminal, resultados);
-
 		}
 	}
 
@@ -60,55 +58,58 @@ public class AlmacenadorBusquedas implements NotificacionBusqueda {
 			return null;
 		}
 	}
-	
-	public Map<String,Integer> getReportePorTerminal(List<Terminal> terminalesActivadas){
-		terminalesActivadas.stream().forEach(terminal->completarHashMap(terminal));
-		return reportePorTerminal;
-	}
 
-	
-	private Map<String,Integer> completarHashMap(Terminal terminal) {
-		if(terminalesActivadas.contains(terminal)){
+	public Map<Terminal, List<Integer>> getReportePorTerminal() {
+		if (!terminalesActivadas.isEmpty()) {
+			Map<Terminal, List<Integer>> reportePorTerminal = new HashMap<Terminal, List<Integer>>();
+			for (Terminal terminal: terminalesActivadas){
 			
-			for(Resultado resultado : resultadosEncontrados.get(terminal)){
-				if(reportePorTerminal.containsKey(terminal.getNombreTerminal())){
-					this.reportePorTerminal.replace(terminal.getNombreTerminal(),
-					reportePorTerminal.get(terminal.getNombreTerminal()) + cantidadTotalBusquedas(terminal));
-				} else {
-					reportePorTerminal.put(terminal.getNombreTerminal(),cantidadTotalBusquedas(terminal));
-					
-				}
-				
+				List<Resultado> resultadosTerminal = resultadosEncontrados.get(terminal);	
+				List<Integer> cantidadResultados;
+				cantidadResultados = resultadosTerminal.stream()
+									.map(resultado -> resultado.getCantidadResultados())
+									.collect(Collectors.toList());
+			
+				reportePorTerminal.put(terminal, cantidadResultados);
 			}
+			
 			return reportePorTerminal;
-		}else{
+		} else {
 			return null;
 		}
 	}
-	
-
-
-	private Integer cantidadTotalBusquedas(Terminal terminal) {
-		return obtenerResultadosParciales(terminal).stream().mapToInt(i -> i).sum();
-	}
-	
-	public List<Integer> obtenerResultadosParciales(Terminal terminal) {
-		List<Integer> resultadosParciales = terminal.getBusquedas().stream().map(resultado -> resultado.getCantidadResultados())
-				.collect(Collectors.toList());
-		return resultadosParciales;
-	}
 
 	public void activarReportes(Terminal terminal) {
-		if(!(terminalesActivadas.contains(terminal))){
+		if (!(terminalesActivadas.contains(terminal))) {
 			terminalesActivadas.add(terminal);
 		}
 	}
 
 	public void desactivarReportes(Terminal terminal) {
-		if(terminalesActivadas.contains(terminal)){
+		if (terminalesActivadas.contains(terminal)) {
 			terminalesActivadas.remove(terminal);
 		}
-		
 	}
 
+	public List<Terminal> terminalesQueEjecutaronBusquedas(LocalDate fecha) {
+		
+		Set<Terminal> terminales = resultadosEncontrados.keySet();
+		
+		return terminales.stream().filter(terminal -> this.terminalEjecutoBusqueda(fecha, terminal))
+		.collect(Collectors.toList());
+		
+	}
+	private boolean terminalEjecutoBusqueda(LocalDate fecha, Terminal terminal) {
+
+		List<Resultado>resultadosTerminal = resultadosEncontrados.get(terminal);
+		return resultadosTerminal.stream().anyMatch(resultado -> resultado.getFecha().equals(fecha));
+	}
+	
+	public Map<Terminal, List<Resultado>> getResultadosEncontrados() {
+		return resultadosEncontrados;
+	}
+	
+	public List<Terminal> getTerminalesActivadas() {
+		return terminalesActivadas;
+	}
 }
