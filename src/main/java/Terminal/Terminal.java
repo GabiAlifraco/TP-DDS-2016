@@ -65,11 +65,11 @@ public class Terminal {
 				.flatMap(pois -> pois.stream()).collect(Collectors.toSet());
 	}
 
-	public List<Integer> obtenerResultadosParciales() {
+	/*public List<Integer> obtenerResultadosParciales() {
 		List<Integer> resultadosParciales = getBusquedas().stream().map(resultado -> resultado.getCantidadResultados())
 				.collect(Collectors.toList());
 		return resultadosParciales;
-	}
+	}*/
 
 	public void activarReportes() {
 		this.almacenador.activarReportes(this);

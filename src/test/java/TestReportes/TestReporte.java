@@ -74,7 +74,7 @@ public class TestReporte extends CreadorDeObjetos {
 
 	}
 
-	@Test
+	/*@Test
 	public void imprimirResultadosTotales() {
 		Map<String, Integer> resultadoEsperado = new HashMap<String, Integer>();
 		resultadoEsperado.put("Terminal Abasto", 1);
@@ -83,7 +83,7 @@ public class TestReporte extends CreadorDeObjetos {
 
 		Assert.assertEquals(resultadoEsperado, reporteCantResPorBusqYTerm.obtenerReportePorTerminal(terminales));
 
-	}
+	}*/
 
 	@Test
 	public void testAlmacenadorBusquedas() {
@@ -106,5 +106,18 @@ public class TestReporte extends CreadorDeObjetos {
 		terminalAbasto.busquedaDePuntos("Santander", "Cajero");
 		
 		Assert.assertTrue(terminalAbasto.getObserverBusquedas().contains(mockNotificacion));
+	}
+	
+	@Test
+	public void obtenerReportePorTerminal(){
+		Map<String,Integer> resultadoEsperado = new HashMap<String,Integer>();
+		resultadoEsperado.put("Terminal Abasto",1);
+		resultadoEsperado.put("Terminal Florida", 0);
+		AlmacenadorBusquedas almacenador = AlmacenadorBusquedas.getInstance();
+		terminalAbasto.agregarObserver(almacenador);
+		terminalFlorida.agregarObserver(almacenador);
+		terminalAbasto.busquedaDePuntos("Santander", "Cajero");
+		
+		Assert.assertEquals(resultadoEsperado,almacenador.getReportePorTerminal(terminales));
 	}
 }
