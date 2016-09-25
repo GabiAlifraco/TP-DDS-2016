@@ -58,12 +58,6 @@ public class AlmacenadorBusquedas implements NotificacionBusqueda {
 		}
 	}
 
-	@Override
-	public void setTiempoMaximoBusqueda(long tiempoMaximoBusqueda) {
-		// TODO Auto-generated method stub
-
-	}
-
 	public void activarReportes(Terminal terminal) {
 		if(!(terminalesActivadas.contains(terminal))){
 			terminalesActivadas.add(terminal);

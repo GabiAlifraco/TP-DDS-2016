@@ -1,26 +1,22 @@
 package ProcesoAgregarAcciones;
 
 import Notificaciones.MailDemoraBusqueda;
+import Notificaciones.NotificacionBusqueda;
 import Terminal.Terminal;
 
-public class ActivarNotificacion implements Accion{
+public class ActivarNotificacion implements Accion {
 
-	private long tiempoMaximoBusqueda;
-	
-	public ActivarNotificacion(long tiempoMaximoBusqueda) {
-		this.tiempoMaximoBusqueda = tiempoMaximoBusqueda;
+	private NotificacionBusqueda mailDemoraBusqueda;
+
+	public ActivarNotificacion(NotificacionBusqueda mailDemoraBusqueda) {
+		this.mailDemoraBusqueda = mailDemoraBusqueda;
 	}
-	
+
 	@Override
 	public void modificarConfiguracion(Terminal terminal) {
-		if (terminal.getObserverBusquedas().size() == 0){
-			MailDemoraBusqueda mailNotificacionBusqueda = new MailDemoraBusqueda(); 
-			mailNotificacionBusqueda.setTiempoMaximoBusqueda(tiempoMaximoBusqueda);
-		} else {
-			terminal.getObserverBusquedas().stream()
-			.forEach(notificador -> notificador.setTiempoMaximoBusqueda(tiempoMaximoBusqueda));
+		if (!terminal.getObserverBusquedas().contains(MailDemoraBusqueda.class)) {
+			terminal.agregarObserver(mailDemoraBusqueda);
 		}
 	}
 
-	
 }

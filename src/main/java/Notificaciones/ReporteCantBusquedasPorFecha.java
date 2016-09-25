@@ -27,11 +27,6 @@ public class ReporteCantBusquedasPorFecha implements NotificacionBusqueda{
 		}
 	}
 
-	@Override
-	public void setTiempoMaximoBusqueda(long tiempoMaximoBusqueda) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	
 }

@@ -22,5 +22,7 @@ public class MockNotificadorAdministrador implements NotificacionBusqueda{
 		this.tiempoMaximoBusqueda = tiempoMaximoBusqueda;
 	}
 	
-
+	public long getTiempoMaximoBusqueda() {
+		return this.tiempoMaximoBusqueda;
+	}
 }

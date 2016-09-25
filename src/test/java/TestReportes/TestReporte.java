@@ -9,10 +9,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import Inicializacion.CreadorDeObjetos;
+import MocksServicios.MockNotificadorAdministrador;
 import Notificaciones.AlmacenadorBusquedas;
 import Notificaciones.NotificacionBusqueda;
 import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
+import ProcesoAgregarAcciones.ActivarNotificacion;
 import Procesos.Almacenador;
 import Reportes.Reporte;
 import Reportes.ReporteCantResultadosPorBusquedaYTerminal;
@@ -26,16 +28,12 @@ public class TestReporte extends CreadorDeObjetos {
 	private List<OrigenDeDatos> servicios = new ArrayList<OrigenDeDatos>();
 	private Mapa baseInterna = Mapa.getInstance();
 	private ResultadosReportes sistema;
-	private LocalDate fecha;
-	private List<OrigenDeDatos> servic;
-	private LocalDate fecha2;
 	private Terminal terminalAbasto;
 	private Terminal terminalFlorida;
 
 	List<NotificacionBusqueda> observers = new ArrayList<NotificacionBusqueda>();
 
 	private List<Terminal> terminales;
-	private List<Resultado> busquedas;
 	private Reporte reporteCantResPorBusqYTerm;
 	private ReporteTotalCantBusquedasPorFecha reporteFecha;
 	private LocalDate fecha3;
@@ -48,13 +46,10 @@ public class TestReporte extends CreadorDeObjetos {
 
 		sistema = new ResultadosReportes();
 		terminales = new ArrayList<Terminal>();
-		List<Resultado> busquedas = new ArrayList<Resultado>();
 		servicios.add(baseInterna);
 		terminalAbasto = new Terminal("Terminal Abasto", servicios);
 		terminalFlorida = new Terminal("Terminal Florida", servicios);
 		sistema.setTerminales(terminales);
-		fecha = LocalDate.parse("2016-10-16");
-		fecha2 = LocalDate.parse("2016-10-17");
 
 		baseInterna.getPois().clear();
 		terminales.add(terminalAbasto);
@@ -102,4 +97,14 @@ public class TestReporte extends CreadorDeObjetos {
 
 	}
 
+	@Test 
+	public void modificarConfiguracion(){
+		MockNotificadorAdministrador mockNotificacion = new MockNotificadorAdministrador();
+		mockNotificacion.setTiempoMaximoBusqueda(200);
+		ActivarNotificacion activar = new ActivarNotificacion(mockNotificacion);
+		activar.modificarConfiguracion(terminalAbasto);
+		terminalAbasto.busquedaDePuntos("Santander", "Cajero");
+		
+		Assert.assertTrue(terminalAbasto.getObserverBusquedas().contains(mockNotificacion));
+	}
 }
