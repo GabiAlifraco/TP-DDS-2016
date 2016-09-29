@@ -6,21 +6,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.uqbar.geodds.Point;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
+import javax.persistence.*;
 import CaracteristicaPoi.Disponibilidad;
 import CaracteristicaPoi.Domicilio;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.Ubicacion;
 
-public abstract class Poi {
+@Entity
+@Inheritance(strategy=InheritanceType.JOINED)
+@Table(name="POIS")
+public abstract class Poi implements WithGlobalEntityManager{
 
 	// Declaramos los atributos principales del poi
+	@Id
+	@GeneratedValue
+	@Column(name="poiID")
+	private Long poiID;
+	@Transient
 	private Point coordenada;
+	@OneToOne
 	private Domicilio domicilio;
+	@Transient
 	private Region region;
+	@Transient
 	protected Ubicacion ubicacion;
 	protected String nombre;
+	@Transient
 	private List<String> palabrasClave = new ArrayList<String>();
+	@Transient
 	private List<Disponibilidad> horariosDeAtencion  = new ArrayList<Disponibilidad>();
 
 	
