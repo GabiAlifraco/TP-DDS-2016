@@ -13,6 +13,7 @@ import CaracteristicaPoi.Disponibilidad;
 import CaracteristicaPoi.Domicilio;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.Ubicacion;
+import converter.PointConverter;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -24,13 +25,13 @@ public abstract class Poi implements WithGlobalEntityManager{
 	@GeneratedValue
 	@Column(name="poiID")
 	private Long poiID;
-	@Transient
+	@Convert(converter = PointConverter.class)
 	private Point coordenada;
 	@OneToOne
 	private Domicilio domicilio;
-	@Transient
+	@OneToOne
 	private Region region;
-	@Transient
+	@OneToOne
 	protected Ubicacion ubicacion;
 	protected String nombre;
 	@Transient

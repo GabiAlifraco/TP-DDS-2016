@@ -2,10 +2,20 @@ package CaracteristicaPoi;
 
 import org.uqbar.geodds.Point;
 
-public class Ubicacion {
+import converter.PointConverter;
 
+import javax.persistence.*;
+
+@Entity
+public class Ubicacion {
+	@Id
+	@GeneratedValue
+	private long ubicacionID;
+	@Convert(converter = PointConverter.class)
 	private Point coordenadas;
+	@OneToOne
 	private Domicilio domicilio;
+	@OneToOne
 	private Region region;
 	
 	public Ubicacion(Domicilio domicilio, Region region, Point coordenadas){

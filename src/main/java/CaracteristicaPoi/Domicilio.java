@@ -3,7 +3,7 @@ package CaracteristicaPoi;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Domicilios")
+@Table(name="Domicilio")
 public class Domicilio {
 	@Id
 	@GeneratedValue

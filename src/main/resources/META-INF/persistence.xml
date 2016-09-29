@@ -7,7 +7,10 @@
   
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     	<provider>org.hibernate.ejb.HibernatePersistence</provider>
-    	
+    	<class>Pois.Poi</class>
+    	<class>CaracteristicaPoi.Domicilio</class>
+    	<class>CaracteristicaPoi.Region</class>
+    	<class>CaracteristicaPoi.Ubicacion</class>
     	
     	 
         <properties> 
