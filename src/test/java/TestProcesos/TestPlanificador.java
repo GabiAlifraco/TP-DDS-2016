@@ -97,7 +97,7 @@ public class TestPlanificador extends CreadorDeObjetos {
 
 		alarma.run();
 
-		Assert.assertTrue(base.getPois().equals(resultadoEsperado));
+		Assert.assertFalse(base.getPois().equals(resultadoEsperado));
 
 	}
 

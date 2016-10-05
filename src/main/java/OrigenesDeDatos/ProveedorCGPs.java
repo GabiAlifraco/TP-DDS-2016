@@ -11,14 +11,20 @@ import Pois.Poi;
 import seviciosExternos.CGPService;
 import java.util.stream.Collectors;
 
+import org.uqbar.geodds.Point;
+
 import CaracteristicaPoi.Disponibilidad;
+import CaracteristicaPoi.Domicilio;
+import CaracteristicaPoi.Region;
 import CaracteristicaPoi.ServicioCGP;
+import CaracteristicaPoi.Ubicacion;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 public class ProveedorCGPs implements OrigenDeDatos {
 	CGPService serviceCGP;
+    Ubicacion ubicacion;
 
 	public List<Poi> buscarPois(String unNombre, String unaPalabraClave) {
 		List<Poi> listaCGPs = new ArrayList<Poi>();
@@ -33,8 +39,12 @@ public class ProveedorCGPs implements OrigenDeDatos {
 	}
 
 	public CGP deCentroDTOaCGP(CentroDTO centroDTO) {
+		Domicilio domicilio= new Domicilio("",0,"","",0,0,0,0,0);
+		Region region= new Region("","","","");
+		Point coordenadas= new Point(0,0);
+	    Ubicacion ubicacion = new Ubicacion(domicilio,region,coordenadas);
 		CGP unCGP = new CGP(String.valueOf(centroDTO.getNumeroComuna()), centroDTO.getZonasIncluidas(),
-				obtenerServiciosCGP(centroDTO));
+				obtenerServiciosCGP(centroDTO),ubicacion);
 		return unCGP;
 	}
 

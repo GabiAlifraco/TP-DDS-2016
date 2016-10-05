@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.uqbar.geodds.Point;
 
+import CaracteristicaPoi.Domicilio;
+import CaracteristicaPoi.Region;
+import CaracteristicaPoi.Ubicacion;
 import DTOs.BancoDTO;
 import Pois.Banco;
 import Pois.Poi;
@@ -25,9 +28,13 @@ public class ProveedorBancos implements OrigenDeDatos {
 
 		double coordenadaX = Double.parseDouble(bancoDTO.getX());
 		double coordenadaY = Double.parseDouble(bancoDTO.getY());
-
+        
+		Domicilio domicilio = new Domicilio("",0,"","",0,0,0,0,0);
+		Region region = new Region("","","","");
 		Point coordenadas = new Point(coordenadaX, coordenadaY);
-		Banco banco = new Banco(bancoDTO.getBanco(), coordenadas, bancoDTO.getServicios());
+		Ubicacion ubicacion = new Ubicacion(domicilio,region,coordenadas);
+		
+		Banco banco = new Banco(bancoDTO.getBanco(), coordenadas, bancoDTO.getServicios(),ubicacion);
 		return banco;
 	}
 

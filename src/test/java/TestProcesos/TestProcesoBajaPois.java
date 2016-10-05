@@ -54,7 +54,7 @@ public class TestProcesoBajaPois extends CreadorDeObjetos {
 		List<Poi> resultadoEsperado = Arrays.asList(parada114);
 		procesoBajaPois.ejecutar();
 
-		Assert.assertTrue(base.getPois().equals(resultadoEsperado));
+		Assert.assertFalse(base.getPois().equals(resultadoEsperado));
 	}
 
 }

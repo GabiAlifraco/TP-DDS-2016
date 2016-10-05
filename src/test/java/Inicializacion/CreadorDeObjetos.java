@@ -59,12 +59,17 @@ public abstract class CreadorDeObjetos {
 
 	protected void crearBancoSantander() {
 		
-		coordenadaBanco = new Point(34.3243,21.4484);
-		palabrasClaveBanco = Arrays.asList("Cajero automatico", "Deposito");
-		bancoSantander = new Banco("Banco Santander", coordenadaBanco, palabrasClaveBanco);
+		
 		domicilioBanco = new Domicilio("Arenales", 1245, "M.T.De.Alvear", "Santa Fe", 2100, 0, 0, 0, 1111);
 		regionBanco = new Region("CABA", "Recoleta", "Bs As", "Argentina");
+		coordenadaBanco = new Point(34.3243,21.4484);
+		ubicacion = new Ubicacion(domicilioBanco,regionBanco,coordenadaBanco);
+		palabrasClaveBanco = Arrays.asList("Cajero automatico", "Deposito");
+		bancoSantander = new Banco("Banco Santander", coordenadaBanco, palabrasClaveBanco,ubicacion);
+		
 
+		
+		
 		bancoSantander.setDomicilio(domicilioBanco);
 		bancoSantander.setRegion(regionBanco);
 		diasBanco = Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY,
@@ -86,6 +91,9 @@ public abstract class CreadorDeObjetos {
 	private List<DayOfWeek> diasTesoreria;
 	private ServicioCGP tesoreria;
 	protected CGP comuna3;
+	private Domicilio domicilio;
+	private Region region;
+	private Ubicacion ubicacion;
 
 	protected void crearCGPComuna3() {
 		serviciosCGP = new ArrayList<ServicioCGP>();
@@ -103,10 +111,15 @@ public abstract class CreadorDeObjetos {
 		tesoreria = new ServicioCGP("Tesoreria", horariosTesoreria);
 		rentas = new ServicioCGP("Rentas", horariosRentas);
 		serviciosCGP = Arrays.asList(rentas, tesoreria);
-
-		comuna3 = new CGP("3", "Recoleta", serviciosCGP);
-		comuna3.setCoordenada(new Point(34.4124, 24.4856));
+        
+		domicilio= new Domicilio("Arenales", 1245, "M.T.De.Alvear", "Santa Fe", 2100, 0, 0, 0, 1111);
+		region = new Region("CABA", "Recoleta", "Bs As", "Argentina");
 		Point coordenadaCGP = new Point(34.4124, 24.4856);
+		
+		ubicacion= new Ubicacion(domicilio,region,coordenadaCGP);
+		comuna3 = new CGP("3", "Recoleta", serviciosCGP, ubicacion);
+		comuna3.setCoordenada(new Point(34.4124, 24.4856));
+		
 		Point coordenadaCGP2 = new Point(34.4124, 24.4852);
 		Point coordenadaCGP3 = new Point(34.4120, 24.4851);
 		Polygon zonaCGP = new Polygon();

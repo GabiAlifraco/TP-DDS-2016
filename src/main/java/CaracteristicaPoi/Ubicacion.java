@@ -34,14 +34,14 @@ public class Ubicacion {
 	public Domicilio getDomicilio() {
 		return domicilio;
 	}
-    private void setDomicilio(Domicilio domicilio) {
+    public void setDomicilio(Domicilio domicilio) {
 		this.domicilio = domicilio;
 	}
 
 	public Region getRegion() {
 		return region;
 	}
-    private void setRegion(Region region) {
+    public void setRegion(Region region) {
 		this.region = region;
 	}
 }

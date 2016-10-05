@@ -17,8 +17,8 @@ public class MockRESTBajas implements ServicioBajas{
 	
 	@Override
 	public List<Poi> consultarBajas() {
-		bancoSantander = new Banco(null, coordenadaBanco, null);
-		cgpComuna3 = new CGP("3", null, null);
+		bancoSantander = new Banco(null, coordenadaBanco, null,null);
+		cgpComuna3 = new CGP("3", null, null, null);
 		
 		return Arrays.asList(bancoSantander, cgpComuna3);
 	}

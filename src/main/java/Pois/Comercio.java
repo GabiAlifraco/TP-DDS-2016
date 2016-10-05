@@ -38,7 +38,7 @@ public class Comercio extends Poi {
     public Ubicacion getUbicacion() {
 		return this.ubicacion;
 	}
-    private void setUbicacion(Ubicacion unaUbicacion) {
+    public void setUbicacion(Ubicacion unaUbicacion) {
 		this.ubicacion = unaUbicacion;
     }
 }

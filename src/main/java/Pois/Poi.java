@@ -27,10 +27,7 @@ public abstract class Poi implements WithGlobalEntityManager{
 	private Long poiID;
 	@Convert(converter = PointConverter.class)
 	private Point coordenada;
-	@OneToOne
-	private Domicilio domicilio;
-	@OneToOne
-	private Region region;
+	
 	@OneToOne
 	protected Ubicacion ubicacion;
 	protected String nombre;
@@ -58,6 +55,14 @@ public abstract class Poi implements WithGlobalEntityManager{
 		return horariosDeAtencion.stream().anyMatch(disponibilidad -> disponibilidad.disponibleEnDiayHora(dia,hora));
 	}
 
+	public Ubicacion getUbicacion() {
+		return ubicacion;
+	}
+
+	public void setUbicacion(Ubicacion ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+
 	// Esto es para la entrega 1: Busqueda de puntos
 	public boolean textoIncluido(String unNombre, String unaPalabraClave) {
 		return getPalabrasClave().stream().anyMatch(palabra -> palabra.contains(unaPalabraClave))
@@ -81,17 +86,17 @@ public abstract class Poi implements WithGlobalEntityManager{
 	}
 	
 	public Domicilio getDomicilio() {
-		return domicilio;
+		return ubicacion.getDomicilio();
 	}
 	public void setDomicilio(Domicilio domicilio) {
-		this.domicilio = domicilio;
+		ubicacion.setDomicilio(domicilio);
 	}
 	
 	public Region getRegion() {
-		return region;
+		return ubicacion.getRegion();
 	}
 	public void setRegion(Region region) {
-		this.region = region;
+		ubicacion.setRegion(region);
 	}
 	
 	public String getNombre() {
