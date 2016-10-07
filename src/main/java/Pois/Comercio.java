@@ -2,8 +2,6 @@ package Pois;
 
 import java.util.List;
 
-import org.uqbar.geodds.Point;
-
 import CaracteristicaPoi.Disponibilidad;
 import CaracteristicaPoi.Ubicacion;
 
@@ -18,27 +16,16 @@ public class Comercio extends Poi {
 		setHorariosDeAtencion(horariosDeAtencion);
 		setPalabrasClave(palabrasClave);
 	}
-    
+    public Comercio(){
+    	
+    }
 	public int distanciaMinimaParaConsiderarmeCercano() {
 		return this.getDistancia();
 	}
-	
-	@Override
-	public Point getCoordenada() {
-		return this.ubicacion.getCoordenadas();
-	}
-	
 	public int getDistancia() {
 		return distancia;
 	}
     public void setDistancia(int distancia) {
 		this.distancia = distancia;
 	}
-    
-    public Ubicacion getUbicacion() {
-		return this.ubicacion;
-	}
-    public void setUbicacion(Ubicacion unaUbicacion) {
-		this.ubicacion = unaUbicacion;
-    }
 }

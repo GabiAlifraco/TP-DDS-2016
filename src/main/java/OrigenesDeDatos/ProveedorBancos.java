@@ -34,7 +34,7 @@ public class ProveedorBancos implements OrigenDeDatos {
 		Point coordenadas = new Point(coordenadaX, coordenadaY);
 		Ubicacion ubicacion = new Ubicacion(domicilio,region,coordenadas);
 		
-		Banco banco = new Banco(bancoDTO.getBanco(), coordenadas, bancoDTO.getServicios(),ubicacion);
+		Banco banco = new Banco(bancoDTO.getBanco(), bancoDTO.getServicios(), ubicacion);
 		return banco;
 	}
 

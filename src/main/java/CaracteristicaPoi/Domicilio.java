@@ -30,6 +30,9 @@ public class Domicilio {
 		this.unidad = unaUnidad;
 		this.codigoPostal = unCodigoPostal;
 	}
+	public Domicilio(){
+		
+	}
     //Getters
 	public String getCallePrincipal() {
 		return callePrincipal;

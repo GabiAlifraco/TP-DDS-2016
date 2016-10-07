@@ -23,11 +23,14 @@ public class Ubicacion {
 		setRegion(region);
 		setCoordenadas(coordenadas);
 	}
+	public Ubicacion(){
+		
+	}
 	//Getters y Setters
 	public Point getCoordenadas() {
 		return coordenadas;
 	}
-    private void setCoordenadas(Point coordenadas) {
+    public void setCoordenadas(Point coordenadas) {
 		this.coordenadas = coordenadas;
 	}
 
