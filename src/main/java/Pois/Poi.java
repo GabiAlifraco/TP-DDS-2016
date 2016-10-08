@@ -26,7 +26,6 @@ public abstract class Poi implements WithGlobalEntityManager{
 	@Column(name="poiID")
 	private Long poiID;
 	@Convert(converter = PointConverter.class)
-	private Point coordenada;
 	
 	@OneToOne
 	protected Ubicacion ubicacion;
@@ -72,17 +71,10 @@ public abstract class Poi implements WithGlobalEntityManager{
 	public boolean mismoNombre(String nombreServicio) {
 		return getNombre().equals(nombreServicio);
 	}
-	//Estos metodos no se estan utilizando
-	public void agregarPalabraClave(String unaPalabra) {
-		this.palabrasClave.add(unaPalabra);
-	}
-	
+
 	// Setters y getters de los atributos
 	public Point getCoordenada() {
-		return coordenada;
-	}
-	public void setCoordenada(Point unaCoordenada) {
-		this.coordenada = unaCoordenada;
+		return this.ubicacion.getCoordenadas();
 	}
 	
 	public Domicilio getDomicilio() {
@@ -124,7 +116,7 @@ public abstract class Poi implements WithGlobalEntityManager{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((coordenada == null) ? 0 : coordenada.hashCode());
+		result = prime * result + ((ubicacion.getCoordenadas() == null) ? 0 : ubicacion.getCoordenadas().hashCode());
 		return result;
 	}
 
@@ -137,10 +129,10 @@ public abstract class Poi implements WithGlobalEntityManager{
 		if (getClass() != obj.getClass())
 			return false;
 		Poi other = (Poi) obj;
-		if (coordenada == null) {
-			if (other.coordenada != null)
+		if (ubicacion.getCoordenadas() == null) {
+			if (other.getCoordenada() != null)
 				return false;
-		} else if (!(coordenada.distance(other.coordenada) == 0))
+		} else if (!(ubicacion.getCoordenadas().distance(other.getCoordenada()) == 0))
 			return false;
 		return true;
 	}

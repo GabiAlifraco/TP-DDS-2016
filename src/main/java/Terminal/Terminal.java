@@ -18,12 +18,11 @@ import Resultado.Resultado;
 
 public class Terminal {
 
-	public Mapa base = Mapa.getInstance();
+	public Mapa mapa = Mapa.getInstance();
 	private AlmacenadorBusquedas almacenador;
 	private Point coordenadaDispositivoMovil;
 	private String nombreTerminal;
 	List<OrigenDeDatos> servicios = new ArrayList<OrigenDeDatos>();
-	private List<Resultado> busquedas = new ArrayList<Resultado>();
 	List<NotificacionBusqueda> losObserverBusqueda = new ArrayList<NotificacionBusqueda>();
 	private String comunaTerminal;
 
@@ -33,33 +32,34 @@ public class Terminal {
 	}
 
 	public List<Poi> consultaDeCercania() {
-		return base.getPois().stream().filter(poi -> poi.estaCercaDe(coordenadaDispositivoMovil))
+		return mapa.getPois().stream().filter(poi -> poi.estaCercaDe(coordenadaDispositivoMovil))
 				.collect(Collectors.toList());
 	}
 
 	public boolean estaDisponiblePoi(String nombreServicio, DayOfWeek dia, String unaHora) {
-		return base.getPois().stream().filter(poi -> poi.getNombre().equals(nombreServicio))
+		return mapa.getPois().stream().filter(poi -> poi.getNombre().equals(nombreServicio))
 				.anyMatch(poi -> poi.estaDisponible(nombreServicio, dia, LocalTime.parse(unaHora)));
 	}
 
 	public List<Poi> busquedaDePuntos(String unNombre, String unaPalabraClave) {
 
 		LocalTime comienzo = LocalTime.now();
-		List<Poi> listaResutados = obtenerResultadosServicios(unNombre, unaPalabraClave).stream()
+		List<Poi> listaResultados = obtenerResultadosServicios(unNombre, unaPalabraClave).stream()
 				.collect(Collectors.toList());
+		mapa.agregarResultados(listaResultados);
 		LocalTime finalizacion = LocalTime.now();
 
 		Resultado resultado = new Resultado(LocalDate.now(), finalizacion, comienzo, unNombre + " " + unaPalabraClave,
-				listaResutados.size(), this);
+				listaResultados.size(), this);
 
-		agregarBusqueda(resultado);
+		//agregarBusqueda(resultado);
 		notificarBusqueda(resultado, this);
 
-		return listaResutados;
+		return listaResultados;
 	}
 
 	public Set<Poi> obtenerResultadosServicios(String unNombre, String unaPalabraClave) {
-
+		
 		return servicios.stream().map(servicio -> servicio.buscarPois(unNombre, unaPalabraClave))
 				.flatMap(pois -> pois.stream()).collect(Collectors.toSet());
 	}
@@ -84,10 +84,6 @@ public class Terminal {
 		losObserverBusqueda.remove(observer);
 	}
 
-	private void agregarBusqueda(Resultado resultado) {
-		busquedas.add(resultado);
-	}
-
 	public void agregarNuevoServicio(OrigenDeDatos nuevoOrigen) {
 		this.getServicios().add(nuevoOrigen);
 	}
@@ -101,7 +97,7 @@ public class Terminal {
 	}
 
 	public Mapa getBase() {
-		return base;
+		return mapa;
 	}
 
 	private void setServicios(List<OrigenDeDatos> servicios) {
@@ -114,14 +110,6 @@ public class Terminal {
 
 	public void setNombreTerminal(String nombreTerminal) {
 		this.nombreTerminal = nombreTerminal;
-	}
-
-	public List<Resultado> getBusquedas() {
-		return this.busquedas;
-	}
-
-	public boolean seRealizoBusqueda(LocalDate fecha) {
-		return getBusquedas().stream().anyMatch(busqueda -> busqueda.getFecha().equals(fecha));
 	}
 
 	public String getComunaTerminal() {

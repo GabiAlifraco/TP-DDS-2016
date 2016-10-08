@@ -4,18 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+
 import Pois.Poi;
 
-public class Mapa implements OrigenDeDatos {
+public class Mapa implements OrigenDeDatos, WithGlobalEntityManager{
 
 	private static Mapa instance = null;
 	private List<Poi> pois = new ArrayList<Poi>();
 
 	// Alta, Baja y Modificaci�n de un Poi
 	public void agregarUnPoi(Poi unPoi) {
-		pois.add(unPoi);
+		if (!pois.contains(unPoi)) {
+			pois.add(unPoi);
+		}
 	}
 
+	public void agregarResultados(List<Poi> listaResultados) {
+		
+		listaResultados.stream().forEach(resultado -> this.agregarUnPoi(resultado));
+	}
 	public void eliminarUnPoi(Poi unPoi) {
 		if (pois.contains(unPoi)) {
 			pois.remove(unPoi);
@@ -45,4 +53,5 @@ public class Mapa implements OrigenDeDatos {
 		}
 		return instance;
 	}
+
 }

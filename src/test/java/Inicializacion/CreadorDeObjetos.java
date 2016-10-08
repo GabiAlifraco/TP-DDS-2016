@@ -65,7 +65,7 @@ public abstract class CreadorDeObjetos {
 		coordenadaBanco = new Point(34.3243,21.4484);
 		ubicacion = new Ubicacion(domicilioBanco,regionBanco,coordenadaBanco);
 		palabrasClaveBanco = Arrays.asList("Cajero automatico", "Deposito");
-		bancoSantander = new Banco("Banco Santander", coordenadaBanco, palabrasClaveBanco,ubicacion);
+		bancoSantander = new Banco("Banco Santander", palabrasClaveBanco,ubicacion);
 		
 
 		
@@ -118,7 +118,6 @@ public abstract class CreadorDeObjetos {
 		
 		ubicacion= new Ubicacion(domicilio,region,coordenadaCGP);
 		comuna3 = new CGP("3", "Recoleta", serviciosCGP, ubicacion);
-		comuna3.setCoordenada(new Point(34.4124, 24.4856));
 		
 		Point coordenadaCGP2 = new Point(34.4124, 24.4852);
 		Point coordenadaCGP3 = new Point(34.4120, 24.4851);
