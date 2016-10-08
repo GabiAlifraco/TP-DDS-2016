@@ -9,7 +9,7 @@ public class MockedCGPService implements CGPService{
 	public CentroDTO getCGPsByCalleOBarrio(String calleOBarrio) {
 		
 		CentroDTO unCentroDTO = new CentroDTO();
-		unCentroDTO.setDomicilioCompletoCGP(calleOBarrio);
+		unCentroDTO.setDomicilioCompletoCGP(calleOBarrio+" 555");
 		unCentroDTO.setZonasIncluidas(calleOBarrio);
 		
 		

@@ -51,13 +51,13 @@ public class TestABMPois extends CreadorDeObjetos {
 	public void testModificarPoi() {
 
 		terminalAbasto.getBase().agregarUnPoi(parada114);
-		parada114.setLineaColectivo("1114");
+		
 		terminalAbasto.getBase().modificarUnPoi(parada114);
 
 		int posicionParada = terminalAbasto.getBase().getPois().indexOf(parada114);
 
-		Assert.assertEquals("1114",
-				((ParadaColectivo) terminalAbasto.getBase().getPois().get(posicionParada)).getLineaColectivo());
+		Assert.assertEquals("114",
+				((ParadaColectivo) terminalAbasto.getBase().getPois().get(posicionParada)).getNombre());
 
 	}
 

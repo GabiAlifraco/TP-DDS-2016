@@ -24,7 +24,6 @@ import java.time.LocalTime;
 
 public class ProveedorCGPs implements OrigenDeDatos {
 	CGPService serviceCGP;
-    Ubicacion ubicacion;
 
 	public List<Poi> buscarPois(String unNombre, String unaPalabraClave) {
 		List<Poi> listaCGPs = new ArrayList<Poi>();
@@ -39,8 +38,10 @@ public class ProveedorCGPs implements OrigenDeDatos {
 	}
 
 	public CGP deCentroDTOaCGP(CentroDTO centroDTO) {
-		Domicilio domicilio= new Domicilio("",0,"","",0,0,0,0,0);
-		Region region= new Region("","","","");
+		String calle = this.getCalleYAltura(centroDTO)[0];
+		int altura = Integer.parseInt(this.getCalleYAltura(centroDTO)[1]);
+		Domicilio domicilio= new Domicilio(calle,altura,"","",0,0,0,0,0);
+		Region region= new Region("CABA",centroDTO.getZonasIncluidas(),"Buenos Aires","Argentina");
 		Point coordenadas= new Point(0,0);
 	    Ubicacion ubicacion = new Ubicacion(domicilio,region,coordenadas);
 		CGP unCGP = new CGP(String.valueOf(centroDTO.getNumeroComuna()), centroDTO.getZonasIncluidas(),
@@ -74,5 +75,13 @@ public class ProveedorCGPs implements OrigenDeDatos {
 	public void setServiceCGP(CGPService serviceCGP) {
 		this.serviceCGP = serviceCGP;
 	}
-
+	private String[] getCalleYAltura(CentroDTO centroDTO){
+		String[] calleyaltura= new String[2];
+		String calle = centroDTO.getDomicilioCompletoCGP().split("[\\d]")[0];
+		String altura= centroDTO.getDomicilioCompletoCGP().split("[^\\w]")[centroDTO.getDomicilioCompletoCGP().split("[^\\w]").length-1];
+		calleyaltura[0]= calle;
+		calleyaltura[1]=altura;
+		
+		return calleyaltura;
+	}
 }

@@ -18,6 +18,7 @@ public class TestMappercCGP extends CreadorDeObjetos {
 		this.crearCentroDTO();
 		cgpMapeado = adapterCGP.deCentroDTOaCGP(centroDTO);
 		Assert.assertTrue(cgpMapeado.getNombre().equals("CGP Comuna 3"));
+		Assert.assertTrue(cgpMapeado.getDomicilio().getCallePrincipal().equals("Calle Junin "));
 		Assert.assertTrue(cgpMapeado.getRegion().getBarrio().equals("Balvanera, San Cristóbal"));
 		Assert.assertTrue(cgpMapeado.getServicios().get(0).getNombre().equals("Infracciones"));
 		Assert.assertTrue(cgpMapeado.getServicios().get(1).getNombre().equals("Atención ciudadana"));

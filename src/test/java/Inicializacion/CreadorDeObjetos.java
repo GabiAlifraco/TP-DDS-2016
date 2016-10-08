@@ -44,6 +44,7 @@ public abstract class CreadorDeObjetos {
 		ubicacionParada = new Ubicacion(domicilioParada, regionParada, coordenadaParada);
 		palabrasClave114 = Arrays.asList("Colectivo", "Parada");
 		parada114 = new ParadaColectivo(ubicacionParada, "114", palabrasClave114);
+		
 	}
 
 	// Creación de Bancos
@@ -66,8 +67,6 @@ public abstract class CreadorDeObjetos {
 		ubicacion = new Ubicacion(domicilioBanco,regionBanco,coordenadaBanco);
 		palabrasClaveBanco = Arrays.asList("Cajero automatico", "Deposito");
 		bancoSantander = new Banco("Banco Santander", palabrasClaveBanco,ubicacion);
-		
-
 		
 		
 		bancoSantander.setDomicilio(domicilioBanco);
@@ -213,7 +212,7 @@ public abstract class CreadorDeObjetos {
 	centroDTO.setNumeroComuna(3);
 	centroDTO.setZonasIncluidas("Balvanera, San Cristóbal");
 	centroDTO.setDirector("Christian Etchezur");
-	centroDTO.setDomicilioCompletoCGP("Junín 521");
+	centroDTO.setDomicilioCompletoCGP("Calle Junin 521");
 	centroDTO.setTelefonoCGP("4375-0644/45");
 
 	

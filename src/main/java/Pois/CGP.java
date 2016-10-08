@@ -17,13 +17,16 @@ public class CGP extends Poi{
     private String nombre;
 	private Polygon zona;
 	
-	public CGP (String unaComuna,String barrio,List<ServicioCGP> servicios, Ubicacion ubicacion){
+	public CGP(String unaComuna,String barrio,List<ServicioCGP> servicios, Ubicacion ubicacion){
 		setUbicacion(ubicacion);
 		Region regionCGP = new Region("CABA", barrio, "Bs As", "Argentina");
 		setRegion(regionCGP);
 		setNombre("CGP Comuna "+ unaComuna);
 		serviciosCGP = servicios;
 
+	}
+	public CGP(){
+		
 	}
 	
 	@Override

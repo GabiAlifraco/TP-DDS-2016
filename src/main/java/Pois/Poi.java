@@ -13,7 +13,6 @@ import CaracteristicaPoi.Disponibilidad;
 import CaracteristicaPoi.Domicilio;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.Ubicacion;
-import converter.PointConverter;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -25,7 +24,7 @@ public abstract class Poi implements WithGlobalEntityManager{
 	@GeneratedValue
 	@Column(name="poiID")
 	private Long poiID;
-	@Convert(converter = PointConverter.class)
+	//@Convert(converter = PointConverter.class)
 	
 	@OneToOne
 	protected Ubicacion ubicacion;
@@ -54,14 +53,6 @@ public abstract class Poi implements WithGlobalEntityManager{
 		return horariosDeAtencion.stream().anyMatch(disponibilidad -> disponibilidad.disponibleEnDiayHora(dia,hora));
 	}
 
-	public Ubicacion getUbicacion() {
-		return ubicacion;
-	}
-
-	public void setUbicacion(Ubicacion ubicacion) {
-		this.ubicacion = ubicacion;
-	}
-
 	// Esto es para la entrega 1: Busqueda de puntos
 	public boolean textoIncluido(String unNombre, String unaPalabraClave) {
 		return getPalabrasClave().stream().anyMatch(palabra -> palabra.contains(unaPalabraClave))
@@ -75,6 +66,9 @@ public abstract class Poi implements WithGlobalEntityManager{
 	// Setters y getters de los atributos
 	public Point getCoordenada() {
 		return this.ubicacion.getCoordenadas();
+	}
+	public void setCoordenada(Point unaCoordenada) {
+		this.ubicacion.setCoordenadas(unaCoordenada);
 	}
 	
 	public Domicilio getDomicilio() {
@@ -111,6 +105,13 @@ public abstract class Poi implements WithGlobalEntityManager{
 	public void setHorariosDeAtencion(List<Disponibilidad> horariosDeAtencion) {
 		this.horariosDeAtencion = horariosDeAtencion;
 	}
+	public Ubicacion getUbicacion() {
+		return ubicacion;
+	}
+
+	public void setUbicacion(Ubicacion ubicacion) {
+		this.ubicacion = ubicacion;
+	}
 
 	@Override
 	public int hashCode() {
@@ -129,10 +130,10 @@ public abstract class Poi implements WithGlobalEntityManager{
 		if (getClass() != obj.getClass())
 			return false;
 		Poi other = (Poi) obj;
-		if (ubicacion.getCoordenadas() == null) {
-			if (other.getCoordenada() != null)
+		if (this.getCoordenada()== null) {
+			if (other.getCoordenada()!= null)
 				return false;
-		} else if (!(ubicacion.getCoordenadas().distance(other.getCoordenada()) == 0))
+		} else if (!(this.getCoordenada().distance(other.getCoordenada()) == 0))
 			return false;
 		return true;
 	}
