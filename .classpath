@@ -31,6 +31,10 @@
   <classpathentry kind="var" path="M2_REPO/org/javassist/javassist/3.18.1-GA/javassist-3.18.1-GA.jar"/>
   <classpathentry kind="var" path="M2_REPO/antlr/antlr/2.7.7/antlr-2.7.7.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/jboss/jandex/1.1.0.Final/jandex-1.1.0.Final.jar"/>
+<<<<<<< HEAD
   <classpathentry kind="var" path="M2_REPO/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar"/>
+=======
+  <classpathentry kind="var" path="M2_REPO/mysql/mysql-connector-java/5.1.36/mysql-connector-java-5.1.36.jar"/>
+>>>>>>> branch 'master' of https://github.com/dds-utn/2016-vn-group-10.git
   <classpathentry kind="var" path="M2_REPO/org/hsqldb/hsqldb/2.2.8/hsqldb-2.2.8.jar"/>
 </classpath>
