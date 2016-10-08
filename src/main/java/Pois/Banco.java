@@ -8,7 +8,6 @@ import CaracteristicaPoi.Ubicacion;
 public class Banco extends Poi {
 	
 	public Banco(String unNombre, List<String> serviciosBanco, Ubicacion ubicacion) {
-		
 		setNombre(unNombre);
 		setPalabrasClave(serviciosBanco);
 		setUbicacion(ubicacion);

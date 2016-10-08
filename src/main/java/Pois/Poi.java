@@ -62,14 +62,10 @@ public abstract class Poi implements WithGlobalEntityManager{
 	public boolean mismoNombre(String nombreServicio) {
 		return getNombre().equals(nombreServicio);
 	}
-	//Estos metodos no se estan utilizando
-	public void agregarPalabraClave(String unaPalabra) {
-		this.palabrasClave.add(unaPalabra);
-	}
-	
+
 	// Setters y getters de los atributos
 	public Point getCoordenada() {
-		return ubicacion.getCoordenadas();
+		return this.ubicacion.getCoordenadas();
 	}
 	public void setCoordenada(Point unaCoordenada) {
 		this.ubicacion.setCoordenadas(unaCoordenada);
@@ -121,7 +117,7 @@ public abstract class Poi implements WithGlobalEntityManager{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((this.getCoordenada()== null) ? 0 : this.getCoordenada().hashCode());
+		result = prime * result + ((ubicacion.getCoordenadas() == null) ? 0 : ubicacion.getCoordenadas().hashCode());
 		return result;
 	}
 

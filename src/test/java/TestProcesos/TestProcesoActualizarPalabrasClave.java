@@ -58,7 +58,6 @@ public class TestProcesoActualizarPalabrasClave extends CreadorDeObjetos {
 
 	@Test
 	public void testActualizaElDiarioDelPueblo() throws IOException {
-
 		terminalAbasto.getBase().agregarUnPoi(KioscoPepe);
 		terminalAbasto.getBase().agregarUnPoi(elDiarioDelPueblo);
 		terminalAbasto.getBase().agregarUnPoi(carrouselPlinPlin);

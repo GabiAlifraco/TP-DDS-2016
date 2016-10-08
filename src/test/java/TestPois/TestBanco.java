@@ -15,7 +15,6 @@ public class TestBanco extends CreadorDeObjetos {
 
 	@Test
 	public void estaCercaElBancoDeLaParada() {
-		// Assert.assertEquals(true,bancoSantander.esCerca(coordenadaParada));
 		Assert.assertTrue(bancoSantander.estaCercaDe(parada114.getCoordenada()));
 	}
 
