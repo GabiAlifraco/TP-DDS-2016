@@ -3,10 +3,20 @@ package CaracteristicaPoi;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.List;
+import javax.persistence.*;
 
+@Entity
+@Inheritance(strategy=InheritanceType.JOINED)
+@Table(name="Disponibilidad")
 public class Disponibilidad {
+	//@OneToMany(cascade= CascadeType.ALL)
+	@Transient
 	private List<DayOfWeek> dias;
+	@Id
+	@GeneratedValue
+	@Column(name="horarioInicial")
 	private LocalTime horarioInicial;
+	@Column(name="horarioFinal")
 	private LocalTime horarioFinal;
 
 	public Disponibilidad(List<DayOfWeek> unosDias,LocalTime unHorarioInicial, LocalTime unHorarioFinal){

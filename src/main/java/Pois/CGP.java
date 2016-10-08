@@ -9,12 +9,17 @@ import org.uqbar.geodds.Polygon;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.ServicioCGP;
 import CaracteristicaPoi.Ubicacion;
-
-
+import javax.persistence.*;
+@Entity
+@Table(name="CGP")
 public class CGP extends Poi{
-	
+	//@OneToMany(cascade= CascadeType.ALL)
+	@Transient
 	private List<ServicioCGP> serviciosCGP;
+	@Column(name="nombre")
     private String nombre;
+	//@Column(name="zona")
+	@Transient
 	private Polygon zona;
 	
 	public CGP(String unaComuna,String barrio,List<ServicioCGP> servicios, Ubicacion ubicacion){
@@ -23,7 +28,6 @@ public class CGP extends Poi{
 		setRegion(regionCGP);
 		setNombre("CGP Comuna "+ unaComuna);
 		serviciosCGP = servicios;
-
 	}
 	public CGP(){
 		
