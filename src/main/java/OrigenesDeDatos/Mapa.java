@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityManager;
+
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import Pois.Poi;
@@ -11,12 +13,14 @@ import Pois.Poi;
 public class Mapa implements OrigenDeDatos, WithGlobalEntityManager{
 
 	private static Mapa instance = null;
+	
 	private List<Poi> pois = new ArrayList<Poi>();
 
 	// Alta, Baja y Modificaci�n de un Poi
 	public void agregarUnPoi(Poi unPoi) {
 		if (!pois.contains(unPoi)) {
 			pois.add(unPoi);
+			entityManager().persist(unPoi);
 		}
 	}
 
@@ -27,6 +31,7 @@ public class Mapa implements OrigenDeDatos, WithGlobalEntityManager{
 	public void eliminarUnPoi(Poi unPoi) {
 		if (pois.contains(unPoi)) {
 			pois.remove(unPoi);
+			entityManager().remove(unPoi);
 		}
 	}
 
