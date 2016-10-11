@@ -2,11 +2,17 @@ package Pois;
 
 import java.util.List;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import CaracteristicaPoi.Disponibilidad;
 import CaracteristicaPoi.Ubicacion;
 
+@Entity
+@DiscriminatorValue(value= "Comercio")
 public class Comercio extends Poi {
-
+	
+	
 	private int distancia;
 
 	public Comercio(String unNombre, Ubicacion unaUbicacion, List<Disponibilidad> horariosDeAtencion,

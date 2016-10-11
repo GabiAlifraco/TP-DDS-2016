@@ -5,15 +5,18 @@ import java.time.LocalTime;
 import java.util.List;
 import javax.persistence.*;
 
+
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
 @Table(name="Disponibilidad")
 public class Disponibilidad {
-	//@OneToMany(cascade= CascadeType.ALL)
-	@Transient
-	private List<DayOfWeek> dias;
 	@Id
 	@GeneratedValue
+	private long disponibilidadID;
+	//@ElementCollection
+	/*@CollectionTable(name="diasAtencionServicio",
+		joinColumns=@JoinColumn(name="disponibilidadId")*/
+	@Transient
+	private List<DayOfWeek> dias;
 	@Column(name="horarioInicial")
 	private LocalTime horarioInicial;
 	@Column(name="horarioFinal")
@@ -42,6 +45,12 @@ public class Disponibilidad {
 
 	public LocalTime getHorarioFinal() {
 		return horarioFinal;
+	}
+	public void setHorarioInicial(LocalTime horarioInicial) {
+		this.horarioInicial = horarioInicial;
+	}
+	public void setHorarioFinal(LocalTime horarioFinal) {
+		this.horarioFinal = horarioFinal;
 	}
 
 	

@@ -1,7 +1,10 @@
 package converter;
-import javax.persistence.*;
+import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 
 import org.uqbar.geodds.Point;
+
+@Converter
 public class PointConverter implements AttributeConverter<Point,String>{
 	 private static final String SEPARATOR = ",";
 	@Override

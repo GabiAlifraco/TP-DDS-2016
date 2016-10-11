@@ -11,14 +11,12 @@ import CaracteristicaPoi.ServicioCGP;
 import CaracteristicaPoi.Ubicacion;
 import javax.persistence.*;
 @Entity
-@Table(name="CGP")
+@DiscriminatorValue(value="CGP")
 public class CGP extends Poi{
-	//@OneToMany(cascade= CascadeType.ALL)
-	@Transient
+	@OneToMany
+	@JoinColumn(name="poiID")
 	private List<ServicioCGP> serviciosCGP;
-	@Column(name="nombre")
-    private String nombre;
-	//@Column(name="zona")
+	
 	@Transient
 	private Polygon zona;
 	
@@ -53,9 +51,6 @@ public class CGP extends Poi{
 		return 0;
 	}
 	//Getters y Setters
-	public List<ServicioCGP> getServicios(){
-		return this.serviciosCGP;
-	}
 	
 	public Polygon getZona() {
 		return zona;
@@ -64,6 +59,12 @@ public class CGP extends Poi{
 		this.zona = zona;
 	}
     
+	public List<ServicioCGP> getServiciosCGP() {
+		return serviciosCGP;
+	}
+	public void setServiciosCGP(List<ServicioCGP> serviciosCGP) {
+		this.serviciosCGP = serviciosCGP;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.uqbar.geodds.Point;
-import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import javax.persistence.*;
 import CaracteristicaPoi.Disponibilidad;
@@ -15,23 +14,26 @@ import CaracteristicaPoi.Region;
 import CaracteristicaPoi.Ubicacion;
 
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
 @Table(name="POIS")
-public abstract class Poi implements WithGlobalEntityManager{
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name= "Tipo_Poi")
+public abstract class Poi{
 
 	// Declaramos los atributos principales del poi
 	@Id
 	@GeneratedValue
 	@Column(name="poiID")
 	private Long poiID;
-	//@Convert(converter = PointConverter.class)
-	
 	@OneToOne
+	@JoinColumn(name="poiID")
 	protected Ubicacion ubicacion;
 	protected String nombre;
-	@Transient
+	@ElementCollection
+	@CollectionTable(name="palabrasClaveDePoi",
+		joinColumns=@JoinColumn(name="poiID"))
 	private List<String> palabrasClave = new ArrayList<String>();
-	@Transient
+	@OneToMany
+	@JoinColumn(name="poiID")
 	private List<Disponibilidad> horariosDeAtencion  = new ArrayList<Disponibilidad>();
 
 	
@@ -111,6 +113,14 @@ public abstract class Poi implements WithGlobalEntityManager{
 
 	public void setUbicacion(Ubicacion ubicacion) {
 		this.ubicacion = ubicacion;
+	}
+
+	public Long getPoiID() {
+		return poiID;
+	}
+
+	public void setPoiID(Long poiID) {
+		this.poiID = poiID;
 	}
 
 	@Override
