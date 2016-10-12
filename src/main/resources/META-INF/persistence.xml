@@ -7,13 +7,9 @@
   
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     	<provider>org.hibernate.ejb.HibernatePersistence</provider>
-    	<class>Pois.Poi</class>
     	<class>CaracteristicaPoi.Domicilio</class>
     	<class>CaracteristicaPoi.Region</class>
     	<class>CaracteristicaPoi.Ubicacion</class>
-		<class>CaracteristicaPoi.Disponibilidad</class>
-    	<class>Pois.CGP</class>
-    	<class>DTOs.BancoDTO</class>
 		
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        
@@ -35,7 +31,7 @@
             <property name="hibernate.show_sql" value="true" /> 
             <property name="hibernate.format_sql" value="true" /> 
             <property name="use_sql_comments" value="true" /> 
-            <property name="hibernate.hbm2ddl.auto" value="update" /> 
+            <property name="hibernate.hbm2ddl.auto" value="create" /> 
         </properties>
           
     </persistence-unit> 

@@ -7,7 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import javax.persistence.*;
+
 import org.uqbar.geodds.Point;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import Notificaciones.AlmacenadorBusquedas;
 import Notificaciones.NotificacionBusqueda;
@@ -15,15 +19,27 @@ import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
 import Pois.Poi;
 import Resultado.Resultado;
+import converter.PointConverter;
 
-public class Terminal {
+@Entity
+@Table(name="Terminales")
+public class Terminal implements WithGlobalEntityManager{
 
+	@Transient
 	public Mapa mapa = Mapa.getInstance();
+	@Transient
 	private AlmacenadorBusquedas almacenador;
+	@Id
+	@GeneratedValue
+	@Column(name = "terminalID")
+	private long idTerminal;
+	@Convert(converter = PointConverter.class)
 	private Point coordenadaDispositivoMovil;
 	private String nombreTerminal;
+	@Transient
 	List<OrigenDeDatos> servicios = new ArrayList<OrigenDeDatos>();
-	List<NotificacionBusqueda> losObserverBusqueda = new ArrayList<NotificacionBusqueda>();
+	@Transient
+	List<NotificacionBusqueda> notificadoresBusqueda = new ArrayList<NotificacionBusqueda>();
 	private String comunaTerminal;
 
 	public Terminal(String nombre, List<OrigenDeDatos> servicios) {
@@ -31,6 +47,10 @@ public class Terminal {
 		setServicios(servicios);
 	}
 
+	public Terminal(){
+		
+	}
+	
 	public List<Poi> consultaDeCercania() {
 		return mapa.getPois().stream().filter(poi -> poi.estaCercaDe(coordenadaDispositivoMovil))
 				.collect(Collectors.toList());
@@ -52,7 +72,6 @@ public class Terminal {
 		Resultado resultado = new Resultado(LocalDate.now(), finalizacion, comienzo, unNombre + " " + unaPalabraClave,
 				listaResultados.size(), this);
 
-		//agregarBusqueda(resultado);
 		notificarBusqueda(resultado, this);
 
 		return listaResultados;
@@ -73,15 +92,15 @@ public class Terminal {
 	}
 
 	public void notificarBusqueda(Resultado resultado, Terminal terminal) {
-		losObserverBusqueda.stream().forEach(observerBusqueda -> observerBusqueda.actualizar(resultado, terminal));
+		notificadoresBusqueda.stream().forEach(observerBusqueda -> observerBusqueda.actualizar(resultado, terminal));
 	}
 
 	public void agregarObserver(NotificacionBusqueda observer) {
-		losObserverBusqueda.add(observer);
+		notificadoresBusqueda.add(observer);
 	}
 
 	public void eliminarObserver(NotificacionBusqueda observer) {
-		losObserverBusqueda.remove(observer);
+		notificadoresBusqueda.remove(observer);
 	}
 
 	public void agregarNuevoServicio(OrigenDeDatos nuevoOrigen) {
@@ -92,8 +111,11 @@ public class Terminal {
 		return this.servicios;
 	}
 
-	public List<NotificacionBusqueda> getObserverBusquedas() {
-		return this.losObserverBusqueda;
+	public List<NotificacionBusqueda> getNotificadoresBusqueda() {
+		return this.notificadoresBusqueda;
+	}
+	public void setNotificadoresBusqueda(List<NotificacionBusqueda> notificadores){
+		this.notificadoresBusqueda = notificadores;
 	}
 
 	public Mapa getBase() {
@@ -123,4 +145,20 @@ public class Terminal {
 	public void setAlmacenadorBusquedas(AlmacenadorBusquedas almacenador) {
 		this.almacenador = almacenador;
 	}
+	public long getIdTerminal() {
+		return idTerminal;
+	}
+	
+	public void setIdTerminal(long idTerminal) {
+		this.idTerminal = idTerminal;
+	}
+	
+	public Point getCoordenadaDispositivoMovil() {
+		return coordenadaDispositivoMovil;
+	}
+	
+	public void setCoordenadaDispositivoMovil(Point coordenadaDispositivoMovil) {
+		this.coordenadaDispositivoMovil = coordenadaDispositivoMovil;
+	}
+	
 }

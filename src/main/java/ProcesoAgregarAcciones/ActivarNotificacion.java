@@ -14,7 +14,7 @@ public class ActivarNotificacion implements Accion {
 
 	@Override
 	public void modificarConfiguracion(Terminal terminal) {
-		if (!terminal.getObserverBusquedas().contains(MailDemoraBusqueda.class)) {
+		if (!terminal.getNotificadoresBusqueda().contains(MailDemoraBusqueda.class)) {
 			terminal.agregarObserver(mailDemoraBusqueda);
 		}
 	}
