@@ -264,7 +264,7 @@ public abstract class CreadorDeObjetos {
 		fecha = LocalDate.parse("2016-10-16");
 		notificadorAdministrador = new MockNotificadorAdministrador();
 		terminal = new Terminal("Terminal Abasto", servicios);
-		terminal.getObserverBusquedas().add(notificadorAdministrador);
+		terminal.agregarObserver(notificadorAdministrador);
 		resultado = new Resultado(fecha, LocalTime.of(10, 40, 02), LocalTime.of(10, 40, 10), "sarasa", 4, terminal);
 		notificadorAdministrador.setTiempoMaximoBusqueda(5);
 		

@@ -1,13 +1,13 @@
 package CaracteristicaPoi;
 
 import javax.persistence.*;
-
 @Entity
 @Table(name="Domicilio")
 public class Domicilio {
 	@Id
 	@GeneratedValue
 	private Long domicilioID;
+	
 	private String callePrincipal;
 	private int alturaPrincipal;
 	private String entreUnaCalle;
@@ -70,4 +70,37 @@ public class Domicilio {
 		return codigoPostal;
 	}
 
+	public long getDomicilioID() {
+		return domicilioID;
+	}
+	public void setDomicilioID(long domicilioID) {
+		this.domicilioID = domicilioID;
+	}
+	public void setCallePrincipal(String callePrincipal) {
+		this.callePrincipal = callePrincipal;
+	}
+	public void setAlturaPrincipal(int alturaPrincipal) {
+		this.alturaPrincipal = alturaPrincipal;
+	}
+	public void setEntreUnaCalle(String entreUnaCalle) {
+		this.entreUnaCalle = entreUnaCalle;
+	}
+	public void setHastaOtraCalle(String hastaOtraCalle) {
+		this.hastaOtraCalle = hastaOtraCalle;
+	}
+	public void setAlturaCalles(int alturaCalles) {
+		this.alturaCalles = alturaCalles;
+	}
+	public void setPiso(int piso) {
+		this.piso = piso;
+	}
+	public void setDepartamento(int departamento) {
+		this.departamento = departamento;
+	}
+	public void setUnidad(int unidad) {
+		this.unidad = unidad;
+	}
+	public void setCodigoPostal(int codigoPostal) {
+		this.codigoPostal = codigoPostal;
+	}
 }

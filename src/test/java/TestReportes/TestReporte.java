@@ -64,7 +64,7 @@ public class TestReporte extends CreadorDeObjetos {
 		activar.modificarConfiguracion(terminalAbasto);
 		terminalAbasto.busquedaDePuntos("Santander", "Cajero");
 		
-		Assert.assertTrue(terminalAbasto.getObserverBusquedas().contains(mockNotificacion));
+		Assert.assertTrue(terminalAbasto.getNotificadoresBusqueda().contains(mockNotificacion));
 	}
 	
 	@Test

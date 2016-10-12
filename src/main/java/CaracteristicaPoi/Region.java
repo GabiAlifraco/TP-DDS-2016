@@ -1,13 +1,13 @@
 package CaracteristicaPoi;
 
 import javax.persistence.*;
-
 @Entity
 @Table(name="Region")
 public class Region {
 	@Id
 	@GeneratedValue
 	private Long RegionID;
+
 	private String localidad;
 	private String barrio;
 	private String provincia;
@@ -37,5 +37,23 @@ public class Region {
 
 	public String getPais() {
 		return pais;
+	}
+	public long getRegionID() {
+		return RegionID;
+	}
+	public void setRegionID(long regionID) {
+		RegionID = regionID;
+	}
+	public void setLocalidad(String localidad) {
+		this.localidad = localidad;
+	}
+	public void setBarrio(String barrio) {
+		this.barrio = barrio;
+	}
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
+	}
+	public void setPais(String pais) {
+		this.pais = pais;
 	}
 }

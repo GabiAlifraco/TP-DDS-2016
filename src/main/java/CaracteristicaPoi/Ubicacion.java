@@ -1,13 +1,14 @@
 package CaracteristicaPoi;
-
 import org.uqbar.geodds.Point;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import converter.PointConverter;
 
 import javax.persistence.*;
 
 @Entity
-public class Ubicacion {
+@Table(name="Ubicacion")
+public class Ubicacion implements WithGlobalEntityManager{
 	@Id
 	@GeneratedValue
 	private long ubicacionID;
@@ -15,7 +16,7 @@ public class Ubicacion {
 	private Point coordenadas;
 	@OneToOne
 	private Domicilio domicilio;
-	@OneToOne
+	@ManyToOne
 	private Region region;
 	
 	public Ubicacion(Domicilio domicilio, Region region, Point coordenadas){
@@ -47,4 +48,10 @@ public class Ubicacion {
     public void setRegion(Region region) {
 		this.region = region;
 	}
+    public long getUbicacionID() {
+    	return ubicacionID;
+    }
+    public void setUbicacionID(long ubicacionID) {
+    	this.ubicacionID = ubicacionID;
+    }
 }
