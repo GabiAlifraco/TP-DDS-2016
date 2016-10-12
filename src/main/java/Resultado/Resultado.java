@@ -3,24 +3,38 @@ package Resultado;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.convert.LambdaConverter;
+
+import javax.persistence.*;
 
 import Terminal.Terminal;
 
-public class Resultado {
+@Entity
+@Table(name="ResultadosBusqueda")
+public class Resultado implements WithGlobalEntityManager{
 
+	@Id
+	@GeneratedValue
+	private long idResultado;
+	@Column(name="FechaBusqueda")
 	LocalDate fecha;
+	@Transient
 	long segundosBusqueda;
 	String fraseBuscada;
 	int cantidadDeResultados;
+	@OneToOne
 	Terminal terminal;
+	@Convert(converter=LambdaConverter.class)
 	LocalTime unTiempoInicio;
+	@Convert(converter=LambdaConverter.class)
 	LocalTime unTiempoFinalizacion;
 	
 	public Resultado(LocalDate unaFecha, LocalTime tiempoInicio, LocalTime tiempoFinalizacion, String unaFraseBuscada, int totalResultados,
 			Terminal terminal) {
 
 		this.setFecha(unaFecha);
-		this.setTiempoBusqueda(tiempoFinalizacion, tiempoInicio);
+		this.setTiempoBusqueda(tiempoInicio, tiempoFinalizacion);
 		this.setFraseBuscada(unaFraseBuscada);
 		this.setCantidadResultados(totalResultados);
 		this.setTerminal(terminal);
@@ -33,25 +47,17 @@ public class Resultado {
 		return unTiempoInicio;
 	}
 
-
-
 	public void setUnTiempoInicio(LocalTime unTiempoInicio) {
 		this.unTiempoInicio = unTiempoInicio;
 	}
-
-
 
 	public LocalTime getUnTiempoFinalizacion() {
 		return unTiempoFinalizacion;
 	}
 
-
-
 	public void setUnTiempoFinalizacion(LocalTime unTiempoFinalizacion) {
 		this.unTiempoFinalizacion = unTiempoFinalizacion;
 	}
-
-
 
 	private void setTerminal(Terminal terminal) {
 		this.terminal = terminal;
@@ -95,4 +101,19 @@ public class Resultado {
 		return segundosBusqueda;
 	}
 
+	public long getIdResultado() {
+		return idResultado;
+	}
+	
+	public void setIdResultado(long idResultado) {
+		this.idResultado = idResultado;
+	}
+	
+	public int getCantidadDeResultados() {
+		return cantidadDeResultados;
+	}
+	
+	public void setCantidadDeResultados(int cantidadDeResultados) {
+		this.cantidadDeResultados = cantidadDeResultados;
+	}
 }
