@@ -5,8 +5,6 @@ import java.time.LocalTime;
 import java.util.List;
 import javax.persistence.*;
 
-import org.hibernate.annotations.IndexColumn;
-
 @Entity
 @Table(name="Disponibilidad")
 public class Disponibilidad {
@@ -52,6 +50,12 @@ public class Disponibilidad {
 	public LocalTime getHorarioFinal() {
 		return horarioFinal;
 	}
+	public void setHorarioInicial(LocalTime horarioInicial) {
+		this.horarioInicial = horarioInicial;
+	}
+	public void setHorarioFinal(LocalTime horarioFinal) {
+		this.horarioFinal = horarioFinal;
+	}
 
 	public long getIdDisponibilidad() {
 		return idDisponibilidad;
@@ -63,14 +67,6 @@ public class Disponibilidad {
 	
 	public void setDias(List<DayOfWeek> dias) {
 		this.dias = dias;
-	}
-	
-	public void setHorarioInicial(LocalTime horarioInicial) {
-		this.horarioInicial = horarioInicial;
-	}
-	
-	public void setHorarioFinal(LocalTime horarioFinal) {
-		this.horarioFinal = horarioFinal;
 	}
 }
 

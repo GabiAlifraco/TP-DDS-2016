@@ -3,7 +3,6 @@ package DTOs;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.*;
 public class BancoDTO {
 	private String banco;
 	private String x;

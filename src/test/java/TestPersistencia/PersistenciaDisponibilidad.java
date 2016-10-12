@@ -8,7 +8,6 @@ import CaracteristicaPoi.Disponibilidad;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Assert;
@@ -26,8 +25,6 @@ public class PersistenciaDisponibilidad extends AbstractPersistenceTest implemen
 		dias = new ArrayList<DayOfWeek>();
 				
 		dias.add(DayOfWeek.MONDAY);
-		//, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, 
-			//	DayOfWeek.FRIDAY);
 		horarioInicial = LocalTime.of(9, 30);
 		horarioFinal = LocalTime.of(15, 00);
 		disponibilidad = new Disponibilidad(dias,horarioInicial, horarioFinal);

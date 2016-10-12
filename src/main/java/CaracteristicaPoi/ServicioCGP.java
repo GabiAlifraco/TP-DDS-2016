@@ -5,8 +5,6 @@ import java.time.LocalTime;
 import java.util.List;
 import javax.persistence.*;
 
-import org.hibernate.annotations.IndexColumn;
-
 @Entity
 @Table(name = "ServiciosCGP")
 public class ServicioCGP {
@@ -24,6 +22,13 @@ public class ServicioCGP {
 	public ServicioCGP(String unNombre, List<Disponibilidad> horarios) {
 		nombre = unNombre;
 		horariosDeAtencion = horarios;
+    }
+	
+	public ServicioCGP() {
+	}
+
+	public void setHorariosDeAtencion(List<Disponibilidad> horariosDeAtencion) {
+		this.horariosDeAtencion = horariosDeAtencion;
 	}
 
 	public boolean horarioDisponible(DayOfWeek dia, LocalTime hora) {
@@ -54,9 +59,5 @@ public class ServicioCGP {
 	
 	public void setIdServicioCGP(long idServicioCGP) {
 		this.idServicioCGP = idServicioCGP;
-	}
-	
-	public void setHorariosDeAtencion(List<Disponibilidad> horariosDeAtencion) {
-		this.horariosDeAtencion = horariosDeAtencion;
 	}
 }
