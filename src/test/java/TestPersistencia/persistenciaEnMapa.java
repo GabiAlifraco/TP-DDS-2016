@@ -1,4 +1,4 @@
-package persistencia;
+package TestPersistencia;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
