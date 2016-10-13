@@ -77,7 +77,7 @@ public class PersistenciaResultadoBusqueda extends AbstractPersistenceTest imple
 	@Test
 	public void testPersistenciaHoraInicioYFin(){
 		Assert.assertEquals(entityManager().find(Resultado.class, resultado.getIdResultado())
-				.getSegundosBusqueda(), ChronoUnit.SECONDS.between(horaFin, horaInicio));
+				.getSegundosBusqueda(), ChronoUnit.SECONDS.between(horaInicio, horaFin));
 	}
 	@Test
 	public void testPersistenciaFraseBuscada(){

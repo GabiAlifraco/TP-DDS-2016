@@ -9,11 +9,12 @@ public class TestMandarMailAlAdministrador extends CreadorDeObjetos {
 	
 	@Before
 	public void initialize(){
+		
 		this.crearMail();
-	}
+		}
+
     @Test
 	public void seLeNotificaraAlAdministrador(){
-		
 		Assert.assertTrue(notificadorAdministrador.administradorNotificado);
 	}
 

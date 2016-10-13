@@ -266,10 +266,11 @@ public abstract class CreadorDeObjetos {
 		notificadorAdministrador = new MockNotificadorAdministrador();
 		terminal = new Terminal("Terminal Abasto", servicios);
 		terminal.agregarObserver(notificadorAdministrador);
+		notificadorAdministrador.setTiempoMaximoBusqueda(5);
 		List<Poi> poisEncontrados = Arrays.asList(parada114);
 		resultado = new Resultado(fecha, LocalTime.of(10, 40, 02), LocalTime.of(10, 40, 10), "sarasa", terminal, poisEncontrados);
-		notificadorAdministrador.setTiempoMaximoBusqueda(5);
 		
 		terminal.notificarBusqueda(resultado,terminal);
 	}
+	
 }

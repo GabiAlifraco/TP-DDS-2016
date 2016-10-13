@@ -87,7 +87,7 @@ public class Resultado implements WithGlobalEntityManager{
 	}
 
 	private void setTiempoBusqueda(LocalTime comienzo, LocalTime finalizacion) {
-		this.segundosBusqueda = ChronoUnit.SECONDS.between(finalizacion, comienzo);
+		this.segundosBusqueda = ChronoUnit.SECONDS.between(comienzo, finalizacion);
 	}
 
 	private void setFecha(LocalDate unaFecha) {
