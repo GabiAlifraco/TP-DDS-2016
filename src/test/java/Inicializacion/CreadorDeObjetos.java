@@ -24,6 +24,7 @@ import Pois.Banco;
 import Pois.CGP;
 import Pois.Comercio;
 import Pois.ParadaColectivo;
+import Pois.Poi;
 import Resultado.Resultado;
 import Terminal.Terminal;
 
@@ -265,7 +266,8 @@ public abstract class CreadorDeObjetos {
 		notificadorAdministrador = new MockNotificadorAdministrador();
 		terminal = new Terminal("Terminal Abasto", servicios);
 		terminal.agregarObserver(notificadorAdministrador);
-		resultado = new Resultado(fecha, LocalTime.of(10, 40, 02), LocalTime.of(10, 40, 10), "sarasa", 4, terminal);
+		List<Poi> poisEncontrados = Arrays.asList(parada114);
+		resultado = new Resultado(fecha, LocalTime.of(10, 40, 02), LocalTime.of(10, 40, 10), "sarasa", terminal, poisEncontrados);
 		notificadorAdministrador.setTiempoMaximoBusqueda(5);
 		
 		terminal.notificarBusqueda(resultado,terminal);

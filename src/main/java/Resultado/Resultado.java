@@ -3,8 +3,12 @@ package Resultado;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
+
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.convert.LambdaConverter;
+
+import Pois.Poi;
 
 import javax.persistence.*;
 
@@ -29,19 +33,25 @@ public class Resultado implements WithGlobalEntityManager{
 	LocalTime unTiempoInicio;
 	@Convert(converter=LambdaConverter.class)
 	LocalTime unTiempoFinalizacion;
+	@ManyToMany
+	List<Poi> poisEncontrados;
 	
-	public Resultado(LocalDate unaFecha, LocalTime tiempoInicio, LocalTime tiempoFinalizacion, String unaFraseBuscada, int totalResultados,
-			Terminal terminal) {
+
+	public Resultado(LocalDate unaFecha, LocalTime tiempoInicio, LocalTime tiempoFinalizacion, String unaFraseBuscada,
+			Terminal terminal, List<Poi> poisEncontrados) {
 
 		this.setFecha(unaFecha);
 		this.setTiempoBusqueda(tiempoInicio, tiempoFinalizacion);
 		this.setFraseBuscada(unaFraseBuscada);
-		this.setCantidadResultados(totalResultados);
+		this.setCantidadResultados(poisEncontrados.size());
 		this.setTerminal(terminal);
+		this.setPoisEncontrados(poisEncontrados);
 
 	}
 	
-	
+	public Resultado(){
+		
+	}
 
 	public LocalTime getUnTiempoInicio() {
 		return unTiempoInicio;
@@ -115,5 +125,12 @@ public class Resultado implements WithGlobalEntityManager{
 	
 	public void setCantidadDeResultados(int cantidadDeResultados) {
 		this.cantidadDeResultados = cantidadDeResultados;
+	}
+	public List<Poi> getPoisEncontrados() {
+		return poisEncontrados;
+	}
+	
+	public void setPoisEncontrados(List<Poi> poisEncontrados) {
+		this.poisEncontrados = poisEncontrados;
 	}
 }

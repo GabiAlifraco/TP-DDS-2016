@@ -70,7 +70,7 @@ public class Terminal implements WithGlobalEntityManager{
 		LocalTime finalizacion = LocalTime.now();
 
 		Resultado resultado = new Resultado(LocalDate.now(), finalizacion, comienzo, unNombre + " " + unaPalabraClave,
-				listaResultados.size(), this);
+				this, listaResultados);
 
 		notificarBusqueda(resultado, this);
 
