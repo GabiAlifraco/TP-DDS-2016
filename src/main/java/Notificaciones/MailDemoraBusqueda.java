@@ -1,12 +1,27 @@
 package Notificaciones;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import Resultado.Resultado;
 import Terminal.Terminal;
+@Entity  
+@Table(name="MailsDemora")  
+public class MailDemoraBusqueda extends NotificacionBusqueda{
 
-public class MailDemoraBusqueda implements NotificacionBusqueda{
-
+	@Id
+	@GeneratedValue
+	@Column(name="MailDemora_Id")
+	private long id_MailDemora;
+	
+	@Column(name="TiempoMaximoBusqueda")
 	private long tiempoMaximoBusqueda;
     
+	public MailDemoraBusqueda() {
+	}
 	//En caso de que el tiempo que tarda en buscar supere al maximo estipulado, manda mail	
     @Override
 	public void actualizar(Resultado resultado,Terminal terminal) {
@@ -29,9 +44,17 @@ public class MailDemoraBusqueda implements NotificacionBusqueda{
 	public long getTiempoMaximoBusqueda() {
 		return tiempoMaximoBusqueda;
 	}
+	
+	public long getId_MailDemora() {
+		return id_MailDemora;
+	}
+	
+	
 	//Setters
 	public void setTiempoMaximoBusqueda(long tiempoMaximoBusqueda) {
 		this.tiempoMaximoBusqueda = tiempoMaximoBusqueda;
 	}
-
+	public void setId_MailDemora(long id_MailDemora) {
+		this.id_MailDemora = id_MailDemora;
+	}
 }

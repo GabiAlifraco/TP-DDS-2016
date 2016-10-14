@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import Resultado.Resultado;
 import Terminal.Terminal;
 
-public class AlmacenadorBusquedas implements NotificacionBusqueda {
+public class AlmacenadorBusquedas extends NotificacionBusqueda {
 
 	private static AlmacenadorBusquedas instance = null;
 	private Map<Terminal, List<Resultado>> resultadosEncontrados = new HashMap<Terminal, List<Resultado>>();

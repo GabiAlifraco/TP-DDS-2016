@@ -5,7 +5,7 @@ import Resultado.Resultado;
 import Terminal.Terminal;
 
 
-public class MockNotificadorAdministrador implements NotificacionBusqueda{
+public class MockNotificadorAdministrador extends NotificacionBusqueda{
 
 	public boolean administradorNotificado;
 	private long tiempoMaximoBusqueda;
