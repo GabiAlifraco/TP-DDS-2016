@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import Resultado.Resultado;
 import Terminal.Terminal;
@@ -12,6 +13,8 @@ import Terminal.Terminal;
 @Table(name="MailsDemora")  
 public class MailDemoraBusqueda extends NotificacionBusqueda{
 
+	@Transient
+	private boolean mailEnviado;
 	@Id
 	@GeneratedValue
 	@Column(name="MailDemora_Id")
@@ -20,6 +23,7 @@ public class MailDemoraBusqueda extends NotificacionBusqueda{
 	@Column(name="TiempoMaximoBusqueda")
 	private long tiempoMaximoBusqueda;
     
+	
 	public MailDemoraBusqueda() {
 	}
 	//En caso de que el tiempo que tarda en buscar supere al maximo estipulado, manda mail	
@@ -32,7 +36,7 @@ public class MailDemoraBusqueda extends NotificacionBusqueda{
     
     //Simula mandar mail-Escribe por pantalla-->Para mas adelante
 	private void sendMail() {
-		System.out.println("Mail Enviado");
+		this.mailEnviado = true;
 	}
 
 	//Devuelve true si supera el maximo determinado por nosotros
