@@ -6,6 +6,8 @@ import org.uqbar.geodds.Point;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import Notificaciones.NotificacionBusqueda;
+import OrigenesDeDatos.Mapa;
+import OrigenesDeDatos.*;
 
 public class AdministradorUsuarios implements WithGlobalEntityManager {
 
@@ -16,13 +18,22 @@ public class AdministradorUsuarios implements WithGlobalEntityManager {
 	}
 
 	public void eliminarTerminal(Terminal terminal) {
-		if (!entityManager().contains(terminal)) {
+		if (entityManager().contains(terminal)) {
 			entityManager().remove(terminal);
 		}
 	}
-	
-	public Terminal buscarTerminal(long idTerminal){
-		return entityManager().find(Terminal.class, idTerminal);
+
+	public Terminal buscarTerminal(long idTerminal) {
+		Terminal terminal = entityManager().find(Terminal.class, idTerminal);
+		if (terminal != null) {
+			Mapa mapa = Mapa.getInstance();
+			ProveedorBancos proveedorBancos = new ProveedorBancos();
+			ProveedorCGPs proveedorCGPs = new ProveedorCGPs();
+			terminal.agregarNuevoServicio(mapa);
+			terminal.agregarNuevoServicio(proveedorBancos);
+			terminal.agregarNuevoServicio(proveedorCGPs);
+		}
+		return terminal;
 	}
 
 	public void modificarCoordenadaTerminal(long idTerminal, Point coordenadaModificada) {
