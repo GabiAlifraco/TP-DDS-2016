@@ -11,10 +11,9 @@ import Pois.Poi;
 import seviciosExternos.CGPService;
 import java.util.stream.Collectors;
 
-import org.uqbar.geodds.Point;
-
 import CaracteristicaPoi.Disponibilidad;
 import CaracteristicaPoi.Domicilio;
+import CaracteristicaPoi.Punto;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.ServicioCGP;
 import CaracteristicaPoi.Ubicacion;
@@ -42,7 +41,7 @@ public class ProveedorCGPs implements OrigenDeDatos {
 		int altura = Integer.parseInt(this.getCalleYAltura(centroDTO)[1]);
 		Domicilio domicilio= new Domicilio(calle,altura,"","",0,0,0,0,0);
 		Region region= new Region("CABA",centroDTO.getZonasIncluidas(),"Buenos Aires","Argentina");
-		Point coordenadas= new Point(0,0);
+		Punto coordenadas= new Punto(0,0);
 	    Ubicacion ubicacion = new Ubicacion(domicilio,region,coordenadas);
 		CGP unCGP = new CGP(String.valueOf(centroDTO.getNumeroComuna()), centroDTO.getZonasIncluidas(),
 				obtenerServiciosCGP(centroDTO),ubicacion);

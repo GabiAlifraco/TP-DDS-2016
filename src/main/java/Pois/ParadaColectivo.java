@@ -4,13 +4,10 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.List;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-
 import CaracteristicaPoi.Ubicacion;
 
-@Entity
-@DiscriminatorValue(value= "ParadaColectivo")
+@javax.persistence.Entity
+@javax.persistence.DiscriminatorValue(value= "ParadaColectivo")
 public class ParadaColectivo extends Poi {
 
 	

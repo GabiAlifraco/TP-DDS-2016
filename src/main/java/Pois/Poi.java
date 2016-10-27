@@ -5,58 +5,64 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.uqbar.geodds.Point;
-
 import javax.persistence.*;
+
+import org.bson.types.ObjectId;
+
 import CaracteristicaPoi.Disponibilidad;
 import CaracteristicaPoi.Domicilio;
+import CaracteristicaPoi.Punto;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.Ubicacion;
 
-@Entity
+@javax.persistence.Entity
+@org.mongodb.morphia.annotations.Entity
 
-@Table(name="POIS")
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name= "Tipo_Poi")
+@javax.persistence.Table(name="POIS")
+@javax.persistence.Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@javax.persistence.DiscriminatorColumn(name= "Tipo_Poi")
 public abstract class Poi{
 
-	// Declaramos los atributos principales del poi
-	@Id
-	@GeneratedValue
-
-	@Column(name="poiID")
+	@javax.persistence.Id
+	@javax.persistence.GeneratedValue
+	@javax.persistence.Column(name="poiID")
+	@org.mongodb.morphia.annotations.Transient
 	private Long poiID;
-	@OneToOne
-	@JoinColumn(name="poiID")
+	
+	@javax.persistence.Transient
+	@org.mongodb.morphia.annotations.Id
+	ObjectId id;
+	
+	@javax.persistence.OneToOne
+	@javax.persistence.JoinColumn(name="poiID")
 	protected Ubicacion ubicacion;
+	
 	protected String nombre;
-	@ElementCollection
-	@CollectionTable(name="palabrasClaveDePoi",
+	
+	@javax.persistence.ElementCollection
+	@javax.persistence.CollectionTable(name="palabrasClaveDePoi",
 		joinColumns=@JoinColumn(name="poiID"))
+	@org.mongodb.morphia.annotations.Embedded
 	private List<String> palabrasClave = new ArrayList<String>();
-	@OneToMany
-	@JoinColumn(name="poiID")
+	
+	@javax.persistence.OneToMany
+	@javax.persistence.JoinColumn(name="poiID")
 	private List<Disponibilidad> horariosDeAtencion  = new ArrayList<Disponibilidad>();
-
-	// Esto es para la entrega 1: Calculo de Cercania
 
 	public boolean estaCercaDeOtroPoi(Poi unPoi) {
 		return estaCercaDe(unPoi.getCoordenada());
 	}
 
-	public boolean estaCercaDe(Point otraCoordenada) {
+	public boolean estaCercaDe(Punto otraCoordenada) {
 		return this.getCoordenada().distance(otraCoordenada) < distanciaMinimaParaConsiderarmeCercano();
 	}
 
 	public abstract int distanciaMinimaParaConsiderarmeCercano();
 
-	// Esto es para la entrega 1: Calculo de la disponibilidad
-
 	public boolean estaDisponible(String nombreServicio, DayOfWeek dia, LocalTime hora) {
 		return horariosDeAtencion.stream().anyMatch(disponibilidad -> disponibilidad.disponibleEnDiayHora(dia, hora));
 	}
 
-	// Esto es para la entrega 1: Busqueda de puntos
 	public boolean textoIncluido(String unNombre, String unaPalabraClave) {
 		return getPalabrasClave().stream().anyMatch(palabra -> palabra.contains(unaPalabraClave))
 				|| this.mismoNombre(unNombre);
@@ -66,12 +72,11 @@ public abstract class Poi{
 		return getNombre().equals(nombreServicio);
 	}
 
-	// Setters y getters de los atributos
-	public Point getCoordenada() {
+	public Punto getCoordenada() {
 		return this.ubicacion.getCoordenadas();
 	}
 
-	public void setCoordenada(Point unaCoordenada) {
+	public void setCoordenada(Punto unaCoordenada) {
 		this.ubicacion.setCoordenadas(unaCoordenada);
 	}
 

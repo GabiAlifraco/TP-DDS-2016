@@ -10,16 +10,15 @@ import java.util.stream.Collectors;
 
 import javax.persistence.*;
 
-import org.uqbar.geodds.Point;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
+import CaracteristicaPoi.Punto;
 import Notificaciones.AlmacenadorBusquedas;
 import Notificaciones.NotificacionBusqueda;
 import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
 import Pois.Poi;
 import Resultado.Resultado;
-import converter.PointConverter;
 
 @Entity
 @Table(name="Terminales")
@@ -33,8 +32,8 @@ public class Terminal implements WithGlobalEntityManager{
 	@GeneratedValue
 	@Column(name = "terminalID")
 	private long idTerminal;
-	@Convert(converter = PointConverter.class)
-	private Point coordenadaDispositivoMovil;
+	//@Convert(converter = PointConverter.class)
+	private Punto coordenadaDispositivoMovil;
 	private String nombreTerminal;
 	@Transient
 	List<OrigenDeDatos> servicios = new ArrayList<OrigenDeDatos>();
@@ -153,11 +152,11 @@ public class Terminal implements WithGlobalEntityManager{
 		this.idTerminal = idTerminal;
 	}
 	
-	public Point getCoordenadaDispositivoMovil() {
+	public Punto getCoordenadaDispositivoMovil() {
 		return coordenadaDispositivoMovil;
 	}
 	
-	public void setCoordenadaDispositivoMovil(Point coordenadaDispositivoMovil) {
+	public void setCoordenadaDispositivoMovil(Punto coordenadaDispositivoMovil) {
 		this.coordenadaDispositivoMovil = coordenadaDispositivoMovil;
 	}
 	

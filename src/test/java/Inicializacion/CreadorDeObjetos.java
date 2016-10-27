@@ -7,14 +7,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
-
 import CaracteristicaPoi.Disponibilidad;
 import CaracteristicaPoi.Domicilio;
+import CaracteristicaPoi.Punto;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.ServicioCGP;
 import CaracteristicaPoi.Ubicacion;
+import CaracteristicaPoi.Zona;
 import DTOs.CentroDTO;
 import DTOs.RangoServicioDTO;
 import DTOs.ServicioDTO;
@@ -33,7 +32,7 @@ public abstract class CreadorDeObjetos {
 	// Creación de Paradas
 	private Domicilio domicilioParada;
 	private Region regionParada;
-	private Point coordenadaParada;
+	private Punto coordenadaParada;
 	private Ubicacion ubicacionParada;
 	private List<String> palabrasClave114;
 	protected ParadaColectivo parada114;
@@ -41,7 +40,7 @@ public abstract class CreadorDeObjetos {
 	protected void crearParada114() {
 		domicilioParada = new Domicilio("Arenales", 1141, "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
 		regionParada = new Region("CABA", "Recoleta", "Bs As", "Argentina");
-		coordenadaParada = new Point(34.4353, 25.4632);
+		coordenadaParada = new Punto(34.4353, 25.4632);
 		ubicacionParada = new Ubicacion(domicilioParada, regionParada, coordenadaParada);
 		palabrasClave114 = Arrays.asList("Colectivo", "Parada");
 		parada114 = new ParadaColectivo(ubicacionParada, "114", palabrasClave114);
@@ -49,7 +48,7 @@ public abstract class CreadorDeObjetos {
 	}
 
 	// Creación de Bancos
-	private Point coordenadaBanco;
+	private Punto coordenadaBanco;
 	private List<String> palabrasClaveBanco;
 	private Domicilio domicilioBanco;
 	private Region regionBanco;
@@ -64,7 +63,7 @@ public abstract class CreadorDeObjetos {
 		
 		domicilioBanco = new Domicilio("Arenales", 1245, "M.T.De.Alvear", "Santa Fe", 2100, 0, 0, 0, 1111);
 		regionBanco = new Region("CABA", "Recoleta", "Bs As", "Argentina");
-		coordenadaBanco = new Point(34.3243,21.4484);
+		coordenadaBanco = new Punto(34.3243,21.4484);
 		ubicacion = new Ubicacion(domicilioBanco,regionBanco,coordenadaBanco);
 		palabrasClaveBanco = Arrays.asList("Cajero automatico", "Deposito");
 		bancoSantander = new Banco("Banco Santander", palabrasClaveBanco,ubicacion);
@@ -114,25 +113,26 @@ public abstract class CreadorDeObjetos {
         
 		domicilio= new Domicilio("Arenales", 1245, "M.T.De.Alvear", "Santa Fe", 2100, 0, 0, 0, 1111);
 		region = new Region("CABA", "Recoleta", "Bs As", "Argentina");
-		Point coordenadaCGP = new Point(34.4124, 24.4856);
+		Punto coordenadaCGP = new Punto(34.4124, 24.4856);
 		
 		ubicacion= new Ubicacion(domicilio,region,coordenadaCGP);
 		comuna3 = new CGP("3", "Recoleta", serviciosCGP, ubicacion);
 		
-		Point coordenadaCGP2 = new Point(34.4124, 24.4852);
-		Point coordenadaCGP3 = new Point(34.4120, 24.4851);
-		Polygon zonaCGP = new Polygon();
-		zonaCGP.add(coordenadaCGP);
-		zonaCGP.add(coordenadaCGP2);
-		zonaCGP.add(coordenadaCGP3);
-		comuna3.setZona(new Polygon());
+		Punto coordenadaCGP2 = new Punto(34.4124, 24.4852);
+		Punto coordenadaCGP3 = new Punto(34.4120, 24.4851);
+		List<Punto> zona = new ArrayList<Punto>();
+		zona.add(coordenadaCGP);
+		zona.add(coordenadaCGP2);
+		zona.add(coordenadaCGP3);
+		Zona zonaCGP = new Zona(zona);
+		comuna3.setZona(zonaCGP);
 
 	}
 	
 	// Creación de Carrousel
 	private Domicilio domicilioCarrousel;
 	private Region regionCarrousel;
-	private Point coordenadaCarrousel;
+	private Punto coordenadaCarrousel;
 	private List<Disponibilidad> horariosCarrousel = new ArrayList<Disponibilidad>();
 	private Disponibilidad disponibilidadCarrousel;
 	private Disponibilidad disponibilidadCarrousel2;
@@ -145,7 +145,7 @@ public abstract class CreadorDeObjetos {
 		domicilioCarrousel = new Domicilio("Av. Estado de Israel", 4560, "LambarÃ©", "Guardia Vieja", 1200, 0, 0, 0,
 				1414);
 		regionCarrousel = new Region("CABA", "Almagro", "Bs.As", "Argentina");
-		coordenadaCarrousel = new Point(34.599434, 58.4296912);
+		coordenadaCarrousel = new Punto(34.599434, 58.4296912);
 		disponibilidadCarrousel = new Disponibilidad(diasCarrousel, LocalTime.of(10, 0), LocalTime.of(13, 0));
 		disponibilidadCarrousel2 = new Disponibilidad(diasCarrousel, LocalTime.of(17, 0), LocalTime.of(20, 30));
 		horariosCarrousel.add(disponibilidadCarrousel);
@@ -164,11 +164,11 @@ public abstract class CreadorDeObjetos {
 	private List<DayOfWeek> diasDiario = Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,
 			DayOfWeek.THURSDAY, DayOfWeek.FRIDAY, DayOfWeek.SATURDAY);
 	private Ubicacion ubicacionKiosco;
-	private Point coordenadaKioscoDiario;
+	private Punto coordenadaKioscoDiario;
 	
 	protected Comercio elDiarioDelPueblo;
 	protected void crearElDiarioDelPueblo(){
-		coordenadaKioscoDiario = new Point (34.5553, 33.5422);
+		coordenadaKioscoDiario = new Punto (34.5553, 33.5422);
 		domicilioKiosco = new Domicilio("Av.Monroe", 1740, "Olazabal", "Virrey del Pino", 1900, 0, 0, 0, 1111);
 		regionKiosco = new Region("CABA", "Palermo", "Bs As", "Argentina");
 		disponibilidadDiario = new Disponibilidad(diasDiario, LocalTime.of(6, 0), LocalTime.of(12, 0));
@@ -181,7 +181,7 @@ public abstract class CreadorDeObjetos {
 	protected Comercio KioscoPepe;
 	protected void crearKioscoPepe(){
 
-		coordenadaKioscoDiario = new Point(12.8741, 21.0421);
+		coordenadaKioscoDiario = new Punto(12.8741, 21.0421);
 		domicilioKiosco = new Domicilio("gfd", 4554, "Ofddf", "Vfffgino", 200, 0, 0, 0, 1241);
 		regionKiosco = new Region("CABA", "Villa Crespo", "Bs As", "Argentina");
 		disponibilidadDiario = new Disponibilidad(diasDiario, LocalTime.of(6, 0), LocalTime.of(20, 0));

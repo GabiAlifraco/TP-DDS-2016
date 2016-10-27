@@ -5,21 +5,32 @@ import java.time.LocalTime;
 import java.util.List;
 import javax.persistence.*;
 
-@Entity
-@Table(name="Disponibilidad")
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Converters;
+
+import converter.LocalTimeConverter;
+
+@javax.persistence.Entity
+@javax.persistence.Table(name="Disponibilidad")
+@Converters(LocalTimeConverter.class)
 public class Disponibilidad {
-	// @OneToMany(cascade= CascadeType.ALL)
-	@Enumerated(EnumType.STRING)
-	@ElementCollection
-	@OrderColumn(name="Dia")
+	@javax.persistence.Enumerated(EnumType.STRING)
+	@javax.persistence.ElementCollection
+	@javax.persistence.OrderColumn(name="Dia")
 	private List<DayOfWeek> dias;
 
-	@Id
-	@GeneratedValue
+	@org.mongodb.morphia.annotations.Id
+	ObjectId id;
+	
+	@javax.persistence.Id
+	@javax.persistence.GeneratedValue
+	@org.mongodb.morphia.annotations.Transient
 	private long idDisponibilidad;
-	@Column(name = "horarioInicial")
+	
+	@javax.persistence.Column(name = "horarioInicial")
 	private LocalTime horarioInicial;
-	@Column(name="horarioFinal")
+	
+	@javax.persistence.Column(name="horarioFinal")
 	private LocalTime horarioFinal;
 
 	public Disponibilidad(List<DayOfWeek> unosDias, LocalTime unHorarioInicial, LocalTime unHorarioFinal) {

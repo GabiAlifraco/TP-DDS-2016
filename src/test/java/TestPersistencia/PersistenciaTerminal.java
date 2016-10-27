@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.*;
-import org.uqbar.geodds.Point;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
+import CaracteristicaPoi.Punto;
 import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
 import OrigenesDeDatos.ProveedorBancos;
@@ -21,7 +21,7 @@ public class PersistenciaTerminal extends AbstractPersistenceTest implements Wit
 	ProveedorBancos bancos = new ProveedorBancos();
 	ProveedorCGPs cgps = new ProveedorCGPs();
 	List<OrigenDeDatos> servicios = new ArrayList<OrigenDeDatos>();
-	Point coordenadas;
+	Punto coordenadas;
 	AdministradorUsuarios usuarios;
 
 	Terminal terminal;
@@ -34,7 +34,7 @@ public class PersistenciaTerminal extends AbstractPersistenceTest implements Wit
 		servicios.add(bancos);
 		servicios.add(cgps);
 		terminal = new Terminal("Terminal Abasto", servicios);
-		coordenadas = new Point(-34.6030, -58.4107);
+		coordenadas = new Punto(-34.6030, -58.4107);
 		terminal.setCoordenadaDispositivoMovil(coordenadas);
 		terminal.setComunaTerminal("3");
 		usuarios = new AdministradorUsuarios();
@@ -70,7 +70,7 @@ public class PersistenciaTerminal extends AbstractPersistenceTest implements Wit
 	@Test
 	public void testModificacionTerminal() {
 		usuarios.modificarComunaTerminal(terminal.getIdTerminal(), "14");
-		Point coordenadasModificadas = new Point(-34.5879, -58.4100);
+		Punto coordenadasModificadas = new Punto(-34.5879, -58.4100);
 		usuarios.modificarCoordenadaTerminal(terminal.getIdTerminal(), coordenadasModificadas);
 		usuarios.modificarNombreTerminal(terminal.getIdTerminal(), "Terminal Alto Palermo");
 

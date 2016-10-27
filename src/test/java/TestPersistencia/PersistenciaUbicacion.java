@@ -1,13 +1,14 @@
+
 package TestPersistencia;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.uqbar.geodds.Point;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import CaracteristicaPoi.Domicilio;
+import CaracteristicaPoi.Punto;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.Ubicacion;
 
@@ -16,12 +17,12 @@ public class PersistenciaUbicacion extends AbstractPersistenceTest implements Wi
 	private Ubicacion ubicacion;
 	private Region region;
 	private Domicilio domicilio;
-	private Point coordenadas;
+	private Punto coordenadas;
 	@Before
 	public void initialize(){
 		region = new Region("CABA", "Recoleta", "Bs As", "Argentina");
 		domicilio = new Domicilio("Arenales", 1141, "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
-		coordenadas = new Point(34.4353, 25.4632);
+		coordenadas = new Punto(34.4353, 25.4632);
 		ubicacion = new Ubicacion(domicilio, region, coordenadas);
 		entityManager().persist(ubicacion);
 	}
@@ -56,7 +57,7 @@ public class PersistenciaUbicacion extends AbstractPersistenceTest implements Wi
 	
 	@Test
 	public void testPersistenciaCoordenadas(){
-		Point coordenadasPersistidas = entityManager().find(Ubicacion.class, ubicacion.getUbicacionID()).getCoordenadas();
+		Punto coordenadasPersistidas = entityManager().find(Ubicacion.class, ubicacion.getUbicacionID()).getCoordenadas();
 		Assert.assertEquals(coordenadasPersistidas, coordenadas);
 	}
 

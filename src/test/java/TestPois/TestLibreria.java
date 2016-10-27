@@ -9,10 +9,10 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.uqbar.geodds.*;
 
 import CaracteristicaPoi.Disponibilidad;
 import CaracteristicaPoi.Domicilio;
+import CaracteristicaPoi.Punto;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.Ubicacion;
 import Inicializacion.CreadorDeObjetos;
@@ -24,7 +24,7 @@ public class TestLibreria extends CreadorDeObjetos {
 
 	private Region regionLibreria;
 	private Domicilio domicilioLibreria;
-	private Point coordenadaLibreria;
+	private Punto coordenadaLibreria;
 	private Comercio elEstudiante;
 	private Disponibilidad disponibilidadLibreria;
 	private List<Disponibilidad> horariosLibreria = new ArrayList<Disponibilidad>();
@@ -37,7 +37,7 @@ public class TestLibreria extends CreadorDeObjetos {
 	public void initialize() {
 		domicilioLibreria = new Domicilio("Bartolome Mitre", 1999, "Junin", "Ayacucho", 100, 0, 0, 0, 1111);
 		regionLibreria = new Region("CABA", "Congreso", "Bs As", "Argentina");
-		coordenadaLibreria = new Point(12.4541, 21.2581);
+		coordenadaLibreria = new Punto(12.4541, 21.2581);
 		disponibilidadLibreria = new Disponibilidad(diasLibreria, LocalTime.of(10, 0), LocalTime.of(19, 00));
 		horariosLibreria.add(disponibilidadLibreria);
 		List<String> palabrasClaveLibreria = Arrays.asList("Cuadernos", "Libros", "Lapiceras");

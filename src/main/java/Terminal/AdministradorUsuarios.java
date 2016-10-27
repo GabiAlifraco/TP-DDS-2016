@@ -2,9 +2,9 @@ package Terminal;
 
 import java.util.List;
 
-import org.uqbar.geodds.Point;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
+import CaracteristicaPoi.Punto;
 import Notificaciones.NotificacionBusqueda;
 import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.*;
@@ -36,7 +36,7 @@ public class AdministradorUsuarios implements WithGlobalEntityManager {
 		return terminal;
 	}
 
-	public void modificarCoordenadaTerminal(long idTerminal, Point coordenadaModificada) {
+	public void modificarCoordenadaTerminal(long idTerminal, Punto coordenadaModificada) {
 		Terminal terminalPersistida = this.buscarTerminal(idTerminal);
 		if (terminalPersistida != null) {
 			eliminarTerminal(terminalPersistida);

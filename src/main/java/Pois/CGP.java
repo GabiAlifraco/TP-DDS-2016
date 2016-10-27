@@ -3,22 +3,23 @@ package Pois;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.List;
-import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
 
+import CaracteristicaPoi.Punto;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.ServicioCGP;
 import CaracteristicaPoi.Ubicacion;
-import javax.persistence.*;
-@Entity
-@DiscriminatorValue(value="CGP")
+import CaracteristicaPoi.Zona;
+
+@javax.persistence.Entity
+@javax.persistence.DiscriminatorValue(value="CGP")
 public class CGP extends Poi{
-	@OneToMany
-	@JoinColumn(name="poiID")
+	
+	@javax.persistence.OneToMany
+	@javax.persistence.JoinColumn(name="poiID")
 	private List<ServicioCGP> serviciosCGP;
 	
-	@Transient
-	private Polygon zona;
+	@javax.persistence.Embedded
+	private Zona zona;
 	
 	public CGP(String unaComuna,String barrio,List<ServicioCGP> servicios, Ubicacion ubicacion){
 		setUbicacion(ubicacion);
@@ -32,7 +33,7 @@ public class CGP extends Poi{
 	}
 	
 	@Override
-	public boolean estaCercaDe(Point otraCoordenada) {
+	public boolean estaCercaDe(Punto otraCoordenada) {
 		return this.getZona().isInside(otraCoordenada);
 	}
 	@Override
@@ -52,10 +53,11 @@ public class CGP extends Poi{
 	}
 	//Getters y Setters
 	
-	public Polygon getZona() {
+	public Zona getZona() {
 		return zona;
 	}
-    public void setZona(Polygon zona) {
+
+    public void setZona(Zona zona) {
 		this.zona = zona;
 	}
     

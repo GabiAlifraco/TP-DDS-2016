@@ -1,11 +1,11 @@
 package CaracteristicaPoi;
 
-import javax.persistence.*;
-@Entity
-@Table(name="Domicilio")
+@javax.persistence.Entity
+@javax.persistence.Table(name="Domicilio")
 public class Domicilio {
-	@Id
-	@GeneratedValue
+	
+	@javax.persistence.Id
+	@javax.persistence.GeneratedValue
 	private Long domicilioID;
 	
 	private String callePrincipal;

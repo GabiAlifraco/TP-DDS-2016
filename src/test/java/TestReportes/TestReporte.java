@@ -9,6 +9,11 @@ import java.util.HashMap;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Morphia;
+
+import com.mongodb.MongoClient;
+
 import Inicializacion.CreadorDeObjetos;
 import MocksServicios.MockNotificadorAdministrador;
 import Notificaciones.AlmacenadorBusquedas;
@@ -24,6 +29,11 @@ public class TestReporte extends CreadorDeObjetos {
 	private Mapa baseInterna = Mapa.getInstance();
 	private Terminal terminalAbasto;
 	private Terminal terminalFlorida;
+	
+
+	MongoClient client;
+	Morphia morphia = new Morphia();
+	Datastore datastore;
 
 	List<NotificacionBusqueda> observers = new ArrayList<NotificacionBusqueda>();
 
@@ -32,6 +42,11 @@ public class TestReporte extends CreadorDeObjetos {
 	@Before
 	public void initialize() {
 
+		client = new MongoClient();
+		morphia = new Morphia();
+		datastore = morphia.createDatastore(client, "resultadosBusqueda");
+		
+		
 		this.crearBancoSantander();
 		this.crearParada114();
 
@@ -50,9 +65,12 @@ public class TestReporte extends CreadorDeObjetos {
 		fecha = LocalDate.now();
 		resultadoEsperado.put(fecha, 1);
 		AlmacenadorBusquedas almacenador = AlmacenadorBusquedas.getInstance();
+		almacenador.setDatastore(datastore);
 		terminalAbasto.agregarObserver(almacenador);
 		terminalAbasto.busquedaDePuntos("Santander", "Cajero");
 		Assert.assertEquals(resultadoEsperado, almacenador.getReportePorFecha(terminalAbasto));
+		
+		client.dropDatabase("resultadosBusqueda");
 
 	}
 
@@ -70,6 +88,7 @@ public class TestReporte extends CreadorDeObjetos {
 	@Test
 	public void obtenerReportePorTerminal(){
 		AlmacenadorBusquedas almacenador = AlmacenadorBusquedas.getInstance();
+		almacenador.setDatastore(datastore);
 		almacenador.getTerminalesActivadas().clear();
 		terminalAbasto.agregarObserver(almacenador);
 		terminalFlorida.agregarObserver(almacenador);
@@ -81,5 +100,7 @@ public class TestReporte extends CreadorDeObjetos {
 		Assert.assertEquals(almacenador.getReportePorTerminal().size(), 2);
 		Assert.assertEquals(almacenador.getReportePorTerminal().get(terminalAbasto), resultadoAbasto);
 		Assert.assertEquals(almacenador.getReportePorTerminal().get(terminalFlorida), resultadoFlorida);
+		
+		client.dropDatabase("resultadosBusqueda");
 	}
 }

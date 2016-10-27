@@ -3,20 +3,26 @@ package CaracteristicaPoi;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.List;
-import javax.persistence.*;
 
-@Entity
-@Table(name = "ServiciosCGP")
+import org.bson.types.ObjectId;
+
+@javax.persistence.Entity
+@javax.persistence.Table(name = "ServiciosCGP")
 public class ServicioCGP {
-	@Id
-	@GeneratedValue
+	
+	@org.mongodb.morphia.annotations.Id
+	ObjectId id;
+	
+	@javax.persistence.Id
+	@javax.persistence.GeneratedValue
+	@org.mongodb.morphia.annotations.Transient
 	private long idServicioCGP;
 	
-	@Column(name = "nombre")
+	@javax.persistence.Column(name = "nombre")
 	private String nombre;
-	// @OneToMany(cascade= CascadeType.ALL)
-	@OneToMany
-	@OrderColumn(name="horarios")
+	
+	@javax.persistence.OneToMany
+	@javax.persistence.OrderColumn(name="horarios")
 	private List<Disponibilidad> horariosDeAtencion;
 
 	public ServicioCGP(String unNombre, List<Disponibilidad> horarios) {

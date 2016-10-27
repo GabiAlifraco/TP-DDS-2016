@@ -8,14 +8,22 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.mongodb.morphia.Datastore;
+
 import Resultado.Resultado;
 import Terminal.Terminal;
 
 public class AlmacenadorBusquedas extends NotificacionBusqueda {
 
+	@org.mongodb.morphia.annotations.Transient
 	private static AlmacenadorBusquedas instance = null;
+	@org.mongodb.morphia.annotations.Transient
 	private Map<Terminal, List<Resultado>> resultadosEncontrados = new HashMap<Terminal, List<Resultado>>();
+	@org.mongodb.morphia.annotations.Transient
 	private List<Terminal> terminalesActivadas = new ArrayList<Terminal>();
+	@org.mongodb.morphia.annotations.Transient
+	private Datastore datastore;
+
 
 	protected AlmacenadorBusquedas() {
 	}
@@ -29,6 +37,7 @@ public class AlmacenadorBusquedas extends NotificacionBusqueda {
 
 	@Override
 	public void actualizar(Resultado resultado, Terminal terminal) {
+		datastore.save(resultado);
 		if (resultadosEncontrados.containsKey(terminal)) {
 			resultadosEncontrados.get(terminal).add(resultado);
 		} else {
@@ -38,6 +47,7 @@ public class AlmacenadorBusquedas extends NotificacionBusqueda {
 			resultados.add(resultado);
 			resultadosEncontrados.put(terminal, resultados);
 		}
+		
 	}
 
 	public Map<LocalDate, Integer> getReportePorFecha(Terminal terminal) {
@@ -112,4 +122,13 @@ public class AlmacenadorBusquedas extends NotificacionBusqueda {
 	public List<Terminal> getTerminalesActivadas() {
 		return terminalesActivadas;
 	}
+	
+	public Datastore getDatastore() {
+		return datastore;
+	}
+
+	public void setDatastore(Datastore datastore) {
+		this.datastore = datastore;
+	}
+
 }

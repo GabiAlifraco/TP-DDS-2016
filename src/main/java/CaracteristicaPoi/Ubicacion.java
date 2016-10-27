@@ -1,27 +1,30 @@
 package CaracteristicaPoi;
-import org.uqbar.geodds.Point;
-import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.bson.types.ObjectId;
 
-import javax.persistence.*;
-
-import converter.PointConverter;
-
-
-@Entity
-@Table(name="Ubicacion")
-public class Ubicacion implements WithGlobalEntityManager{
-	@Id
-	@GeneratedValue
+@javax.persistence.Entity
+@org.mongodb.morphia.annotations.Entity
+@javax.persistence.Table(name="Ubicacion")
+public class Ubicacion {
+	
+	@org.mongodb.morphia.annotations.Id
+	ObjectId id;
+	
+	@javax.persistence.Id
+	@javax.persistence.GeneratedValue
 	private long ubicacionID;
-	@Convert(converter=PointConverter.class)
-	private Point coordenadas;
-	@OneToOne
-	@JoinColumn(name="ubicacionID")
+	
+	@javax.persistence.Embedded
+	@org.mongodb.morphia.annotations.Embedded
+	private Punto coordenadas;
+	
+	@javax.persistence.OneToOne
+	@javax.persistence.JoinColumn(name="ubicacionID")
 	private Domicilio domicilio;
-	@ManyToOne
+	
+	@javax.persistence.ManyToOne
 	private Region region;
 	
-	public Ubicacion(Domicilio domicilio, Region region, Point coordenadas){
+	public Ubicacion(Domicilio domicilio, Region region, Punto coordenadas){
 		setDomicilio(domicilio);
 		setRegion(region);
 		setCoordenadas(coordenadas);
@@ -29,11 +32,10 @@ public class Ubicacion implements WithGlobalEntityManager{
 	public Ubicacion(){
 		
 	}
-	//Getters y Setters
-	public Point getCoordenadas() {
+	public Punto getCoordenadas() {
 		return coordenadas;
 	}
-    public void setCoordenadas(Point coordenadas) {
+    public void setCoordenadas(Punto coordenadas) {
 		this.coordenadas = coordenadas;
 	}
 

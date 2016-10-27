@@ -4,36 +4,48 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-
-import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Converters;
 import org.uqbarproject.jpa.java8.extras.convert.LambdaConverter;
-
 import Pois.Poi;
-
-import javax.persistence.*;
-
 import Terminal.Terminal;
+import converter.LocalDateConverter;
+import converter.LocalTimeConverter;
 
-@Entity
-@Table(name="ResultadosBusqueda")
-public class Resultado implements WithGlobalEntityManager{
+@org.mongodb.morphia.annotations.Entity
+@javax.persistence.Entity
+@javax.persistence.Table(name="ResultadosBusqueda")
+@Converters({LocalDateConverter.class, LocalTimeConverter.class})
+public class Resultado {
 
-	@Id
-	@GeneratedValue
+	@org.mongodb.morphia.annotations.Id
+	ObjectId id;
+	
+	@javax.persistence.Id
+	@javax.persistence.GeneratedValue
+	@org.mongodb.morphia.annotations.Transient
 	private long idResultado;
-	@Column(name="FechaBusqueda")
+	
+	@javax.persistence.Column(name="FechaBusqueda")
 	LocalDate fecha;
-	@Transient
+	
+	@javax.persistence.Transient
+	@org.mongodb.morphia.annotations.Transient
 	long segundosBusqueda;
+	
 	String fraseBuscada;
 	int cantidadDeResultados;
-	@OneToOne
-	Terminal terminal;
-	@Convert(converter=LambdaConverter.class)
+	
+	@javax.persistence.Convert(converter=LambdaConverter.class)
 	LocalTime unTiempoInicio;
-	@Convert(converter=LambdaConverter.class)
+	@javax.persistence.Convert(converter=LambdaConverter.class)
 	LocalTime unTiempoFinalizacion;
-	@ManyToMany
+	
+	@javax.persistence.OneToOne
+	Terminal terminal;
+	
+	@javax.persistence.ManyToMany
+	@org.mongodb.morphia.annotations.Embedded
 	List<Poi> poisEncontrados;
 	
 
@@ -46,6 +58,8 @@ public class Resultado implements WithGlobalEntityManager{
 		this.setCantidadResultados(poisEncontrados.size());
 		this.setTerminal(terminal);
 		this.setPoisEncontrados(poisEncontrados);
+		this.setUnTiempoInicio(tiempoInicio);
+		this.setUnTiempoFinalizacion(tiempoFinalizacion);
 
 	}
 	

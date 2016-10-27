@@ -7,11 +7,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.*;
-import org.uqbar.geodds.Point;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import CaracteristicaPoi.Domicilio;
+import CaracteristicaPoi.Punto;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.Ubicacion;
 import OrigenesDeDatos.Mapa;
@@ -24,7 +24,7 @@ import Terminal.Terminal;
 public class PersistenciaResultadoBusqueda extends AbstractPersistenceTest implements WithGlobalEntityManager{
 	Mapa mapa = Mapa.getInstance();
 	List<OrigenDeDatos> servicios = Arrays.asList(mapa);
-	Point coordenadas;
+	Punto coordenadas;
 	Terminal terminal;
 	Resultado resultado;
 	LocalDate fecha;
@@ -34,7 +34,7 @@ public class PersistenciaResultadoBusqueda extends AbstractPersistenceTest imple
 	LocalTime horaFin;
 	Domicilio domicilioParada;
 	Region regionParada;
-	Point coordenadaParada;
+	Punto coordenadaParada;
 	Ubicacion ubicacionParada;
 	List<String> palabrasClave114;
 	ParadaColectivo parada114;
@@ -46,14 +46,14 @@ public class PersistenciaResultadoBusqueda extends AbstractPersistenceTest imple
 
 	domicilioParada = new Domicilio("Arenales", 1141, "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
 	regionParada = new Region("CABA", "Recoleta", "Bs As", "Argentina");
-	coordenadaParada = new Point(34.4353, 25.4632);
+	coordenadaParada = new Punto(34.4353, 25.4632);
 	ubicacionParada = new Ubicacion(domicilioParada, regionParada, coordenadaParada);
 	palabrasClave114 = Arrays.asList("Colectivo", "Parada");
 	parada114 = new ParadaColectivo(ubicacionParada, "114", palabrasClave114);
 	List<Poi> poisEncontrados = Arrays.asList(parada114);
 		
 	terminal = new Terminal("Terminal Abasto", servicios);
-	coordenadas = new Point(-34.6030, -58.4107);
+	coordenadas = new Punto(-34.6030, -58.4107);
 	terminal.setCoordenadaDispositivoMovil(coordenadas);
 	terminal.setComunaTerminal("3");
 	fecha = LocalDate.parse("2016-09-10");

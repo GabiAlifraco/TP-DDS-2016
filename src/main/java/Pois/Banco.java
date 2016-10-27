@@ -2,13 +2,10 @@ package Pois;
 
 import java.util.List;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-
 import CaracteristicaPoi.Ubicacion;
 
-@Entity
-@DiscriminatorValue(value= "Banco")
+@javax.persistence.Entity
+@javax.persistence.DiscriminatorValue(value= "Banco")
 public class Banco extends Poi {
 	
 	public Banco(String unNombre, List<String> serviciosBanco, Ubicacion ubicacion) {

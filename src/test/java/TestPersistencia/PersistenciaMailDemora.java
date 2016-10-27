@@ -9,22 +9,19 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.uqbar.geodds.Point;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import CaracteristicaPoi.Domicilio;
+import CaracteristicaPoi.Punto;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.Ubicacion;
-import MocksServicios.MockNotificadorAdministrador;
 import Notificaciones.MailDemoraBusqueda;
 import OrigenesDeDatos.OrigenDeDatos;
-import Pois.CGP;
 import Pois.ParadaColectivo;
 import Pois.Poi;
 import Resultado.Resultado;
 import Terminal.Terminal;
-import junit.framework.Assert;
 
 public class PersistenciaMailDemora extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
@@ -35,7 +32,7 @@ public class PersistenciaMailDemora extends AbstractPersistenceTest implements W
 	private List<OrigenDeDatos> servicios;
 	private Domicilio domicilioParada;
 	private Region regionParada;
-	private Point coordenadaParada;
+	private Punto coordenadaParada;
 	private Ubicacion ubicacionParada;
 	private List<String> palabrasClave114;
 	protected ParadaColectivo parada114;
@@ -44,7 +41,7 @@ public class PersistenciaMailDemora extends AbstractPersistenceTest implements W
 	public void initialize(){
 		domicilioParada = new Domicilio("Arenales", 1141, "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
 		regionParada = new Region("CABA", "Recoleta", "Bs As", "Argentina");
-		coordenadaParada = new Point(34.4353, 25.4632);
+		coordenadaParada = new Punto(34.4353, 25.4632);
 		ubicacionParada = new Ubicacion(domicilioParada, regionParada, coordenadaParada);
 		palabrasClave114 = Arrays.asList("Colectivo", "Parada");
 		parada114 = new ParadaColectivo(ubicacionParada, "114", palabrasClave114);

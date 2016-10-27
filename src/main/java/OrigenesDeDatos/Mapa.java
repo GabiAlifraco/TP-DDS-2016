@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.persistence.EntityManager;
 
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 

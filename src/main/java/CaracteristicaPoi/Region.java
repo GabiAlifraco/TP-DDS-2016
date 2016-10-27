@@ -1,11 +1,11 @@
 package CaracteristicaPoi;
 
-import javax.persistence.*;
-@Entity
-@Table(name="Region")
+@javax.persistence.Entity
+@javax.persistence.Table(name="Region")
 public class Region {
-	@Id
-	@GeneratedValue
+	
+	@javax.persistence.Id
+	@javax.persistence.GeneratedValue
 	private Long RegionID;
 
 	private String localidad;
