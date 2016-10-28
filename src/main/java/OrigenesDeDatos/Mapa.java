@@ -2,7 +2,6 @@ package OrigenesDeDatos;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
@@ -17,9 +16,10 @@ public class Mapa implements OrigenDeDatos, WithGlobalEntityManager{
 
 	// Alta, Baja y Modificaci�n de un Poi
 	public void agregarUnPoi(Poi unPoi) {
-		if (!pois.contains(unPoi)) {
+	List<Poi> encontrados =entityManager().createQuery("from Poi",Poi.class).getResultList();
+		if (!encontrados.contains(unPoi)) {
 			pois.add(unPoi);
-			entityManager().persist(unPoi);
+	 		entityManager().persist(unPoi);
 		}
 	}
 
@@ -28,9 +28,10 @@ public class Mapa implements OrigenDeDatos, WithGlobalEntityManager{
 		listaResultados.stream().forEach(resultado -> this.agregarUnPoi(resultado));
 	}
 	public void eliminarUnPoi(Poi unPoi) {
-		if (pois.contains(unPoi)) {
+		List<Poi> encontrados =entityManager().createQuery("from Poi",Poi.class).getResultList();
+		if (encontrados.contains(unPoi)) {
 			pois.remove(unPoi);
-			entityManager().remove(unPoi);
+	 		entityManager().remove(unPoi);
 		}
 	}
 
@@ -40,8 +41,9 @@ public class Mapa implements OrigenDeDatos, WithGlobalEntityManager{
 	}
 
 	public List<Poi> buscarPois(String unNombre, String unaPalabraClave) {
-		return getPois().stream().filter(poi -> poi.textoIncluido(unNombre, unaPalabraClave))
-				.collect(Collectors.toList());
+		return entityManager().createQuery("from Poi p join p.palabrasClave as e where e like :pclave or p.nombre=:nombreBuscado",Poi.class).setParameter("pclave","%"+unaPalabraClave+"%").setParameter("nombreBuscado",unNombre).getResultList();
+		//return getPois().stream().filter(poi -> poi.textoIncluido(unNombre, unaPalabraClave))
+		//		.collect(Collectors.toList());
 	}
 
 	public List<Poi> getPois() {

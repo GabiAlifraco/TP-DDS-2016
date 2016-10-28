@@ -1,4 +1,6 @@
 package CaracteristicaPoi;
+import javax.persistence.CascadeType;
+
 import org.bson.types.ObjectId;
 
 @javax.persistence.Entity
@@ -17,11 +19,11 @@ public class Ubicacion {
 	@org.mongodb.morphia.annotations.Embedded
 	private Punto coordenadas;
 	
-	@javax.persistence.OneToOne
+	@javax.persistence.OneToOne(cascade = CascadeType.ALL)
 	@javax.persistence.JoinColumn(name="ubicacionID")
 	private Domicilio domicilio;
 	
-	@javax.persistence.ManyToOne
+	@javax.persistence.ManyToOne(cascade = CascadeType.ALL)
 	private Region region;
 	
 	public Ubicacion(Domicilio domicilio, Region region, Punto coordenadas){

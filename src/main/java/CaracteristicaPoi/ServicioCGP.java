@@ -4,6 +4,8 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+
 import org.bson.types.ObjectId;
 
 @javax.persistence.Entity
@@ -21,7 +23,7 @@ public class ServicioCGP {
 	@javax.persistence.Column(name = "nombre")
 	private String nombre;
 	
-	@javax.persistence.OneToMany
+	@javax.persistence.OneToMany(cascade = CascadeType.ALL)
 	@javax.persistence.OrderColumn(name="horarios")
 	private List<Disponibilidad> horariosDeAtencion;
 

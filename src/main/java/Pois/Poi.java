@@ -31,9 +31,9 @@ public abstract class Poi{
 	
 	@javax.persistence.Transient
 	@org.mongodb.morphia.annotations.Id
-	ObjectId id;
+	private ObjectId id;
 	
-	@javax.persistence.OneToOne
+	@javax.persistence.OneToOne(cascade = CascadeType.ALL)
 	@javax.persistence.JoinColumn(name="poiID")
 	protected Ubicacion ubicacion;
 	
@@ -45,7 +45,7 @@ public abstract class Poi{
 	@org.mongodb.morphia.annotations.Embedded
 	private List<String> palabrasClave = new ArrayList<String>();
 	
-	@javax.persistence.OneToMany
+	@javax.persistence.OneToMany(cascade=CascadeType.ALL)
 	@javax.persistence.JoinColumn(name="poiID")
 	private List<Disponibilidad> horariosDeAtencion  = new ArrayList<Disponibilidad>();
 
@@ -69,7 +69,7 @@ public abstract class Poi{
 	}
 
 	public boolean mismoNombre(String nombreServicio) {
-		return getNombre().equals(nombreServicio);
+		return getNombre().equalsIgnoreCase(nombreServicio);
 	}
 
 	public Punto getCoordenada() {
@@ -134,6 +134,10 @@ public abstract class Poi{
 
 	public void setPoiID(Long poiID) {
 		this.poiID = poiID;
+	}
+
+	public ObjectId getId() {
+		return id;
 	}
 
 	@Override

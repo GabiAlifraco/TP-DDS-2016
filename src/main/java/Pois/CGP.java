@@ -3,6 +3,9 @@ package Pois;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.persistence.CascadeType;
 
 import CaracteristicaPoi.Punto;
 import CaracteristicaPoi.Region;
@@ -14,7 +17,7 @@ import CaracteristicaPoi.Zona;
 @javax.persistence.DiscriminatorValue(value="CGP")
 public class CGP extends Poi{
 	
-	@javax.persistence.OneToMany
+	@javax.persistence.OneToMany(cascade=CascadeType.ALL)
 	@javax.persistence.JoinColumn(name="poiID")
 	private List<ServicioCGP> serviciosCGP;
 	
@@ -27,9 +30,10 @@ public class CGP extends Poi{
 		setRegion(regionCGP);
 		setNombre("CGP Comuna "+ unaComuna);
 		serviciosCGP = servicios;
+		setPalabrasClave(this.getPalabrasClave());
+		
 	}
 	public CGP(){
-		
 	}
 	
 	@Override
@@ -88,6 +92,10 @@ public class CGP extends Poi{
 		} else if (!nombre.equals(other.nombre))
 			return false;
 		return true;
+	}
+	@Override
+	public List<String> getPalabrasClave(){
+		return serviciosCGP.stream().map(servicio -> servicio.getNombre()).collect(Collectors.toList());
 	}
 
 }

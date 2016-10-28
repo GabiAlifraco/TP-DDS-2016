@@ -36,14 +36,31 @@ public abstract class CreadorDeObjetos {
 	private Ubicacion ubicacionParada;
 	private List<String> palabrasClave114;
 	protected ParadaColectivo parada114;
+	private List<DayOfWeek> dias114;
+	private Disponibilidad horario114;
+	private List<Disponibilidad> horariosParada114;
 
 	protected void crearParada114() {
 		domicilioParada = new Domicilio("Arenales", 1141, "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
 		regionParada = new Region("CABA", "Recoleta", "Bs As", "Argentina");
 		coordenadaParada = new Punto(34.4353, 25.4632);
-		ubicacionParada = new Ubicacion(domicilioParada, regionParada, coordenadaParada);
+		ubicacionParada = new Ubicacion();
+		ubicacionParada.setCoordenadas(coordenadaParada);
+		ubicacionParada.setDomicilio(domicilioParada);
+		ubicacionParada.setRegion(regionParada);
 		palabrasClave114 = Arrays.asList("Colectivo", "Parada");
-		parada114 = new ParadaColectivo(ubicacionParada, "114", palabrasClave114);
+		parada114 = new ParadaColectivo();
+		parada114.setUbicacion(ubicacionParada);
+		parada114.setPalabrasClave(palabrasClave114);
+		parada114.setNombre("114");
+		dias114 = Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY,
+				DayOfWeek.FRIDAY);
+		horario114 =new Disponibilidad();
+		horario114.setDias(dias114);
+		horario114.setHorarioInicial(LocalTime.of(00,00));
+		horario114.setHorarioFinal(LocalTime.of(23,59));
+		horariosParada114=Arrays.asList(horario114);
+		parada114.setHorariosDeAtencion(horariosParada114);
 		
 	}
 
@@ -54,27 +71,32 @@ public abstract class CreadorDeObjetos {
 	private Region regionBanco;
 	protected Banco bancoSantander;
 	private Disponibilidad horarioBanco;
-	private List<Disponibilidad> horariosBanco = new ArrayList<Disponibilidad>();
-	private List<DayOfWeek> diasBanco = Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,
-			DayOfWeek.THURSDAY, DayOfWeek.FRIDAY);
+	private List<Disponibilidad> horariosBanco;
+	private List<DayOfWeek> diasBanco;
 
 	protected void crearBancoSantander() {
 		
+		bancoSantander=new Banco();
+		palabrasClaveBanco = Arrays.asList("Cajero automatico", "Deposito");
+		bancoSantander.setPalabrasClave(palabrasClaveBanco);
 		
 		domicilioBanco = new Domicilio("Arenales", 1245, "M.T.De.Alvear", "Santa Fe", 2100, 0, 0, 0, 1111);
 		regionBanco = new Region("CABA", "Recoleta", "Bs As", "Argentina");
 		coordenadaBanco = new Punto(34.3243,21.4484);
-		ubicacion = new Ubicacion(domicilioBanco,regionBanco,coordenadaBanco);
-		palabrasClaveBanco = Arrays.asList("Cajero automatico", "Deposito");
-		bancoSantander = new Banco("Banco Santander", palabrasClaveBanco,ubicacion);
+		ubicacion = new Ubicacion();
+		ubicacion.setDomicilio(domicilioBanco);
+		ubicacion.setRegion(regionBanco);
+		ubicacion.setCoordenadas(coordenadaBanco);
+		bancoSantander.setUbicacion(ubicacion);
 		
-		
-		bancoSantander.setDomicilio(domicilioBanco);
-		bancoSantander.setRegion(regionBanco);
 		diasBanco = Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY,
 				DayOfWeek.FRIDAY);
-		horarioBanco = new Disponibilidad(diasBanco, LocalTime.of(9, 30), LocalTime.of(15, 00));
-		horariosBanco.add(horarioBanco);
+		horarioBanco =new Disponibilidad();
+		horarioBanco.setDias(diasBanco);
+		horarioBanco.setHorarioInicial(LocalTime.of(9,30));
+		horarioBanco.setHorarioFinal(LocalTime.of(15, 0));
+		horariosBanco= Arrays.asList(horarioBanco);
+		
 		bancoSantander.setHorariosDeAtencion(horariosBanco);
 
 	}
@@ -82,7 +104,7 @@ public abstract class CreadorDeObjetos {
 	// Creación de Comunas
 	private List<ServicioCGP> serviciosCGP;
 	private List<DayOfWeek> diasRentas;
-	protected Disponibilidad disponibilidadCGPRentas;
+	protected Disponibilidad disponibilidadRentas;
 	private List<Disponibilidad> horariosRentas;
 	private ServicioCGP rentas;
 	private Disponibilidad disponibilidadTesoreria;
@@ -92,31 +114,52 @@ public abstract class CreadorDeObjetos {
 	protected CGP comuna3;
 	private Domicilio domicilio;
 	private Region region;
+	private Punto coordenadaCGP;
 	private Ubicacion ubicacion;
+	private List<String> palabras;
 
 	protected void crearCGPComuna3() {
-		serviciosCGP = new ArrayList<ServicioCGP>();
-
-		diasRentas = Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY,
-				DayOfWeek.FRIDAY);
-		disponibilidadCGPRentas = new Disponibilidad(diasRentas, LocalTime.of(9, 30), LocalTime.of(15, 30));
-		horariosRentas = Arrays.asList(disponibilidadCGPRentas);
-
+		comuna3= new CGP();
+		comuna3.setNombre("cgp comuna 3");
+		palabras = Arrays.asList("cgp","comuna 3","CABA","que salga colectivo del cgp");
+		comuna3.setPalabrasClave(palabras);
+		
+		coordenadaCGP = new Punto(34.4124, 24.4856);
+		domicilio = new Domicilio("Arenales", 1245, "M.T.De.Alvear", "Santa Fe", 2100, 0, 0, 0, 1111);
+		region= new Region("CABA", "Recoleta", "Bs As", "Argentina");
+		ubicacion= new Ubicacion();
+		ubicacion.setCoordenadas(coordenadaCGP);
+		ubicacion.setDomicilio(domicilio);
+		ubicacion.setRegion(region);
+		comuna3.setUbicacion(ubicacion);
+		
 		diasTesoreria = Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY,
 				DayOfWeek.FRIDAY);
-		disponibilidadTesoreria = new Disponibilidad(diasTesoreria, LocalTime.of(9, 0), LocalTime.of(15, 0));
-		horariosTesoreria = Arrays.asList(disponibilidadTesoreria);
-
-		tesoreria = new ServicioCGP("Tesoreria", horariosTesoreria);
-		rentas = new ServicioCGP("Rentas", horariosRentas);
-		serviciosCGP = Arrays.asList(rentas, tesoreria);
-        
-		domicilio= new Domicilio("Arenales", 1245, "M.T.De.Alvear", "Santa Fe", 2100, 0, 0, 0, 1111);
-		region = new Region("CABA", "Recoleta", "Bs As", "Argentina");
-		Punto coordenadaCGP = new Punto(34.4124, 24.4856);
+		disponibilidadTesoreria= new Disponibilidad();
+		disponibilidadTesoreria.setHorarioFinal(LocalTime.of(15, 0));
+		disponibilidadTesoreria.setHorarioInicial( LocalTime.of(9, 0));
+		disponibilidadTesoreria.setDias(diasTesoreria);
+		horariosTesoreria= Arrays.asList(disponibilidadTesoreria);		
+		tesoreria= new ServicioCGP();
+		tesoreria.setNombre("Tesoreria");
+		tesoreria.setHorariosDeAtencion(horariosTesoreria);
 		
-		ubicacion= new Ubicacion(domicilio,region,coordenadaCGP);
-		comuna3 = new CGP("3", "Recoleta", serviciosCGP, ubicacion);
+		diasRentas = Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY,
+				DayOfWeek.FRIDAY);
+		disponibilidadRentas= new Disponibilidad();
+		disponibilidadRentas.setHorarioFinal(LocalTime.of(15,30));
+		disponibilidadRentas.setHorarioInicial( LocalTime.of(9,30));
+		disponibilidadRentas.setDias(diasRentas);
+		horariosRentas= Arrays.asList(disponibilidadRentas);		
+		rentas= new ServicioCGP();
+		rentas.setNombre("Rentas");
+		rentas.setHorariosDeAtencion(horariosRentas);
+		
+		serviciosCGP=new ArrayList<ServicioCGP>();
+		serviciosCGP= Arrays.asList(tesoreria);
+		serviciosCGP= Arrays.asList(rentas);
+		
+		comuna3.setServiciosCGP(serviciosCGP);
 		
 		Punto coordenadaCGP2 = new Punto(34.4124, 24.4852);
 		Punto coordenadaCGP3 = new Punto(34.4120, 24.4851);
@@ -126,6 +169,7 @@ public abstract class CreadorDeObjetos {
 		zona.add(coordenadaCGP3);
 		Zona zonaCGP = new Zona(zona);
 		comuna3.setZona(zonaCGP);
+		comuna3.setPalabrasClave(comuna3.getPalabrasClave());
 
 	}
 	
@@ -138,6 +182,8 @@ public abstract class CreadorDeObjetos {
 	private Disponibilidad disponibilidadCarrousel2;
 	private List<DayOfWeek> diasCarrousel = Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,
 			DayOfWeek.THURSDAY, DayOfWeek.FRIDAY, DayOfWeek.SATURDAY);
+	private List<DayOfWeek> diasCarrouse2 = Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,
+			DayOfWeek.THURSDAY, DayOfWeek.FRIDAY, DayOfWeek.SATURDAY);
 	private Ubicacion ubicacionCarrousel;
 	protected Comercio carrouselPlinPlin;
 
@@ -146,14 +192,29 @@ public abstract class CreadorDeObjetos {
 				1414);
 		regionCarrousel = new Region("CABA", "Almagro", "Bs.As", "Argentina");
 		coordenadaCarrousel = new Punto(34.599434, 58.4296912);
-		disponibilidadCarrousel = new Disponibilidad(diasCarrousel, LocalTime.of(10, 0), LocalTime.of(13, 0));
-		disponibilidadCarrousel2 = new Disponibilidad(diasCarrousel, LocalTime.of(17, 0), LocalTime.of(20, 30));
+		ubicacionCarrousel = new Ubicacion();
+		ubicacionCarrousel.setCoordenadas(coordenadaCarrousel);
+		ubicacionCarrousel.setDomicilio(domicilioCarrousel);
+		ubicacionCarrousel.setRegion(regionCarrousel);
+		
+		disponibilidadCarrousel = new Disponibilidad();
+		disponibilidadCarrousel.setDias(diasCarrousel);
+		disponibilidadCarrousel.setHorarioInicial(LocalTime.of(10, 0));
+		disponibilidadCarrousel.setHorarioFinal( LocalTime.of(13, 0));
+		
+		disponibilidadCarrousel2 = new Disponibilidad();
+		disponibilidadCarrousel2.setDias(diasCarrouse2);
+		disponibilidadCarrousel2.setHorarioFinal(LocalTime.of(20, 30));
+		disponibilidadCarrousel2.setHorarioInicial(LocalTime.of(17, 0));
 		horariosCarrousel.add(disponibilidadCarrousel);
 		horariosCarrousel.add(disponibilidadCarrousel2);
 		List<String> palabrasClaveCarrousel = Arrays.asList("Sortija", "Plaza", "Juegos");
-		ubicacionCarrousel = new Ubicacion(domicilioCarrousel, regionCarrousel, coordenadaCarrousel);
-		carrouselPlinPlin = new Comercio("Carrousel PlinPlin", ubicacionCarrousel, horariosCarrousel,
-				palabrasClaveCarrousel);
+		
+		carrouselPlinPlin = new Comercio();
+		carrouselPlinPlin.setUbicacion(ubicacionCarrousel);
+		carrouselPlinPlin.setHorariosDeAtencion(horariosCarrousel);
+		carrouselPlinPlin.setPalabrasClave(palabrasClaveCarrousel);
+		carrouselPlinPlin.setNombre("Carrousel PlinPlin");
 	}
 	//Kiosco Diario
 
