@@ -18,7 +18,9 @@ public class Zona {
 		this.zona = puntos;
 		this.polygon = this.mapperZonaAPolygon(puntos);
 	}
-	
+	public Zona(){
+
+	}
 	
 	public boolean isInside(Punto otraCoordenada) {
 		Point pointCoordenada = new Point(otraCoordenada.getLatitud(), otraCoordenada.getLongitud());
