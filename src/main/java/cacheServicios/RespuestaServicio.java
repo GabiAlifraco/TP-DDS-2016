@@ -18,15 +18,22 @@ public class RespuestaServicio {
 	
 	LocalDate fechaConsulta;
 
-	List<Poi> bancosConsulta;
+	List<Poi> poisConsulta;
 	
 	String servicioConsulta;
 	
 	String nombreBancoConsulta;
 	
+	public RespuestaServicio(LocalDate fecha, List<Poi> cgps, String servicio){
+		this.fechaConsulta = fecha;
+		this.poisConsulta = cgps;
+		this.servicioConsulta = servicio;
+		
+	}
+	
 	public RespuestaServicio(LocalDate fecha, List<Poi> bancos, String servicio, String banco){
 		this.fechaConsulta = fecha;
-		this.bancosConsulta = bancos;
+		this.poisConsulta = bancos;
 		this.servicioConsulta = servicio;
 		this.nombreBancoConsulta = banco;
 	}
@@ -42,12 +49,12 @@ public class RespuestaServicio {
 		this.fechaConsulta = fechaConsulta;
 	}
 	
-	public List<Poi> getBancosConsulta() {
-		return bancosConsulta;
+	public List<Poi> getPoisConsulta() {
+		return poisConsulta;
 	}
 	
-	public void setBancosConsulta(List<Poi> bancosConsulta) {
-		this.bancosConsulta = bancosConsulta;
+	public void setPoisConsulta(List<Poi> bancosConsulta) {
+		this.poisConsulta = bancosConsulta;
 	}
 	
 	public String getServicioConsulta() {

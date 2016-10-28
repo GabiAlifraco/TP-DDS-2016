@@ -21,7 +21,7 @@ public class CacheBancos {
 		this.limpiarCache();
 		List<RespuestaServicio> respuestas = datastore.find(RespuestaServicio.class, "servicioConsulta", servicio).asList();
 		
-		return respuestas.stream().filter(respuesta -> respuesta.getNombreBancoConsulta().equals(nombreBanco)).map(respuesta -> respuesta.getBancosConsulta())
+		return respuestas.stream().filter(respuesta -> respuesta.getNombreBancoConsulta().equals(nombreBanco)).map(respuesta -> respuesta.getPoisConsulta())
 			.flatMap(bancos -> bancos.stream()).collect(Collectors.toList());		
 	}
 
