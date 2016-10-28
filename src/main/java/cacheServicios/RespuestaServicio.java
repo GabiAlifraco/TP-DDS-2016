@@ -20,13 +20,14 @@ public class RespuestaServicio {
 
 	List<Poi> poisConsulta;
 	
+	Poi cgp;
 	String servicioConsulta;
 	
 	String nombreBancoConsulta;
 	
-	public RespuestaServicio(LocalDate fecha, List<Poi> cgps, String servicio){
-		this.fechaConsulta = fecha;
-		this.poisConsulta = cgps;
+	public RespuestaServicio(Poi cgp, String servicio){
+		
+		this.cgp = cgp;
 		this.servicioConsulta = servicio;
 		
 	}
@@ -79,6 +80,10 @@ public class RespuestaServicio {
 
 	public void setNombreBancoConsulta(String nombreBancoConsulta) {
 		this.nombreBancoConsulta = nombreBancoConsulta;
+	}
+
+	public Poi getCgp() {
+		return cgp;
 	}
 
 }

@@ -1,11 +1,11 @@
 package cacheServicios;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.mongodb.morphia.Datastore;
-import org.mongodb.morphia.query.Query;
 
 import Pois.Poi;
 
@@ -16,26 +16,23 @@ public class CacheCGPs {
 		this.datastore = ds;
 	}
 	
-	public List<Poi> buscar(String palabraClave) {
-		this.limpiarCache();
-		List<RespuestaServicio> respuestas = datastore.find(RespuestaServicio.class, "servicioConsulta", palabraClave).asList();
+	public List<Poi> buscar(String calleOBarrio) {
 		
-		return respuestas.stream().map(respuesta -> respuesta.getPoisConsulta())
-				.flatMap(cgps -> cgps.stream()).collect(Collectors.toList());
+		List<RespuestaServicio> q = datastore.find(RespuestaServicio.class).asList();
+    	List<Poi> pois = q.stream().map(r -> r.getCgp()).filter(p -> p.getUbicacion().getRegion().getBarrio().equalsIgnoreCase(calleOBarrio)).collect(Collectors.toList());
+    	List<Poi> aux = pois.stream().filter(p-> p.getUbicacion().getDomicilio().getCallePrincipal().contains(calleOBarrio)).collect(Collectors.toList());
+      	pois.addAll(aux);
+    	return pois;
 	}
 
-	public Object guardar(List<Poi> listaCGPs, String palabraClave) {
-		RespuestaServicio respuesta = new RespuestaServicio(LocalDate.now(), listaCGPs, palabraClave);
-		return datastore.save(respuesta).getId();
+	public List<Object> guardarVarios(List<Poi> pois,String pclave){
+		List<RespuestaServicio> resultados = pois.stream().map(p -> new RespuestaServicio(p,pclave)).collect(Collectors.toList());
+		return this.guardarResultados(resultados);
 	}
-
-	public void limpiarCache() {
+	private List<Object> guardarResultados(List<RespuestaServicio> resultados) {
+		return resultados.stream().map(r -> datastore.save(r).getId()).collect(Collectors.toList());
 		
-		Query<RespuestaServicio> filtroFecha = datastore.find(RespuestaServicio.class)
-												.filter("fechaConsulta <=" ,LocalDate.now().minusDays(1));
-		datastore.delete(filtroFecha);
 	}
-	
 	public Datastore getDatastore() {
 		return datastore;
 	}

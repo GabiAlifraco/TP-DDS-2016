@@ -34,7 +34,7 @@ public class ProveedorCGPs implements OrigenDeDatos {
 		if (cgpsCache.isEmpty()) {
 			List<Poi> listaCGPs = new ArrayList<Poi>();
 			listaCGPs.add(buscarCGPs(unaPalabraClave));
-			cache.guardar(listaCGPs, unaPalabraClave);
+			cache.guardarVarios(listaCGPs, unaPalabraClave);
 		
 			return listaCGPs;
 		} else {
