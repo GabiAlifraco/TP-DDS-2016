@@ -132,7 +132,7 @@ public class TestServicioCGP {
 	public void busquedaPoisEnCache() {
 		proveedorCGPs.setServiceCGP(servicioExternoCGP);
 
-		cache.guardar(cgpsEncontrados, "Recoleta");
+		cache.guardarVarios(cgpsEncontrados, "Recoleta");
 		
 		List<Poi> cgps = proveedorCGPs.buscarPois("CGP comuna 3", "Recoleta");
 		

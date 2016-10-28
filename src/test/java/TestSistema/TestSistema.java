@@ -26,34 +26,34 @@ public class TestSistema extends CreadorDeObjetos {
 		List<OrigenDeDatos> servicios = Arrays.asList(base);
 		terminalAbasto = new Terminal("Terminal Abasto", servicios);
 		terminalAbasto.getBase().getPois().clear();
-		terminalAbasto.getBase().agregarUnPoi(parada114);
-		terminalAbasto.getBase().agregarUnPoi(bancoSantander);
+		terminalAbasto.getBase().entityManager().getTransaction().begin();
+		terminalAbasto.getBase().agregarUnPoi(parada114);		
 		terminalAbasto.getBase().agregarUnPoi(comuna3);
-	}
-
-	@Test
-	public void busquedaDePoisPorClave() {
-
 		terminalAbasto.getBase().agregarUnPoi(bancoSantander);
-		List<Poi> resultadoEsperado = Arrays.asList(bancoSantander);
-		Assert.assertTrue(terminalAbasto.busquedaDePuntos("Cajero", "Cajero").equals(resultadoEsperado));
+		terminalAbasto.getBase().entityManager().getTransaction().commit();
+		
 
 	}
+
 
 	@Test
 	public void busquedaSinResultados() {
-
 		Assert.assertTrue(terminalAbasto.busquedaDePuntos("Plaza", "Plaza").isEmpty());
 
 	}
 
 	@Test
 	public void busquedaDeServicioCGPPorClave() {
-
 		List<Poi> resultadoEsperado = Arrays.asList(comuna3);
 
-		Assert.assertTrue(terminalAbasto.busquedaDePuntos("Rentas", "Rentas").equals(resultadoEsperado));
+		Assert.assertEquals(resultadoEsperado,terminalAbasto.busquedaDePuntos("Rentas", "Rentas"));
 
 	}
+	@Test
+	public void busquedaDePoisPorClave() {
+		
+		List<Poi> resultadoEsperado = Arrays.asList(bancoSantander);
+		Assert.assertEquals(resultadoEsperado,terminalAbasto.busquedaDePuntos("Cajero", "Cajero"));
 
+	}
 }

@@ -53,14 +53,21 @@ public class TestReporte extends CreadorDeObjetos {
 		servicios.add(baseInterna);
 		terminalAbasto = new Terminal("Terminal Abasto", servicios);
 		terminalFlorida = new Terminal("Terminal Florida", servicios);
+		terminalAbasto.getBase().getPois().clear();
+		if(!terminalAbasto.getBase().entityManager().isOpen()){
+		terminalAbasto.getBase().entityManager().getTransaction().begin();
+		terminalAbasto.getBase().agregarUnPoi(parada114);
+		terminalAbasto.getBase().agregarUnPoi(bancoSantander);
+		terminalAbasto.getBase().entityManager().getTransaction().commit();}
+		terminalAbasto.getBase().agregarUnPoi(parada114);
+		terminalAbasto.getBase().agregarUnPoi(bancoSantander);
 
-		baseInterna.getPois().clear();
-		baseInterna.getPois().add(bancoSantander);
-		baseInterna.getPois().add(parada114);
-
+		
 	}
 	@Test
 	public void testObtenerReportesPorFecha() {
+		
+
 		Map<LocalDate, Integer> resultadoEsperado = new HashMap<LocalDate, Integer>();
 		fecha = LocalDate.now();
 		resultadoEsperado.put(fecha, 1);

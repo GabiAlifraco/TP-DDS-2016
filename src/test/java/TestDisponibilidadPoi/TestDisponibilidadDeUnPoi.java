@@ -3,7 +3,6 @@ package TestDisponibilidadPoi;
 import java.time.DayOfWeek;
 import java.util.Arrays;
 import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,9 +13,12 @@ import Terminal.Terminal;
 
 public class TestDisponibilidadDeUnPoi extends CreadorDeObjetos {
 	
-
-	Mapa base = Mapa.getInstance();
-	List<OrigenDeDatos> servicios = Arrays.asList(base);
+	private Terminal terminalTeatroColon;
+	private Terminal terminalCampus;
+	private Terminal terminalAbasto ;
+	private Terminal terminalFlorida;
+	private List<OrigenDeDatos>  servicios;
+	
 
 	@Before
 	public void initialize() {
@@ -24,16 +26,23 @@ public class TestDisponibilidadDeUnPoi extends CreadorDeObjetos {
 		this.crearParada114();
 		this.crearCGPComuna3();
 		this.crearCarrouselPlinPlin();
+		
+	    
+		Mapa base = Mapa.getInstance();
+		base.getPois().clear();
+		base.entityManager().getTransaction().begin();
+		base.agregarUnPoi(parada114);
+		base.agregarUnPoi(bancoSantander);
+		base.agregarUnPoi(carrouselPlinPlin);
+		base.agregarUnPoi(comuna3);
+		base.entityManager().getTransaction().commit();
+		
+		servicios = Arrays.asList(base);
 		}
 
 	@Test
 	public void estaElCarrouselDisponible() {
-		Terminal terminalFlorida = new Terminal("Terminal Florida", servicios);
-		terminalFlorida.getBase().getPois().clear();
-		terminalFlorida.getBase().getPois().add(parada114);
-		terminalFlorida.getBase().getPois().add(bancoSantander);
-		terminalFlorida.getBase().getPois().add(carrouselPlinPlin);
-		terminalFlorida.getBase().getPois().add(comuna3);
+		terminalFlorida = new Terminal("Terminal Florida", servicios);
 
 		Assert.assertTrue(terminalFlorida.estaDisponiblePoi("Carrousel PlinPlin", DayOfWeek.SATURDAY, "12:30"));
 
@@ -42,33 +51,22 @@ public class TestDisponibilidadDeUnPoi extends CreadorDeObjetos {
 	@Test
 	public void estaElBancoDisponible() {
 
-		Terminal terminalAbasto = new Terminal("Terminal Abasto", servicios);
+		terminalAbasto = new Terminal("Terminal Abasto", servicios);
 
-		terminalAbasto.getBase().getPois().clear();
-		terminalAbasto.getBase().getPois().add(parada114);
-		terminalAbasto.getBase().getPois().add(bancoSantander);
-		terminalAbasto.getBase().getPois().add(carrouselPlinPlin);
 		Assert.assertFalse(terminalAbasto.estaDisponiblePoi("Banco Santander", DayOfWeek.TUESDAY, "20:00"));
 	}
 
 	@Test
 	public void estaElColectivoDisponible() {
-		Terminal terminalCampus = new Terminal("Terminal Campus", servicios);
-		terminalCampus.getBase().getPois().clear();
-		terminalCampus.getBase().getPois().add(parada114);
-		terminalCampus.getBase().getPois().add(bancoSantander);
-		terminalCampus.getBase().getPois().add(carrouselPlinPlin);
+		terminalCampus = new Terminal("Terminal Campus", servicios);
+
 		Assert.assertTrue(terminalCampus.estaDisponiblePoi("114", DayOfWeek.SATURDAY, "12:30"));
 	}
 
 	@Test
 	public void estaTesoreriaEstaDisponible() {
-		Terminal terminalTeatroColon = new Terminal("Terminal Teatro Colon", servicios);
-		terminalTeatroColon.getBase().getPois().clear();
-		terminalTeatroColon.getBase().getPois().add(parada114);
-		terminalTeatroColon.getBase().getPois().add(bancoSantander);
-		terminalTeatroColon.getBase().getPois().add(carrouselPlinPlin);
-		terminalTeatroColon.getBase().getPois().add(comuna3);
+		terminalTeatroColon = new Terminal("Terminal Teatro Colon", servicios);
+
 		Assert.assertFalse(terminalTeatroColon.estaDisponiblePoi("Tesoreria", DayOfWeek.SUNDAY, "11:30"));
 	}
 

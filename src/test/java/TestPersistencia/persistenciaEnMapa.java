@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,10 +21,11 @@ import CaracteristicaPoi.Ubicacion;
 import OrigenesDeDatos.Mapa;
 import Pois.CGP;
 import Pois.ParadaColectivo;
+import Pois.Poi;
 
 public class persistenciaEnMapa extends AbstractPersistenceTest implements WithGlobalEntityManager{
 	//CGP
-	private CGP cgpComuna3 = new CGP();
+	private CGP cgpComuna3;
 	private Ubicacion ubicacion;
 	private List<String> palabras;
 	private Punto coordenadas;
@@ -33,7 +36,7 @@ public class persistenciaEnMapa extends AbstractPersistenceTest implements WithG
 	private ServicioCGP tesoreria;
 	private List<ServicioCGP> serviciosCGP;
 	//ParadaColectivo
-	private ParadaColectivo parada114= new ParadaColectivo();
+	private ParadaColectivo parada114;
 	private Ubicacion ubicacion114;
 	private Region region114;
 	private Domicilio domicilio114;
@@ -44,8 +47,9 @@ public class persistenciaEnMapa extends AbstractPersistenceTest implements WithG
 	
 	@Before
 	public void setUP(){
+		cgpComuna3= new CGP();
 		cgpComuna3.setNombre("cgp comuna 3");
-		palabras = Arrays.asList("cgp","comuna 3","CABA");
+		palabras = Arrays.asList("cgp","comuna 3","CABA","que salga colectivo del cgp");
 		coordenadas = new Punto(34.4124, 24.4856);
 		domicilio = new Domicilio("Arenales", 1245, "M.T.De.Alvear", "Santa Fe", 2100, 0, 0, 0, 1111);
 		region= new Region("CABA", "Recoleta", "Bs As", "Argentina");
@@ -66,7 +70,7 @@ public class persistenciaEnMapa extends AbstractPersistenceTest implements WithG
 		serviciosCGP= Arrays.asList(tesoreria);
 		cgpComuna3.setServiciosCGP(serviciosCGP);
 		
-		;
+		parada114 = new ParadaColectivo();
 		parada114.setNombre("parada 114");
 		palabras114 = Arrays.asList("parada","colectivo","114","linea 114");
 		parada114.setPalabrasClave(palabras114);
