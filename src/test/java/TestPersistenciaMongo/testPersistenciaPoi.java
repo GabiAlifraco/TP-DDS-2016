@@ -42,6 +42,11 @@ public class testPersistenciaPoi {
 		parada114 = new ParadaColectivo(ubicacionParada, "114", palabrasClave114);
 
 	}
+	@After
+	public void dropDB(){
+		
+		client.dropDatabase("pois");
+	}
 
 	@Test
 	public void testPersistePalabrasClave() {
@@ -49,7 +54,6 @@ public class testPersistenciaPoi {
 		ParadaColectivo paradaMongo = datastore.get(ParadaColectivo.class, id);
 
 		Assert.assertEquals(paradaMongo.getPalabrasClave(), palabrasClave114);
-		client.dropDatabase("pois");
 	}
 
 	@Test
@@ -62,8 +66,6 @@ public class testPersistenciaPoi {
 		Assert.assertEquals(ubicacionMongo.getRegion().getBarrio(), regionParada.getBarrio());
 		Assert.assertEquals(ubicacionMongo.getRegion().getProvincia(), regionParada.getProvincia());
 		Assert.assertEquals(ubicacionMongo.getRegion().getPais(), regionParada.getPais());
-		
-		client.dropDatabase("pois");	
 	}
 
 	@Test
@@ -74,7 +76,6 @@ public class testPersistenciaPoi {
 		
 		Assert.assertEquals(ubicacionMongo.getCoordenadas().getLatitud(), coordenadaParada.getLatitud(), 0.1);
 		Assert.assertEquals(ubicacionMongo.getCoordenadas().getLongitud(), coordenadaParada.getLongitud(), 0.1);
-		client.dropDatabase("pois");
 	}
 
 }

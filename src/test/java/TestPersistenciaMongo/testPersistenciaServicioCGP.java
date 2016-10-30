@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,13 +45,18 @@ public class testPersistenciaServicioCGP {
 		horariosDisponibilidad = Arrays.asList(disponibilidad);
 		rentas = new ServicioCGP("Rentas", horariosDisponibilidad);
 	}
+	
+	@After
+	public void dropDB() {
+		client.dropDatabase("servicios");
+
+	}
 
 	@Test
 	public void testPersistenciaNombreServicio() {
 		Object id = datastore.save(rentas).getId();
 		ServicioCGP servicioMongo = datastore.get(ServicioCGP.class, id);
 		Assert.assertEquals(servicioMongo.getNombre(), rentas.getNombre());
-		client.dropDatabase("servicios");
 	}
 	
 	@Test
@@ -62,7 +68,6 @@ public class testPersistenciaServicioCGP {
 		Assert.assertEquals(disponibilidadPersistida.getDias(), dias);
 		Assert.assertEquals(disponibilidadPersistida.getHorarioInicial(), horarioInicial);
 		Assert.assertEquals(disponibilidadPersistida.getHorarioFinal(), horarioFinal);
-		client.dropDatabase("servicios");
 	}
 
 }

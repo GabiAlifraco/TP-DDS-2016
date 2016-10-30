@@ -70,13 +70,18 @@ public class testPersistenciaRespuestaServicio {
 
 	}
 
+	@After
+	public void dropDB() {
+
+		client.dropDatabase("respuestas");
+	}
+
 	@Test
 	public void testPersisteFechaRespuesta() {
 		Object id = datastore.save(respuesta).getId();
 		RespuestaServicio respuesta = datastore.get(RespuestaServicio.class, id);
 
 		Assert.assertEquals(fechaRespuesta, respuesta.getFechaConsulta());
-		client.dropDatabase("respuestas");
 	}
 
 	@Test
@@ -87,7 +92,6 @@ public class testPersistenciaRespuestaServicio {
 
 		Assert.assertEquals(id, respuestas.get(0).getId());
 		Assert.assertEquals(fechaRespuesta, respuestas.get(0).getFechaConsulta());
-		client.dropDatabase("respuestas");
 	}
 
 }

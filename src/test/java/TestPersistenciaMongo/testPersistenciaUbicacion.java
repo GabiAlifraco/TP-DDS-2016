@@ -34,6 +34,12 @@ public class testPersistenciaUbicacion {
 	ubicacion = new Ubicacion(domicilio, region, coordenadas);
 	}
 	
+	@After
+	public void dropDB() {
+
+		client.dropDatabase("ubicaciones");
+	}
+	
 	@Test
 	public void testPersistenciaRegion(){
 		Object id = datastore.save(ubicacion).getId();
@@ -43,7 +49,6 @@ public class testPersistenciaUbicacion {
 		Assert.assertEquals(ubicacionMongo.getRegion().getBarrio(), region.getBarrio());
 		Assert.assertEquals(ubicacionMongo.getRegion().getProvincia(), region.getProvincia());
 		Assert.assertEquals(ubicacionMongo.getRegion().getPais(), region.getPais());
-		client.dropDatabase("ubicaciones");
 	}
 	
 	@Test
@@ -53,7 +58,6 @@ public class testPersistenciaUbicacion {
 		
 		Assert.assertEquals(ubicacionMongo.getCoordenadas().getLatitud(), coordenadas.getLatitud(), 0.1);
 		Assert.assertEquals(ubicacionMongo.getCoordenadas().getLongitud(), coordenadas.getLongitud(), 0.1);
-		client.dropDatabase("ubicaciones");
 	}
 
 	@Test
@@ -70,7 +74,6 @@ public class testPersistenciaUbicacion {
 		Assert.assertEquals(ubicacionMongo.getDomicilio().getDepartamento(), domicilio.getDepartamento());
 		Assert.assertEquals(ubicacionMongo.getDomicilio().getUnidad(), domicilio.getUnidad());
 		Assert.assertEquals(ubicacionMongo.getDomicilio().getCodigoPostal(), domicilio.getCodigoPostal());
-		client.dropDatabase("ubicaciones");
 	}
 }
 

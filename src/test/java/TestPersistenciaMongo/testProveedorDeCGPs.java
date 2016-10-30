@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -90,6 +91,12 @@ public class testProveedorDeCGPs extends CreadorDeObjetos{
 
 		
 	}
+	
+	@After
+	public void dropDB() {
+
+		client.dropDatabase("cgpsExternos");
+	}
 	@Test
 	public void guarda(){
 		cache= new CacheCGPs(datastore);	
@@ -100,7 +107,6 @@ public class testProveedorDeCGPs extends CreadorDeObjetos{
 		cache.guardarVarios(aGuardar2,"Arenales");
 	
 	Assert.assertEquals(1,cache.buscar("Villa crespo").size());
-	client.dropDatabase("cgpsExternos");
 	
 	}
 	@Test 
@@ -113,7 +119,6 @@ public class testProveedorDeCGPs extends CreadorDeObjetos{
 		cache.guardarVarios(aGuardar2,"Arenales");
 		
 		Assert.assertTrue(proveedor.buscarPois("CGP","Villa crespo").get(0).getNombre().equals("cgp comuna 15"));
-		client.dropDatabase("cgpsExternos");
 	}
 	@Test
 	public void buscaNoEncuentraYLoAgregaALaBase(){
@@ -125,7 +130,6 @@ public class testProveedorDeCGPs extends CreadorDeObjetos{
 		cache.guardarVarios(aGuardar2,"Arenales");
 		proveedor.buscarPois("cgp algo","calle a buscar");
 		Assert.assertTrue(cache.buscar("calle a buscar").get(0).getUbicacion().getRegion().getBarrio().equals("calle a buscar"));
-		client.dropDatabase("cgpsExternos");
 	}
 
 }

@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,7 +41,12 @@ public class testPersistenciaDisponibilidad {
 		horarioFinal = LocalTime.of(15, 00);
 		disponibilidad = new Disponibilidad(dias,horarioInicial, horarioFinal);
 	}
-		
+	
+	@After
+	public void dropDB(){
+		client.dropDatabase("disponibilidad");
+	}
+	
 	@Test
 	public void testPersistenciaHorarios(){
 		Object id = datastore.save(disponibilidad).getId();
@@ -51,7 +57,6 @@ public class testPersistenciaDisponibilidad {
 
 		Assert.assertEquals(horarioInicial, horarioInicialPersistido);
 		Assert.assertEquals(horarioFinal, horarioFinalPersistido);
-		client.dropDatabase("disponibilidad");
 	}
 
 	@Test
@@ -61,7 +66,6 @@ public class testPersistenciaDisponibilidad {
 		
 		List<DayOfWeek> diasPersistidos = disponibilidadMongo.getDias();
 		Assert.assertEquals(diasPersistidos, dias);
-		client.dropDatabase("disponibilidad");
 
 	}
 }

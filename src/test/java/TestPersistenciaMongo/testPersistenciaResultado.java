@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -75,7 +76,11 @@ public class testPersistenciaResultado {
 		totalResultados = poisEncontrados.size();
 		resultado = new Resultado(fecha, horaInicio, horaFin, fraseBuscada, terminal, poisEncontrados);
 	}
+	@After
+	public void dropDB() {
 
+		client.dropDatabase("resultados");
+	}
 
 	@Test
 	public void testPersistenciaFecha() {
@@ -83,7 +88,6 @@ public class testPersistenciaResultado {
 		Resultado resultadoMongo = datastore.get(Resultado.class, id);
 		
 		Assert.assertEquals(resultadoMongo.getFecha(), fecha);
-		client.dropDatabase("resultados");
 
 	}
 
@@ -97,7 +101,6 @@ public class testPersistenciaResultado {
 		
 		Assert.assertEquals(horaInicio, horaInicioPersistida);
 		Assert.assertEquals(horaFin, horaFinPersistida);
-		client.dropDatabase("resultados");
 	}
 
 	@Test
@@ -106,7 +109,6 @@ public class testPersistenciaResultado {
 		Resultado resultadoMongo = datastore.get(Resultado.class, id);
 		
 		Assert.assertEquals(resultadoMongo.getFraseBuscada(), fraseBuscada);
-		client.dropDatabase("resultados");
 
 	}
 
@@ -116,7 +118,6 @@ public class testPersistenciaResultado {
 		Resultado resultadoMongo = datastore.get(Resultado.class, id);
 		
 		Assert.assertEquals(resultadoMongo.getCantidadDeResultados(), totalResultados);
-		client.dropDatabase("resultados");
 	}
 
 	@Test
@@ -125,6 +126,5 @@ public class testPersistenciaResultado {
 		Resultado resultadoMongo = datastore.get(Resultado.class, id);
 		
 		Assert.assertEquals(resultadoMongo.getTerminal().getNombreTerminal(), terminal.getNombreTerminal());
-		client.dropDatabase("resultados");
 	}
 }
