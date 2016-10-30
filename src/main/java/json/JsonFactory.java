@@ -1,6 +1,8 @@
 package json;
 
 import java.io.IOException;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -24,6 +26,15 @@ public class JsonFactory {
 		} catch (IOException e) {
 
 			throw new RuntimeException("Error reading a json", e);
+		}
+	}
+
+	public String toJson(Object object) {
+		try {
+			String jsonString = this.objectMapper.writeValueAsString(object);
+			return jsonString;
+		} catch (JsonProcessingException e) {
+			throw new RuntimeException("Error creating a json", e);
 		}
 	}
 

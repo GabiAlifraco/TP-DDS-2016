@@ -1,51 +1,46 @@
 package cacheServicios;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.mongodb.morphia.Datastore;
-import org.mongodb.morphia.query.Query;
-
-import Pois.Poi;
+import DTOs.BancoDTO;
+import json.JsonFactory;
+import redis.clients.jedis.Jedis;
 
 public class CacheBancos {
 
-	Datastore datastore;
-	
-	public CacheBancos(Datastore ds){
-		this.datastore = ds;
+	Jedis db;
+	JsonFactory jsonFactory = new JsonFactory();
+
+	public CacheBancos(Jedis db) {
+		this.db = db;
 	}
-	
-	public List<Poi> buscar(String nombreBanco, String servicio) {
-		this.limpiarCache();
-		List<RespuestaServicio> respuestas = datastore.find(RespuestaServicio.class, "servicioConsulta", servicio).asList();
+
+	public void guardar(List<BancoDTO> bancosServicio, String banco, String servicio) {
+		int unDia = 86400;
+		String json = bancosServicio.stream().map(bancoDTO -> jsonFactory.toJson(bancoDTO) + ",").collect(Collectors.joining());
+
+		String jsonRespuesta = "[" + json.substring(0, json.length() - 1) + "]";
 		
-		return respuestas.stream().filter(respuesta -> respuesta.getNombreBancoConsulta().equals(nombreBanco)).map(respuesta -> respuesta.getPoisConsulta())
-			.flatMap(bancos -> bancos.stream()).collect(Collectors.toList());		
+		db.setex(banco + servicio, unDia, jsonRespuesta);
 	}
 
-	public void limpiarCache() {
-	
-		Query<RespuestaServicio> filtroFecha = datastore.find(RespuestaServicio.class)
-												.filter("fechaConsulta <=" ,LocalDate.now().minusDays(1));
-		datastore.delete(filtroFecha);
+	public List<BancoDTO> buscar(String banco, String servicio) {
+		if(db.exists(banco + servicio)){
+		return Arrays.asList(jsonFactory.fromJson(db.get(banco + servicio), BancoDTO[].class));
+		} else {
+			List<BancoDTO> listaVacia = new ArrayList<BancoDTO>();
+			return listaVacia;
+		}
 	}
 
-	public Object guardar(List<Poi> bancosServicio, String banco, String servicio) {
-		
-		RespuestaServicio respuesta = new RespuestaServicio(LocalDate.now(), bancosServicio, servicio, banco);
-		
-		return datastore.save(respuesta).getId();
-	}
-	
-	public Datastore getDatastore() {
-		return datastore;
+	public Jedis getDb() {
+		return db;
 	}
 
-	public void setDatastore(Datastore datastore) {
-		this.datastore = datastore;
+	public void setDb(Jedis db) {
+		this.db = db;
 	}
-
-
 }

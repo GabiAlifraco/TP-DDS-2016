@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.*;
-import org.mongodb.morphia.Datastore;
-import org.mongodb.morphia.Morphia;
 
-import com.mongodb.MongoClient;
-
+import DTOs.BancoDTO;
 import Inicializacion.CreadorDeObjetos;
 import MocksServicios.MockBankService;
 import OrigenesDeDatos.Mapa;
@@ -17,22 +14,25 @@ import OrigenesDeDatos.ProveedorBancos;
 import Pois.Poi;
 import Terminal.Terminal;
 import cacheServicios.CacheBancos;
+import json.JsonFactory;
+import redis.clients.jedis.Jedis;
 
 public class TestServicioBanco extends CreadorDeObjetos {
 
 	ProveedorBancos proveedorBancos;
 	MockBankService servicio;
-	MongoClient client;
-	Morphia morphia;
-	Datastore datastore;
-	CacheBancos cache;
 
+	Jedis jedis;
+	CacheBancos cache;
+	JsonFactory jsonFactory;
+	
 	Mapa base;
 	List<OrigenDeDatos> servicios;
 
 	Terminal terminal;
 
-	List<Poi> bancosEncontrados;
+	List<BancoDTO> bancosEncontrados;
+	BancoDTO[] bancosDTO;
 
 	@Before
 	public void initialize() {
@@ -41,18 +41,33 @@ public class TestServicioBanco extends CreadorDeObjetos {
 		base = Mapa.getInstance();
 		servicio = new MockBankService();
 
-		client = new MongoClient();
-		morphia = new Morphia();
-		datastore = morphia.createDatastore(client, "respuestasServicioMock");
+		jedis = new Jedis("localhost", 6379);
+		
+		cache = new CacheBancos(jedis);
 
-		cache = new CacheBancos(datastore);
 		proveedorBancos = new ProveedorBancos();
 		proveedorBancos.setCache(cache);
+
 		servicios = Arrays.asList(base, proveedorBancos);
 		terminal = new Terminal("Terminal abasto", servicios);
 
-		bancosEncontrados = new ArrayList<Poi>();
-		bancosEncontrados.add(bancoSantander);
+		jsonFactory = new JsonFactory();
+		bancosDTO = jsonFactory.fromJson(
+				"[{" + "\"banco\": \"Banco de la Plaza\"," + "\"x\": -35.9338322," + "\"y\": 72.348353,"
+						+ "\"sucursal\": \"Avellaneda\"," + "\"gerente\": \"Javier Loeschbor\","
+						+ "\"servicios\": [ \"cobro cheques\", \"depositos\", \"extracciones\", \"transferencias\", \"creditos\" ] "
+						+ "}," + "{" + "\"banco\": \"Banco de la Plaza\"," + "\"x\": -35.9345681," + "\"y\": 72.344546,"
+						+ "\"sucursal\": \"Caballito\"," + "\"gerente\": \"Fabian Fantaguzzi\","
+						+ "\"servicios\": [ \"depositos\", \"extracciones\", \"transferencias\", \"seguros\" ]" + "}]",
+				BancoDTO[].class);
+		
+		bancosEncontrados = Arrays.asList(bancosDTO);
+	}
+	
+	@After
+	public void cerrarConexion(){
+		jedis.flushDB();
+		jedis.quit();
 	}
 
 	@Test
@@ -64,7 +79,6 @@ public class TestServicioBanco extends CreadorDeObjetos {
 		Assert.assertTrue(bancos.get(0).getNombre().equals("Banco de la Plaza"));
 		Assert.assertEquals(5, bancos.get(0).getPalabrasClave().size());
 		Assert.assertTrue(bancos.get(0).getPalabrasClave().get(0).equals("cobro cheques"));
-		client.dropDatabase("respuestasServicioMock");
 
 	}
 
@@ -73,13 +87,11 @@ public class TestServicioBanco extends CreadorDeObjetos {
 
 		proveedorBancos.setBankService(servicio);
 		List<Poi> bancos = new ArrayList<Poi>();
-		//bancos = terminal.busquedaDePuntos("Banco", "Servicio");
 		bancos = proveedorBancos.buscarPois("Banco", "Servicio");
 		
 		Assert.assertTrue(bancos.get(0).getNombre().equals("Banco de la Plaza"));
 		Assert.assertTrue(bancos.get(0).getPalabrasClave().contains("cobro cheques"));
 		Assert.assertEquals(5, bancos.get(0).getPalabrasClave().size());
-		client.dropDatabase("respuestasServicioMock");
 	}
 
 	@Test
@@ -87,11 +99,9 @@ public class TestServicioBanco extends CreadorDeObjetos {
 		proveedorBancos.setBankService(servicio);
 
 		cache.guardar(bancosEncontrados, "Banco de la Plaza", "cobro cheques");
-		
 		List<Poi> bancos = proveedorBancos.buscarPois("Banco de la Plaza", "cobro cheques");
 		
 		Assert.assertFalse(servicio.getConsultado());
 		Assert.assertEquals("Banco de la Plaza", bancos.get(0).getNombre());
-		client.dropDatabase("respuestasServicioMock");
 	}
 }

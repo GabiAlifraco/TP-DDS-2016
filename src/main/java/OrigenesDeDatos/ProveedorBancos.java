@@ -20,19 +20,20 @@ public class ProveedorBancos implements OrigenDeDatos {
 
 
 	public List<Poi> buscarPois(String nombreBanco, String servicio) {
-		List<Poi> bancosCache = cache.buscar(nombreBanco, servicio);
+
+		List<BancoDTO> bancosCache = cache.buscar(nombreBanco, servicio);
 
 		if (bancosCache.isEmpty()) {
-
 			List<BancoDTO> bancosEncontrados = servicioBanco.getSucursalesBancosByNombreBanco(nombreBanco, servicio);
-			List<Poi> bancosServicio = bancosEncontrados.stream().map(bancoEncontrado -> mapearBancoDTOABanco(bancoEncontrado))
+			cache.guardar(bancosEncontrados, nombreBanco, servicio);
+			
+			return bancosEncontrados.stream().map(bancoEncontrado -> mapearBancoDTOABanco(bancoEncontrado))
 					.collect(Collectors.toList());
 
-			cache.guardar(bancosServicio, nombreBanco, servicio);
-			
-			return bancosServicio;
 		} else {
-			return bancosCache;
+		
+		return bancosCache.stream().map(bancoEncontrado -> mapearBancoDTOABanco(bancoEncontrado))
+				.collect(Collectors.toList());
 		}
 
 	}
