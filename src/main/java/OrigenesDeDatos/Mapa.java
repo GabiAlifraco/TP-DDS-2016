@@ -1,6 +1,5 @@
 package OrigenesDeDatos;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -12,13 +11,9 @@ public class Mapa implements OrigenDeDatos, WithGlobalEntityManager{
 
 	private static Mapa instance = null;
 	
-	private List<Poi> pois = new ArrayList<Poi>();
-
-	// Alta, Baja y Modificaci�n de un Poi
 	public void agregarUnPoi(Poi unPoi) {
 	List<Poi> encontrados =entityManager().createQuery("from Poi",Poi.class).getResultList();
 		if (!encontrados.contains(unPoi)) {
-			pois.add(unPoi);
 	 		entityManager().persist(unPoi);
 		}
 	}
@@ -27,27 +22,24 @@ public class Mapa implements OrigenDeDatos, WithGlobalEntityManager{
 		
 		listaResultados.stream().forEach(resultado -> this.agregarUnPoi(resultado));
 	}
+
 	public void eliminarUnPoi(Poi unPoi) {
 		List<Poi> encontrados =entityManager().createQuery("from Poi",Poi.class).getResultList();
 		if (encontrados.contains(unPoi)) {
-			pois.remove(unPoi);
-	 		entityManager().remove(unPoi);
+			entityManager().remove(unPoi);
 		}
 	}
 
 	public void modificarUnPoi(Poi unPoi) {
-		this.eliminarUnPoi(unPoi);
-		this.agregarUnPoi(unPoi);
+		entityManager().persist(unPoi);
 	}
 
 	public List<Poi> buscarPois(String unNombre, String unaPalabraClave) {
 		return entityManager().createQuery("from Poi p join p.palabrasClave as e where e like :pclave or p.nombre=:nombreBuscado",Poi.class).setParameter("pclave","%"+unaPalabraClave+"%").setParameter("nombreBuscado",unNombre).getResultList();
-		//return getPois().stream().filter(poi -> poi.textoIncluido(unNombre, unaPalabraClave))
-		//		.collect(Collectors.toList());
 	}
 
 	public List<Poi> getPois() {
-		return this.pois;
+		return entityManager().createQuery("from Poi",Poi.class).getResultList();
 	}
 
 	protected Mapa() {

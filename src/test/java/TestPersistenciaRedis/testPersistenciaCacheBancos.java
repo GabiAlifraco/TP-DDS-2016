@@ -17,7 +17,6 @@ public class testPersistenciaCacheBancos {
 	List<BancoDTO> bancosEncontrados;
 	BancoDTO[] bancosDTO;
 	JsonFactory jsonFactory;
-	String json;
 	
 	@Before
 	public void initialize(){
@@ -26,13 +25,6 @@ public class testPersistenciaCacheBancos {
 		cacheBancos = new CacheBancos(jedis);
 		
 		jsonFactory = new JsonFactory();
-		json = "[{" + "\"banco\": \"Banco de la Plaza\"," + "\"x\": -35.9338322," + "\"y\": 72.348353,"
-				+ "\"sucursal\": \"Avellaneda\"," + "\"gerente\": \"Javier Loeschbor\","
-				+ "\"servicios\": [ \"cobro cheques\", \"depositos\", \"extracciones\", \"transferencias\", \"creditos\" ] "
-				+ "}," + "{" + "\"banco\": \"Banco de la Plaza\"," + "\"x\": -35.9345681," + "\"y\": 72.344546,"
-				+ "\"sucursal\": \"Caballito\"," + "\"gerente\": \"Fabian Fantaguzzi\","
-				+ "\"servicios\": [ \"depositos\", \"extracciones\", \"transferencias\", \"seguros\" ]" + "}]";
-		
 		bancosDTO = jsonFactory.fromJson(
 				"[{" + "\"banco\": \"Banco de la Plaza\"," + "\"x\": -39.9338322," + "\"y\": 65.348353,"
 						+ "\"sucursal\": \"Avellaneda\"," + "\"gerente\": \"Javier Loeschbor\","

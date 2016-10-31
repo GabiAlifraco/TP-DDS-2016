@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.persistence.Query;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -21,7 +20,6 @@ import CaracteristicaPoi.Ubicacion;
 import OrigenesDeDatos.Mapa;
 import Pois.CGP;
 import Pois.ParadaColectivo;
-import Pois.Poi;
 
 public class persistenciaEnMapa extends AbstractPersistenceTest implements WithGlobalEntityManager{
 	//CGP
@@ -88,7 +86,6 @@ public class persistenciaEnMapa extends AbstractPersistenceTest implements WithG
 		}
 	@Test
 	public void agregarPoisTest(){
-		base.getPois().clear();
 		base.agregarUnPoi(cgpComuna3);
 		base.agregarUnPoi(parada114);
 		Assert.assertTrue(base.entityManager().contains(cgpComuna3));
@@ -96,7 +93,6 @@ public class persistenciaEnMapa extends AbstractPersistenceTest implements WithG
 	}
 	@Test
 	public void agregarYEliminarPoisTest(){
-		base.getPois().clear();
 		base.agregarUnPoi(cgpComuna3);
 		base.agregarUnPoi(parada114);
 		base.eliminarUnPoi(parada114);

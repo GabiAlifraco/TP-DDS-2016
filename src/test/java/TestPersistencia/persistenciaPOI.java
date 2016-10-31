@@ -79,7 +79,6 @@ public class persistenciaPOI extends AbstractPersistenceTest implements WithGlob
 	@Test
 	public void testZonaPersistida(){
 		entityManager().persist(cgpComuna3);
-		System.out.println(entityManager().find(CGP.class, cgpComuna3.getPoiID()).getZona());
 		assertEquals(cgpComuna3.getZona(), entityManager().find(CGP.class, cgpComuna3.getPoiID()).getZona());
 	}
 }
