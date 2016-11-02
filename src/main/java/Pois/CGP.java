@@ -40,10 +40,14 @@ public class CGP extends Poi{
 	public boolean estaCercaDe(Punto otraCoordenada) {
 		return this.getZona().isInside(otraCoordenada);
 	}
+	
+	
 	@Override
 	public boolean estaDisponible(String nombreServicio, DayOfWeek dia, LocalTime hora) {
 			return serviciosCGP.stream().filter(servicio -> servicio.getNombre().contains(nombreServicio)).anyMatch(servicio -> servicio.horarioDisponible(dia,hora));
 	}
+	
+	//Se supone que lo contiene, no que es exactamente igual al nombre del servicio.
 	@Override
 	public boolean textoIncluido(String unNombre, String unaPalabraClave) {
 		return this.mismoNombre(unNombre) || this.contieneServicio(unaPalabraClave);

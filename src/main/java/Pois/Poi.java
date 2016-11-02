@@ -49,10 +49,13 @@ public abstract class Poi{
 	@javax.persistence.JoinColumn(name="poiID")
 	private List<Disponibilidad> horariosDeAtencion  = new ArrayList<Disponibilidad>();
 
+	//Punto A de la entrega 0
+	
 	public boolean estaCercaDeOtroPoi(Poi unPoi) {
 		return estaCercaDe(unPoi.getCoordenada());
 	}
 
+	//Habria que multiplicar esa distancia en Km por 1000 para que el metodo lo haga bien
 	public boolean estaCercaDe(Punto otraCoordenada) {
 		return this.getCoordenada().distance(otraCoordenada) < distanciaMinimaParaConsiderarmeCercano();
 	}
