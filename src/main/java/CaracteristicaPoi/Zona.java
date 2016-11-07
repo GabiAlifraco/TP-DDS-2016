@@ -3,11 +3,13 @@ package CaracteristicaPoi;
 import java.util.List;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embeddable;
 
-@javax.persistence.Embeddable
+@Embeddable
 public class Zona {
 
-	@javax.persistence.Embedded
+	@ElementCollection
 	private List<Punto> zona;
 
 	@org.mongodb.morphia.annotations.Transient
