@@ -1,0 +1,32 @@
+html {
+  position: relative;
+  min-height: 100%;
+
+}
+body {
+margin:0px;
+}
+.container-fluid {
+  position: absolute;
+  top:0;
+  background-color: #ffbc00;
+  height: 70px;
+  width: 100%;
+
+
+}
+.footer {
+ 
+  font-family: Arial;
+  background-color: #171506;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 90px;
+}
+
+.texto {
+	margin: 20px;
+	text-align: center;
+	color: #FDFFFD;
+}
