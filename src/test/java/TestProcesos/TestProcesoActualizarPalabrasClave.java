@@ -135,11 +135,6 @@ public class TestProcesoActualizarPalabrasClave extends AbstractPersistenceTest 
 		terminalAbasto = new Terminal("Terminal Abasto", servicios);
 		archivo.toFile().deleteOnExit();
 	}
-	
-	@After
-	public void limpiar(){
-		entityManager().clear();
-	}
 
 	@Test
 	public void testActualizaCarrousel() throws IOException {
