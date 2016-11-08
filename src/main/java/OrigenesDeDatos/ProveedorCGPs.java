@@ -44,6 +44,7 @@ public class ProveedorCGPs implements OrigenDeDatos {
 	}
 
 	private CGP buscarCGPs(String calleOBarrio) {
+		//Como es que una interfaz no creada ejecuta un metodo
 		CentroDTO centroDTOEncontrado = serviceCGP.getCGPsByCalleOBarrio(calleOBarrio);
 		return deCentroDTOaCGP(centroDTOEncontrado);
 
