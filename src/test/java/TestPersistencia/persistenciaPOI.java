@@ -34,6 +34,9 @@ public class persistenciaPOI extends AbstractPersistenceTest implements WithGlob
 	private ServicioCGP tesoreria;
 	private List<ServicioCGP> serviciosCGP;
 	private List<Punto> zona;
+	private Punto coordenadaCGP;
+	private Punto coordenadaCGP2;
+	private Punto coordenadaCGP3;
 	
 	@Before
 	public void setUP(){
@@ -58,9 +61,9 @@ public class persistenciaPOI extends AbstractPersistenceTest implements WithGlob
 		serviciosCGP=new ArrayList<ServicioCGP>();
 		serviciosCGP= Arrays.asList(tesoreria);
 		cgpComuna3.setServiciosCGP(serviciosCGP);
-		Punto coordenadaCGP = new Punto(34.4124, 24.4856);
-		Punto coordenadaCGP2 = new Punto(34.4124, 24.4852);
-		Punto coordenadaCGP3 = new Punto(34.4120, 24.4851);
+		coordenadaCGP = new Punto(34.4124, 24.4856);
+		coordenadaCGP2 = new Punto(34.4124, 24.4852);
+		coordenadaCGP3 = new Punto(34.4120, 24.4851);
 		zona = new ArrayList<Punto>();
 		zona.add(coordenadaCGP);
 		zona.add(coordenadaCGP2);
