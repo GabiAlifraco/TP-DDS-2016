@@ -1,0 +1,27 @@
+{{# partial "titulo" }}	
+<link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="signin.css" rel="stylesheet">
+
+<title>
+  Iniciar sesión
+</title>
+{{/partial}}
+
+{{#partial "header" }}
+{{/partial}}		
+
+<body class = "body-login">
+  {{# partial "contenido" }}	  
+ 
+  <div class="container-login">
+    <form class="form-signin">
+      <img class="imagen-usuario" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png">
+      <input id="usuario" class="form-control" placeholder="Nombre de usuario" required="" autofocus="" type = "text" style="width:350px;height:40px;">
+      <input id="contraseña" class="form-control" placeholder="Contraseña" required="" type="password" style="width:350px;height:40px;">
+      <button class="btn btn-lg btn-primary btn-block" type="submit" style="width:350px;height:40px;">Iniciar sesión</button>
+    </form>
+  </div>
+ 
+  {{/partial}}
+</body>
+{{> layout.hbs }}

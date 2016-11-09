@@ -27,6 +27,53 @@ margin:0px;
 
 .texto {
 	margin: 20px;
-	text-align: center;
+	text-align: left center;
 	color: #FDFFFD;
+}
+
+.header{
+	text-align: center;
+	color: rgba(253, 253, 253, 0.8);
+	padding-top: 15%;
+
+}
+#h1 {
+	font-family: Arial, sans-serif;
+	top:25%;
+	font-size: 100px;
+    font-weight: 400;
+}
+.body-home {
+	background-image: url("http://www.bsas.tv/wp/wp-content/uploads/Planetario-Galileo-Galilei-Palermo.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: 110% 110%;
+	font-family: Arial;
+}
+.body-login{
+	background-color: #EBEBEB;
+	padding-top: 20%;
+}
+.imagen-usuario{
+	border-radius: 100%;
+	height:140px;
+	width: 140px;
+	display: block;
+	margin: 0 auto 30px auto;
+}
+.container-login {
+	display: block;
+	position: absolute;
+    left:35%;
+	top:25%;
+}
+.form-control{
+	margin-bottom: 10px;
+}
+.pull-right{
+  margin-top: 13px;
+  margin-right: 50px;
+  color: #FFF;
+  background-color: #FFC665;
+  border-color: #FFC665; 
 }
