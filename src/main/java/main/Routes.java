@@ -1,7 +1,7 @@
 package main;
 
 import static spark.Spark.*;
-
+import controllers.AdministracionPoisController;
 import controllers.HomeController;
 import controllers.LoginController;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -12,11 +12,12 @@ public class Routes {
 		staticFileLocation("/public");
 		HomeController home = new HomeController();
 		LoginController login = new LoginController();
+		AdministracionPoisController admPois= new AdministracionPoisController();
 		HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
 		
 		port(8079);
-
 		get("/", home::mostrar, engine);
 		get("/login", login::mostrar, engine);
+		get("/administracionPois",admPois::mostrar,engine);
 	}
 }
