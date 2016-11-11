@@ -1,7 +1,7 @@
 package main;
 
 import static spark.Spark.*;
-
+import controllers.AdministracionPoisController;
 import controllers.HomeController;
 import controllers.LoginController;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -12,6 +12,7 @@ public class Routes {
 		staticFileLocation("/public");
 		HomeController home = new HomeController();
 		LoginController login = new LoginController();
+		AdministracionPoisController admPois= new AdministracionPoisController();
 		HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
 		
 		port(8087);
@@ -22,5 +23,6 @@ public class Routes {
 		get("/loginfailed", login::mostrarFail, engine);
 		post("/loginfailed", login::autenticar);
 		get("/home-administrador", home::mostrarHomeAdmin, engine);
+		get("/administracionPois",admPois::mostrar,engine);
 	}
 }
