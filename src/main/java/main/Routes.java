@@ -14,9 +14,13 @@ public class Routes {
 		LoginController login = new LoginController();
 		HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
 		
-		port(8079);
+		port(8087);
 
 		get("/", home::mostrar, engine);
 		get("/login", login::mostrar, engine);
+		post("/login", login::autenticar);
+		get("/loginfailed", login::mostrarFail, engine);
+		post("/loginfailed", login::autenticar);
+		get("/home-administrador", home::mostrarHomeAdmin, engine);
 	}
 }
