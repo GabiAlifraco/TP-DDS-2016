@@ -33,6 +33,7 @@ public class Terminal implements WithGlobalEntityManager{
 	@Column(name = "terminalID")
 	private long idTerminal;
 	//@Convert(converter = PointConverter.class)
+	@Embedded
 	private Punto coordenadaDispositivoMovil;
 	private String nombreTerminal;
 	@Transient
