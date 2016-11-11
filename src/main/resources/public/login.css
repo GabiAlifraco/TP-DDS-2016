@@ -1,0 +1,26 @@
+.body-login{
+	background-color: #EBEBEB;
+	padding-top: 20%;
+	background-attachment: fixed;
+}
+.imagen-usuario{
+	border-radius: 100%;
+	height:140px;
+	width: 140px;
+	display: block;
+	margin: 0 auto 25px auto;
+}
+.container-login {
+	display: block;
+	position: absolute;
+    left:35%;
+	top:25%;
+}
+.texto-error{
+	font-family: "Calibri", sans-serif;
+	text-align: center;
+	color: #B40101;
+}
+.form-control{
+	margin-bottom: 10px;
+}
