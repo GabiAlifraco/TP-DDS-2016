@@ -34,6 +34,7 @@ public class Mapa implements OrigenDeDatos, WithGlobalEntityManager{
 		entityManager().persist(unPoi);
 	}
 
+	//Ver este metodo
 	public List<Poi> buscarPois(String unNombre, String unaPalabraClave) {
 		return entityManager().createQuery("from Poi p join p.palabrasClave as e where e like :pclave or p.nombre=:nombreBuscado",Poi.class).setParameter("pclave","%"+unaPalabraClave+"%").setParameter("nombreBuscado",unNombre).getResultList();
 	}

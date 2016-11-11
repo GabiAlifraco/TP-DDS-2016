@@ -23,6 +23,8 @@ public class Routes {
 		get("/loginfailed", login::mostrarFail, engine);
 		post("/loginfailed", login::autenticar);
 		get("/home-administrador", home::mostrarHomeAdmin, engine);
+		get("/home-terminal",home::mostrarHomeTerminal,engine);
 		get("/administracionPois",admPois::mostrar,engine);
+		post("/borradoPoi",admPois::eliminar);
 	}
 }

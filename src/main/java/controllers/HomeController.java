@@ -13,5 +13,9 @@ public class HomeController {
 	public ModelAndView mostrarHomeAdmin(Request request, Response response) {
 		return new ModelAndView(null, "home-administrador.hbs");
 	}
+	
+	public ModelAndView mostrarHomeTerminal(Request request, Response response) {
+		return new ModelAndView(null, "home-terminal.hbs");
+	}
 
 }
