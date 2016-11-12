@@ -46,7 +46,7 @@ public class Terminal implements WithGlobalEntityManager{
 	private String nombreTerminal;
 	@Transient
 	List<OrigenDeDatos> servicios = new ArrayList<OrigenDeDatos>();
-	@OneToMany
+	@Transient
 	List<NotificacionBusqueda> notificadoresBusqueda = new ArrayList<NotificacionBusqueda>();
 	private String comunaTerminal;
     @Transient
