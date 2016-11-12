@@ -31,6 +31,7 @@ import OrigenesDeDatos.OrigenDeDatos;
 import Pois.Banco;
 import Pois.ParadaColectivo;
 import ProcesoAgregarAcciones.ActivarNotificacion;
+import ResultadosReportes.ResultadosReportes;
 import Terminal.Terminal;
 
 public class TestReporte extends AbstractPersistenceTest implements WithGlobalEntityManager   {
@@ -68,6 +69,7 @@ public class TestReporte extends AbstractPersistenceTest implements WithGlobalEn
 	private List<DayOfWeek> dias114;
 	private Disponibilidad horario114;
 	private List<Disponibilidad> horariosParada114;
+	private ResultadosReportes resultadosReportes;
 	
 	@Before
 	public void initialize() {
@@ -79,7 +81,7 @@ public class TestReporte extends AbstractPersistenceTest implements WithGlobalEn
 		bancoSantander=new Banco();
 		palabrasClaveBanco = Arrays.asList("Cajero automatico", "Deposito");
 		bancoSantander.setPalabrasClave(palabrasClaveBanco);
-		
+		bancoSantander.setNombre("Santander");
 		domicilioBanco = new Domicilio("Arenales", 1245, "M.T.De.Alvear", "Santa Fe", 2100, 0, 0, 0, 1111);
 		regionBanco = new Region("CABA", "Recoleta", "Bs As", "Argentina");
 		coordenadaBanco = new Punto(34.3243,21.4484);
@@ -123,20 +125,22 @@ public class TestReporte extends AbstractPersistenceTest implements WithGlobalEn
 		terminalAbasto.getBase().agregarUnPoi(parada114);
 		terminalAbasto.getBase().agregarUnPoi(bancoSantander);
 
-		
+		resultadosReportes = new ResultadosReportes();
 	}
 	@Test
 	public void testObtenerReportesPorFecha() {
 		
-
+        
 		Map<LocalDate, Integer> resultadoEsperado = new HashMap<LocalDate, Integer>();
 		fecha = LocalDate.now();
 		resultadoEsperado.put(fecha, 1);
 		AlmacenadorBusquedas almacenador = AlmacenadorBusquedas.getInstance();
-		almacenador.setDatastore(datastore);
 		terminalAbasto.agregarObserver(almacenador);
-		terminalAbasto.busquedaDePuntos("Santander", "Cajero");
-		Assert.assertEquals(resultadoEsperado, almacenador.getReportePorFecha(terminalAbasto));
+		almacenador.setDatastore(datastore);
+		
+	    terminalAbasto.busquedaDePuntos("Santander", "Cajero");
+		
+		Assert.assertEquals(resultadoEsperado, resultadosReportes.getReportePorFecha(terminalAbasto));
 		
 		client.dropDatabase("resultadosBusqueda");
 
@@ -165,9 +169,9 @@ public class TestReporte extends AbstractPersistenceTest implements WithGlobalEn
 		List<Integer> resultadoAbasto = Arrays.asList(1);
 		List<Integer> resultadoFlorida = Arrays.asList(0);
 
-		Assert.assertEquals(almacenador.getReportePorTerminal().size(), 2);
-		Assert.assertEquals(almacenador.getReportePorTerminal().get(terminalAbasto), resultadoAbasto);
-		Assert.assertEquals(almacenador.getReportePorTerminal().get(terminalFlorida), resultadoFlorida);
+		Assert.assertEquals(resultadosReportes.getReportePorTerminal().size(), 2);
+		Assert.assertEquals(resultadosReportes.getReportePorTerminal().get(terminalAbasto), resultadoAbasto);
+		Assert.assertEquals(resultadosReportes.getReportePorTerminal().get(terminalFlorida), resultadoFlorida);
 		
 		client.dropDatabase("resultadosBusqueda");
 	}

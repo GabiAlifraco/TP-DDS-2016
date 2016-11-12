@@ -14,33 +14,43 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import CaracteristicaPoi.Punto;
 import Notificaciones.AlmacenadorBusquedas;
+import Notificaciones.MailDemoraBusqueda;
 import Notificaciones.NotificacionBusqueda;
 import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
 import Pois.Poi;
 import Resultado.Resultado;
+import ResultadosReportes.ResultadosReportes;
 
 @Entity
 @Table(name="Terminales")
 public class Terminal implements WithGlobalEntityManager{
 
-	@Transient
-	public Mapa mapa = Mapa.getInstance();
-	@Transient
-	private AlmacenadorBusquedas almacenador;
 	@Id
 	@GeneratedValue
 	@Column(name = "terminalID")
 	private long idTerminal;
+	
+	@ManyToOne
+	private MailDemoraBusqueda mail;
+	
+	@Transient
+	public Mapa mapa = Mapa.getInstance();
+	
+	
+	
 	//@Convert(converter = PointConverter.class)
 	private Punto coordenadaDispositivoMovil;
+	
 	private String nombreTerminal;
 	@Transient
 	List<OrigenDeDatos> servicios = new ArrayList<OrigenDeDatos>();
 	@Transient
 	List<NotificacionBusqueda> notificadoresBusqueda = new ArrayList<NotificacionBusqueda>();
 	private String comunaTerminal;
-
+    @Transient
+	private ResultadosReportes resultReportes;
+	
 	public Terminal(String nombre, List<OrigenDeDatos> servicios) {
 		setNombreTerminal(nombre);
 		setServicios(servicios);
@@ -83,11 +93,11 @@ public class Terminal implements WithGlobalEntityManager{
 	}
 
 	public void activarReportes() {
-		this.almacenador.activarReportes(this);
+		this.resultReportes.activarReportes(this);
 	}
 
 	public void desactivarReportes() {
-		this.almacenador.desactivarReportes(this);
+		this.resultReportes.desactivarReportes(this);
 	}
 
 	public void notificarBusqueda(Resultado resultado, Terminal terminal) {
@@ -141,9 +151,6 @@ public class Terminal implements WithGlobalEntityManager{
 		this.comunaTerminal = comunaTerminal;
 	}
 
-	public void setAlmacenadorBusquedas(AlmacenadorBusquedas almacenador) {
-		this.almacenador = almacenador;
-	}
 	public long getIdTerminal() {
 		return idTerminal;
 	}

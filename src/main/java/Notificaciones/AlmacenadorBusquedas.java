@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import org.mongodb.morphia.Datastore;
 
 import Resultado.Resultado;
+import ResultadosReportes.ResultadosReportes;
 import Terminal.Terminal;
 
 public class AlmacenadorBusquedas extends NotificacionBusqueda {
@@ -23,8 +24,8 @@ public class AlmacenadorBusquedas extends NotificacionBusqueda {
 	private List<Terminal> terminalesActivadas = new ArrayList<Terminal>();
 	@org.mongodb.morphia.annotations.Transient
 	private Datastore datastore;
-
-
+	
+	
 	protected AlmacenadorBusquedas() {
 	}
 
@@ -50,58 +51,8 @@ public class AlmacenadorBusquedas extends NotificacionBusqueda {
 		
 	}
 
-	public Map<LocalDate, Integer> getReportePorFecha(Terminal terminal) {
-		if (terminalesActivadas.contains(terminal)) {
-			Map<LocalDate, Integer> reportePorFecha = new HashMap<LocalDate, Integer>();
 
-			for (Resultado resultado : resultadosEncontrados.get(terminal)) {
-				if (reportePorFecha.containsKey(resultado.getFecha())) {
-					reportePorFecha.replace(resultado.getFecha(),
-							reportePorFecha.get(resultado.getFecha()) + resultado.getCantidadResultados());
-				} else {
-					reportePorFecha.put(resultado.getFecha(), resultado.getCantidadResultados());
-				}
-			}
-			return reportePorFecha;
-
-		} else {
-			return null;
-		}
-	}
-
-	public Map<Terminal, List<Integer>> getReportePorTerminal() {
-		if (!terminalesActivadas.isEmpty()) {
-			Map<Terminal, List<Integer>> reportePorTerminal = new HashMap<Terminal, List<Integer>>();
-			for (Terminal terminal: terminalesActivadas){
-			
-				List<Resultado> resultadosTerminal = resultadosEncontrados.get(terminal);	
-				List<Integer> cantidadResultados;
-				cantidadResultados = resultadosTerminal.stream()
-									.map(resultado -> resultado.getCantidadResultados())
-									.collect(Collectors.toList());
-			
-				reportePorTerminal.put(terminal, cantidadResultados);
-			}
-			
-			return reportePorTerminal;
-		} else {
-			return null;
-		}
-	}
-
-	public void activarReportes(Terminal terminal) {
-		if (!(terminalesActivadas.contains(terminal))) {
-			terminalesActivadas.add(terminal);
-		}
-	}
-
-	public void desactivarReportes(Terminal terminal) {
-		if (terminalesActivadas.contains(terminal)) {
-			terminalesActivadas.remove(terminal);
-		}
-	}
-
-	public List<Terminal> terminalesQueEjecutaronBusquedas(LocalDate fecha) {
+    public List<Terminal> terminalesQueEjecutaronBusquedas(LocalDate fecha) {
 		
 		Set<Terminal> terminales = resultadosEncontrados.keySet();
 		
@@ -130,5 +81,12 @@ public class AlmacenadorBusquedas extends NotificacionBusqueda {
 	public void setDatastore(Datastore datastore) {
 		this.datastore = datastore;
 	}
+
+	
+
+	
+	
+
+	
 
 }
