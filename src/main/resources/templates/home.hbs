@@ -1,9 +1,20 @@
 {{# partial "titulo" }}	
-	<title>Buscador de Pois</title>
+<title>
+  Home
+</title>
 {{/partial}}
-		
-{{# partial "contenido" }}	  
-
-{{/partial}}
-				
+{{#partial "header" }}
+<a  href="\login" class="btn btn-primary btn-lg pull-right" role="button" style="background-color: #080219;border-color: #080219">Iniciar sesión </a>
+{{/partial}}		
+<body class = "body-home">
+<link rel="stylesheet"  href="home.css">
+  {{# partial "contenido" }}	  
+  <div class = "header-home">
+    <h1 align = left>Bienvenido al servicio de búsqueda de Pois</h1>
+    <h4 align = left> Una forma fácil y rápida de buscar información 
+      relacionada a puntos de interés, <br>en cualquier momento del día. 
+    </h4>
+  </div>
+  {{/partial}}
+</body>
 {{> layout.hbs }}

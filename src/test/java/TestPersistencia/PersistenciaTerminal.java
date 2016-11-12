@@ -12,7 +12,7 @@ import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
 import OrigenesDeDatos.ProveedorBancos;
 import OrigenesDeDatos.ProveedorCGPs;
-import Terminal.AdministradorUsuarios;
+import Terminal.AdministradorTerminales;
 import Terminal.Terminal;
 
 public class PersistenciaTerminal extends AbstractPersistenceTest implements WithGlobalEntityManager {
@@ -22,7 +22,7 @@ public class PersistenciaTerminal extends AbstractPersistenceTest implements Wit
 	ProveedorCGPs cgps = new ProveedorCGPs();
 	List<OrigenDeDatos> servicios = new ArrayList<OrigenDeDatos>();
 	Punto coordenadas;
-	AdministradorUsuarios usuarios;
+	AdministradorTerminales usuarios;
 
 	Terminal terminal;
 
@@ -37,7 +37,7 @@ public class PersistenciaTerminal extends AbstractPersistenceTest implements Wit
 		coordenadas = new Punto(-34.6030, -58.4107);
 		terminal.setCoordenadaDispositivoMovil(coordenadas);
 		terminal.setComunaTerminal("3");
-		usuarios = new AdministradorUsuarios();
+		usuarios = new AdministradorTerminales();
 		usuarios.agregarTerminal(terminal);
 	}
 

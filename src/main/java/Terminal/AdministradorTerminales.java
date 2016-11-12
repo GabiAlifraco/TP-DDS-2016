@@ -9,7 +9,7 @@ import Notificaciones.NotificacionBusqueda;
 import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.*;
 
-public class AdministradorUsuarios implements WithGlobalEntityManager {
+public class AdministradorTerminales implements WithGlobalEntityManager {
 
 	public void agregarTerminal(Terminal terminal) {
 		if (!entityManager().contains(terminal)) {

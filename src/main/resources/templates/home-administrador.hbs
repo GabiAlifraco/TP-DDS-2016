@@ -1,0 +1,49 @@
+{{# partial "titulo" }}	
+<title>
+  Home Administrador
+</title>
+{{/partial}}
+
+{{#partial "header" }}
+<a  href="/" class="btn btn-primary btn-lg pull-right" role="button" style="background-color: #080219;border-color: #080219">Cerrar sesión </a>
+{{/partial}}		
+
+<body class = "home-admin">
+<link rel="stylesheet"  href="home.css">
+{{#partial "contenido" }}
+
+ <div class="col">
+    <div class = "link-a">
+      <a href="#" style="text-decoration:none;">
+      <div class = "link-button">
+        <a href="/administracionPois"><img class= "icons" src="https://raw.githubusercontent.com/mbondarenco/prueba/master/signs-wht.png"></a>
+        <div class ="texto-home-admin"> Administrar <br> Pois </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col">
+    <div class = "link-a">
+      <a href="#" class = "link" style="text-decoration:none;"> 
+      <div class = "link-button">
+        <img class= "icons" src="https://raw.githubusercontent.com/mbondarenco/prueba/master/screen-wht.png">
+        <div class ="texto-home-admin"> Administrar Terminales
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class = "link-a">
+      <a href="#" style="text-decoration:none;"> 
+      <div class = "link-button">
+        <img class= "icons" src="https://raw.githubusercontent.com/mbondarenco/prueba/master/multimedia-wht.png">
+        <div class ="texto-home-admin"> Histórico de consultas 
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/partial}}
+</body>
+{{> layout.hbs }}

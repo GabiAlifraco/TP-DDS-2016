@@ -1,33 +1,42 @@
 <html>
   <head>
+    <link rel="icon" type="image/png" href="https://cdn4.iconfinder.com/data/icons/social-communication/142/point-512.png" />
+
     {{# block "titulo" }}
     {{/block}}
+
   </head>
   <body>
-  <link rel="stylesheet"  href="main.css">
-  <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="/">
-        <img src="https://raw.githubusercontent.com/gcba/BAstrap/gh-pages/bastrap3/bac-header.png">
-        </a>
-      </div>
-     </div>
-   </nav>
+    <link rel="stylesheet"  href="main.css">
+    <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-  <div class="container">
-    {{# block "contenido" }}
-    {{/block}}
-  </div>
-  
-  <footer class="footer">
-   <a class="navbar-brand" href="/">
-   <img src ="https://raw.githubusercontent.com/gcba/BAstrap/gh-pages/buenosaires/assets/bavos-footer.png">
-   </a>
-  </footer>
- 
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header" style="width:100%;">
+          <a class="navbar-brand" href="/">
+          <img src="https://raw.githubusercontent.com/gcba/BAstrap/gh-pages/bastrap3/bac-header.png">
+
+          {{# block "header" }}
+          {{/block}}
+
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+
+      {{# block "contenido" }}
+      {{/block}}
+
+    </div>
+
+    <footer class="footer">
+      <a class="navbar-brand" href="/">
+      <img src ="https://raw.githubusercontent.com/gcba/BAstrap/gh-pages/buenosaires/assets/bavos-footer.png">
+      </a>
+    </footer>
   </body>
 </html>
+

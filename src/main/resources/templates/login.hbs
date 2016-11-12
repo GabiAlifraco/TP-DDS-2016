@@ -1,0 +1,25 @@
+{{# partial "titulo" }}	
+<link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="signin.css" rel="stylesheet">
+<title>
+  Iniciar sesión
+</title>
+{{/partial}}
+{{#partial "header" }}
+{{/partial}}		
+<body class = "body-login">
+<link rel="stylesheet"  href="login.css">
+  {{# partial "contenido" }}	  
+  <div class="container-login">
+    <form class="form-signin" action="/login" method="post">
+      {{# block "login" }}
+      {{/block}}
+      <img class="imagen-usuario" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQTpGqHMzlUDc_qih1BNY8hN85MllgQ3QzokKm2RB3iMpZeX3f8">
+      <input id = "user" name="user" class="form-control" placeholder="Nombre de usuario" required="" autofocus="" type = "text" style="width:350px;height:40px;">
+      <input id = "password" name="password" class="form-control" placeholder="Contraseña" required="" type="password" style="width:350px;height:40px;">
+      <button class="btn btn-lg btn-primary btn-block" type="submit" style="width:350px;height:40px;color:#FFF;background-color: #080219;border-color: #080219">Iniciar sesión</button>
+    </form>
+  </div>
+  {{/partial}}
+</body>
+{{> layout.hbs }}

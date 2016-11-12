@@ -1,0 +1,29 @@
+{{# partial "titulo" }}	
+<link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="signin.css" rel="stylesheet">
+<title>
+  Home Terminal
+</title>
+{{/partial}}
+
+{{#partial "header" }}
+<a  href="/" class="btn btn-primary btn-lg pull-right" role="button" style="background-color: #080219;border-color: #080219"> Salir </a>
+{{/partial}}		
+
+<body class="home-admin">
+<link rel="stylesheet"  href="home.css">
+{{#partial "contenido" }}
+<div class=>
+<table class="table table-hover">
+<thead>
+<tr>
+<th>#</th><th>TIPO DE POI</th><th>NOMBRE POI</th><th>DIRECCION</th><th>NUMERO</th><th>LOCALIDAD</th><th>CODIGO POSTAL</th><th>PROVINCIA</th>
+</tr>
+</thead>
+</table>
+</div>
+
+
+{{/partial}}
+</body>
+{{> layout.hbs }}

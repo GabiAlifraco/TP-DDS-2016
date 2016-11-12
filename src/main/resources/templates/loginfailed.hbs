@@ -1,0 +1,18 @@
+{{# partial "titulo" }}	
+<link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="signin.css" rel="stylesheet">
+<title>
+  Iniciar sesión
+</title>
+{{/partial}}
+{{#partial "header" }}
+{{/partial}}		
+<body>
+  {{# partial "login" }}	  
+  <div class="texto-error">
+    <p> El usuario o contraseña ingresados son incorrectos. <br>Intente nuevamente</p>
+  </div>
+  {{/partial}}
+</body>
+{{> login.hbs }}
+{{> layout.hbs }}
