@@ -25,9 +25,10 @@ public class LoginController {
 		Usuario usuarioBase = adminUsr.buscarUsuario(user);
 		String requestPasswordHash = DigestUtils.sha1Hex(pass);
 
+		response.cookie("role", usuarioBase.getRole());
 		if (usuarioBase != null && requestPasswordHash.equals(usuarioBase.getPassword())) {
 			String rol = usuarioBase.getRole().toLowerCase(); 
-			response.redirect("/home-"+ rol); 
+			response.redirect(rol); 
 		} else {
 			response.redirect("/loginfailed");
 		}
