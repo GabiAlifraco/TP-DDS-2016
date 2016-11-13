@@ -5,7 +5,6 @@ import static spark.Spark.*;
 import controllers.AccesosController;
 import controllers.AdministracionPoisController;
 import controllers.HomeController;
-import controllers.LoginController;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 public class Routes {
@@ -13,22 +12,23 @@ public class Routes {
 		System.out.println("Iniciando servidor");
 		staticFileLocation("/public");
 		HomeController home = new HomeController();
-		LoginController login = new LoginController();
-		AdministracionPoisController admPois= new AdministracionPoisController();
 		AccesosController accesos = new AccesosController();
+		AdministracionPoisController admPois= new AdministracionPoisController();
 		HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
 		
 		port(8080);
 
 		get("/", home::mostrar, engine);
-		get("/login", login::mostrar, engine);
-		post("/login", login::autenticar);
-		get("/loginfailed", login::mostrarFail, engine);
-		post("/loginfailed", login::autenticar);
+		get("/login", accesos::mostrarLogin, engine);
+		post("/login", accesos::autenticar);
+		get("/loginfailed", accesos::mostrarLoginFail, engine);
+		post("/loginfailed", accesos::autenticar);
 		get("/administrador", home::mostrarHomeAdmin, engine);
+		post("/administrador", accesos::cerrarSesion);
+		post("/administrador/*", accesos::cerrarSesion);
 		get("/terminal",home::mostrarHomeTerminal,engine);
 		get("/administrador/administracionPois",admPois::mostrar,engine);
 		post("/administrador/borradoPoi",admPois::eliminar);
-		get("/access-denied", accesos::mostrar, engine);
+		get("/access-denied", accesos::denegarAcceso, engine);
 	}
 }

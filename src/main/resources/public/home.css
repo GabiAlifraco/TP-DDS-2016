@@ -69,3 +69,22 @@
  font-weight: 200px;
 
 }
+.logout, .login{
+	border:1px solid transparent;
+	float: right !important;
+	display: inline-block;
+	padding: 10px 16px;
+	margin-top: 13px;
+	margin-right: 50px;
+	font-size: 18px;
+	font-family: "Calibri";
+	font-weight: 400;
+	border-radius: 6px;
+	color:#FFF;
+	background-color: #080219;
+	border-color: #080219;
+	text-decoration-color: none;
+}
+.login:hover{
+	color: #FFF;	
+}

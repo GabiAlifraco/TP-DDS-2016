@@ -6,15 +6,10 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-public class AdministracionPoisController {
+public class AdministracionPoisController extends Controller{
 
 	public ModelAndView mostrar(Request request, Response response) {
-		if (request.cookie("role").toLowerCase().equals("administrador")) {
-			return new ModelAndView(null, "admPois.hbs");
-		} else {
-			response.redirect("/access-denied", 401);
-			return null;
-		}
+		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(null, "admPois.hbs"));
 	}
 
 	public Void eliminar(Request request, Response response) {
@@ -29,5 +24,4 @@ public class AdministracionPoisController {
 
 		return null;
 	}
-
 }
