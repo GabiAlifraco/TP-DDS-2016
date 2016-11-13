@@ -12,11 +12,9 @@ public class AdministracionPoisController {
 		if (request.cookie("role").toLowerCase().equals("administrador")) {
 			return new ModelAndView(null, "admPois.hbs");
 		} else {
-			response.redirect("/access-denied");
+			response.redirect("/access-denied", 401);
 			return null;
-			
 		}
-
 	}
 
 	public Void eliminar(Request request, Response response) {
