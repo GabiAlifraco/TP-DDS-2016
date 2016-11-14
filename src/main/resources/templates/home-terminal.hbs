@@ -5,15 +5,42 @@
 {{/partial}}
 
 {{#partial "header" }}
-<form action="/administrador" method="post">
-<input class = "logout" id = "logout" type="submit" value="Cerrar sesión">
-</form>
-{{/partial}}	
-<body class = "background-default">
-<link rel="stylesheet"  href="home.css">
+<link rel="stylesheet"  href="css/home-terminal.css">
+{{/partial}}
+<body class="body-terminal">
 {{#partial "contenido" }}
+<div>
+<h1 align="center"><strong> Buscar Punto de Interés</strong></h1>
+</div>
 
-  {{/partial}}
+<div class="row shortcut-row">
+        <a class="col-md-3 col-sm-6 shortcut" href="#" data-original-title="" title="">
+          <span class="banco">
+            <img alt="banco" src="images/banco.png" style="width:60px;height:60px;">
+          </span>
+          <h3>Banco</h3>
+        </a>
+        <a class="col-md-3 col-sm-6 shortcut" href="#" data-original-title="" title="">
+          <span class="CGP">
+          <img alt="Centro de gestion y participacion" src="images/location.png" style="width:60px;height:60px;">
+          </span>
+          <h3>Centro de Gestion y Participación</h3>
+        </a>
+        <a class="col-md-3 col-sm-6 shortcut" href="#" data-original-title="" title="">
+          <span class="Colectivo">
+            <img alt="Parada de Colectivo" src="images/bus.ico" style="width:60px;height:60px;">
+          </span>
+          <h3>Colectivo</h3>
+        </a>
+        <a class="col-md-3 col-sm-6 shortcut" href="#" data-original-title="" title="">
+          <span class="LocalComercial">
+            <img alt="Local Comercial" src="images/13702-200.png" style="width:60px;height:60px;">
+          </span>
+          <h3>Comercio</h3>
+        </a>
+      </div>
+
+{{/partial}}
 </body>
 
 {{> layout.hbs }}
