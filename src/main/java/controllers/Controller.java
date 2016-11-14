@@ -12,6 +12,7 @@ public abstract class Controller {
 		} else {
 			response.status(401);
 			return new ModelAndView(null, "/access-denied.hbs");
+			//return model;  Para probar las pantallas comento codigo anterior y muestro pantalla asi no me restringe el login
 		}
 
 	}

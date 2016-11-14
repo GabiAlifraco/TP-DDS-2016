@@ -13,22 +13,24 @@ public class Routes {
 		staticFileLocation("/public");
 		HomeController home = new HomeController();
 		AccesosController accesos = new AccesosController();
-		AdministracionPoisController admPois= new AdministracionPoisController();
+		AdministracionPoisController administracion= new AdministracionPoisController();
 		HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
 		
 		port(8080);
 
-		get("/", home::mostrar, engine);
-		get("/login", accesos::mostrarLogin, engine);
-		post("/login", accesos::autenticar);
-		get("/loginfailed", accesos::mostrarLoginFail, engine);
+		get("/", home::mostrar, engine); 
+		get("/login", accesos::mostrarLogin, engine); //Se muestra cuando presiono en el boton de la pagina principal
+		post("/login", accesos::autenticar); //Sucede cuando presionamos iniciar sesion luego de ingresar los datos
+		get("/loginfailed", accesos::mostrarLoginFail, engine); //En caso que haya un error en los datos
 		post("/loginfailed", accesos::autenticar);
-		get("/administrador", home::mostrarHomeAdmin, engine);
-		post("/administrador", accesos::cerrarSesion);
+		get("/administrador", home::mostrarHomeAdmin, engine);//Si entro como perfil administrador
+		post("/administrador", accesos::cerrarSesion); //Si presiono cerrar sesion durante el uso de la aplicacion
 		post("/administrador/*", accesos::cerrarSesion);
-		get("/terminal",home::mostrarHomeTerminal,engine);
-		get("/administrador/administracionPois",admPois::mostrar,engine);
-		post("/administrador/borradoPoi",admPois::eliminar);
-		get("/access-denied", accesos::denegarAcceso, engine);
+		get("/terminal",home::mostrarHomeTerminal,engine);//Si entro como perfil terminal
+		get("/administrador/administracionPois",administracion::administrarPois,engine); //Se muestra cuando apreto boton admPois en perfil Administrador
+		post("/administrador/borradoPoi",administracion::eliminar);
+		get("/administrador/administracionTerminal",administracion::administrarTerminales,engine);
+		get("/administrador/historicoConsultas",administracion::mostrarHistorial,engine);
+		get("/access-denied", accesos::denegarAcceso, engine); //Al querer ingresar en alguna pagina de la app sin estar logueado
 	}
 }
