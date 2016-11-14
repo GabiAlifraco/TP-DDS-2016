@@ -8,15 +8,23 @@ import spark.Response;
 
 public class AdministracionPoisController extends Controller{
 
-	public ModelAndView mostrar(Request request, Response response) {
+	public ModelAndView administrarPois(Request request, Response response) {
 		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(null, "admPois.hbs"));
+	}
+	
+	public ModelAndView administrarTerminales(Request request, Response response){
+		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(null, "admTerminal.hbs"));
+	}
+	
+	public ModelAndView mostrarHistorial(Request request, Response response){
+		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(null, "admHistorial.hbs"));
 	}
 
 	public Void eliminar(Request request, Response response) {
 
 		Mapa miMapa = Mapa.getInstance();
 
-		Poi miPoi = miMapa.buscarPois(request.queryParams("nombrePoi"), "").get(0);
+		Poi miPoi = miMapa.buscarPoi(request.queryParams("nombrePoi"));
 
 		miMapa.eliminarUnPoi(miPoi);
 

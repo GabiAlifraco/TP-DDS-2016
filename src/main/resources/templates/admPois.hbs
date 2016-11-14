@@ -2,9 +2,17 @@
 <title>
   Administrar Pois
 </title>
-<a  href="/" class="btn btn-primary btn-lg pull-right" role="button" style="background-color: #080219;border-color: #080219">Cerrar sesión </a>
 {{/partial}}
+
 {{#partial "header" }}
+<form action="/administrador" method="post">
+<input class = "logout" id = "logout" type="submit" value="Cerrar sesión">
+</form>
 {{/partial}}
+<body class = "background-default">
+<link rel="stylesheet"  href="home.css">
+{{#partial "contenido" }}
+{{/partial}}
+</body>
 
 {{> layout.hbs }}

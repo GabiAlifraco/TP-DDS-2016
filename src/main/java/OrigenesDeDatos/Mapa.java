@@ -45,6 +45,10 @@ public class Mapa implements OrigenDeDatos, WithGlobalEntityManager{
 
 	protected Mapa() {
 	}
+	
+	public Poi buscarPoi(String criterio){
+		return entityManager().find(Poi.class, criterio);
+	}
 
 	public static Mapa getInstance() {
 		if (instance == null) {

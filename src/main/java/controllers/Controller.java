@@ -13,6 +13,7 @@ public abstract class Controller {
 			response.status(401);
 			response.redirect("/access-denied");
 			return null;
+			//return model;  Para probar las pantallas comento codigo anterior y muestro pantalla asi no me restringe el login
 		}
 
 	}
