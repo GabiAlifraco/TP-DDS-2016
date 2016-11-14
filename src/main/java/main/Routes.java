@@ -27,10 +27,10 @@ public class Routes {
 		post("/administrador", accesos::cerrarSesion); //Si presiono cerrar sesion durante el uso de la aplicacion
 		post("/administrador/*", accesos::cerrarSesion);
 		get("/terminal",home::mostrarHomeTerminal,engine);//Si entro como perfil terminal
-		get("/administrador/administracionPois",administracion::administrarPois,engine); //Se muestra cuando apreto boton admPois en perfil Administrador
+		get("/administrador/pois",administracion::administrarPois,engine); //Se muestra cuando apreto boton admPois en perfil Administrador
 		post("/administrador/borradoPoi",administracion::eliminar);
-		get("/administrador/administracionTerminal",administracion::administrarTerminales,engine);
-		get("/administrador/historicoConsultas",administracion::mostrarHistorial,engine);
+		get("/administrador/terminales",administracion::administrarTerminales,engine);
+		get("/administrador/historial",administracion::mostrarHistorial,engine);
 		get("/access-denied", accesos::denegarAcceso, engine); //Al querer ingresar en alguna pagina de la app sin estar logueado
 	}
 }
