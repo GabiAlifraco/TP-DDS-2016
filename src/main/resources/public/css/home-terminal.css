@@ -1,0 +1,53 @@
+.body-terminal{
+	background-color: #f7f7f7;
+	padding-top: 7%;
+	background-attachment: fixed;
+}
+.banco {
+    background-color: #61fe50;
+    box-sizing: border-box;
+    margin-top: 30px;
+    padding-top: 20px;
+}
+.CGP {
+    background-color: yellow;
+    box-sizing: border-box;
+    margin-top: 30px;
+    padding-top: 20px;
+}
+.LocalComercial {
+    background-color: #d77afe;
+    box-sizing: border-box;
+    margin-top: 30px;
+    padding-top: 20px;
+}
+.Colectivo {
+    background-color: #fe6910;
+    box-sizing: border-box;
+    margin-top: 30px;
+    padding-top: 20px;
+}
+.shortcut {
+    text-align: center;
+    padding-top: 75px;
+    padding-bottom: 12px;
+    color: #000000;
+    border-radius: 6px;
+    position: relative;
+    display: block;
+    background-color:transparent;
+}
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.shortcut span {
+    color: #fff;
+    text-align: center;
+    margin: 0 auto 24px auto;
+    width: 112px;
+    height: 112px;
+    border-radius: 56px;
+    position: relative;
+    -ms-behavior: url(../bastrap3/pie.htc);
+    display: block;
