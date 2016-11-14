@@ -11,8 +11,7 @@ public abstract class Controller {
 			return model;
 		} else {
 			response.status(401);
-			response.redirect("/access-denied");
-			return null;
+			return new ModelAndView(null, "/access-denied.hbs");
 		}
 
 	}
