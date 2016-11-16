@@ -12,6 +12,39 @@
 <body class = "background-default">
 <link rel="stylesheet"  href="/css/home.css">
 {{#partial "contenido" }}
+<div>
+<h1 align="left" style="padding-top:5%"><strong>Historial de Consultas</strong></h1>
+</div>
+
+<h3 align="left"><strong>Opciones de Busqueda</strong></h3><br>
+<select name="OS">
+   <option selected value="0">Elige una opcion </option>
+       
+       <option value="1">Por fecha</option> 
+       <option value="2">Por cantidad de resultados</option> 
+       <option value="3">Por terminal</option> 
+  
+  
+</select>
+</div><br>
+<div class="row shorcut-row">
+	<div class="col-md-12">	
+	<table class="table table-hover" >
+			<td align="center">Fecha</td>
+			<td align="center">Cantidad de Resultados</td>
+			<td align="center">Terminal
+		</hr>
+	{{#resultadosBusqueda}}
+		<tr>
+			<td>{{fecha}}</td>
+			<td>{{cantidadResultados}}</td>
+			<td>{{terminal}}</td>
+		</tr>
+	{{/resultadosBusqueda}}				
+	</table>
+	</div>
+</div>
+
 {{/partial}}
 </body>
 {{> layout.hbs }}

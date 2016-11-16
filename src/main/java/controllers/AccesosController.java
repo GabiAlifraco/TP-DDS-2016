@@ -24,12 +24,11 @@ public class AccesosController {
 
 		Usuario usuarioBase = adminUsr.buscarUsuario(user);
 		String requestPasswordHash = DigestUtils.sha1Hex(pass);
-
-		String rol = usuarioBase.getRole().toLowerCase(); 
-		String hashRol = DigestUtils.sha1Hex(rol);
-		response.cookie("role", hashRol);
 		
 		if (usuarioBase != null && requestPasswordHash.equals(usuarioBase.getPassword())) {
+			String rol = usuarioBase.getRole().toLowerCase(); 
+			String hashRol = DigestUtils.sha1Hex(rol);
+			response.cookie("role", hashRol);
 			response.redirect(rol); 
 		} else {
 			response.redirect("/loginfailed");

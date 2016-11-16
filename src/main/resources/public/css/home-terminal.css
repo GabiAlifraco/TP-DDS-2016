@@ -30,7 +30,7 @@
 }
 .shortcut {
     text-align: center;
-    padding-top: 75px;
+    padding-top: 3%;
     padding-bottom: 12px;
     height:77%;
     color: #000000;
@@ -44,14 +44,18 @@
     margin-left: -15px;
 }
 .shortcut span {
-    color: #fff;
-    text-align: center;
     margin: 0 auto 24px auto;
     width: 112px;
     height: 112px;
     border-radius: 56px;
     position: relative;
-    -ms-behavior: url(../bastrap3/pie.htc);
     display: block;
-
 }
+a:link{
+    color: #000000;
+    text-decoration:none;
+}
+a:hover, a:active {
+    color:#800040;
+}
+

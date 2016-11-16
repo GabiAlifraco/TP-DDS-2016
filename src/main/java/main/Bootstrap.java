@@ -8,9 +8,9 @@ import Accesos.Usuario;
 
 public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps {
 
-	 /*public static void main(String[] args) {
+	 public static void main(String[] args) {
 	    new Bootstrap().run();
-	  }*/
+	  }
 
 	  public void run() {
 		beginTransaction();
