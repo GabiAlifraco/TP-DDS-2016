@@ -15,7 +15,17 @@ public class AdministracionPoisController extends Controller{
 
 	public ModelAndView mostrarPois(Request request, Response response) {
 		
-		String filtroPoi=request.queryParams("filtroNombre");
+		List<Poi> pois=Mapa.getInstance().getPois();
+
+	    HashMap<String, Object> viewModel = new HashMap<>();
+	    viewModel.put("pois", pois);
+		
+		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(viewModel, "admPois.hbs"));
+	}
+	
+public ModelAndView mostrarPoisPorNombre(Request request, Response response) {
+		
+		String filtroPoi=request.queryParams("filtroPoi");
 		
 		List<Poi> pois;
 
@@ -31,6 +41,27 @@ public class AdministracionPoisController extends Controller{
 		
 		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(viewModel, "admPois.hbs"));
 	}
+
+public ModelAndView mostrarPoisPorTipo(Request request, Response response) {
+	
+	String filtroPoi=request.queryParams("filtroPoi");
+	
+	List<Poi> pois;
+
+    if (Objects.isNull(filtroPoi) || filtroPoi.isEmpty()) {
+      pois = Mapa.getInstance().getPois();
+    } else {
+    		pois = Mapa.getInstance().buscarPorTipo(filtroPoi);
+    }
+
+    HashMap<String, Object> viewModel = new HashMap<>();
+    viewModel.put("pois", pois);
+    viewModel.put("filtroPoi", filtroPoi);
+	
+	return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(viewModel, "admPois.hbs"));
+}
+	
+	
 	
 	public ModelAndView mostrarTerminales(Request request, Response response){
 		
