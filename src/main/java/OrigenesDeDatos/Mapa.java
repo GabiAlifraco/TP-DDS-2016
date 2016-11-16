@@ -3,6 +3,9 @@ package OrigenesDeDatos;
 import java.util.List;
 
 
+
+
+
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import Pois.Poi;
@@ -46,10 +49,24 @@ public class Mapa implements OrigenDeDatos, WithGlobalEntityManager{
 	protected Mapa() {
 	}
 	
-	public Poi buscarPoi(String criterio){
-		return entityManager().find(Poi.class, criterio);
+	public Poi buscarPoi(String id){
+		return entityManager().find(Poi.class, id);
 	}
-
+	
+	 public List<Poi> buscarPorNombre(String nombre) {
+		    return entityManager() //
+		        .createQuery("from Poi c where c.nombre like :nombre", Poi.class) //
+		        .setParameter("nombre", "%" + nombre + "%") //
+		        .getResultList();
+	 }
+	 
+	 public List<Poi> buscarPorTipo(String tipo) {
+		    return entityManager() //
+		        .createQuery("from Poi c where c.Tipo_Poi like :Tipo_Poi", Poi.class) //
+		        .setParameter("Tipo_Poi", tipo) //
+		        .getResultList();
+		  }
+	
 	public static Mapa getInstance() {
 		if (instance == null) {
 			instance = new Mapa();

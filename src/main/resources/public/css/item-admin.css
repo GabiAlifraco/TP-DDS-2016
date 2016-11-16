@@ -1,7 +1,8 @@
 .body-item{
 	background-color: #f7f7f7;
-	padding-top: 25%;
+	padding-top: 5%;
 	background-attachment: fixed;
+	min-width:100%;
 }
 .shortcut {
     text-align: center;
@@ -27,4 +28,13 @@
     position: relative;
     -ms-behavior: url(../bastrap3/pie.htc);
     display: block;
+}
+td{
+	text-align: center;
+	font-style:italic;
+}
+
+.titulo {
+	font-style:italic;
+	font-family: "Calibri";
 }

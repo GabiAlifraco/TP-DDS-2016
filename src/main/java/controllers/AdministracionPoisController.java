@@ -15,14 +15,26 @@ public class AdministracionPoisController extends Controller{
 
 	public ModelAndView mostrarPois(Request request, Response response) {
 		
+		String filtro1=request.queryParams("filtroNombre");
+		String filtro2=request.queryParams("filtroTipo");
+		String filtroPoi;
+		
 		List<Poi> pois;
 
-	    String filtroPoi = request.queryParams("filtroPoi");
+		if(filtro1.isEmpty()){
+			filtroPoi=filtro2;
+		}else{
+			filtroPoi=filtro1;
+		}
+	    
 	    if (Objects.isNull(filtroPoi) || filtroPoi.isEmpty()) {
 	      pois = Mapa.getInstance().getPois();
 	    } else {
-	     // pois = RepositorioConsultoras.instancia.buscarPorNombre(filtroNombre);
-	    	pois=null; //terminar esto
+	    	if(filtroPoi.equals(filtro1)){
+	    		pois = Mapa.getInstance().buscarPorNombre(filtroPoi);
+	    	}else{
+	    		pois = Mapa.getInstance().buscarPorTipo(filtroPoi);
+	    	}
 	    }
 
 	    HashMap<String, Object> viewModel = new HashMap<>();

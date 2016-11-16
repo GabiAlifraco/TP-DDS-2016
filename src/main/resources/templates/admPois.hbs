@@ -1,50 +1,72 @@
 {{# partial "titulo" }}
-<link rel="stylesheet"  href="css/item-admin.css">	
 <title>
   Administrar Pois
 </title>
 {{/partial}}
 
 {{#partial "header" }}
+<link rel="stylesheet"  href="/css/home.css">
 <form action="/administrador" method="post">
 <input class = "logout" id = "logout" type="submit" value="Cerrar sesión">
 </form>
-<link rel="stylesheet"  href="/css/home.css">
 {{/partial}}
-<body class = "body-item">
+<body class ="body-item" >
+<link rel="stylesheet"  href="/css/item-admin.css">
 {{#partial "contenido" }}
-<div>
+<div class="titulo">
 <h1 align="center"><strong>Puntos de Interés</strong></h1>
-</div>
-
+</div><br>
+<div class="row">
 <form action="/administrador/pois" >
-  <div class="row">
-	  <div class="col-md-10">
-		  <input type="text" class="form-control" name="filtroPoi">
-		</div>
-		<div class="col-md-2">
-		  <input type="submit" class="form-control btn btn-default" value="Filtrar">
-		</div>
+  <div class="col-lg-6">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit">Buscar por Nombre</button>
+      </span>
+      <input type="text" name="filtroNombre" class="form-control">
+    </div>
   </div>
-</form>
-
-<div class="row shorcut-row">
-	<div class="col-md-12">	
-	<table class="table table-hover" >
-			<td>Nombre</td>
-			<td>Cantidad de empleados</td>
-		</hr>
-	{{#pois}}
-		<tr>
-			<td>{{nombre}}</td>
-			<td>{{cantidadEmpleados}}</td>
-		</tr>
-	{{/pois}}				
-	</table>
-	</div>
+  <div class="col-lg-6">
+    <div class="input-group">
+      <input type="text" name="filtroTipo" class="form-control">
+      <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit">Buscar por Tipo de Poi</button>
+      </span>
+    </div>
+  </div>
+  </form>
+  
 </div>
 
-
+<br><br><br>
+ 
+ <div class="col-md-12">	
+ 			
+ 	<table class="table table-hover" >
+ 		<thead>
+ 			<td>Nombre</td>
+ 			<td>Latitud</td>
+ 			<td>Longitud</td>
+ 			<td>Tipo de Poi</td>
+			<td>Domicilio</td>
+			<td>Localidad</td>
+			<td>Provincia</td>
+	   </thead>
+	<tbody>
+ 	{{#pois}}
+ 		<tr>
+ 			<td>{{nombre}}</td>
+ 			<td>{{latitud}}</td>
+ 			<td>{{longitud}}</td>
+ 			<td>{{Tipo_Poi}}</td>
+ 			<td>{{callePrincipal}}&nbsp;{{alturaPrincipal}}</td>
+ 			<td>{{localidad}}</td>
+ 			<td>{{provincia}}</td>
+ 		</tr>
+ 	{{/pois}}
+ 	</tbody>				
+ 	</table>
+ </div>
 {{/partial}}
 </body>
 
