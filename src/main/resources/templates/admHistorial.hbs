@@ -5,46 +5,54 @@
 {{/partial}}
 
 {{#partial "header" }}
+<link rel="stylesheet"  href="/css/home.css">
 <form action="/administrador" method="post">
-<input class = "logout" id = "logout" type="submit" value="Cerrar sesión">
+	<input class = "logout" id = "logout" type="submit" value="Cerrar sesión">
 </form>
 {{/partial}}
-<body class = "background-default">
-<link rel="stylesheet"  href="/css/home.css">
+
+<body class = "body-item">
+<link rel="stylesheet"  href="/css/item-admin.css">
 {{#partial "contenido" }}
 <div>
-<h1 align="left" style="padding-top:5%"><strong>Historial de Consultas</strong></h1>
-</div>
-
-<h3 align="left"><strong>Opciones de Busqueda</strong></h3><br>
-<select name="OS">
-   <option selected value="0">Elige una opcion </option>
-       
-       <option value="1">Por fecha</option> 
-       <option value="2">Por cantidad de resultados</option> 
-       <option value="3">Por terminal</option> 
-  
-  
-</select>
+	<h1 class="titulo" align="left"><strong>Historial de Consultas</strong></h1>
+	<div class="titulo">
+		<h3 align="left"><strong>Opciones de Busqueda</strong></h3>
+		<div class="btn-group">
+  			<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+    		Seleccionar Segun <span class="caret"></span>
+  			</button> 
+  			<ul class="dropdown-menu" role="menu">
+    			<li><a href="#">Rango de Fecha</a></li>
+    			<li><a href="#">Cantidad de Resultados</a></li>
+    			<li><a href="#">Terminal</a></li>
+  			</ul>
+		</div>
+	</div>
 </div><br>
 <div class="row shorcut-row">
 	<div class="col-md-12">	
-	<table class="table table-hover" >
-			<td align="center">Fecha</td>
-			<td align="center">Cantidad de Resultados</td>
-			<td align="center">Terminal
-		</hr>
-	{{#resultadosBusqueda}}
-		<tr>
-			<td>{{fecha}}</td>
-			<td>{{cantidadResultados}}</td>
-			<td>{{terminal}}</td>
-		</tr>
-	{{/resultadosBusqueda}}				
-	</table>
+		<table class="table table-hover" >
+			<thead>
+				<td>Fecha</td>
+				<td>Cantidad de Resultados</td>
+				<td>Terminal</td>
+			</thead>
+			<tbody>
+			{{#resultadosBusqueda}}
+			<tr>
+				<td>{{fecha}}</td>
+				<td>{{cantidadResultados}}</td>
+				<td>{{terminal}}</td>
+			</tr>
+			{{/resultadosBusqueda}}				
+			</tbody>  
+	  	</table>
 	</div>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" ></script>
 {{/partial}}
 </body>
 {{> layout.hbs }}

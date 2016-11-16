@@ -1,78 +1,75 @@
 {{# partial "titulo" }}	
-<link rel="stylesheet"  href="css/item-admin.css">	
 <title>
   Administrar Terminales
 </title>
 {{/partial}}
 
 {{#partial "header" }}
-<form action="/administrador" method="post">
-<input class = "logout" id = "logout" type="submit" value="Cerrar sesión">
-</form>
 <link rel="stylesheet"  href="/css/home.css">
+<form action="/administrador" method="post">
+	<input class = "logout" id = "logout" type="submit" value="Cerrar sesión">
+</form>
 {{/partial}}
+
 <body class = "body-item">
+<link rel="stylesheet"  href="/css/item-admin.css">
 {{#partial "contenido" }}
-<br>
-<br>
-<br>
-<div>
-<h1 align="center"><strong>Terminales</strong></h1>
+<div class="titulo">
+	<h1 align="center"><strong>Terminales</strong></h1>
 </div>
 
 <form action="/administrador/terminales" >
   <div class="row">
-		
 	  <div class="col-md-10">
 		  <input type="text" class="form-control" name="filtroComuna" placeholder="Filtro por comuna">
-		</div>
-		<div class="col-md-2">
+	  </div>
+	  <div class="col-md-2">
 		  <input type="submit" class="form-control btn btn-default" value="Filtrar">
-		</div>
-	<br>	
-	<br>
-	<br>
-	
-  	 <div class="col-md-2">
+      </div>
+	  <br>	
+	  <br>
+	  <br>
+	  <div class="col-md-2">
 		  <input type="text" class="form-control" name="nombre" placeholder="Nombre">
-	</div>
-	 <div class="col-md-2">
+	  </div>
+	  <div class="col-md-2">
 		  <input type="text" class="form-control" name="latitud" placeholder="Latitud">
-	</div>
-	 <div class="col-md-2">
+	  </div>
+	  <div class="col-md-2">
 		  <input type="text" class="form-control" name="longitud" placeholder="Longitud">
-	</div>
-	 <div class="col-md-2">
+	  </div>
+	  <div class="col-md-2">
 		  <input type="text" class="form-control" name="comuna" placeholder="Comuna">
-	</div>
-	<div class="col-md-2">
+	  </div>
+	  <div class="col-md-2">
 		  <input type="submit" class="form-control btn btn-default" value="Agregar">
-	</div>
-	<div class="col-md-2">
+	  </div>
+	  <div class="col-md-2">
 		  <input type="submit" class="form-control btn btn-default" value="Eliminar">
-	</div>
-		
+	  </div>		
   </div>
-  
 </form>
-
+<br>
 <div class="row shorcut-row">
 	<div class="col-md-12">	
-	<table class="table table-hover" >
-			<td>Nombre</td>
-			<td>Latitud</td>
-			<td>Longitud</td>
-			<td>Comuna</td>
-		</hr>
-	{{#terminales}}
-		<tr>
-			<td>{{nombre}}</td>
-			<td>{{latitud}}</td>
-			<td>{{longitud}}</td>
-			<td>{{comuna}}</td>
-		</tr>
-	{{/terminales}}				
-	</table>
+		<table class="table table-hover" >
+			<thead>
+				<td>Nombre</td>
+				<td>Latitud</td>
+				<td>Longitud</td>
+				<td>Comuna</td>
+			</thead>
+			<tbody>
+			{{#terminales}}
+			<tr>
+				<td>{{nombre}}</td>
+				<td>{{latitud}}</td>
+				<td>{{longitud}}</td>
+				<td>{{comuna}}</td>
+			</tr>
+			{{/terminales}}				
+			</tbody>
+		</table>
 	</div>
 </div>
 
