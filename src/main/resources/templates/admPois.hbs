@@ -1,4 +1,5 @@
-{{# partial "titulo" }}	
+{{# partial "titulo" }}
+<link rel="stylesheet"  href="css/item-admin.css">	
 <title>
   Administrar Pois
 </title>
@@ -10,8 +11,40 @@
 </form>
 <link rel="stylesheet"  href="/css/home.css">
 {{/partial}}
-<body class = "background-default">
+<body class = "body-item">
 {{#partial "contenido" }}
+<div>
+<h1 align="center"><strong>Puntos de Interés</strong></h1>
+</div>
+
+<form action="/administrador/pois" >
+  <div class="row">
+	  <div class="col-md-10">
+		  <input type="text" class="form-control" name="filtroPoi">
+		</div>
+		<div class="col-md-2">
+		  <input type="submit" class="form-control btn btn-default" value="Filtrar">
+		</div>
+  </div>
+</form>
+
+<div class="row shorcut-row">
+	<div class="col-md-12">	
+	<table class="table table-hover" >
+			<td>Nombre</td>
+			<td>Cantidad de empleados</td>
+		</hr>
+	{{#pois}}
+		<tr>
+			<td>{{nombre}}</td>
+			<td>{{cantidadEmpleados}}</td>
+		</tr>
+	{{/pois}}				
+	</table>
+	</div>
+</div>
+
+
 {{/partial}}
 </body>
 
