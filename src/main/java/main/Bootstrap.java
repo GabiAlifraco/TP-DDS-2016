@@ -8,15 +8,15 @@ import Accesos.Usuario;
 
 public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps {
 
-	  public static void main(String[] args) {
+	 /*public static void main(String[] args) {
 	    new Bootstrap().run();
-	  }
+	  }*/
 
 	  public void run() {
 		beginTransaction();
 	    withTransaction(() -> {
 	    	persist(new Usuario("terminalAbasto", "Abasto123", "TERMINAL"));
-	    	persist(new Usuario("administrador", "contraseña", "ADMINISTRADOR"));
+	    	persist(new Usuario("admin", "admin", "ADMINISTRADOR"));
 	    });
 	    commitTransaction();
 	  }
