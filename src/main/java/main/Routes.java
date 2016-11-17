@@ -9,7 +9,7 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 public class Routes {
 	public static void main(String[] args) {
 		
-		//new Bootstrap().run();
+		new Bootstrap().run();
 		System.out.println("Iniciando servidor");
 		staticFileLocation("/public");
 		HomeController home = new HomeController();
@@ -34,5 +34,7 @@ public class Routes {
 		get("/administrador/terminales",administracion::mostrarTerminales,engine);
 		get("/administrador/historial",administracion::mostrarHistorial,engine);
 		get("/access-denied", accesos::denegarAcceso, engine); //Al querer ingresar en alguna pagina de la app sin estar logueado
+		get("/administrador/historial/filtro",administracion::mostrarHistorialFiltros,engine);
+		
 	}
 }
