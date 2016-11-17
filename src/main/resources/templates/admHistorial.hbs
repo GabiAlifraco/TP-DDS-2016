@@ -3,56 +3,99 @@
   Historial de Consultas
 </title>
 {{/partial}}
-
 {{#partial "header" }}
 <link rel="stylesheet"  href="/css/home.css">
 <form action="/administrador" method="post">
-	<input class = "logout" id = "logout" type="submit" value="Cerrar sesión">
+  <input class = "logout" id = "logout" type="submit" value="Cerrar sesión">
 </form>
 {{/partial}}
-
 <body class = "body-item">
-<link rel="stylesheet"  href="/css/item-admin.css">
-{{#partial "contenido" }}
-<div>
-	<h1 class="titulo" align="left"><strong>Historial de Consultas</strong></h1>
-	<div class="titulo">
-		<h3 align="left"><strong>Opciones de Busqueda</strong></h3>
-		<div class="btn-group">
-  			<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-    		Seleccionar Segun <span class="caret"></span>
-  			</button> 
-  			<ul class="dropdown-menu" role="menu">
-    			<li><a href="http://localhost:8080/administrador/historial/filtro">Rango de Fecha</a></li>
-    			<li><a href="http://localhost:8080/administrador/historial/filtro">Cantidad de Resultados</a></li>
-    			<li><a href="http://localhost:8080/administrador/historial/filtro">Terminal</a></li>
-  			</ul>
-		</div>
-	</div>
-</div><br>
-<div class="row shorcut-row">
-	<div class="col-md-12">	
-		<table class="table table-hover" >
-			<thead>
-				<td>Fecha</td>
-				<td>Cantidad de Resultados</td>
-				<td>Terminal</td>
-			</thead>
-			<tbody>
-			{{#resultadosBusqueda}}
-			<tr>
-				<td>{{fecha}}</td>
-				<td>{{cantidadResultados}}</td>
-				<td>{{terminal}}</td>
-			</tr>
-			{{/resultadosBusqueda}}				
-			</tbody>  
-	  	</table>
-	</div>
-</div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" ></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" ></script>
-{{/partial}}
+  <link rel="stylesheet"  href="/css/item-admin.css">
+  {{#partial "contenido" }}
+  <div>
+    <h1 class="titulo" align="left"><strong>Historial de Consultas</strong></h1>
+    <div class="titulo">
+      <h3 align="left"><strong>Opciones de Busqueda</strong></h3>
+      <div class="btn-group" style="float:left;">
+        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+        Seleccionar Segun <span class="caret"></span>
+        </button> 
+        <ul class="dropdown-menu" role="menu">
+          <li><a id = "fecha" href="#">Rango de Fecha</a></li>
+          <li><a id="resultados"href="#">Cantidad de Resultados</a></li>
+          <li><a id="terminal" href="#">Terminal</a></li>
+        </ul>
+      </div>
+      <div id="inputFecha" class = "filtro" style="float:left;" hidden>
+        <form class="form-inline" align="center">
+          <div class="form-group" style="margin:0px 100px;">
+            <label for="desde">Desde</label>
+            <input type="date" class="form-control" id="desde" placeholder="Desde">
+          </div>
+          <div class="form-group">
+            <label for="hasta">Hasta</label>
+            <input type="date" class="form-control" id="hasta" placeholder="Hasta">
+          </div>
+          <button type="submit" class="btn btn-default" style="margin-left:40px;"">Buscar</button>
+        </form>
+      </div>
+      <div class="filtro" id="inputResultados" style="float:left;" hidden>
+        <form class="form-inline" align="center">
+          <div class="form-group" style="margin-left:100px;">
+            <label for="resultados">Cantidad de Resultados</label>
+            <input type="number" class="form-control" id="resultados" placeholder="Ingrese Cantidad">
+          </div>
+          <button type="submit" class="btn btn-default" style="margin-left:40px;">Buscar</button>
+        </form>
+      </div>
+      <div class="filtro" id="inputTerminal" hidden>
+        <form class="form-inline" align="center">
+          <div class="form-group" style="margin-left:100px;" >
+            <label for="terminal">Terminal</label>
+            <input type="text" class="form-control" id="terminal" placeholder="Ingrese Terminal">
+          </div>
+          <button type="submit" class="btn btn-default" style="margin-left:40px;">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row shorcut-row">
+    <div class="col-md-12">
+      <table class="table table-hover" >
+        <thead>
+          <td>Fecha</td>
+          <td>Cantidad de Resultados</td>
+          <td>Terminal</td>
+        </thead>
+        <tbody>
+          {{#resultadosBusqueda}}
+          <tr>
+            <td>{{fecha}}</td>
+            <td>{{cantidadResultados}}</td>
+            <td>{{terminal}}</td>
+          </tr>
+          {{/resultadosBusqueda}}				
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" ></script>
+  <script>
+    $("#fecha").on("click", function(){
+    $(".filtro").hide()
+    $("#inputFecha").show()
+    });
+    $("#resultados").on("click", function(){
+    $(".filtro").hide()
+    $("#inputResultados").show()
+    });
+    $("#terminal").on("click", function(){
+    $(".filtro").hide()
+    $("#inputTerminal").show()
+    });
+  </script>
+  {{/partial}}
 </body>
 {{> layout.hbs }}
