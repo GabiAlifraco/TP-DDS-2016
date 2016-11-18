@@ -26,33 +26,36 @@
           <li><a id="terminal" href="#">Terminal</a></li>
         </ul>
       </div>
+      
       <div id="inputFecha" class = "filtro" style="float:left;" hidden>
-        <form class="form-inline" align="center">
+        <form class="form-inline" align="center" action="/filtroFecha" method="post">
           <div class="form-group" style="margin:0px 100px;">
             <label for="desde">Desde</label>
-            <input type="date" class="form-control" id="desde" placeholder="Desde">
+            <input type="date" class="form-control" id="desde" placeholder="Desde" name="desdeFecha">
           </div>
           <div class="form-group">
             <label for="hasta">Hasta</label>
-            <input type="date" class="form-control" id="hasta" placeholder="Hasta">
+            <input type="date" class="form-control" id="hasta" placeholder="Hasta" name="hastaFecha">
           </div>
           <button type="submit" class="btn btn-default" style="margin-left:40px;"">Buscar</button>
         </form>
       </div>
+     
       <div class="filtro" id="inputResultados" style="float:left;" hidden>
-        <form class="form-inline" align="center">
+        <form class="form-inline" align="center" action="/filtroResultados" method="post">
           <div class="form-group" style="margin-left:100px;">
             <label for="resultados">Cantidad de Resultados</label>
-            <input type="number" class="form-control" id="resultados" placeholder="Ingrese Cantidad">
+            <input type="number" class="form-control" id="resultados" placeholder="Ingrese Cantidad" name="cantidadResultados">
           </div>
           <button type="submit" class="btn btn-default" style="margin-left:40px;">Buscar</button>
         </form>
       </div>
+      
       <div class="filtro" id="inputTerminal" hidden>
-        <form class="form-inline" align="center">
+        <form class="form-inline" align="center" action="filtroTerminal" method="post">
           <div class="form-group" style="margin-left:100px;" >
             <label for="terminal">Terminal</label>
-            <input type="text" class="form-control" id="terminal" placeholder="Ingrese Terminal">
+            <input type="text" class="form-control" id="terminal" placeholder="Ingrese Terminal" name="terminal">
           </div>
           <button type="submit" class="btn btn-default" style="margin-left:40px;">Buscar</button>
         </form>

@@ -3,6 +3,7 @@ package main;
 import static spark.Spark.*;
 import controllers.AccesosController;
 import controllers.AdministracionPoisController;
+import controllers.HistorialController;
 import controllers.HomeController;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -15,6 +16,7 @@ public class Routes {
 		HomeController home = new HomeController();
 		AccesosController accesos = new AccesosController();
 		AdministracionPoisController administracion= new AdministracionPoisController();
+		HistorialController historial = new HistorialController();
 		HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
 		
 		//PERFIL ADMINISTRADOR  USER:admin  PASS: admin
@@ -34,7 +36,8 @@ public class Routes {
 		get("/administrador/terminales",administracion::mostrarTerminales,engine);
 		get("/administrador/historial",administracion::mostrarHistorial,engine);
 		get("/access-denied", accesos::denegarAcceso, engine); //Al querer ingresar en alguna pagina de la app sin estar logueado
-		
-		
+		post("/administrador/historial/filtroFecha",historial::mostrarHistorialFiltroFecha,engine);
+		post("/administrador/historial/filtroResultados",historial::mostrarHistorialFiltroResultados,engine);
+		post("/administrador/historial/filtroTerminal",historial::mostrarHistorialFiltroTerminal,engine);
 	}
 }
