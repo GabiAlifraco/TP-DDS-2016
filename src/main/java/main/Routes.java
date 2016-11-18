@@ -27,7 +27,7 @@ public class Routes {
 		get("/loginfailed", accesos::mostrarLoginFail, engine); //En caso que haya un error en los datos
 		get("/administrador", home::mostrarHomeAdmin, engine);//Si entro como perfil administrador
 		post("/administrador", accesos::cerrarSesion); //Si presiono cerrar sesion durante el uso de la aplicacion
-		post("/administrador/*", accesos::cerrarSesion);
+		post("/logout", accesos::cerrarSesion);
 		get("/terminal",home::mostrarHomeTerminal,engine);//Si entro como perfil terminal
 		get("/administrador/pois",administracion::mostrarPois,engine); //Se muestra cuando apreto boton admPois en perfil Administrador
 		//post("/administrador/borradoPoi",administracion::eliminar);
