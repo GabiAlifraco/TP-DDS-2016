@@ -9,20 +9,15 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.query.Query;
 
 import Resultado.Resultado;
-import ResultadosReportes.ResultadosReportes;
 import Terminal.Terminal;
 
 public class AlmacenadorBusquedas extends NotificacionBusqueda {
 
-	@org.mongodb.morphia.annotations.Transient
 	private static AlmacenadorBusquedas instance = null;
-	@org.mongodb.morphia.annotations.Transient
-	private Map<Terminal, List<Resultado>> resultadosEncontrados = new HashMap<Terminal, List<Resultado>>();
-	@org.mongodb.morphia.annotations.Transient
 	private List<Terminal> terminalesActivadas = new ArrayList<Terminal>();
-	@org.mongodb.morphia.annotations.Transient
 	private Datastore datastore;
 	
 	
@@ -39,22 +34,13 @@ public class AlmacenadorBusquedas extends NotificacionBusqueda {
 	@Override
 	public void actualizar(Resultado resultado, Terminal terminal) {
 		datastore.save(resultado);
-		if (resultadosEncontrados.containsKey(terminal)) {
-			resultadosEncontrados.get(terminal).add(resultado);
-		} else {
-			terminalesActivadas.add(terminal);
-
-			List<Resultado> resultados = new ArrayList<Resultado>();
-			resultados.add(resultado);
-			resultadosEncontrados.put(terminal, resultados);
-		}
-		
+		terminalesActivadas.add(terminal);
 	}
 
 
     public List<Terminal> terminalesQueEjecutaronBusquedas(LocalDate fecha) {
 		
-		Set<Terminal> terminales = resultadosEncontrados.keySet();
+		Set<Terminal> terminales = getResultadosEncontrados().keySet();
 		
 		return terminales.stream().filter(terminal -> this.terminalEjecutoBusqueda(fecha, terminal))
 		.collect(Collectors.toList());
@@ -62,16 +48,34 @@ public class AlmacenadorBusquedas extends NotificacionBusqueda {
 	}
 	private boolean terminalEjecutoBusqueda(LocalDate fecha, Terminal terminal) {
 
-		List<Resultado>resultadosTerminal = resultadosEncontrados.get(terminal);
+		List<Resultado>resultadosTerminal = getResultadosEncontrados().get(terminal);
 		return resultadosTerminal.stream().anyMatch(resultado -> resultado.getFecha().equals(fecha));
 	}
 	
 	public Map<Terminal, List<Resultado>> getResultadosEncontrados() {
+		List<Resultado> resultados = datastore.find(Resultado.class).asList();
+		Map<Terminal, List<Resultado>> resultadosEncontrados = new HashMap<Terminal, List<Resultado>>();
+		resultados.stream().forEach(resultado -> this.insertarResultado(resultado, resultadosEncontrados));
+				
 		return resultadosEncontrados;
 	}
 	
+	private void insertarResultado(Resultado resultado, Map<Terminal, List<Resultado>> resultadosEncontrados){
+		if (resultadosEncontrados.containsKey(resultado.getTerminal())) {
+			resultadosEncontrados.get(resultado.getTerminal()).add(resultado);
+		} else {
+
+			List<Resultado> resultados = new ArrayList<Resultado>();
+			resultados.add(resultado);
+			resultadosEncontrados.put(resultado.getTerminal(), resultados);
+		}
+
+	}
 	public List<Terminal> getTerminalesActivadas() {
 		return terminalesActivadas;
+	}
+	public void setTerminalesActivadas(Terminal terminal){
+		terminalesActivadas.add(terminal);
 	}
 	
 	public Datastore getDatastore() {
@@ -82,11 +86,7 @@ public class AlmacenadorBusquedas extends NotificacionBusqueda {
 		this.datastore = datastore;
 	}
 
-	
-
-	
-	
-
-	
-
+	public List<Resultado> buscarSegunFiltro(Query<Resultado> filtro){
+		return filtro.asList();
+	}
 }

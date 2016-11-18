@@ -6,45 +6,32 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Converters;
-import org.uqbarproject.jpa.java8.extras.convert.LambdaConverter;
 import Pois.Poi;
 import Terminal.Terminal;
 import converter.LocalDateConverter;
 import converter.LocalTimeConverter;
 
 @org.mongodb.morphia.annotations.Entity
-@javax.persistence.Entity
-@javax.persistence.Table(name="ResultadosBusqueda")
 @Converters({LocalDateConverter.class, LocalTimeConverter.class})
 public class Resultado {
 
 	@org.mongodb.morphia.annotations.Id
 	ObjectId id;
 	
-	@javax.persistence.Id
-	@javax.persistence.GeneratedValue
-	@org.mongodb.morphia.annotations.Transient
-	private long idResultado;
 	
-	@javax.persistence.Column(name="FechaBusqueda")
 	LocalDate fecha;
 	
-	@javax.persistence.Transient
 	@org.mongodb.morphia.annotations.Transient
 	long segundosBusqueda;
 	
 	String fraseBuscada;
 	int cantidadDeResultados;
 	
-	@javax.persistence.Convert(converter=LambdaConverter.class)
 	LocalTime unTiempoInicio;
-	@javax.persistence.Convert(converter=LambdaConverter.class)
 	LocalTime unTiempoFinalizacion;
 	
-	@javax.persistence.OneToOne
 	Terminal terminal;
 	
-	@javax.persistence.ManyToMany
 	@org.mongodb.morphia.annotations.Embedded
 	List<Poi> poisEncontrados;
 	
@@ -83,7 +70,7 @@ public class Resultado {
 		this.unTiempoFinalizacion = unTiempoFinalizacion;
 	}
 
-	private void setTerminal(Terminal terminal) {
+	public void setTerminal(Terminal terminal) {
 		this.terminal = terminal;
 
 	}
@@ -92,7 +79,7 @@ public class Resultado {
 		return terminal;
 	}
 
-	private void setCantidadResultados(int totalResultados) {
+	public void setCantidadResultados(int totalResultados) {
 		this.cantidadDeResultados = totalResultados;
 	}
 
@@ -104,7 +91,7 @@ public class Resultado {
 		this.segundosBusqueda = ChronoUnit.SECONDS.between(comienzo, finalizacion);
 	}
 
-	private void setFecha(LocalDate unaFecha) {
+	public void setFecha(LocalDate unaFecha) {
 		this.fecha = unaFecha;
 
 	}
@@ -123,14 +110,6 @@ public class Resultado {
 
 	public long getSegundosBusqueda() {
 		return segundosBusqueda;
-	}
-
-	public long getIdResultado() {
-		return idResultado;
-	}
-	
-	public void setIdResultado(long idResultado) {
-		this.idResultado = idResultado;
 	}
 	
 	public int getCantidadDeResultados() {

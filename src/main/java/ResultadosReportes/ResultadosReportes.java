@@ -1,7 +1,6 @@
 package ResultadosReportes;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +13,6 @@ import Terminal.Terminal;
 public class ResultadosReportes {
 
 	private AlmacenadorBusquedas almacenador = AlmacenadorBusquedas.getInstance();
-	private List<Terminal> terminales = new ArrayList<Terminal>();
 
 	
 	public Map<LocalDate, Integer> getReportePorFecha(Terminal terminal) {

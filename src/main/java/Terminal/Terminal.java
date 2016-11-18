@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import javax.persistence.*;
 
+import org.bson.types.ObjectId;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import CaracteristicaPoi.Punto;
@@ -32,24 +33,26 @@ public class Terminal implements WithGlobalEntityManager{
 	private long idTerminal;
 	
 	@ManyToOne
+	@org.mongodb.morphia.annotations.Transient
 	private MailDemoraBusqueda mail;
 	
 	@Transient
+	@org.mongodb.morphia.annotations.Transient
 	public Mapa mapa = Mapa.getInstance();
 	
-	
-	
-	//@Convert(converter = PointConverter.class)
 	@Embedded
 	private Punto coordenadaDispositivoMovil;
 	
 	private String nombreTerminal;
 	@Transient
+	@org.mongodb.morphia.annotations.Transient
 	List<OrigenDeDatos> servicios = new ArrayList<OrigenDeDatos>();
 	@Transient
+	@org.mongodb.morphia.annotations.Transient
 	List<NotificacionBusqueda> notificadoresBusqueda = new ArrayList<NotificacionBusqueda>();
 	private String comunaTerminal;
     @Transient
+    @org.mongodb.morphia.annotations.Transient
 	private ResultadosReportes resultReportes;
 	
 	public Terminal(String nombre, List<OrigenDeDatos> servicios) {
@@ -166,6 +169,31 @@ public class Terminal implements WithGlobalEntityManager{
 	
 	public void setCoordenadaDispositivoMovil(Punto coordenadaDispositivoMovil) {
 		this.coordenadaDispositivoMovil = coordenadaDispositivoMovil;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nombreTerminal == null) ? 0 : nombreTerminal.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Terminal other = (Terminal) obj;
+		if (nombreTerminal == null) {
+			if (other.nombreTerminal != null)
+				return false;
+		} else if (!nombreTerminal.equals(other.nombreTerminal))
+			return false;
+		return true;
 	}
 	
 }
