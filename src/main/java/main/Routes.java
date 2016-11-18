@@ -32,26 +32,26 @@ public class Routes {
 		get("/loginfailed", accesos::mostrarLoginFail, engine); //En caso que haya un error en los datos
 		get("/administrador", home::mostrarHomeAdmin, engine);//Si entro como perfil administrador
 		post("/administrador", accesos::cerrarSesion); //Si presiono cerrar sesion durante el uso de la aplicacion
-<<<<<<< HEAD
+
 		post("/administrador/*", accesos::cerrarSesion);
 		get("/terminal",terminal::mostrarHomeTerminal,engine);//Si entro como perfil terminal
-=======
+
 		post("/logout", accesos::cerrarSesion);
-		get("/terminal",home::mostrarHomeTerminal,engine);//Si entro como perfil terminal
->>>>>>> c1b11755a92cbbe514c4a419d74ea799c7f52f1b
+
+
 		get("/administrador/pois",administracion::mostrarPois,engine); //Se muestra cuando apreto boton admPois en perfil Administrador
 		//post("/administrador/borradoPoi",administracion::eliminar);
 		get("/administrador/terminales",administracion::mostrarTerminales,engine);
 		get("/administrador/historial",administracion::mostrarHistorial,engine);
 		get("/access-denied", accesos::denegarAcceso, engine); //Al querer ingresar en alguna pagina de la app sin estar logueado
-<<<<<<< HEAD
-		get("/administrador/historial/filtro",administracion::mostrarHistorialFiltros,engine);
+
+
 		get("/terminal/pois",terminal::buscar,engine);
 		
-=======
+
 		post("/administrador/historial/filtroFecha",historial::mostrarHistorialFiltroFecha,engine);
 		post("/administrador/historial/filtroResultados",historial::mostrarHistorialFiltroResultados,engine);
 		post("/administrador/historial/filtroTerminal",historial::mostrarHistorialFiltroTerminal,engine);
->>>>>>> c1b11755a92cbbe514c4a419d74ea799c7f52f1b
+
 	}
 }
