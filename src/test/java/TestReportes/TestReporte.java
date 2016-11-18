@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,7 +42,6 @@ public class TestReporte extends AbstractPersistenceTest implements WithGlobalEn
 	private Mapa baseInterna = Mapa.getInstance();
 	private Terminal terminalAbasto;
 	private Terminal terminalFlorida;
-	
 
 	MongoClient client;
 	Morphia morphia = new Morphia();
@@ -127,6 +128,10 @@ public class TestReporte extends AbstractPersistenceTest implements WithGlobalEn
 
 		resultadosReportes = new ResultadosReportes();
 	}
+	@After
+	public void cleanDB(){
+		client.dropDatabase("resultadosBusqueda");
+	}
 	@Test
 	public void testObtenerReportesPorFecha() {
 		
@@ -137,12 +142,10 @@ public class TestReporte extends AbstractPersistenceTest implements WithGlobalEn
 		AlmacenadorBusquedas almacenador = AlmacenadorBusquedas.getInstance();
 		terminalAbasto.agregarObserver(almacenador);
 		almacenador.setDatastore(datastore);
-		
 	    terminalAbasto.busquedaDePuntos("Santander", "Cajero");
-		
 		Assert.assertEquals(resultadoEsperado, resultadosReportes.getReportePorFecha(terminalAbasto));
 		
-		client.dropDatabase("resultadosBusqueda");
+		
 
 	}
 
@@ -166,13 +169,12 @@ public class TestReporte extends AbstractPersistenceTest implements WithGlobalEn
 		terminalFlorida.agregarObserver(almacenador);
 		terminalAbasto.busquedaDePuntos("Santander", "Cajero");
 		terminalFlorida.busquedaDePuntos("Facultad", "UTN");
+		System.out.println(terminalFlorida.getIdTerminal());
 		List<Integer> resultadoAbasto = Arrays.asList(1);
 		List<Integer> resultadoFlorida = Arrays.asList(0);
 
 		Assert.assertEquals(resultadosReportes.getReportePorTerminal().size(), 2);
 		Assert.assertEquals(resultadosReportes.getReportePorTerminal().get(terminalAbasto), resultadoAbasto);
 		Assert.assertEquals(resultadosReportes.getReportePorTerminal().get(terminalFlorida), resultadoFlorida);
-		
-		client.dropDatabase("resultadosBusqueda");
 	}
 }

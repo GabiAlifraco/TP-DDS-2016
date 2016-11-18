@@ -85,9 +85,7 @@ public ModelAndView mostrarPoisPorTipo(Request request, Response response) {
 		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(null, "admHistorial.hbs"));
 	}
 
-	public ModelAndView mostrarHistorialFiltros(Request request, Response response){
-		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(null, "admHistorialFiltros.hbs"));
-	}
+	
 	
 
 	public Void eliminar(Request request, Response response) {
