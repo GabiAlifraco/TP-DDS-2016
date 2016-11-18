@@ -6,39 +6,63 @@
 
 {{#partial "header" }}
 <link rel="stylesheet"  href="css/home-terminal.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" ></script>
+<script src="/js/terminal.js"></script>
 {{/partial}}
 <body class="body-terminal">
 {{#partial "contenido" }}
 <div>
-<h1 align="center" style="padding-top:3%"><strong> Buscar Punto de Interés</strong></h1>
+<h1 align="center" style="padding-top:3%"><strong> Buscar Punto de Interés</strong><br></h1>
 </div>
 
-<div class="row shortcut">
-        <a class="col-md-3 col-sm-6 shortcut" href="#" data-original-title="" title="">
+<div id="tipos" class="row shortcut">
+        <a id="banco" class="col-xs-12 col-md-3 shortcut" onclick="Banco()" data-original-title="" title="">
           <span class="banco">
             <img alt="banco" src="images/banco.png" style="width:60px;height:60px;">
           </span>
           <h3>Banco</h3>
         </a>
-        <a class="col-md-3 col-sm-6 shortcut" href="#" data-original-title="" title="">
+        <a class="col-xs-12 col-md-3 shortcut" onclick="CGP()" data-original-title="" title="">
           <span class="CGP">
           <img alt="Centro de gestion y participacion" src="images/cgp.png" style="width:60px;height:60px;">
           </span>
           <h3>Centro de Gestión y Participación</h3>
         </a>
-        <a class="col-md-3 col-sm-6 shortcut" href="#" data-original-title="" title="">
+        <a class="col-xs-12 col-md-3 shortcut" onclick="colectivo()" data-original-title="" title="">
           <span class="Colectivo">
             <img alt="Parada de Colectivo" src="images/bus.ico" style="width:60px;height:60px;">
           </span>
           <h3>Colectivo</h3>
         </a>
-        <a class="col-md-3 col-sm-6 shortcut" href="#" data-original-title="" title="">
+        <a class="col-xs-12 col-md-3 shortcut" onclick="Comercio()" data-original-title="" title="">
           <span class="LocalComercial">
             <img alt="Local Comercial" src="images/13702-200.png" style="width:60px;height:60px;">
           </span>
           <h3>Comercio</h3>
-        </a>
+		</a>
+	</div>
+<button type="button" class="enviar enviar-bt" id="noTipo" style="float:right;" onclick="saltarPaso()">SALTAR PASO</button>
+	<div>
+<form id="form" role="form" action="/terminal/pois" method="get">
+<input type="text" class="form-control" id="tipo" name="tipo" style="display:none;" value="tipo">
+  <div id="buscar" class="col-xs-1 col-md-1 buscar">
+<button type="submit" class="enviar enviar-bt">BUSCAR</button>
+</div>
+  <div id="nombre" class="form-group-nombre">
+    <label>Nombre</label>
+    <input type="text" class="form-control" id="nombre2" name="nombre2" placeholder="nombre" value="nombre">
+  </div>
+  
+  <div id="pclave" class="form-group-pclave">
+    <label>Palabra Clave</label>
+    <input type="text" class="form-control" id="palabrasClave" name="palabrasClave" placeholder="palabra clave" value="palabra clave">
+  </div>
+
+ </form>
+        
       </div>
+      
+
 
 {{/partial}}
 </body>

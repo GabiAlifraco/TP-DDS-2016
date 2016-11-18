@@ -76,7 +76,7 @@ public class AdministradorTerminales implements WithGlobalEntityManager {
 	}
 	
 	public List<Terminal> listar() {
-	    return entityManager()//
+	    return entityManager()
 	        .createQuery("from Terminal", Terminal.class) //
 	        .getResultList();
 	  }

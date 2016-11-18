@@ -1,0 +1,87 @@
+table.scroll tbody,
+table.scroll thead { display: block; }
+
+table.scroll tbody {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 300px;
+}
+
+table.scroll tr {
+    display: flex;
+}
+
+table.scroll tr > td {
+    flex-grow: 1;
+    flex-basis: 0;
+}
+body {
+	height: 100%;
+}
+body header{
+	height: 8%;
+}
+body footer{
+	height: 10%;
+}
+body main {
+	height: 80%;
+}
+
+main #googleMap {
+	height: 100%;
+}
+
+.list-group-item:before {
+	opacity: 0.8;
+}
+
+.list-group-item > * {
+	opacity: 1;
+}
+
+.advancedFilters .shortcut-row .shortcut {
+	padding: 5px;
+}
+.advancedFilters .shortcut-row .shortcut label {
+	margin: 0px;
+}
+.advancedFilters .shortcut-row .shortcut h6 {
+	margin-bottom: 0px;
+    margin-top: 5px;
+}
+.shortcut .image-checkbox span {
+	width: 50px;
+    height: 50px;
+	padding-top: 5px;
+}
+.advancedFilters .image-checkbox .bg-warning-lt {
+	background-image: linear-gradient(to bottom, #f0f0f0 0%, #888 100%);
+	margin-bottom: 0px !important;
+	color: #292202;
+    text-align: center;
+    margin: 0 auto 24px auto;
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    position: relative;
+    display: block;
+    font-size: 35px;
+}
+
+.advancedFilters .image-checkbox {
+	cursor: pointer;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	border: 4px solid transparent;
+	outline: 0;
+}
+
+.image-checkbox input[type="checkbox"]{
+	display: none;
+}
+
+.advancedFilters .image-checkbox.image-checkbox-checked .bg-warning-lt {
+	background-image: linear-gradient(to bottom, #ffd300 0%, #ff9300 100%);
+}

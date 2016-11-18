@@ -20,6 +20,7 @@
 		<class>CaracteristicaPoi.Disponibilidad</class>
 		<class>CaracteristicaPoi.ServicioCGP</class>
 		<class>Terminal.Terminal</class>
+		<class>Accesos.Usuario</class>
 		<class>Notificaciones.MailDemoraBusqueda</class>
 		<class>Resultado.Resultado</class>
 		
@@ -44,7 +45,7 @@
             <property name="hibernate.show_sql" value="true" /> 
             <property name="hibernate.format_sql" value="true" /> 
             <property name="use_sql_comments" value="true" /> 
-            <property name="hibernate.hbm2ddl.auto" value="create" /> 
+            <property name="hibernate.hbm2ddl.auto" value="update" /> 
         </properties>
           
     </persistence-unit> 

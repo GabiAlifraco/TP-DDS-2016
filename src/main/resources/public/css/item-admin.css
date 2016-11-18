@@ -1,6 +1,7 @@
 .body-item{
 	background-color: #f7f7f7;
 	padding-top: 5%;
+	padding-bottom:10%;
 	background-attachment: fixed;
 	min-width:100%;
 }

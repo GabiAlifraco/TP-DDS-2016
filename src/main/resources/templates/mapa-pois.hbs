@@ -1,0 +1,58 @@
+{{# partial "titulo" }}
+<title>
+ Ver Pois Busqueda
+</title>
+{{/partial}}
+
+{{#partial "header" }}
+    <script type="text/JavaScript">
+        function showMessage(){
+            var message = document.getElementById("message").value;
+            display_message.innerHTML= message;
+        }
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" ></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet"  href="/css/kk.css">
+<link rel="stylesheet"  href="/css/item-admin.css">
+<link rel="stylesheet"  href="/css/mostrar-pois.css">
+
+{{/partial}}
+
+<body class ="body-item" >
+
+
+{{#partial "contenido" }}
+	
+	<h3>Búsqueda por terminal</h3></br>	
+	{{#hasResults}}
+		<div id="string">{{string}}</div>
+		<div id="results">
+			<table class="table table-striped table-bordered table-condensed table-responsive">
+				<thead>
+					<tr>
+						<th> Terminal </th>
+						<th> Direcccion </th>
+						<th> Edificio </th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each results}}
+						<tr> 
+							<td>{{nombre}}</td>
+							<td>{{direccion}}</td>
+							<td>{{edificio}}</td>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+	{{/hasResults}}
+
+
+{{/partial}}
+
+</body>
+
+{{> layout.hbs }}

@@ -8,8 +8,12 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Morphia;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
+
+import com.mongodb.MongoClient;
 
 import CaracteristicaPoi.Disponibilidad;
 import CaracteristicaPoi.Domicilio;
@@ -20,9 +24,12 @@ import CaracteristicaPoi.Ubicacion;
 import OrigenesDeDatos.Mapa;
 import Pois.CGP;
 import Pois.ParadaColectivo;
+import Pois.Poi;
 
 public class persistenciaEnMapa extends AbstractPersistenceTest implements WithGlobalEntityManager{
 	//CGP
+
+	private Mapa base;
 	private CGP cgpComuna3;
 	private Ubicacion ubicacion;
 	private List<String> palabras;
@@ -41,10 +48,14 @@ public class persistenciaEnMapa extends AbstractPersistenceTest implements WithG
 	private Punto coordenada114;
 	private List<String> palabras114;
 	//Mapa
-	Mapa base = Mapa.getInstance();
+	
 	
 	@Before
 	public void setUP(){
+		
+
+		base = Mapa.getInstance();
+		
 		cgpComuna3= new CGP();
 		cgpComuna3.setNombre("cgp comuna 3");
 		palabras = Arrays.asList("cgp","comuna 3","CABA","que salga colectivo del cgp");
@@ -80,6 +91,7 @@ public class persistenciaEnMapa extends AbstractPersistenceTest implements WithG
 		ubicacion114.setDomicilio(domicilio114);
 		ubicacion114.setRegion(region114);
 		parada114.setUbicacion(ubicacion114);
+		//persist(cgpComuna3);
 		
 		
 		
@@ -88,7 +100,7 @@ public class persistenciaEnMapa extends AbstractPersistenceTest implements WithG
 	public void agregarPoisTest(){
 		base.agregarUnPoi(cgpComuna3);
 		base.agregarUnPoi(parada114);
-		Assert.assertTrue(base.entityManager().contains(cgpComuna3));
+		Assert.assertTrue(base.getPois().contains(cgpComuna3));
 		
 	}
 	@Test
@@ -99,4 +111,13 @@ public class persistenciaEnMapa extends AbstractPersistenceTest implements WithG
 		Assert.assertFalse(base.entityManager().contains(parada114));
 		
 }
+	@Test
+	public void metodoBuscarDeMapa(){
+		base.agregarUnPoi(cgpComuna3);
+		base.agregarUnPoi(parada114);
+		base.eliminarUnPoi(parada114);
+		List<Poi> encontrados =base.buscarPois("uncgp", "comuna 3");
+		Assert.assertTrue((encontrados.contains(cgpComuna3))&(!(encontrados.contains(parada114))));
+	}
+
 }
