@@ -12,6 +12,7 @@ import org.bson.types.ObjectId;
 @javax.persistence.Table(name = "ServiciosCGP")
 public class ServicioCGP {
 	
+	@javax.persistence.Transient
 	@org.mongodb.morphia.annotations.Id
 	ObjectId id;
 	

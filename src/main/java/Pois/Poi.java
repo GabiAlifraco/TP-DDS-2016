@@ -29,6 +29,8 @@ public abstract class Poi{
 	@org.mongodb.morphia.annotations.Transient
 	private Long poiID;
 	
+	
+	public String dValue;
 	@javax.persistence.Transient
 	@org.mongodb.morphia.annotations.Id
 	private ObjectId id;

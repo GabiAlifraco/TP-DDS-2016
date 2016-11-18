@@ -8,11 +8,13 @@ import org.bson.types.ObjectId;
 @javax.persistence.Table(name="Ubicacion")
 public class Ubicacion {
 	
+	@javax.persistence.Transient
 	@org.mongodb.morphia.annotations.Id
 	ObjectId id;
 	
 	@javax.persistence.Id
 	@javax.persistence.GeneratedValue
+	@org.mongodb.morphia.annotations.Transient
 	private long ubicacionID;
 	
 	@javax.persistence.Embedded
