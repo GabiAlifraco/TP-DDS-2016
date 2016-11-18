@@ -1,14 +1,14 @@
 package OrigenesDeDatos;
 
+import java.util.HashMap;
 import java.util.List;
-
-
-
-
+import java.util.Map;
 
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import Pois.Poi;
+import Resultado.Resultado;
+import Terminal.Terminal;
 
 public class Mapa implements OrigenDeDatos, WithGlobalEntityManager{
 

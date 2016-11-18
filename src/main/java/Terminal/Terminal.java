@@ -12,8 +12,8 @@ import javax.persistence.*;
 
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
+import Accesos.Usuario;
 import CaracteristicaPoi.Punto;
-import Notificaciones.AlmacenadorBusquedas;
 import Notificaciones.MailDemoraBusqueda;
 import Notificaciones.NotificacionBusqueda;
 import OrigenesDeDatos.Mapa;
@@ -37,6 +37,8 @@ public class Terminal implements WithGlobalEntityManager{
 	@Transient
 	public Mapa mapa = Mapa.getInstance();
 	
+	@OneToOne(cascade=CascadeType.ALL)
+	private Usuario usuario;
 	
 	
 	//@Convert(converter = PointConverter.class)
@@ -55,6 +57,11 @@ public class Terminal implements WithGlobalEntityManager{
 	public Terminal(String nombre, List<OrigenDeDatos> servicios) {
 		setNombreTerminal(nombre);
 		setServicios(servicios);
+	}
+	public Terminal(String nombre, List<OrigenDeDatos> servicios,Usuario usuario) {
+		setNombreTerminal(nombre);
+		setServicios(servicios);
+		setUsuario(usuario);
 	}
 
 	public Terminal(){
@@ -167,5 +174,14 @@ public class Terminal implements WithGlobalEntityManager{
 	public void setCoordenadaDispositivoMovil(Punto coordenadaDispositivoMovil) {
 		this.coordenadaDispositivoMovil = coordenadaDispositivoMovil;
 	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
 	
 }

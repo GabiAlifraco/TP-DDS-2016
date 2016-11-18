@@ -1,9 +1,13 @@
 package controllers;
 
+import java.util.stream.Collectors;
+
 import org.apache.commons.codec.digest.DigestUtils;
 
 import Accesos.AdministradorUsuarios;
 import Accesos.Usuario;
+import Terminal.AdministradorTerminales;
+import Terminal.Terminal;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -19,6 +23,7 @@ public class AccesosController {
 
 	public Void autenticar(Request request, Response response) {
 		AdministradorUsuarios adminUsr = new AdministradorUsuarios();
+		AdministradorTerminales terminales = new AdministradorTerminales();
 		String user = request.queryParams("user");
 		String pass = request.queryParams("password");
 
@@ -26,8 +31,12 @@ public class AccesosController {
 		String requestPasswordHash = DigestUtils.sha1Hex(pass);
 		
 		if (usuarioBase != null && requestPasswordHash.equals(usuarioBase.getPassword())) {
-			String rol = usuarioBase.getRole().toLowerCase(); 
-			String hashRol = DigestUtils.sha1Hex(rol);
+		String rol = usuarioBase.getRole().toLowerCase(); 
+		String hashRol = DigestUtils.sha1Hex(rol);
+		if(rol.equals("terminal")){
+			Terminal terminal=terminales.listar().stream().filter(t -> t.getUsuario().getUser().equals(usuarioBase.getUser())).collect(Collectors.toList()).get(0);
+			response.cookie("nombreTerminal", terminal.getNombreTerminal());
+		}
 			response.cookie("role", hashRol);
 			response.redirect(rol); 
 		} else {

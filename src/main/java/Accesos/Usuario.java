@@ -12,7 +12,7 @@ public class Usuario {
 
 	@javax.persistence.Column(unique = true, nullable = false)
 	String username;
-	@javax.persistence.Column(nullable = false)
+	@javax.persistence.Column(name="pass",nullable = false)
 	String password;
 	@javax.persistence.Column(nullable = false)
 	String role;
