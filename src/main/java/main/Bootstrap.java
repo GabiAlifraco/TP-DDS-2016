@@ -46,7 +46,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			servicios.add(cgps);
 			
 			CGP cgpComuna3=new CGP();
-			cgpComuna3.setNombre("cgp comuna Macri");
+			cgpComuna3.setNombre("Cgp Alvear");
 			List<String> palabras = Arrays.asList("cgp","comuna 3","CABA");
 			Punto coordenadas = new Punto(34.4124, 24.4856);
 			Domicilio domicilio = new Domicilio("Arenales", 1245, "M.T.De.Alvear", "Santa Fe", 2100, 0, 0, 0, 1111);
@@ -91,7 +91,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			ParadaColectivo parada114=new ParadaColectivo();
 			Domicilio domicilioParada = new Domicilio("Arenales", 1141, "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
 			Region regionParada = new Region("CABA", "Recoleta", "Bs As", "Argentina");
-			Punto coordenadaParada = new Punto(34.4353, 25.4632);
+			Punto coordenadaParada = new Punto(37.3598, 98.2843);
 			Ubicacion ubicacionParada = new Ubicacion();
 			ubicacionParada.setCoordenadas(coordenadaParada);
 			ubicacionParada.setDomicilio(domicilioParada);

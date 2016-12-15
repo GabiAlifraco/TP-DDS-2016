@@ -18,14 +18,13 @@ import CaracteristicaPoi.Ubicacion;
 @javax.persistence.Entity
 @org.mongodb.morphia.annotations.Entity
 
-@javax.persistence.Table(name="POIS")
+@javax.persistence.Table(name="Pois")
 @javax.persistence.Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@javax.persistence.DiscriminatorColumn(name= "Tipo_Poi")
+@javax.persistence.DiscriminatorColumn(name= "tipo_Poi")
 public abstract class Poi{
 
 	@javax.persistence.Id
 	@javax.persistence.GeneratedValue
-	@javax.persistence.Column(name="poiID")
 	@org.mongodb.morphia.annotations.Transient
 	private Long poiID;
 	

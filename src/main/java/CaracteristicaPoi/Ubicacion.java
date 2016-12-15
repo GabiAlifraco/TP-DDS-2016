@@ -5,7 +5,7 @@ import org.bson.types.ObjectId;
 
 @javax.persistence.Entity
 @org.mongodb.morphia.annotations.Entity
-@javax.persistence.Table(name="Ubicacion")
+@javax.persistence.Table(name="Ubicaciones")
 public class Ubicacion {
 	
 	@javax.persistence.Transient
