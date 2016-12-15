@@ -148,14 +148,11 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			List<String> palabrasClaveParada = Arrays.asList("Colectivo", "Parada");
 			/*List<DayOfWeek> diasParada = Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY,
 					DayOfWeek.FRIDAY);*/
-			Disponibilidad horarioParada =new Disponibilidad();
 			//horarioParada.setDias(diasParada);
-			horarioParada.setHorarioInicial(LocalTime.of(00,00));
-			horarioParada.setHorarioFinal(LocalTime.of(23,59));
-			List<Disponibilidad> horariosParada=Arrays.asList(horarioParada);
+		
 			
 			ParadaColectivo parada114=new ParadaColectivo();
-			parada114.setNombre("114");
+			parada114.setNombre("Parada 114");
 			Punto coordenadaParada = new Punto(37.3598, 98.2843);
 			Domicilio domicilioParada = new Domicilio("Av.Segurola", 1141, "Av.Gaona", "Av. J.B.Justo", 6100, 0, 0, 0, 1111);
 			Region regionParada = new Region("CABA", "Floresta", "Bs As", "Argentina");
@@ -164,34 +161,46 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			ubicacionParada.setDomicilio(domicilioParada);
 			ubicacionParada.setRegion(regionParada);
 			parada114.setUbicacion(ubicacionParada);
+			Disponibilidad horarioParada =new Disponibilidad();
+			horarioParada.setHorarioInicial(LocalTime.of(00,00));
+			horarioParada.setHorarioFinal(LocalTime.of(23,59));
+			List<Disponibilidad> horariosParada=Arrays.asList(horarioParada);
 			parada114.setPalabrasClave(palabrasClaveParada);
 			parada114.setHorariosDeAtencion(horariosParada);
 			
 			ParadaColectivo parada146=new ParadaColectivo();
-			Domicilio domicilioParada2 = new Domicilio("Av Santa Fe", 3354, "J.Salguero", "Videl", 1244, 0, 0, 0, 1435);
-			Region regionParada2 = new Region("CABA", "Palermo", "Bs As", "Argentina");
+			parada146.setNombre("Parada 146");
+			Domicilio domicilioParada2 = new Domicilio("Av San Martin", 1454, "Galicia", "Tres Arroyos", 944, 0, 0, 0, 1416);
+			Region regionParada2 = new Region("CABA", "Villa Crespo", "Bs As", "Argentina");
 			Punto coordenadaParada2 = new Punto(47.3206, 38.5587);
 			Ubicacion ubicacionParada2 = new Ubicacion();
-			ubicacionParada.setCoordenadas(coordenadaParada2);
-			ubicacionParada.setDomicilio(domicilioParada2);
-			ubicacionParada.setRegion(regionParada2);
-			parada114.setUbicacion(ubicacionParada2);
-			parada114.setPalabrasClave(palabrasClaveParada);
-			parada114.setNombre("146");
-			parada114.setHorariosDeAtencion(horariosParada);
+			ubicacionParada2.setCoordenadas(coordenadaParada2);
+			ubicacionParada2.setDomicilio(domicilioParada2);
+			ubicacionParada2.setRegion(regionParada2);
+			parada146.setUbicacion(ubicacionParada2);
+			Disponibilidad horarioParada2 =new Disponibilidad();
+			horarioParada2.setHorarioInicial(LocalTime.of(00,00));
+			horarioParada2.setHorarioFinal(LocalTime.of(23,59));
+			List<Disponibilidad> horariosParada2=Arrays.asList(horarioParada2);
+			parada146.setPalabrasClave(palabrasClaveParada);
+			parada146.setHorariosDeAtencion(horariosParada2);
 			
 			ParadaColectivo parada37=new ParadaColectivo();
+			parada37.setNombre("Parada 37");
 			Domicilio domicilioParada3 = new Domicilio("Hipolito Yrigoyen", 947, "SantiagoEstero", "Robles", 900, 0, 0, 0, 1234);
 			Region regionParada3 = new Region("AreaMetropolitana", "Avellaneda", "Bs As", "Argentina");
 			Punto coordenadaParada3 = new Punto(114.5675, 15.4276);
 			Ubicacion ubicacionParada3 = new Ubicacion();
-			ubicacionParada.setCoordenadas(coordenadaParada3);
-			ubicacionParada.setDomicilio(domicilioParada3);
-			ubicacionParada.setRegion(regionParada3);
-			parada114.setUbicacion(ubicacionParada3);
-			parada114.setPalabrasClave(palabrasClaveParada);
-			parada114.setNombre("37");
-			parada114.setHorariosDeAtencion(horariosParada);
+			ubicacionParada3.setCoordenadas(coordenadaParada3);
+			ubicacionParada3.setDomicilio(domicilioParada3);
+			ubicacionParada3.setRegion(regionParada3);
+			parada37.setUbicacion(ubicacionParada3);
+			Disponibilidad horarioParada3 =new Disponibilidad();
+			horarioParada3.setHorarioInicial(LocalTime.of(00,00));
+			horarioParada3.setHorarioFinal(LocalTime.of(23,59));
+			List<Disponibilidad> horariosParada3=Arrays.asList(horarioParada3);
+			parada37.setPalabrasClave(palabrasClaveParada);
+			parada37.setHorariosDeAtencion(horariosParada3);
 
 			//Creo Bancos
 			
@@ -263,17 +272,18 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			villacrespo.setComunaTerminal("15");
 			beginTransaction();
 		    withTransaction(() -> {
-		   persist(cgpComuna1);
+		    persist(cgpComuna1);
 		    persist(cgpComuna2);
 		    persist(cgpComuna3);
 		    persist(banco1);
 		    persist(banco2);
 		    persist(banco3);
+		    persist(parada114);
 			persist(abasto);
 			persist(villacrespo);
 			persist(admin);
-			/*persist(parada37);
-		    persist(parada146);*/
+			persist(parada37);
+		    persist(parada146);
 		    });
 		    commitTransaction();
 	  }
