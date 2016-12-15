@@ -21,11 +21,10 @@ public class ServicioCGP {
 	@org.mongodb.morphia.annotations.Transient
 	private long idServicioCGP;
 	
-	@javax.persistence.Column(name = "nombre")
 	private String nombre;
 	
 	@javax.persistence.OneToMany(cascade = CascadeType.ALL)
-	@javax.persistence.OrderColumn(name="horarios")
+	@javax.persistence.OrderColumn()
 	private List<Disponibilidad> horariosDeAtencion;
 
 	public ServicioCGP(String unNombre, List<Disponibilidad> horarios) {

@@ -22,9 +22,11 @@ public class Ubicacion {
 	private Punto coordenadas;
 	
 	@javax.persistence.OneToOne(cascade = CascadeType.ALL)
+	@javax.persistence.JoinColumn(name = "idDomicilio")
 	private Domicilio domicilio;
 	
 	@javax.persistence.ManyToOne(cascade = CascadeType.ALL)
+	@javax.persistence.JoinColumn(name = "idRegion")
 	private Region region;
 	
 	public Ubicacion(Domicilio domicilio, Region region, Punto coordenadas){

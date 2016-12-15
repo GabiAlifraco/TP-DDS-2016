@@ -10,7 +10,7 @@ import javax.persistence.Embedded;
 @javax.persistence.Embeddable
 public class Zona {
 
-	@Embedded
+	@javax.persistence.Transient
 	private List<Punto> zona;
 
 	@org.mongodb.morphia.annotations.Transient

@@ -21,7 +21,7 @@ public class CGP extends Poi{
 	@javax.persistence.JoinColumn(name="poiID")
 	private List<ServicioCGP> serviciosCGP;
 	
-	@javax.persistence.Embedded
+	@javax.persistence.Transient
 	private Zona zona;
 	
 	public CGP(String unaComuna,String barrio,List<ServicioCGP> servicios, Ubicacion ubicacion){

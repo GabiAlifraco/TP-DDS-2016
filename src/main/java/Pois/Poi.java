@@ -40,7 +40,7 @@ public abstract class Poi{
 	protected String nombre;
 	
 	@javax.persistence.ElementCollection
-	@javax.persistence.CollectionTable(name = "palabrasClaveDePoi") //,joinColumns=@JoinColumn(name="poiID")
+	@javax.persistence.CollectionTable(name = "PalabrasClaveDePoi") 
 	@org.mongodb.morphia.annotations.Embedded
 	private List<String> palabrasClave = new ArrayList<String>();
 	

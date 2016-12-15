@@ -10,14 +10,15 @@ import org.bson.types.ObjectId;
 import converter.LocalTimeConverter;
 
 @javax.persistence.Entity
-@javax.persistence.Table(name="Disponibilidad")
+@javax.persistence.Table(name="Disponibilidades")
 @org.mongodb.morphia.annotations.Converters(LocalTimeConverter.class)
 public class Disponibilidad {
 	@javax.persistence.Enumerated(EnumType.STRING)
 	@javax.persistence.ElementCollection
-	@javax.persistence.OrderColumn(name="Dia")
+	@javax.persistence.OrderColumn()
 	private List<DayOfWeek> dias;
-
+	
+	@javax.persistence.Transient
 	@org.mongodb.morphia.annotations.Id
 	ObjectId id;
 	

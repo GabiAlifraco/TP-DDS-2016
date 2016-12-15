@@ -37,6 +37,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 
 	  public void run() {
 		  
+		  	//Comun a los CGP
 			Mapa mapa = Mapa.getInstance();
 			ProveedorBancos bancos = new ProveedorBancos();
 			ProveedorCGPs cgps = new ProveedorCGPs();
@@ -44,10 +45,11 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			servicios.add(mapa);
 			servicios.add(bancos);
 			servicios.add(cgps);
+			List<String> palabrasClaveCgp = Arrays.asList("cgp","comuna");
 			
-			CGP cgpComuna3=new CGP();
-			cgpComuna3.setNombre("Cgp Alvear");
-			List<String> palabras = Arrays.asList("cgp","comuna 3","CABA");
+			
+			CGP cgpComuna1=new CGP();
+			cgpComuna1.setNombre("Cgp Alvear");
 			Punto coordenadas = new Punto(34.4124, 24.4856);
 			Domicilio domicilio = new Domicilio("Arenales", 1245, "M.T.De.Alvear", "Santa Fe", 2100, 0, 0, 0, 1111);
 			Region region = new Region("CABA", "Recoleta", "Bs As", "Argentina");
@@ -55,8 +57,8 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			ubicacion.setCoordenadas(coordenadas);
 			ubicacion.setDomicilio(domicilio);
 			ubicacion.setRegion(region);
-			cgpComuna3.setUbicacion(ubicacion);
-			cgpComuna3.setPalabrasClave(palabras);
+			cgpComuna1.setUbicacion(ubicacion);
+			cgpComuna1.setPalabrasClave(palabrasClaveCgp);
 			Disponibilidad disponibilidadTesoreria = new Disponibilidad();
 			disponibilidadTesoreria.setHorarioFinal(LocalTime.of(15, 0));
 			disponibilidadTesoreria.setHorarioInicial( LocalTime.of(9, 0));
@@ -66,16 +68,47 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			tesoreria.setHorariosDeAtencion(horariosTesoreria);
 			List<ServicioCGP> serviciosCGP = new ArrayList<ServicioCGP>();
 			serviciosCGP= Arrays.asList(tesoreria);
-			cgpComuna3.setServiciosCGP(serviciosCGP);
-			Punto coordenadaCGP = new Punto(34.4124, 24.4856);
+			cgpComuna1.setServiciosCGP(serviciosCGP);
+			Punto coordenadaCGP1 = new Punto(34.4124, 24.4856);
 			Punto coordenadaCGP2 = new Punto(34.4124, 24.4852);
 			Punto coordenadaCGP3 = new Punto(34.4120, 24.4851);
 			ArrayList<Punto> zona = new ArrayList<Punto>();
-			zona.add(coordenadaCGP);
+			zona.add(coordenadaCGP1);
 			zona.add(coordenadaCGP2);
 			zona.add(coordenadaCGP3);
 			Zona zonaCGP = new Zona(zona);
-			cgpComuna3.setZona(zonaCGP);
+			cgpComuna1.setZona(zonaCGP);
+			
+			CGP cgpComuna2=new CGP();
+			cgpComuna2.setNombre("Cgp Piñeyro");
+			Punto coordenadas2 = new Punto(65.6785, 12.4461);
+			Domicilio domicilio2 = new Domicilio("Saavedra", 45, "Alcala", "SantaRosa", 500, 0, 0, 0, 1234);
+			Region region2 = new Region("ZonaSur", "Lanus", "Bs As", "Argentina");
+			Ubicacion ubicacion2 = new Ubicacion();
+			ubicacion2.setCoordenadas(coordenadas2);
+			ubicacion2.setDomicilio(domicilio2);
+			ubicacion2.setRegion(region2);
+			cgpComuna2.setUbicacion(ubicacion2);
+			cgpComuna2.setPalabrasClave(palabrasClaveCgp);
+			Disponibilidad disponibilidadAdministracion = new Disponibilidad();
+			disponibilidadAdministracion.setHorarioFinal(LocalTime.of(14, 0));
+			disponibilidadAdministracion.setHorarioInicial( LocalTime.of(8, 0));
+			List<Disponibilidad> horariosAdministracion = Arrays.asList(disponibilidadAdministracion);
+			ServicioCGP administracion = new ServicioCGP();
+			administracion.setNombre("Administracion");
+			administracion.setHorariosDeAtencion(horariosAdministracion);
+			List<ServicioCGP> serviciosCGP2 = new ArrayList<ServicioCGP>();
+			serviciosCGP2= Arrays.asList(administracion);
+			cgpComuna2.setServiciosCGP(serviciosCGP2);
+			Punto coordenadaCGP4 = new Punto(34.4124, 24.4856);
+			Punto coordenadaCGP5 = new Punto(34.4124, 24.4852);
+			Punto coordenadaCGP6 = new Punto(34.4120, 24.4851);
+			ArrayList<Punto> zona2 = new ArrayList<Punto>();
+			zona2.add(coordenadaCGP4);
+			zona2.add(coordenadaCGP5);
+			zona2.add(coordenadaCGP6);
+			Zona zonaCGP2 = new Zona(zona2);
+			cgpComuna2.setZona(zonaCGP2);
 			
 			//Creo paradas
 			//Palabras y disponibilidad comun a todas las paradas
@@ -89,16 +122,16 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			List<Disponibilidad> horariosParada=Arrays.asList(horarioParada);
 			
 			ParadaColectivo parada114=new ParadaColectivo();
-			Domicilio domicilioParada = new Domicilio("Arenales", 1141, "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
-			Region regionParada = new Region("CABA", "Recoleta", "Bs As", "Argentina");
+			parada114.setNombre("114");
 			Punto coordenadaParada = new Punto(37.3598, 98.2843);
+			Domicilio domicilioParada = new Domicilio("Av.Segurola", 1141, "Av.Gaona", "Av. J.B.Justo", 6100, 0, 0, 0, 1111);
+			Region regionParada = new Region("CABA", "Floresta", "Bs As", "Argentina");
 			Ubicacion ubicacionParada = new Ubicacion();
 			ubicacionParada.setCoordenadas(coordenadaParada);
 			ubicacionParada.setDomicilio(domicilioParada);
 			ubicacionParada.setRegion(regionParada);
 			parada114.setUbicacion(ubicacionParada);
 			parada114.setPalabrasClave(palabrasClaveParada);
-			parada114.setNombre("114");
 			parada114.setHorariosDeAtencion(horariosParada);
 			
 			ParadaColectivo parada146=new ParadaColectivo();
@@ -144,12 +177,13 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			villacrespo.setComunaTerminal("15");
 			beginTransaction();
 		    withTransaction(() -> {
-		    persist(cgpComuna3);
+		    persist(cgpComuna1);
+		    persist(cgpComuna2);
+		    //persist(parada114);
 			persist(abasto);
 			persist(villacrespo);
 			persist(admin);
-			/*persist(parada114);
-		 	persist(parada37);
+			/*persist(parada37);
 		    persist(parada146);*/
 		    });
 		    commitTransaction();
