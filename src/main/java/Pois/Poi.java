@@ -34,13 +34,13 @@ public abstract class Poi{
 	private ObjectId id;
 	
 	@javax.persistence.OneToOne(cascade = CascadeType.ALL)
+	@javax.persistence.JoinColumn(name = "idUbicacion")
 	protected Ubicacion ubicacion;
 	
 	protected String nombre;
 	
 	@javax.persistence.ElementCollection
-	@javax.persistence.CollectionTable(name="palabrasClaveDePoi",
-		joinColumns=@JoinColumn(name="poiID"))
+	@javax.persistence.CollectionTable(name = "palabrasClaveDePoi") //,joinColumns=@JoinColumn(name="poiID")
 	@org.mongodb.morphia.annotations.Embedded
 	private List<String> palabrasClave = new ArrayList<String>();
 	
