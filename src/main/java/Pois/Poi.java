@@ -34,7 +34,6 @@ public abstract class Poi{
 	private ObjectId id;
 	
 	@javax.persistence.OneToOne(cascade = CascadeType.ALL)
-	@javax.persistence.JoinColumn(name="poiID")
 	protected Ubicacion ubicacion;
 	
 	protected String nombre;
@@ -46,7 +45,6 @@ public abstract class Poi{
 	private List<String> palabrasClave = new ArrayList<String>();
 	
 	@javax.persistence.OneToMany(cascade=CascadeType.ALL)
-	@javax.persistence.JoinColumn(name="poiID")
 	private List<Disponibilidad> horariosDeAtencion  = new ArrayList<Disponibilidad>();
 
 	//Punto A de la entrega 0

@@ -1,7 +1,7 @@
 package CaracteristicaPoi;
 
 @javax.persistence.Entity
-@javax.persistence.Table(name="Domicilio")
+@javax.persistence.Table(name="Domicilios")
 public class Domicilio {
 	
 	@javax.persistence.Id
