@@ -28,32 +28,28 @@ public class Routes {
 		port(8080);
 
 
-		get("/", home::mostrar, engine); 
+		get("/", home::mostrar, engine); //Pagina Principal
 		get("/login", accesos::mostrarLogin, engine); //Se muestra cuando presiono en el boton de la pagina principal
 		post("/login", accesos::autenticar); //Sucede cuando presionamos iniciar sesion luego de ingresar los datos
 		get("/loginfailed", accesos::mostrarLoginFail, engine); //En caso que haya un error en los datos
-		get("/administrador", home::mostrarHomeAdmin, engine);//Si entro como perfil administrador
 		post("/administrador", accesos::cerrarSesion); //Si presiono cerrar sesion durante el uso de la aplicacion
-
+		get("/access-denied", accesos::denegarAcceso, engine); //Al querer ingresar en alguna pagina de la app sin estar logueado
 		post("/administrador/*", accesos::cerrarSesion);
-		get("/terminal",terminal::mostrarHomeTerminal,engine);//Si entro como perfil terminal
-
 		post("/logout", accesos::cerrarSesion);
 
-
-		get("/administrador/pois",administracion::mostrarPois,engine); //Se muestra cuando apreto boton admPois en perfil Administrador
-		//post("/administrador/borradoPoi",administracion::eliminar);
-		get("/administrador/terminales",administracion::mostrarTerminales,engine);
-		get("/administrador/historial",administracion::mostrarHistorial,engine);
-		get("/access-denied", accesos::denegarAcceso, engine); //Al querer ingresar en alguna pagina de la app sin estar logueado
-
-
-		get("/terminal/pois",terminal::buscar,engine);
+		get("/administrador", home::mostrarHomeAdmin, engine);//Si entro como perfil administrador
+		get("/administrador/pois",administracion::mostrarPois,engine); //Muestro Pois
 		
-
+		
+		get("/administrador/terminales",administracion::mostrarTerminales,engine);//Muestro terminales
+		
+		
+		get("/administrador/historial",administracion::mostrarHistorial,engine);//Muestro historial de Consultas
 		post("/administrador/historial/filtroFecha",historial::mostrarHistorialFiltroFecha,engine);
 		post("/administrador/historial/filtroResultados",historial::mostrarHistorialFiltroResultados,engine);
 		post("/administrador/historial/filtroTerminal",historial::mostrarHistorialFiltroTerminal,engine);
 
+		get("/terminal",home::mostrarHomeTerminal,engine);//Si entro como perfil terminal
+		//get("/terminal/pois",terminal::buscar,engine);
 	}
 }

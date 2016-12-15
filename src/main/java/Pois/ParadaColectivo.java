@@ -18,7 +18,7 @@ public class ParadaColectivo extends Poi {
 		setPalabrasClave(palabrasClave);
 	}
 	public ParadaColectivo(){
-		dValue = "ParadaColectivo";
+		
 		
 	}
 	public int distanciaMinimaParaConsiderarmeCercano() {

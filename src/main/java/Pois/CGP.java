@@ -34,7 +34,7 @@ public class CGP extends Poi{
 		
 	}
 	public CGP(){
-		dValue = "CGP";
+		
 	}
 	
 	@Override

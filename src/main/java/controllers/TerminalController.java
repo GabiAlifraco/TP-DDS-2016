@@ -17,10 +17,8 @@ import spark.Response;
 public class TerminalController extends Controller {
 	private listaPois clista = new listaPois();
 	private List<Poi> pois=new ArrayList<Poi>();
-	public ModelAndView mostrarHomeTerminal(Request request, Response response) {
-		return this.redirigirSegunPermisos(request, response,"terminal", new ModelAndView(null, "home-terminal.hbs"));
-	}
-	public ModelAndView buscar(Request request, Response response) {
+	
+	/*public ModelAndView buscar(Request request, Response response) {
 		pois =clista.listar();
 		//AdministradorTerminales admTerminales = new AdministradorTerminales();
 		String nombre = request.queryParams("nombre2");
@@ -53,7 +51,7 @@ public class TerminalController extends Controller {
 		
 		return this.redirigirSegunPermisos(request, response, "terminal", new ModelAndView(viewModel, "mapa-pois.hbs"));
 		
-	}
+	}*/
 	private List<HashMap<String, Object>> convertPois(List<Poi> pois2) {
 		List<HashMap<String, Object>> array = new ArrayList<HashMap<String,Object>>();
 		for ( Poi p : pois2){

@@ -30,7 +30,6 @@ public abstract class Poi{
 	private Long poiID;
 	
 	
-	public String dValue;
 	@javax.persistence.Transient
 	@org.mongodb.morphia.annotations.Id
 	private ObjectId id;

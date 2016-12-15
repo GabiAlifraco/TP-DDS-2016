@@ -14,4 +14,7 @@ public class HomeController extends Controller {
 		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(null, "home-administrador.hbs"));
 	}
 
+	public ModelAndView mostrarHomeTerminal(Request request, Response response) {
+		return this.redirigirSegunPermisos(request, response,"terminal", new ModelAndView(null, "home-terminal.hbs"));
+	}
 }

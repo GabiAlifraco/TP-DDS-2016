@@ -14,7 +14,7 @@ public class Banco extends Poi {
 		setUbicacion(ubicacion);
 	}
 	public Banco(){
-		dValue = "Banco";
+		
 	}
 	public int distanciaMinimaParaConsiderarmeCercano() {
 		return 500;

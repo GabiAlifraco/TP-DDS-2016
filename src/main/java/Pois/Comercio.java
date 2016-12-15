@@ -20,8 +20,7 @@ public class Comercio extends Poi {
 		setPalabrasClave(palabrasClave);
 	}
     public Comercio(){
-    	dValue = "Comercio";
-    }
+    	    }
 	public int distanciaMinimaParaConsiderarmeCercano() {
 		return this.getDistancia();
 	}

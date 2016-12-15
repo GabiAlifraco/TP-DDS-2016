@@ -1,5 +1,6 @@
 package main;
 
+import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,6 +24,7 @@ import OrigenesDeDatos.OrigenDeDatos;
 import OrigenesDeDatos.ProveedorBancos;
 import OrigenesDeDatos.ProveedorCGPs;
 import Pois.CGP;
+import Pois.ParadaColectivo;
 import Terminal.AdministradorTerminales;
 import Terminal.Terminal;
 
@@ -34,6 +36,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 	  }*/
 
 	  public void run() {
+		  
 			Mapa mapa = Mapa.getInstance();
 			ProveedorBancos bancos = new ProveedorBancos();
 			ProveedorCGPs cgps = new ProveedorCGPs();
@@ -74,6 +77,58 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			Zona zonaCGP = new Zona(zona);
 			cgpComuna3.setZona(zonaCGP);
 			
+			//Creo paradas
+			//Palabras y disponibilidad comun a todas las paradas
+			List<String> palabrasClaveParada = Arrays.asList("Colectivo", "Parada");
+			List<DayOfWeek> diasParada = Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY,
+					DayOfWeek.FRIDAY);
+			Disponibilidad horarioParada =new Disponibilidad();
+			horarioParada.setDias(diasParada);
+			horarioParada.setHorarioInicial(LocalTime.of(00,00));
+			horarioParada.setHorarioFinal(LocalTime.of(23,59));
+			List<Disponibilidad> horariosParada=Arrays.asList(horarioParada);
+			
+			ParadaColectivo parada114=new ParadaColectivo();
+			Domicilio domicilioParada = new Domicilio("Arenales", 1141, "Junin", "Santa Fe", 2100, 0, 0, 0, 1111);
+			Region regionParada = new Region("CABA", "Recoleta", "Bs As", "Argentina");
+			Punto coordenadaParada = new Punto(34.4353, 25.4632);
+			Ubicacion ubicacionParada = new Ubicacion();
+			ubicacionParada.setCoordenadas(coordenadaParada);
+			ubicacionParada.setDomicilio(domicilioParada);
+			ubicacionParada.setRegion(regionParada);
+			parada114.setUbicacion(ubicacionParada);
+			parada114.setPalabrasClave(palabrasClaveParada);
+			parada114.setNombre("114");
+			parada114.setHorariosDeAtencion(horariosParada);
+			
+			ParadaColectivo parada146=new ParadaColectivo();
+			Domicilio domicilioParada2 = new Domicilio("Av Santa Fe", 3354, "J.Salguero", "Videl", 1244, 0, 0, 0, 1435);
+			Region regionParada2 = new Region("CABA", "Palermo", "Bs As", "Argentina");
+			Punto coordenadaParada2 = new Punto(47.3206, 38.5587);
+			Ubicacion ubicacionParada2 = new Ubicacion();
+			ubicacionParada.setCoordenadas(coordenadaParada2);
+			ubicacionParada.setDomicilio(domicilioParada2);
+			ubicacionParada.setRegion(regionParada2);
+			parada114.setUbicacion(ubicacionParada2);
+			parada114.setPalabrasClave(palabrasClaveParada);
+			parada114.setNombre("146");
+			parada114.setHorariosDeAtencion(horariosParada);
+			
+			ParadaColectivo parada37=new ParadaColectivo();
+			Domicilio domicilioParada3 = new Domicilio("Hipolito Yrigoyen", 947, "SantiagoEstero", "Robles", 900, 0, 0, 0, 1234);
+			Region regionParada3 = new Region("AreaMetropolitana", "Avellaneda", "Bs As", "Argentina");
+			Punto coordenadaParada3 = new Punto(114.5675, 15.4276);
+			Ubicacion ubicacionParada3 = new Ubicacion();
+			ubicacionParada.setCoordenadas(coordenadaParada3);
+			ubicacionParada.setDomicilio(domicilioParada3);
+			ubicacionParada.setRegion(regionParada3);
+			parada114.setUbicacion(ubicacionParada3);
+			parada114.setPalabrasClave(palabrasClaveParada);
+			parada114.setNombre("37");
+			parada114.setHorariosDeAtencion(horariosParada);
+
+	
+			
 
 		  
 	
@@ -93,7 +148,9 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			persist(abasto);
 			persist(villacrespo);
 			persist(admin);
-			
+			/*persist(parada114);
+		 	persist(parada37);
+		    persist(parada146);*/
 		    });
 		    commitTransaction();
 	  }

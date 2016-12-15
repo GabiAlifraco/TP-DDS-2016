@@ -232,7 +232,7 @@ public class listaPois {
 		ubicacionKiosco = new Ubicacion(domicilioKiosco, regionKiosco, coordenadaKioscoDiario);
 		elDiarioDelPueblo = new Comercio("El diario del pueblo", ubicacionKiosco, horariosDiario,
 				palabrasClaveKioscoDiario);
-		elDiarioDelPueblo.dValue="Comercio";
+		
 	}
 	public Comercio KioscoPepe;
 	protected void crearKioscoPepe(){
@@ -246,7 +246,7 @@ public class listaPois {
 		ubicacionKiosco = new Ubicacion(domicilioKiosco, regionKiosco, coordenadaKioscoDiario);
 		KioscoPepe = new Comercio("El Pepe", ubicacionKiosco, horariosDiario,
 				palabrasClaveKioscoDiario);
-		KioscoPepe.dValue="Comercio";
+		
 	}
 	
 	public List<Poi> listar(){
