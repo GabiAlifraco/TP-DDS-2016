@@ -6,12 +6,13 @@ import controllers.AdministracionPoisController;
 import controllers.HistorialController;
 import controllers.HomeController;
 import controllers.TerminalController;
+import spark.debug.DebugScreen;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 public class Routes {
 	public static void main(String[] args) {
 		
-		//new Bootstrap().run();
+		new Bootstrap().run();
 		System.out.println("Iniciando servidor");
 		staticFileLocation("/public");
 		TerminalController terminal= new TerminalController();
@@ -19,6 +20,7 @@ public class Routes {
 		AccesosController accesos = new AccesosController();
 		AdministracionPoisController administracion= new AdministracionPoisController();
 		HistorialController historial = new HistorialController();
+		DebugScreen.enableDebugScreen();
 		HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
 		
 		//PERFIL ADMINISTRADOR  USER:admin  PASS: admin

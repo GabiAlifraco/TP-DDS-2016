@@ -1,8 +1,11 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+
 import OrigenesDeDatos.Mapa;
 import Pois.Poi;
 import Terminal.AdministradorTerminales;
@@ -15,12 +18,12 @@ public class AdministracionPoisController extends Controller{
 
 	public ModelAndView mostrarPois(Request request, Response response) {
 		
-		List<Poi> pois=Mapa.getInstance().getPois();
-
-	    HashMap<String, Object> viewModel = new HashMap<>();
-	    viewModel.put("pois", pois);
+		Map<String, List<Poi>> pois=new HashMap<>();	
+		List<Poi> filtrados= new ArrayList<>();
+		filtrados=Mapa.getInstance().getPois(); //Devuelve todos los pois persistidos.	
+	    pois.put("filtrados", filtrados);
 		
-		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(viewModel, "admPois.hbs"));
+		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(pois, "admPois.hbs"));
 	}
 	
 public ModelAndView mostrarPoisPorNombre(Request request, Response response) {

@@ -28,10 +28,10 @@ import Terminal.Terminal;
 
 public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps {
 
-	 public static void main(String[] args) {
+	 /*public static void main(String[] args) {
 
 	    new Bootstrap().run();
-	  }
+	  }*/
 
 	  public void run() {
 			Mapa mapa = Mapa.getInstance();
@@ -43,7 +43,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			servicios.add(cgps);
 			
 			CGP cgpComuna3=new CGP();
-			cgpComuna3.setNombre("cgp comuna 3");
+			cgpComuna3.setNombre("cgp comuna Macri");
 			List<String> palabras = Arrays.asList("cgp","comuna 3","CABA");
 			Punto coordenadas = new Punto(34.4124, 24.4856);
 			Domicilio domicilio = new Domicilio("Arenales", 1245, "M.T.De.Alvear", "Santa Fe", 2100, 0, 0, 0, 1111);
