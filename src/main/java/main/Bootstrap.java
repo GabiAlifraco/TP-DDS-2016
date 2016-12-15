@@ -109,6 +109,37 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			zona2.add(coordenadaCGP6);
 			Zona zonaCGP2 = new Zona(zona2);
 			cgpComuna2.setZona(zonaCGP2);
+		
+			CGP cgpComuna3=new CGP();
+			cgpComuna3.setNombre("Cgp SantaFe");
+			Punto coordenadas3 = new Punto(87.9045, 77.4765);
+			Domicilio domicilio3 = new Domicilio("Sevoria", 334, "Berno", "Falcao", 370, 0, 0, 0, 1993);
+			Region region3 = new Region("Castelli", "Rosario", "Santa Fe", "Argentina");
+			Ubicacion ubicacion3 = new Ubicacion();
+			ubicacion3.setCoordenadas(coordenadas3);
+			ubicacion3.setDomicilio(domicilio3);
+			ubicacion3.setRegion(region3);
+			cgpComuna3.setUbicacion(ubicacion3);
+			cgpComuna3.setPalabrasClave(palabrasClaveCgp);
+			Disponibilidad disponibilidadRRHH = new Disponibilidad();
+			disponibilidadRRHH.setHorarioFinal(LocalTime.of(14, 0));
+			disponibilidadRRHH.setHorarioInicial( LocalTime.of(8, 0));
+			List<Disponibilidad> horariosRRHH = Arrays.asList(disponibilidadRRHH);
+			ServicioCGP rrhh = new ServicioCGP();
+			rrhh.setNombre("Recursos Humanos");
+			rrhh.setHorariosDeAtencion(horariosRRHH);
+			List<ServicioCGP> serviciosCGP3 = new ArrayList<ServicioCGP>();
+			serviciosCGP3= Arrays.asList(rrhh);
+			cgpComuna3.setServiciosCGP(serviciosCGP3);
+			Punto coordenadaCGP7 = new Punto(34.4124, 24.4856);
+			Punto coordenadaCGP8 = new Punto(34.4124, 24.4852);
+			Punto coordenadaCGP9 = new Punto(34.4120, 24.4851);
+			ArrayList<Punto> zona3 = new ArrayList<Punto>();
+			zona2.add(coordenadaCGP7);
+			zona2.add(coordenadaCGP8);
+			zona2.add(coordenadaCGP9);
+			Zona zonaCGP3 = new Zona(zona3);
+			cgpComuna3.setZona(zonaCGP3);
 			
 			//Creo paradas
 			//Palabras y disponibilidad comun a todas las paradas
@@ -179,6 +210,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		    withTransaction(() -> {
 		    persist(cgpComuna1);
 		    persist(cgpComuna2);
+		    persist(cgpComuna3);
 		    //persist(parada114);
 			persist(abasto);
 			persist(villacrespo);
