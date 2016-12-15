@@ -1,0 +1,28 @@
+<table class="table table-hover" >
+ 			<thead>
+ 				<td>#</td>
+ 				<td>Nombre</td>
+ 				<td>Latitud</td>
+ 				<td>Longitud</td>
+				<td>Localidad</td>
+				<td>Provincia</td>
+	    	</thead>
+	    	{{#each filtrados}}
+			<tbody>
+ 			<tr>
+ 				<td>{{poiID}}</td>
+ 				<td>{{nombre}}</td>
+ 				<td>{{ubicacion.coordenadas.latitud}}</td>
+ 				<td>{{ubicacion.coordenadas.longitud}}</td>
+ 				<td>{{ubicacion.region.localidad}}</td>
+ 				<td>{{ubicacion.region.provincia}}</td>
+ 				<td>
+ 					<a href="/administrador/pois/modificar/{{id}}"><span class="glyphicon glyphicon-pencil"></span></a>
+				</td>
+				<td> 
+					<a href="/administrador/pois/{{id}}"><span class="glyphicon glyphicon-trash"></span></a>
+				</td>
+ 			</tr>
+ 			{{/each}}
+ 			</tbody>				
+ </table>
