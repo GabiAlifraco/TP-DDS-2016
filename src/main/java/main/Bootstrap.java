@@ -23,8 +23,10 @@ import OrigenesDeDatos.Mapa;
 import OrigenesDeDatos.OrigenDeDatos;
 import OrigenesDeDatos.ProveedorBancos;
 import OrigenesDeDatos.ProveedorCGPs;
+import Pois.Banco;
 import Pois.CGP;
 import Pois.ParadaColectivo;
+import Pois.Poi;
 import Terminal.AdministradorTerminales;
 import Terminal.Terminal;
 
@@ -144,10 +146,10 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			//Creo paradas
 			//Palabras y disponibilidad comun a todas las paradas
 			List<String> palabrasClaveParada = Arrays.asList("Colectivo", "Parada");
-			List<DayOfWeek> diasParada = Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY,
-					DayOfWeek.FRIDAY);
+			/*List<DayOfWeek> diasParada = Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY,
+					DayOfWeek.FRIDAY);*/
 			Disponibilidad horarioParada =new Disponibilidad();
-			horarioParada.setDias(diasParada);
+			//horarioParada.setDias(diasParada);
 			horarioParada.setHorarioInicial(LocalTime.of(00,00));
 			horarioParada.setHorarioFinal(LocalTime.of(23,59));
 			List<Disponibilidad> horariosParada=Arrays.asList(horarioParada);
@@ -191,9 +193,62 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			parada114.setNombre("37");
 			parada114.setHorariosDeAtencion(horariosParada);
 
-	
+			//Creo Bancos
 			
+			List<String> palabrasClaveBanco = Arrays.asList("banco","tarjeta");
 
+			
+			Banco banco1= new Banco();
+			banco1.setNombre("Banco HSBC");
+			Punto coordenadaBanco1 = new Punto(22.9577, 34.0056);
+			Domicilio domicilioBanco1 = new Domicilio("Av.Gaona", 2168, "Franklin", "Av. Boyaca", 1350, 0, 0, 0, 1861);
+			Region regionBanco1 = new Region("CABA", "Flores", "Bs As", "Argentina");
+			Ubicacion ubicacionBanco1 = new Ubicacion();
+			ubicacionBanco1.setCoordenadas(coordenadaBanco1);
+			ubicacionBanco1.setDomicilio(domicilioBanco1);
+			ubicacionBanco1.setRegion(regionBanco1);
+			banco1.setUbicacion(ubicacionBanco1);
+			Disponibilidad disponibilidadBanco = new Disponibilidad();
+			disponibilidadBanco.setHorarioFinal(LocalTime.of(15, 0));
+			disponibilidadBanco.setHorarioInicial( LocalTime.of(10, 0));
+			List<Disponibilidad> horariosBanco = Arrays.asList(disponibilidadBanco);
+			banco1.setPalabrasClave(palabrasClaveBanco);
+			banco1.setHorariosDeAtencion(horariosBanco);
+			
+			Banco banco2= new Banco();
+			banco2.setNombre("Banco Frances");
+			Punto coordenadaBanco2 = new Punto(32.1507, 43.0563);
+			Domicilio domicilioBanco2 = new Domicilio("Sunchales", 1668, "Herrera", "Av.Las Tres", 445, 0, 0, 0, 1201);
+			Region regionBanco2 = new Region("Grutas", "Puerto Madryn", "Rio Negro", "Argentina");
+			Ubicacion ubicacionBanco2 = new Ubicacion();
+			ubicacionBanco2.setCoordenadas(coordenadaBanco2);
+			ubicacionBanco2.setDomicilio(domicilioBanco2);
+			ubicacionBanco2.setRegion(regionBanco2);
+			banco2.setUbicacion(ubicacionBanco2);
+			Disponibilidad disponibilidadBanco2 = new Disponibilidad();
+			disponibilidadBanco2.setHorarioFinal(LocalTime.of(15, 0));
+			disponibilidadBanco2.setHorarioInicial( LocalTime.of(10, 0));
+			List<Disponibilidad> horariosBanco2 = Arrays.asList(disponibilidadBanco2);
+			banco2.setPalabrasClave(palabrasClaveBanco);
+			banco2.setHorariosDeAtencion(horariosBanco2);
+
+			
+			Banco banco3= new Banco();
+			banco3.setNombre("Banco Comafi");
+			Punto coordenadaBanco3 = new Punto(132.6577, 37.8845);
+			Domicilio domicilioBanco3 = new Domicilio("Belgrano", 4168, "Lloyt", "Bolivar", 496, 0, 0, 0, 1771);
+			Region regionBanco3 = new Region("Las Ñecas", "San Rafael", "Mendoza", "Argentina");
+			Ubicacion ubicacionBanco3 = new Ubicacion();
+			ubicacionBanco3.setCoordenadas(coordenadaBanco3);
+			ubicacionBanco3.setDomicilio(domicilioBanco3);
+			ubicacionBanco3.setRegion(regionBanco3);
+			banco3.setUbicacion(ubicacionBanco3);
+			Disponibilidad disponibilidadBanco3 = new Disponibilidad();
+			disponibilidadBanco3.setHorarioFinal(LocalTime.of(15, 0));
+			disponibilidadBanco3.setHorarioInicial( LocalTime.of(10, 0));
+			List<Disponibilidad> horariosBanco3 = Arrays.asList(disponibilidadBanco3);
+			banco3.setPalabrasClave(palabrasClaveBanco);
+			banco3.setHorariosDeAtencion(horariosBanco3);
 		  
 	
 			
@@ -208,10 +263,12 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			villacrespo.setComunaTerminal("15");
 			beginTransaction();
 		    withTransaction(() -> {
-		    persist(cgpComuna1);
+		   persist(cgpComuna1);
 		    persist(cgpComuna2);
 		    persist(cgpComuna3);
-		    //persist(parada114);
+		    persist(banco1);
+		    persist(banco2);
+		    persist(banco3);
 			persist(abasto);
 			persist(villacrespo);
 			persist(admin);
