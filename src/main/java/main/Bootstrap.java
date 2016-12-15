@@ -25,6 +25,7 @@ import OrigenesDeDatos.ProveedorBancos;
 import OrigenesDeDatos.ProveedorCGPs;
 import Pois.Banco;
 import Pois.CGP;
+import Pois.Comercio;
 import Pois.ParadaColectivo;
 import Pois.Poi;
 import Terminal.AdministradorTerminales;
@@ -258,7 +259,63 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			List<Disponibilidad> horariosBanco3 = Arrays.asList(disponibilidadBanco3);
 			banco3.setPalabrasClave(palabrasClaveBanco);
 			banco3.setHorariosDeAtencion(horariosBanco3);
+			
+			//Creo comercios
+			
+			List<String> palabrasClaveComercio = Arrays.asList("ropa","cliente","juguetes","comida");
+			
+			Comercio comercio1= new Comercio();
+			comercio1.setNombre("Mimo & Co");
+			Punto coordenadaComercio1 = new Punto(234.6747, 55.8845);
+			Domicilio domicilioComercio1 = new Domicilio("Valnia", 3324, "Birios", "Papuka", 1866, 0, 0, 0, 1313);
+			Region regionComercio1 = new Region("Lagunita", "Santo Tome", "Corrientes", "Argentina");
+			Ubicacion ubicacionComercio1 = new Ubicacion();
+			ubicacionComercio1.setCoordenadas(coordenadaComercio1);
+			ubicacionComercio1.setDomicilio(domicilioComercio1);
+			ubicacionComercio1.setRegion(regionComercio1);
+			comercio1.setUbicacion(ubicacionComercio1);
+			Disponibilidad disponibilidadComercio1 = new Disponibilidad();
+			disponibilidadComercio1.setHorarioFinal(LocalTime.of(18, 0));
+			disponibilidadComercio1.setHorarioInicial( LocalTime.of(8, 0));
+			List<Disponibilidad> horariosComercio1 = Arrays.asList(disponibilidadComercio1);
+			comercio1.setPalabrasClave(palabrasClaveComercio);
+			comercio1.setHorariosDeAtencion(horariosComercio1);
 		  
+
+			Comercio comercio2= new Comercio();
+			comercio2.setNombre("Vans S.R.L");
+			Punto coordenadaComercio2 = new Punto(6.9856, 137.0324);
+			Domicilio domicilioComercio2 = new Domicilio("Chacras", 68, "Lloyters", "Variase", 2496, 0, 0, 0, 1631);
+			Region regionComercio2 = new Region("Las Viboras", "Tilcara", "Jujuy", "Argentina");
+			Ubicacion ubicacionComercio2 = new Ubicacion();
+			ubicacionComercio2.setCoordenadas(coordenadaComercio2);
+			ubicacionComercio2.setDomicilio(domicilioComercio2);
+			ubicacionComercio2.setRegion(regionComercio2);
+			comercio2.setUbicacion(ubicacionComercio2);
+			Disponibilidad disponibilidadComercio2 = new Disponibilidad();
+			disponibilidadComercio1.setHorarioFinal(LocalTime.of(16, 0));
+			disponibilidadComercio1.setHorarioInicial( LocalTime.of(10, 0));
+			List<Disponibilidad> horariosComercio2 = Arrays.asList(disponibilidadComercio2);
+			comercio2.setPalabrasClave(palabrasClaveComercio);
+			comercio2.setHorariosDeAtencion(horariosComercio2);
+	
+			
+			Comercio comercio3= new Comercio();
+			comercio3.setNombre("Solo Deportes S.A");
+			Punto coordenadaComercio3 = new Punto(63.9788,83.2264);
+			Domicilio domicilioComercio3 = new Domicilio("Av Rivadavia", 6577, "Puan", "Curapaligue", 1654, 0, 0, 0, 1465);
+			Region regionComercio3 = new Region("CABA", "Caballito", "Buenos Aires", "Argentina");
+			Ubicacion ubicacionComercio3 = new Ubicacion();
+			ubicacionComercio3.setCoordenadas(coordenadaComercio3);
+			ubicacionComercio3.setDomicilio(domicilioComercio3);
+			ubicacionComercio3.setRegion(regionComercio3);
+			comercio3.setUbicacion(ubicacionComercio3);
+			Disponibilidad disponibilidadComercio3 = new Disponibilidad();
+			disponibilidadComercio3.setHorarioFinal(LocalTime.of(21, 0));
+			disponibilidadComercio3.setHorarioInicial( LocalTime.of(10, 0));
+			List<Disponibilidad> horariosComercio3 = Arrays.asList(disponibilidadComercio3);
+			comercio3.setPalabrasClave(palabrasClaveComercio);
+			comercio3.setHorariosDeAtencion(horariosComercio3);
 	
 			
 			Terminal abasto = new Terminal("Terminal Abasto", servicios,new Usuario("terminalAbasto", "Abasto123", "TERMINAL"));
@@ -273,17 +330,20 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			beginTransaction();
 		    withTransaction(() -> {
 		    persist(cgpComuna1);
-		    persist(cgpComuna2);
+		    persist(parada37);
 		    persist(cgpComuna3);
 		    persist(banco1);
+		    persist(comercio1);
 		    persist(banco2);
+		    persist(cgpComuna2);
 		    persist(banco3);
 		    persist(parada114);
-			persist(abasto);
+		    persist(comercio2);
+		    persist(parada146);
+		    persist(comercio3);
+		    persist(abasto);
 			persist(villacrespo);
 			persist(admin);
-			persist(parada37);
-		    persist(parada146);
 		    });
 		    commitTransaction();
 	  }
