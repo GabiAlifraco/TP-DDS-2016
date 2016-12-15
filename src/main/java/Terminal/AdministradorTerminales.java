@@ -3,6 +3,7 @@ package Terminal;
 import java.util.List;
 
 
+
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import CaracteristicaPoi.Punto;
@@ -11,7 +12,7 @@ import OrigenesDeDatos.*;
 
 public class AdministradorTerminales implements WithGlobalEntityManager {
 	
-	public static AdministradorTerminales instancia= new AdministradorTerminales();
+	public static AdministradorTerminales instancia= null;
 
 	public void agregarTerminal(Terminal terminal) {
 		if (!entityManager().contains(terminal)) {
@@ -76,9 +77,7 @@ public class AdministradorTerminales implements WithGlobalEntityManager {
 	}
 	
 	public List<Terminal> listar() {
-	    return entityManager()
-	        .createQuery("from Terminal", Terminal.class) //
-	        .getResultList();
+	    return entityManager().createQuery("from Terminal", Terminal.class).getResultList();
 	  }
 	
 	public List<Terminal> buscarPorComuna(String nombre) {
@@ -87,4 +86,12 @@ public class AdministradorTerminales implements WithGlobalEntityManager {
 	        .setParameter("nombre", "%" + nombre + "%") //
 	        .getResultList();
 	  }
+	
+	public static AdministradorTerminales getInstance() {
+		if (instancia == null) {
+			instancia = new AdministradorTerminales();
+		}
+		return instancia;
+	}
+
 }

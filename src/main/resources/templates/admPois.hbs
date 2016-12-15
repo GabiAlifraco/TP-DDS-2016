@@ -19,16 +19,19 @@
 </div><br>
 <div class="form-group titulo">
 	<div class= "input-group">
-		<span class= "input-group-btn">
+		<div class="input-group-btn">	
 			<button class= "btn btn-danger dropdown-toggle" data-toggle= "dropdown">
-			Filtrar Segun<span class="caret"></span>
+			Filtrar Por Tipo<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu">
-				<li><a href="administrador/segunNombre">Nombre</a></li>
-				<li><a href="administrador/segunTipo">Tipo de Poi</a></li>
+				<li><a href="administrador/pois/filtrar">Parada de Colectivo</a></li>
+				<li><a href="administrador/pois/filtrar">CGP</a></li>
+				<li><a href="administrador/pois/filtrar">Comercio</a></li>
+				<li><a href="administrador/pois/filtrar">Banco</a></li>
 			</ul>
-		</span>
-		<input type="text" class="form-control" placeholder="Filtrar Pois Segun" name="filtroPoi">
+		<a href="administrador/pois/filtrarSegun" class="btn btn-danger">Buscar</a>
+		</div>
+		<input type="text" class="form-control" placeholder="Filtrar Pois Nombre" name="filtroPoi">
 	</div>
 </div>
 {{>listarPois.hbs}}

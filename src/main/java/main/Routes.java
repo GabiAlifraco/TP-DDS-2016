@@ -1,6 +1,7 @@
 package main;
 
 import static spark.Spark.*;
+
 import controllers.AccesosController;
 import controllers.AdministracionPoisController;
 import controllers.HistorialController;
@@ -15,7 +16,7 @@ public class Routes {
 		new Bootstrap().run();
 		System.out.println("Iniciando servidor");
 		staticFileLocation("/public");
-		TerminalController terminal= new TerminalController();
+		//TerminalController terminal= new TerminalController();
 		HomeController home = new HomeController();
 		AccesosController accesos = new AccesosController();
 		AdministracionPoisController administracion= new AdministracionPoisController();
@@ -39,6 +40,9 @@ public class Routes {
 
 		get("/administrador", home::mostrarHomeAdmin, engine);//Si entro como perfil administrador
 		get("/administrador/pois",administracion::mostrarPois,engine); //Muestro Pois
+		//get("/administrador/pois/:id", administracion::eliminar, engine); //Elimino un Poi
+		//get("/administrador/pois/modificar/:id", administracion::modificarPoi, engine); //Modifico un Poi
+		//post("/administrador/pois/modificar/:id", administracion::guardarModificacion, engine); //Guardo Modificacion
 		
 		
 		get("/administrador/terminales",administracion::mostrarTerminales,engine);//Muestro terminales

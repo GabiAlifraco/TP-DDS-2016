@@ -26,7 +26,7 @@ public class AdministracionPoisController extends Controller{
 		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(pois, "admPois.hbs"));
 	}
 	
-public ModelAndView mostrarPoisPorNombre(Request request, Response response) {
+	public ModelAndView mostrarPoisPorNombre(Request request, Response response) {
 		
 		String filtroPoi=request.queryParams("filtroPoi");
 		
@@ -45,7 +45,7 @@ public ModelAndView mostrarPoisPorNombre(Request request, Response response) {
 		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(viewModel, "admPois.hbs"));
 	}
 
-public ModelAndView mostrarPoisPorTipo(Request request, Response response) {
+	public ModelAndView mostrarPoisPorTipo(Request request, Response response) {
 	
 	String filtroPoi=request.queryParams("filtroPoi");
 	
@@ -62,35 +62,9 @@ public ModelAndView mostrarPoisPorTipo(Request request, Response response) {
     viewModel.put("filtroPoi", filtroPoi);
 	
 	return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(viewModel, "admPois.hbs"));
-}
-	
-	
-	
-	public ModelAndView mostrarTerminales(Request request, Response response){
-		
-		List<Terminal> terminales;
-
-	    String filtroComuna = request.queryParams("filtroComuna");
-	    if (Objects.isNull(filtroComuna) || filtroComuna.isEmpty()) {
-	      terminales = AdministradorTerminales.instancia.listar();
-	    } else {
-	      terminales = AdministradorTerminales.instancia.buscarPorComuna(filtroComuna);
-	    }
-
-	    HashMap<String, Object> viewModel = new HashMap<>();
-	    viewModel.put("terminales", terminales);
-	    viewModel.put("filtroComuna", filtroComuna);
-		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(viewModel, "admTerminal.hbs"));
 	}
 	
 	
-	public ModelAndView mostrarHistorial(Request request, Response response){
-		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(null, "admHistorial.hbs"));
-	}
-
-	
-	
-
 	public Void eliminar(Request request, Response response) {
 
 		Mapa miMapa = Mapa.getInstance();
@@ -99,8 +73,23 @@ public ModelAndView mostrarPoisPorTipo(Request request, Response response) {
 
 		miMapa.eliminarUnPoi(miPoi);
 
-		response.redirect("/administracionPois");
+		response.redirect("/administrador/pois");
 
 		return null;
+	}
+	
+
+	public ModelAndView mostrarTerminales(Request request, Response response){
+		
+		Map<String, List<Terminal>> terminales=new HashMap<>();	
+		List<Terminal> filtradas= new ArrayList<>();
+		filtradas=AdministradorTerminales.getInstance().listar(); //Devuelve todas las terminales persistidas.	
+	    terminales.put("filtradas", filtradas);
+		
+		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(terminales, "admTerminal.hbs"));
+	}
+	
+	public ModelAndView mostrarHistorial(Request request, Response response){
+		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(null, "admHistorial.hbs"));
 	}
 }

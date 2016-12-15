@@ -18,84 +18,17 @@
 	<h1 align="center"><strong>Terminales</strong></h1>
 </div>
 
-<form action="/administrador/terminales" >
-  <div class="row">
-	  <div class="col-md-10">
-		  <input type="text" class="form-control" name="filtroComuna" placeholder="Filtro por comuna">
-	  </div>
-	  <div class="col-md-2">
-		  <input type="submit" class="form-control btn btn-default" value="Filtrar">
-      </div>
-	  <br>	
-	  <br>
-	  <br>
-	  <div class="col-md-2">
-		  <input type="text" class="form-control" name="nombre" placeholder="Nombre">
-	  </div>
-	  <div class="col-md-2">
-		  <input type="text" class="form-control" name="latitud" placeholder="Latitud">
-	  </div>
-	  <div class="col-md-2">
-		  <input type="text" class="form-control" name="longitud" placeholder="Longitud">
-	  </div>
-	  <div class="col-md-2">
-		  <input type="text" class="form-control" name="comuna" placeholder="Comuna">
-	  </div>
-	  <div class="col-md-2">
-		  <input type="submit" class="form-control btn btn-default" value="Agregar">
-	  </div>
-	  <div class="col-md-2">
-		  <input type="submit" class="form-control btn btn-default" value="Eliminar">
-	  </div>		
-  </div>
-</form>
-<br>
-<div class="row shorcut-row">
-	<div class="col-md-12">	
-		<table class="table table-hover" >
-			<thead>
-				<td>Nombre</td>
-				<td>Latitud</td>
-				<td>Longitud</td>
-				<td>Comuna</td>
-			</thead>
-			<tbody>
-			<tr>	
-				<td>terminalAbasto</td>
-				<td>23</td>
-				<td>65</td>
-				<td>Almagro</td>
-			</tr>
-			<tr>	
-				<td>terminalSanJuan</td>
-				<td>54</td>
-				<td>34</td>
-				<td>San Cristobal</td>
-			</tr>
-			<tr>	
-				<td>terminalLugano</td>
-				<td>112</td>
-				<td>5</td>
-				<td>Villa Lugano</td>
-			</tr>
-			<tr>	
-				<td>terminalBosch</td>
-				<td>78</td>
-				<td>90</td>
-				<td>Villa Bosch</td>
-			</tr>	
-			{{#terminales}}
-			<tr>
-				<td>{{nombre}}</td>
-				<td>{{latitud}}</td>
-				<td>{{longitud}}</td>
-				<td>{{comuna}}</td>
-			</tr>
-			{{/terminales}}				
-			</tbody>
-		</table>
+<div class="form-group titulo">
+	<div class= "input-group">
+		<span class="input-group-btn">
+		<a href="administrador/terminales/agregar" class="btn btn-danger">Agregar</a>
+        <a href="administrador/terminales/filtrarSegun" class="btn btn-danger">Buscar</a>
+      	</span>
+		<input type="text" class="form-control" placeholder="Filtrar Pois Comuna" name="filtroPoi">
 	</div>
 </div>
+
+{{>listarTerminales.hbs}}
 
 
 {{/partial}}

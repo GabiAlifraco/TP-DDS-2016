@@ -1,0 +1,24 @@
+<table class="table table-hover" >
+			<thead>
+				<td>Nombre</td>
+				<td>Latitud</td>
+				<td>Longitud</td>
+				<td>Comuna</td>
+			</thead>
+			{{#each filtradas}}
+			<tbody>	
+			<tr>
+				<td>{{nombre}}</td>
+				<td>{{latitud}}</td>
+				<td>{{longitud}}</td>
+				<td>{{comuna}}</td>
+				<td>
+ 					<a href="/administrador/pois/modificar/{{id}}"><span class="glyphicon glyphicon-pencil"></span></a>
+				</td>
+				<td> 
+					<a href="/administrador/pois/{{id}}"><span class="glyphicon glyphicon-trash"></span></a>
+				</td>
+			</tr>
+			{{/each}}				
+			</tbody>
+</table>
