@@ -1,5 +1,6 @@
 <table class="table table-hover" >
 			<thead>
+				<td>#</td>
 				<td>Nombre</td>
 				<td>Latitud</td>
 				<td>Longitud</td>
@@ -8,10 +9,11 @@
 			{{#each filtradas}}
 			<tbody>	
 			<tr>
-				<td>{{nombre}}</td>
-				<td>{{latitud}}</td>
-				<td>{{longitud}}</td>
-				<td>{{comuna}}</td>
+				<td>{{idTerminal}}</td>
+				<td>{{nombreTerminal}}</td>
+				<td>{{coordenadaDispositivoMovil.latitud}}</td>
+				<td>{{coordenadaDispositivoMovil.longitud}}</td>
+				<td>{{comunaTerminal}}</td>
 				<td>
  					<a href="/administrador/pois/modificar/{{id}}"><span class="glyphicon glyphicon-pencil"></span></a>
 				</td>

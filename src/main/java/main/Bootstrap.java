@@ -317,19 +317,19 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			comercio3.setPalabrasClave(palabrasClaveComercio);
 			comercio3.setHorariosDeAtencion(horariosComercio3);
 	
+			Usuario admin=new Usuario("admin", "admin", "ADMINISTRADOR");
 			
 			Terminal abasto = new Terminal("Terminal Abasto", servicios,new Usuario("terminalAbasto", "Abasto123", "TERMINAL"));
-			Punto coordenadasa = new Punto(-34.6030, -58.4107);
+			Punto coordenadasa = new Punto(34.6030, -58.4107);
 			abasto.setCoordenadaDispositivoMovil(coordenadasa);
 			abasto.setComunaTerminal("3");
-	    	Usuario admin=new Usuario("admin", "admin", "ADMINISTRADOR");
 			Terminal villacrespo = new Terminal("Terminal Villa Crespo", servicios,new Usuario("terminalVC","elmejorbarrio123","terminal"));
-			Punto coordenadasVC = new Punto(-34.597208, -58.441588);
+			Punto coordenadasVC = new Punto(-34.597208, 58.441588);
 			villacrespo.setCoordenadaDispositivoMovil(coordenadasVC);
 			villacrespo.setComunaTerminal("15");
 			beginTransaction();
 		    withTransaction(() -> {
-		    persist(cgpComuna1);
+		    /*persist(cgpComuna1);
 		    persist(parada37);
 		    persist(cgpComuna3);
 		    persist(banco1);
@@ -340,7 +340,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		    persist(parada114);
 		    persist(comercio2);
 		    persist(parada146);
-		    persist(comercio3);
+		    persist(comercio3);*/
 		    persist(abasto);
 			persist(villacrespo);
 			persist(admin);

@@ -2,11 +2,13 @@ package main;
 
 import static spark.Spark.*;
 
+
 import controllers.AccesosController;
 import controllers.AdministracionPoisController;
 import controllers.HistorialController;
 import controllers.HomeController;
 import controllers.TerminalController;
+import spark.Spark;
 import spark.debug.DebugScreen;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -39,13 +41,19 @@ public class Routes {
 		post("/logout", accesos::cerrarSesion);
 
 		get("/administrador", home::mostrarHomeAdmin, engine);//Si entro como perfil administrador
+		
 		get("/administrador/pois",administracion::mostrarPois,engine); //Muestro Pois
-		//get("/administrador/pois/:id", administracion::eliminar, engine); //Elimino un Poi
+		//get("/administrador/pois/:id", administracion::eliminarPoi, engine); //Elimino un Poi
 		//get("/administrador/pois/modificar/:id", administracion::modificarPoi, engine); //Modifico un Poi
 		//post("/administrador/pois/modificar/:id", administracion::guardarModificacion, engine); //Guardo Modificacion
 		
 		
 		get("/administrador/terminales",administracion::mostrarTerminales,engine);//Muestro terminales
+		//get("/administrador/terminales/agregar", administracion::nueva, engine);
+        //post("/administrador/terminales/agregar", administracion::agregarTerminal, engine);
+		//get("/administrador/terminales/modificar/:id", administrador::modificarTerminal,engine);
+        //post("/administrador/terminales/modificar/:id", administrador::guardarModificacion,engine);
+        //get("/administrador/terminales/:id", administrador::eliminarTerminal,engine);
 		
 		
 		get("/administrador/historial",administracion::mostrarHistorial,engine);//Muestro historial de Consultas

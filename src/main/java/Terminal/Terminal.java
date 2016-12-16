@@ -29,7 +29,6 @@ public class Terminal implements WithGlobalEntityManager{
 
 	@Id
 	@GeneratedValue
-	@Column(name = "terminalID")
 	private long idTerminal;
 	
 	@ManyToOne
@@ -42,6 +41,7 @@ public class Terminal implements WithGlobalEntityManager{
 	
 
 	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "idUsuario")
 	private Usuario usuario;
 
 	@Embedded
