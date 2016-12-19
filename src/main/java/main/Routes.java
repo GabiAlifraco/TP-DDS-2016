@@ -44,8 +44,8 @@ public class Routes {
 		
 		get("/administrador/pois",administracion::mostrarPois,engine); //Muestro Pois
 		get("/administrador/pois/:id", administracion::eliminar, engine); //Elimino un Poi
-		//get("/administrador/pois/modificar/:id", administracion::modificarPoi, engine); //Modifico un Poi
-		//post("/administrador/pois/modificar/:id", administracion::guardarModificacion, engine); //Guardo Modificacion
+		get("/administrador/pois/modificar/:id", administracion::modificarPoi, engine); //Modifico un Poi
+		get("/administrador/pois/modificar/guardar/:id", administracion::actualizarPoi, engine); //Guardo Modificacion
 		
 		
 		get("/administrador/terminales",administracion::mostrarTerminales,engine);//Muestro terminales

@@ -53,6 +53,34 @@ public class AdministracionPoisController extends Controller implements WithGlob
     	return null;
 	}
 	
+	
+	public ModelAndView modificarPoi(Request request, Response response) {
+		Long id = Long.parseLong(request.params(":id"));
+		List<Poi> filtrados=Mapa.getInstance().buscarPois(id);
+		Poi poi=filtrados.get(0);
+		Map<String, Poi> pois=new HashMap<>();	
+		pois.put("poi", poi);
+		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(pois, "modificarPoi.hbs"));
+		
+	}
+	
+	public ModelAndView actualizarPoi(Request request, Response response) {
+		
+		Long id = Long.parseLong(request.params(":id"));
+		List<Poi> filtrados=Mapa.getInstance().buscarPois(id);
+		Poi puntoInteres=filtrados.get(0);
+		puntoInteres.setNombre(request.queryParams("nombrePoi"));
+		puntoInteres.getDomicilio().setCallePrincipal(request.queryParams("domicilioPoi"));
+		puntoInteres.getDomicilio().setAlturaPrincipal(Integer.parseInt(request.queryParams("alturaPoi")));
+		puntoInteres.getCoordenada().setLatitud(Double.parseDouble(request.queryParams("latitudPoi")));
+		puntoInteres.getCoordenada().setLongitud(Double.parseDouble(request.queryParams("longitudPoi")));
+		withTransaction(() ->{
+    		Mapa.getInstance().modificarUnPoi(puntoInteres);
+    	});
+		response.redirect("/administrador");
+    	return null;
+		
+	}
 
 	public ModelAndView mostrarTerminales(Request request, Response response){
 		
