@@ -18,7 +18,8 @@ public class AdministradorTerminales implements WithGlobalEntityManager {
 	public static AdministradorTerminales instancia= null;
 
 	public void agregarTerminal(Terminal terminal) {
-		if (!entityManager().contains(terminal)) {
+		List<Terminal> encontradas=entityManager().createQuery("from Terminal",Terminal.class).getResultList();
+		if (!encontradas.contains(terminal)) {
 			entityManager().persist(terminal);
 		}
 	}

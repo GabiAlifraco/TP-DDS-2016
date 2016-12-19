@@ -10,7 +10,15 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
 
+
+
+
+import Accesos.Usuario;
+import CaracteristicaPoi.Punto;
 import OrigenesDeDatos.Mapa;
+import OrigenesDeDatos.OrigenDeDatos;
+import OrigenesDeDatos.ProveedorBancos;
+import OrigenesDeDatos.ProveedorCGPs;
 import Pois.Poi;
 import Terminal.AdministradorTerminales;
 import Terminal.Terminal;
@@ -110,6 +118,48 @@ public class AdministracionPoisController extends Controller implements WithGlob
     	return null;
 	}
 	
+	public ModelAndView nueva(Request request, Response response){
+		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(null, "terminal.hbs"));
+	}
+	
+	public ModelAndView agregarTerminal(Request request, Response response){
+		
+		Mapa mapa = Mapa.getInstance();
+		ProveedorBancos bancos = new ProveedorBancos();
+		ProveedorCGPs cgps = new ProveedorCGPs();
+		List<OrigenDeDatos> servicios = new ArrayList<OrigenDeDatos>();
+		servicios.add(mapa);
+		servicios.add(bancos);
+		servicios.add(cgps);
+		String nombreTerminal=request.queryParams("nombre");
+		String comuna=request.queryParams("comuna");
+		String pass=request.queryParams("pass");
+		double x=Math.random()*100;
+		double y=Math.random()*100;
+		double latitud=redondearDecimales(x, 4);
+		double longitud=redondearDecimales(y, 4);
+		Punto coordenadasVC = new Punto(latitud,longitud);
+		Terminal terminal= new Terminal(nombreTerminal,servicios,new Usuario(nombreTerminal, pass, "TERMINAL"));
+		terminal.setComunaTerminal(comuna);
+		terminal.setCoordenadaDispositivoMovil(coordenadasVC);
+		withTransaction(() ->{
+    		AdministradorTerminales.getInstance().agregarTerminal(terminal);
+    	});
+		
+		
+		response.redirect("/administrador");
+		return null;
+	}
+	
+	public static double redondearDecimales(double valorInicial, int numeroDecimales) {
+        double parteEntera, resultado;
+        resultado = valorInicial;
+        parteEntera = Math.floor(resultado);
+        resultado=(resultado-parteEntera)*Math.pow(10, numeroDecimales);
+        resultado=Math.round(resultado);
+        resultado=(resultado/Math.pow(10, numeroDecimales))+parteEntera;
+        return resultado;
+    }
 	public ModelAndView mostrarHistorial(Request request, Response response){
 		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(null, "admHistorial.hbs"));
 	}

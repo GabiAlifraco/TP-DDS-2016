@@ -47,11 +47,10 @@ public class Routes {
 		get("/administrador/pois/modificar/:id", administracion::modificarPoi, engine); //Modifico un Poi
 		get("/administrador/pois/modificar/guardar/:id", administracion::actualizarPoi, engine); //Guardo Modificacion
 		
-		
+		get("/administrador/terminales/agregar", administracion::nueva, engine); //Agrego nueva terminal
+		get("/administrador/terminales/nueva/agregar", administracion::agregarTerminal, engine);
 		get("/administrador/terminales",administracion::mostrarTerminales,engine);//Muestro terminales
 		get("/administrador/terminales/:id", administracion::eliminarTerminal,engine);
-		//get("/administrador/terminales/agregar", administracion::nueva, engine);
-        //post("/administrador/terminales/agregar", administracion::agregarTerminal, engine);
 		//get("/administrador/terminales/modificar/:id", administrador::modificarTerminal,engine);
         //post("/administrador/terminales/modificar/:id", administrador::guardarModificacion,engine);
 		

@@ -21,14 +21,20 @@
 <form action="/administrador/terminales" >
   <div class="row">
   	  <div class="col-md-2">
-		  <input type="submit" class="form-control btn btn-danger">
+		  <button type="submit" class="form-control btn btn-danger">Buscar</button>
 	  </div>
 	  <div class="col-md-6">
-		  <input type="text" class="form-control" name="filtroNombre">
+		  <input type="text" class="form-control" name="filtroNombre" placeholder="Numero de Comuna">
 	  </div> 
   </div>
 </form>
-
+<form action="/administrador/terminales/agregar" >
+	<div class="row">
+		<div class="col-md-2">
+			<button type="submit" class="form-control btn btn-danger">Agregar</button>
+		</div>
+	</div>
+</form>
 {{>listarTerminales.hbs}}
 
 

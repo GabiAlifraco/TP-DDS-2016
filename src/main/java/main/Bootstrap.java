@@ -324,7 +324,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			abasto.setCoordenadaDispositivoMovil(coordenadasa);
 			abasto.setComunaTerminal("3");
 			Terminal villacrespo = new Terminal("Terminal_VillaCrespo", servicios,new Usuario("terminalVC","elmejorbarrio123","terminal"));
-			Punto coordenadasVC = new Punto(-34.597208, 58.441588);
+			Punto coordenadasVC = new Punto(-34.5972, 58.4415);
 			villacrespo.setCoordenadaDispositivoMovil(coordenadasVC);
 			villacrespo.setComunaTerminal("15");
 			beginTransaction();

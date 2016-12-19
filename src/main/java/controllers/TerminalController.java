@@ -59,4 +59,5 @@ public class TerminalController extends Controller {
 		return this.redirigirSegunPermisos(request, response, "terminal", new ModelAndView(pois, "detallePoi.hbs"));
 		
 	}
+	
 }
