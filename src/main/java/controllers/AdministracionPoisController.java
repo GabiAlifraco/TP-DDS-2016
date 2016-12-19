@@ -58,10 +58,27 @@ public class AdministracionPoisController extends Controller implements WithGlob
 		
 		Map<String, List<Terminal>> terminales=new HashMap<>();	
 		List<Terminal> filtradas= new ArrayList<>();
-		filtradas=AdministradorTerminales.getInstance().listar(); //Devuelve todas las terminales persistidas.	
-	    terminales.put("filtradas", filtradas);
+		String filtroNombre=request.queryParams("filtroNombre");
+		if (Objects.isNull(filtroNombre) || filtroNombre.isEmpty()){
+			filtradas=AdministradorTerminales.getInstance().listar(); //Devuelve todas las terminales persistidas.	
+		}else{
+			filtradas=AdministradorTerminales.getInstance().buscarPorComuna(filtroNombre);
+		}
+			terminales.put("filtradas", filtradas);
 		
 		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(terminales, "admTerminal.hbs"));
+	}
+	
+	public ModelAndView eliminarTerminal(Request request, Response response) {
+
+		Long id = Long.parseLong(request.params(":id"));
+		List<Terminal> filtradas=AdministradorTerminales.getInstance().buscarTerminales(id);
+		Terminal terminal=filtradas.get(0);
+		withTransaction(() ->{
+    		AdministradorTerminales.getInstance().eliminarTerminal(terminal);
+    	});
+		response.redirect("/administrador");
+    	return null;
 	}
 	
 	public ModelAndView mostrarHistorial(Request request, Response response){

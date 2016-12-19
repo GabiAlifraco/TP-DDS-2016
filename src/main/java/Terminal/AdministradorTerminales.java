@@ -4,11 +4,14 @@ import java.util.List;
 
 
 
+
+
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import CaracteristicaPoi.Punto;
 import Notificaciones.NotificacionBusqueda;
 import OrigenesDeDatos.*;
+import Pois.Poi;
 
 public class AdministradorTerminales implements WithGlobalEntityManager {
 	
@@ -21,7 +24,8 @@ public class AdministradorTerminales implements WithGlobalEntityManager {
 	}
 
 	public void eliminarTerminal(Terminal terminal) {
-		if (entityManager().contains(terminal)) {
+		List<Terminal> encontradas=entityManager().createQuery("from Terminal",Terminal.class).getResultList();
+		if (encontradas.contains(terminal)) {
 			entityManager().remove(terminal);
 		}
 	}
@@ -49,6 +53,11 @@ public class AdministradorTerminales implements WithGlobalEntityManager {
 		}
 	}
 
+	public List<Terminal> buscarTerminales(Long terminalID){
+		return entityManager().createQuery("from Terminal c where c.idTerminal like :id",Terminal.class)
+				.setParameter("id",terminalID)
+				.getResultList();
+	}
 	public void modificarNombreTerminal(long idTerminal, String nombreModificado) {
 		Terminal terminalPersistida = entityManager().find(Terminal.class, idTerminal);
 		if (terminalPersistida != null) {
@@ -82,8 +91,8 @@ public class AdministradorTerminales implements WithGlobalEntityManager {
 	
 	public List<Terminal> buscarPorComuna(String nombre) {
 	    return entityManager() //
-	        .createQuery("from Terminal c where c.nombre like :nombre", Terminal.class) //
-	        .setParameter("nombre", "%" + nombre + "%") //
+	        .createQuery("from Terminal c where c.comunaTerminal like :nombre", Terminal.class) //
+	        .setParameter("nombre",nombre) //
 	        .getResultList();
 	  }
 	

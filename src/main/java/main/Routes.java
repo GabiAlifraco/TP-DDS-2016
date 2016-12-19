@@ -49,11 +49,11 @@ public class Routes {
 		
 		
 		get("/administrador/terminales",administracion::mostrarTerminales,engine);//Muestro terminales
+		get("/administrador/terminales/:id", administracion::eliminarTerminal,engine);
 		//get("/administrador/terminales/agregar", administracion::nueva, engine);
         //post("/administrador/terminales/agregar", administracion::agregarTerminal, engine);
 		//get("/administrador/terminales/modificar/:id", administrador::modificarTerminal,engine);
         //post("/administrador/terminales/modificar/:id", administrador::guardarModificacion,engine);
-        //get("/administrador/terminales/:id", administrador::eliminarTerminal,engine);
 		
 		
 		get("/administrador/historial",administracion::mostrarHistorial,engine);//Muestro historial de Consultas
