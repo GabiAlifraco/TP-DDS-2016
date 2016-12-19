@@ -68,6 +68,7 @@ public class AdministracionPoisController extends Controller implements WithGlob
 		
 		Long id = Long.parseLong(request.params(":id"));
 		List<Poi> filtrados=Mapa.getInstance().buscarPois(id);
+		
 		Poi puntoInteres=filtrados.get(0);
 		puntoInteres.setNombre(request.queryParams("nombrePoi"));
 		puntoInteres.getDomicilio().setCallePrincipal(request.queryParams("domicilioPoi"));
@@ -75,7 +76,7 @@ public class AdministracionPoisController extends Controller implements WithGlob
 		puntoInteres.getCoordenada().setLatitud(Double.parseDouble(request.queryParams("latitudPoi")));
 		puntoInteres.getCoordenada().setLongitud(Double.parseDouble(request.queryParams("longitudPoi")));
 		withTransaction(() ->{
-    		Mapa.getInstance().modificarUnPoi(puntoInteres);
+    		Mapa.getInstance().agregarUnPoi(puntoInteres);
     	});
 		response.redirect("/administrador");
     	return null;

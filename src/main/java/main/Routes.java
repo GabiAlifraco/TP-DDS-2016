@@ -18,7 +18,7 @@ public class Routes {
 		new Bootstrap().run();
 		System.out.println("Iniciando servidor");
 		staticFileLocation("/public");
-		//TerminalController terminal= new TerminalController();
+		TerminalController terminal= new TerminalController();
 		HomeController home = new HomeController();
 		AccesosController accesos = new AccesosController();
 		AdministracionPoisController administracion= new AdministracionPoisController();
@@ -62,6 +62,9 @@ public class Routes {
 		post("/administrador/historial/filtroTerminal",historial::mostrarHistorialFiltroTerminal,engine);
 
 		get("/terminal",home::mostrarHomeTerminal,engine);//Si entro como perfil terminal
-		//get("/terminal/pois",terminal::buscar,engine);
+		get("/terminal/bancos",terminal::mostrarBancos,engine);
+		get("/terminal/cgps",terminal::mostrarCgps,engine);
+		get("/terminal/paradas",terminal::mostrarParadas,engine);
+		get("/terminal/locales",terminal::mostrarLocales,engine);
 	}
 }

@@ -1,0 +1,48 @@
+{{# partial "titulo" }}
+<title>
+  Pois
+</title>
+{{/partial}}
+
+{{#partial "header" }}
+<link rel="stylesheet"  href="/css/home.css">
+
+<a href="/terminal" class = "logout">Volver Atras</a>
+{{/partial}}
+<body class ="body-item" >
+<link rel="stylesheet"  href="/css/item-admin.css">
+{{#partial "contenido" }}
+<div class="titulo">
+	<h1 align="center"><strong>Puntos de Interés</strong></h1>
+</div><br>
+<table class="table table-hover" >
+ 			<thead>
+ 				<td>#</td>
+ 				<td>Nombre</td>
+ 				<td>Latitud</td>
+ 				<td>Longitud</td>
+				<td>Localidad</td>
+				<td>Provincia</td>
+	    	</thead>
+	    	{{#each filtrados}}
+			<tbody>
+ 			<tr>
+ 				<td>{{poiID}}</td>
+ 				<td>{{nombre}}</td>
+ 				<td>{{ubicacion.coordenadas.latitud}}</td>
+ 				<td>{{ubicacion.coordenadas.longitud}}</td>
+ 				<td>{{ubicacion.region.localidad}}</td>
+ 				<td>{{ubicacion.region.provincia}}</td>
+ 				<td>
+ 					<a href="/terminal/detalle/{{poiID}}"><span class="glyphicon glyphicon-pencil"></span></a>
+				</td>
+ 			</tr>
+ 			{{/each}}
+ 			</tbody>				
+ </table>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" ></script>
+{{/partial}}
+
+</body>
+{{> layout.hbs }}
