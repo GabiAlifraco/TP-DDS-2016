@@ -151,6 +151,15 @@ public class AdministracionPoisController extends Controller implements WithGlob
 		return null;
 	}
 	
+	public ModelAndView modificarTerminal(Request request, Response response) {
+		Long id = Long.parseLong(request.params(":id"));
+		Terminal terminal=AdministradorTerminales.getInstance().buscarTerminal(id);
+		Map<String, Terminal> terminales=new HashMap<>();	
+		terminales.put("terminal",terminal);
+		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(terminales, "modificarTerminal.hbs"));
+		
+	}
+	
 	public static double redondearDecimales(double valorInicial, int numeroDecimales) {
         double parteEntera, resultado;
         resultado = valorInicial;
