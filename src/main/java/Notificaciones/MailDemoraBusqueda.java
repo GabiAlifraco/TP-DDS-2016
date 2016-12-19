@@ -3,31 +3,19 @@ package Notificaciones;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+
 
 import Resultado.Resultado;
 import Terminal.Terminal;
-@Entity  
-@Table(name="MailsDemora")  
+ 
 public class MailDemoraBusqueda extends NotificacionBusqueda{
 
-	@Transient
+
 	private boolean mailEnviado;
-	@Id
-	@GeneratedValue
-	@Column(name="MailDemora_Id")
 	private long id_MailDemora;
 	
-	@Column(name="TiempoMaximoBusqueda")
 	private long tiempoMaximoBusqueda;
     
-	@OneToMany(mappedBy="mail")
 	private List<Terminal> terminales = new ArrayList<Terminal>();
 	
 	public MailDemoraBusqueda() {

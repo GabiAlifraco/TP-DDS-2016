@@ -31,7 +31,7 @@ public class Terminal implements WithGlobalEntityManager{
 	@GeneratedValue
 	private long idTerminal;
 	
-	@ManyToOne
+	@Transient
 	@org.mongodb.morphia.annotations.Transient
 	private MailDemoraBusqueda mail;
 	
