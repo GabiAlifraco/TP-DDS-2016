@@ -31,10 +31,11 @@ public class CGP extends Poi{
 		setNombre("CGP Comuna "+ unaComuna);
 		serviciosCGP = servicios;
 		setPalabrasClave(this.getPalabrasClave());
+		setTipo_Poi("CGP");
 		
 	}
 	public CGP(){
-		
+		setTipo_Poi("CGP");
 	}
 	
 	@Override

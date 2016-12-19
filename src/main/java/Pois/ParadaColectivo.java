@@ -16,9 +16,10 @@ public class ParadaColectivo extends Poi {
 		setUbicacion(unaUbicacion);
 		setNombre(unNombre);
 		setPalabrasClave(palabrasClave);
+		setTipo_Poi("ParadaColectivo");
 	}
 	public ParadaColectivo(){
-		
+		setTipo_Poi("ParadaColectivo");
 		
 	}
 	public int distanciaMinimaParaConsiderarmeCercano() {

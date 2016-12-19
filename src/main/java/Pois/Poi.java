@@ -20,7 +20,7 @@ import CaracteristicaPoi.Ubicacion;
 
 @javax.persistence.Table(name="Pois")
 @javax.persistence.Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@javax.persistence.DiscriminatorColumn(name= "tipo_Poi")
+@javax.persistence.DiscriminatorColumn(name= "Rubro")
 public abstract class Poi{
 
 	@javax.persistence.Id
@@ -39,6 +39,16 @@ public abstract class Poi{
 	
 	protected String nombre;
 	
+	protected String tipo_Poi;
+	
+	public String getTipo_Poi() {
+		return tipo_Poi;
+	}
+
+	public void setTipo_Poi(String tipo_Poi) {
+		this.tipo_Poi = tipo_Poi;
+	}
+
 	@javax.persistence.ElementCollection
 	@javax.persistence.CollectionTable(name = "PalabrasClaveDePoi") 
 	@org.mongodb.morphia.annotations.Embedded

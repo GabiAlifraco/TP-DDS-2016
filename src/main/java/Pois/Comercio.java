@@ -18,8 +18,10 @@ public class Comercio extends Poi {
 		setUbicacion(unaUbicacion);
 		setHorariosDeAtencion(horariosDeAtencion);
 		setPalabrasClave(palabrasClave);
+		setTipo_Poi("Comercio");
 	}
     public Comercio(){
+		setTipo_Poi("Comercio");
     	    }
 	public int distanciaMinimaParaConsiderarmeCercano() {
 		return this.getDistancia();

@@ -62,8 +62,8 @@ public class Mapa implements OrigenDeDatos, WithGlobalEntityManager{
 	 
 	 public List<Poi> buscarPorTipo(String tipo) {
 		    return entityManager() //
-		        .createQuery("from Poi c where c.Tipo_Poi like :Tipo_Poi", Poi.class) //
-		        .setParameter("Tipo_Poi", tipo) //
+		        .createQuery("from Poi c where c.tipo_Poi like :tipo", Poi.class) //
+		        .setParameter("tipo", tipo) //
 		        .getResultList();
 		  }
 	

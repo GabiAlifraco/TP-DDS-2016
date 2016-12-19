@@ -12,9 +12,10 @@ public class Banco extends Poi {
 		setNombre(unNombre);
 		setPalabrasClave(serviciosBanco);
 		setUbicacion(ubicacion);
+		setTipo_Poi("Banco");
 	}
 	public Banco(){
-		
+		setTipo_Poi("Banco");		
 	}
 	public int distanciaMinimaParaConsiderarmeCercano() {
 		return 500;
