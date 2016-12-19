@@ -1,0 +1,80 @@
+{{#partial "contenido" }}
+{{#with poi}}
+<div class="titulo">
+	<h1 align="center"><strong>Detalle de Poi</strong></h1>
+</div><br>
+
+
+<form  class="form-horizontal">
+<div class="panel panel-default">
+  	<div class="panel-heading"><span class="glyphicon glyphicon-globe"></span>{{nombre}} </div>
+  
+	<div class="panel-body">	
+			
+			<div class="form-group">
+			    <div class="form-group">
+			    <label for="nombre" class="control-label col-sm-2">Nombre:</label>
+				<div class="col-sm-2"> 
+					<input type="text" class="form-control" value={{nombre}} name="nombrePoi" readonly="readonly">
+				</div>
+			    </div>
+			</div>
+			
+			<div class="form-group">
+			    <div class="form-group">
+			    
+					 
+				<label for="calleDomicilio" class="control-label col-sm-2"> Domicilio: </label>
+				<div class="col-sm-2"> 
+					<input type="text" class="form-control" value={{ubicacion.domicilio.callePrincipal}} name="domicilioPoi" readonly="readonly">
+				</div>
+				<label for="longitud" class="control-label col-sm-2"> Altura: </label>
+				<div class="col-sm-2"> 
+					<input type="number" class="form-control" value={{ubicacion.domicilio.alturaPrincipal}} name="alturaPoi" readonly="readonly">
+				</div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+			    <div class="form-group">
+				 
+				<label for="latitud" class="control-label col-sm-2"> Latitud: </label>
+				<div class="col-sm-2"> 
+					<input type="number" class="form-control" value={{ubicacion.coordenadas.latitud}} name="latitudPoi" readonly="readonly">
+				</div>
+				<label for="longitud" class="control-label col-sm-2"> Longitud: </label>
+				<div class="col-sm-2"> 
+					<input type="number" class="form-control" value={{ubicacion.coordenadas.longitud}} name="longitudPoi" readonly="readonly">
+				</div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+			    <div class="form-group">
+				<label for="barrio" class="control-label col-sm-2"> Barrio: </label>
+				<div class="col-sm-2"> 
+					<input type="text" class="form-control" value={{ubicacion.region.barrio}} name="barrioPoi" readonly="readonly">
+				</div>
+				
+				<label for="localidad" class="control-label col-sm-2"> Localidad: </label>
+				<div class="col-sm-2"> 
+					<input type="text" class="form-control" value={{ubicacion.region.localidad}} name="localidadPoi" readonly="readonly">
+				</div>
+				
+				</div>
+			</div>
+	</div>
+
+	 <div class="panel-footer text-right">
+	 	<a href="/terminal" button class="btn btn-default">Regresar</button>
+	</div>
+
+</div> 
+</form>
+{{/with}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" ></script>
+{{/partial}}
+
+
+{{> layout.hbs }}

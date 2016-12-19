@@ -52,10 +52,10 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			
 			
 			CGP cgpComuna1=new CGP();
-			cgpComuna1.setNombre("Cgp Alvear");
+			cgpComuna1.setNombre("Cgp_Alvear");
 			Punto coordenadas = new Punto(34.4124, 24.4856);
-			Domicilio domicilio = new Domicilio("Arenales", 1245, "M.T.De.Alvear", "Santa Fe", 2100, 0, 0, 0, 1111);
-			Region region = new Region("CABA", "Recoleta", "Bs As", "Argentina");
+			Domicilio domicilio = new Domicilio("Arenales", 1245, "M.T.De.Alvear", "Santa_Fe", 2100, 0, 0, 0, 1111);
+			Region region = new Region("CABA", "Recoleta", "Buenos_Aires", "Argentina");
 			Ubicacion ubicacion = new Ubicacion();
 			ubicacion.setCoordenadas(coordenadas);
 			ubicacion.setDomicilio(domicilio);
@@ -83,10 +83,10 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			cgpComuna1.setZona(zonaCGP);
 			
 			CGP cgpComuna2=new CGP();
-			cgpComuna2.setNombre("Cgp Piñeyro");
+			cgpComuna2.setNombre("Cgp_Piñeyro");
 			Punto coordenadas2 = new Punto(65.6785, 12.4461);
-			Domicilio domicilio2 = new Domicilio("Saavedra", 45, "Alcala", "SantaRosa", 500, 0, 0, 0, 1234);
-			Region region2 = new Region("ZonaSur", "Lanus", "Bs As", "Argentina");
+			Domicilio domicilio2 = new Domicilio("Saavedra", 45, "Alcala", "Santa_Rosa", 500, 0, 0, 0, 1234);
+			Region region2 = new Region("ZonaSur", "Lanus", "Buenos_Aires", "Argentina");
 			Ubicacion ubicacion2 = new Ubicacion();
 			ubicacion2.setCoordenadas(coordenadas2);
 			ubicacion2.setDomicilio(domicilio2);
@@ -114,10 +114,10 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			cgpComuna2.setZona(zonaCGP2);
 		
 			CGP cgpComuna3=new CGP();
-			cgpComuna3.setNombre("Cgp SantaFe");
+			cgpComuna3.setNombre("Cgp_SantaFe");
 			Punto coordenadas3 = new Punto(87.9045, 77.4765);
 			Domicilio domicilio3 = new Domicilio("Sevoria", 334, "Berno", "Falcao", 370, 0, 0, 0, 1993);
-			Region region3 = new Region("Castelli", "Rosario", "Santa Fe", "Argentina");
+			Region region3 = new Region("Castelli", "Rosario", "Santa_Fe", "Argentina");
 			Ubicacion ubicacion3 = new Ubicacion();
 			ubicacion3.setCoordenadas(coordenadas3);
 			ubicacion3.setDomicilio(domicilio3);
@@ -129,7 +129,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			disponibilidadRRHH.setHorarioInicial( LocalTime.of(8, 0));
 			List<Disponibilidad> horariosRRHH = Arrays.asList(disponibilidadRRHH);
 			ServicioCGP rrhh = new ServicioCGP();
-			rrhh.setNombre("Recursos Humanos");
+			rrhh.setNombre("Recursos_Humanos");
 			rrhh.setHorariosDeAtencion(horariosRRHH);
 			List<ServicioCGP> serviciosCGP3 = new ArrayList<ServicioCGP>();
 			serviciosCGP3= Arrays.asList(rrhh);
@@ -153,10 +153,10 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		
 			
 			ParadaColectivo parada114=new ParadaColectivo();
-			parada114.setNombre("Parada 114");
+			parada114.setNombre("Parada_114");
 			Punto coordenadaParada = new Punto(37.3598, 98.2843);
-			Domicilio domicilioParada = new Domicilio("Av.Segurola", 1141, "Av.Gaona", "Av. J.B.Justo", 6100, 0, 0, 0, 1111);
-			Region regionParada = new Region("CABA", "Floresta", "Bs As", "Argentina");
+			Domicilio domicilioParada = new Domicilio("Av.Segurola", 1141, "Av.Gaona", "Av.J.B.Justo", 6100, 0, 0, 0, 1111);
+			Region regionParada = new Region("CABA", "Floresta", "Buenos_Aires", "Argentina");
 			Ubicacion ubicacionParada = new Ubicacion();
 			ubicacionParada.setCoordenadas(coordenadaParada);
 			ubicacionParada.setDomicilio(domicilioParada);
@@ -170,9 +170,9 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			parada114.setHorariosDeAtencion(horariosParada);
 			
 			ParadaColectivo parada146=new ParadaColectivo();
-			parada146.setNombre("Parada 146");
-			Domicilio domicilioParada2 = new Domicilio("Av San Martin", 1454, "Galicia", "Tres Arroyos", 944, 0, 0, 0, 1416);
-			Region regionParada2 = new Region("CABA", "Villa Crespo", "Bs As", "Argentina");
+			parada146.setNombre("Parada_146");
+			Domicilio domicilioParada2 = new Domicilio("Av.San_Martin", 1454, "Galicia", "Tres_Arroyos", 944, 0, 0, 0, 1416);
+			Region regionParada2 = new Region("CABA", "Villa_Crespo", "Buenos_Aires", "Argentina");
 			Punto coordenadaParada2 = new Punto(47.3206, 38.5587);
 			Ubicacion ubicacionParada2 = new Ubicacion();
 			ubicacionParada2.setCoordenadas(coordenadaParada2);
@@ -187,9 +187,9 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			parada146.setHorariosDeAtencion(horariosParada2);
 			
 			ParadaColectivo parada37=new ParadaColectivo();
-			parada37.setNombre("Parada 37");
-			Domicilio domicilioParada3 = new Domicilio("Hipolito Yrigoyen", 947, "SantiagoEstero", "Robles", 900, 0, 0, 0, 1234);
-			Region regionParada3 = new Region("AreaMetropolitana", "Avellaneda", "Bs As", "Argentina");
+			parada37.setNombre("Parada_37");
+			Domicilio domicilioParada3 = new Domicilio("Hipolito_Yrigoyen", 947, "Santiago_Estero", "Robles", 900, 0, 0, 0, 1234);
+			Region regionParada3 = new Region("Area_Metropolitana", "Avellaneda", "Buenos_Aires", "Argentina");
 			Punto coordenadaParada3 = new Punto(114.5675, 15.4276);
 			Ubicacion ubicacionParada3 = new Ubicacion();
 			ubicacionParada3.setCoordenadas(coordenadaParada3);
@@ -209,10 +209,10 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 
 			
 			Banco banco1= new Banco();
-			banco1.setNombre("Banco HSBC");
+			banco1.setNombre("Banco_HSBC");
 			Punto coordenadaBanco1 = new Punto(22.9577, 34.0056);
-			Domicilio domicilioBanco1 = new Domicilio("Av.Gaona", 2168, "Franklin", "Av. Boyaca", 1350, 0, 0, 0, 1861);
-			Region regionBanco1 = new Region("CABA", "Flores", "Bs As", "Argentina");
+			Domicilio domicilioBanco1 = new Domicilio("Av.Gaona", 2168, "Franklin", "Av.Boyaca", 1350, 0, 0, 0, 1861);
+			Region regionBanco1 = new Region("CABA", "Flores", "Buenos_Aires", "Argentina");
 			Ubicacion ubicacionBanco1 = new Ubicacion();
 			ubicacionBanco1.setCoordenadas(coordenadaBanco1);
 			ubicacionBanco1.setDomicilio(domicilioBanco1);
@@ -226,10 +226,10 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			banco1.setHorariosDeAtencion(horariosBanco);
 			
 			Banco banco2= new Banco();
-			banco2.setNombre("Banco Frances");
+			banco2.setNombre("Banco_Frances");
 			Punto coordenadaBanco2 = new Punto(32.1507, 43.0563);
-			Domicilio domicilioBanco2 = new Domicilio("Sunchales", 1668, "Herrera", "Av.Las Tres", 445, 0, 0, 0, 1201);
-			Region regionBanco2 = new Region("Grutas", "Puerto Madryn", "Rio Negro", "Argentina");
+			Domicilio domicilioBanco2 = new Domicilio("Sunchales", 1668, "Herrera", "Av.Las_Tres", 445, 0, 0, 0, 1201);
+			Region regionBanco2 = new Region("Grutas", "Puerto_Madryn", "Rio_Negro", "Argentina");
 			Ubicacion ubicacionBanco2 = new Ubicacion();
 			ubicacionBanco2.setCoordenadas(coordenadaBanco2);
 			ubicacionBanco2.setDomicilio(domicilioBanco2);
@@ -244,10 +244,10 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 
 			
 			Banco banco3= new Banco();
-			banco3.setNombre("Banco Comafi");
+			banco3.setNombre("Banco_Comafi");
 			Punto coordenadaBanco3 = new Punto(132.6577, 37.8845);
 			Domicilio domicilioBanco3 = new Domicilio("Belgrano", 4168, "Lloyt", "Bolivar", 496, 0, 0, 0, 1771);
-			Region regionBanco3 = new Region("Las Ñecas", "San Rafael", "Mendoza", "Argentina");
+			Region regionBanco3 = new Region("Las_Ñecas", "San_Rafael", "Mendoza", "Argentina");
 			Ubicacion ubicacionBanco3 = new Ubicacion();
 			ubicacionBanco3.setCoordenadas(coordenadaBanco3);
 			ubicacionBanco3.setDomicilio(domicilioBanco3);
@@ -265,10 +265,10 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			List<String> palabrasClaveComercio = Arrays.asList("ropa","cliente","juguetes","comida");
 			
 			Comercio comercio1= new Comercio();
-			comercio1.setNombre("Mimo & Co");
+			comercio1.setNombre("Mimo_&_Co");
 			Punto coordenadaComercio1 = new Punto(234.6747, 55.8845);
 			Domicilio domicilioComercio1 = new Domicilio("Valnia", 3324, "Birios", "Papuka", 1866, 0, 0, 0, 1313);
-			Region regionComercio1 = new Region("Lagunita", "Santo Tome", "Corrientes", "Argentina");
+			Region regionComercio1 = new Region("Lagunita", "Santo_Tome", "Corrientes", "Argentina");
 			Ubicacion ubicacionComercio1 = new Ubicacion();
 			ubicacionComercio1.setCoordenadas(coordenadaComercio1);
 			ubicacionComercio1.setDomicilio(domicilioComercio1);
@@ -283,10 +283,10 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		  
 
 			Comercio comercio2= new Comercio();
-			comercio2.setNombre("Vans S.R.L");
+			comercio2.setNombre("Vans_S.R.L");
 			Punto coordenadaComercio2 = new Punto(6.9856, 137.0324);
 			Domicilio domicilioComercio2 = new Domicilio("Chacras", 68, "Lloyters", "Variase", 2496, 0, 0, 0, 1631);
-			Region regionComercio2 = new Region("Las Viboras", "Tilcara", "Jujuy", "Argentina");
+			Region regionComercio2 = new Region("Las_Viboras", "Tilcara", "Jujuy", "Argentina");
 			Ubicacion ubicacionComercio2 = new Ubicacion();
 			ubicacionComercio2.setCoordenadas(coordenadaComercio2);
 			ubicacionComercio2.setDomicilio(domicilioComercio2);
@@ -301,10 +301,10 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 	
 			
 			Comercio comercio3= new Comercio();
-			comercio3.setNombre("Solo Deportes S.A");
+			comercio3.setNombre("Solo_Deportes_S.A");
 			Punto coordenadaComercio3 = new Punto(63.9788,83.2264);
-			Domicilio domicilioComercio3 = new Domicilio("Av Rivadavia", 6577, "Puan", "Curapaligue", 1654, 0, 0, 0, 1465);
-			Region regionComercio3 = new Region("CABA", "Caballito", "Buenos Aires", "Argentina");
+			Domicilio domicilioComercio3 = new Domicilio("Av.Rivadavia", 6577, "Puan", "Curapaligue", 1654, 0, 0, 0, 1465);
+			Region regionComercio3 = new Region("CABA", "Caballito", "Buenos_Aires", "Argentina");
 			Ubicacion ubicacionComercio3 = new Ubicacion();
 			ubicacionComercio3.setCoordenadas(coordenadaComercio3);
 			ubicacionComercio3.setDomicilio(domicilioComercio3);
@@ -319,11 +319,11 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 	
 			Usuario admin=new Usuario("admin", "admin", "ADMINISTRADOR");
 			
-			Terminal abasto = new Terminal("Terminal Abasto", servicios,new Usuario("terminalAbasto", "Abasto123", "TERMINAL"));
+			Terminal abasto = new Terminal("Terminal_Abasto", servicios,new Usuario("terminalAbasto", "Abasto123", "TERMINAL"));
 			Punto coordenadasa = new Punto(34.6030, -58.4107);
 			abasto.setCoordenadaDispositivoMovil(coordenadasa);
 			abasto.setComunaTerminal("3");
-			Terminal villacrespo = new Terminal("Terminal Villa Crespo", servicios,new Usuario("terminalVC","elmejorbarrio123","terminal"));
+			Terminal villacrespo = new Terminal("Terminal_VillaCrespo", servicios,new Usuario("terminalVC","elmejorbarrio123","terminal"));
 			Punto coordenadasVC = new Punto(-34.597208, 58.441588);
 			villacrespo.setCoordenadaDispositivoMovil(coordenadasVC);
 			villacrespo.setComunaTerminal("15");

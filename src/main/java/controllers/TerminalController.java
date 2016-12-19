@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 
 
+
 import OrigenesDeDatos.Mapa;
 import Pois.Poi;
 import Terminal.AdministradorTerminales;
@@ -47,5 +48,15 @@ public class TerminalController extends Controller {
 		Map<String, List<Poi>> pois=new HashMap<>();	
 		pois.put("filtrados", filtrados);
 		return this.redirigirSegunPermisos(request, response, "terminal", new ModelAndView(pois, "poisTerminal.hbs"));
+	}
+	
+	public ModelAndView mostrarDetalle(Request request, Response response) {
+		Long id = Long.parseLong(request.params(":id"));
+		List<Poi> filtrados=Mapa.getInstance().buscarPois(id);
+		Poi poi=filtrados.get(0);
+		Map<String, Poi> pois=new HashMap<>();	
+		pois.put("poi", poi);
+		return this.redirigirSegunPermisos(request, response, "terminal", new ModelAndView(pois, "detallePoi.hbs"));
+		
 	}
 }

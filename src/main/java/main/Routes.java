@@ -66,5 +66,6 @@ public class Routes {
 		get("/terminal/cgps",terminal::mostrarCgps,engine);
 		get("/terminal/paradas",terminal::mostrarParadas,engine);
 		get("/terminal/locales",terminal::mostrarLocales,engine);
+		get("/terminal/detalle/:id",terminal::mostrarDetalle,engine); //Veo el detalle del Poi
 	}
 }
