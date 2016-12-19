@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
+
+
 import OrigenesDeDatos.Mapa;
 import Pois.Poi;
 import Terminal.AdministradorTerminales;
@@ -14,7 +18,7 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-public class AdministracionPoisController extends Controller{
+public class AdministracionPoisController extends Controller implements WithGlobalEntityManager, TransactionalOps{
 
 	public ModelAndView mostrarPois(Request request, Response response) {
 		
@@ -37,17 +41,16 @@ public class AdministracionPoisController extends Controller{
 	}
 	
 	
-	public Void eliminar(Request request, Response response) {
+	public ModelAndView eliminar(Request request, Response response) {
 
-		Mapa miMapa = Mapa.getInstance();
-
-		Poi miPoi = miMapa.buscarPoi(request.queryParams("nombrePoi"));
-
-		miMapa.eliminarUnPoi(miPoi);
-
-		response.redirect("/administrador/pois");
-
-		return null;
+		Long id = Long.parseLong(request.params(":id"));
+		List<Poi> filtrados=Mapa.getInstance().buscarPois(id);
+		Poi puntoInteres=filtrados.get(0);
+		withTransaction(() ->{
+    		Mapa.getInstance().eliminarUnPoi(puntoInteres);
+    	});
+		response.redirect("/administrador");
+    	return null;
 	}
 	
 

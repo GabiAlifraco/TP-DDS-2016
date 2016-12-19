@@ -34,7 +34,7 @@ public class Mapa implements OrigenDeDatos, WithGlobalEntityManager{
 	}
 
 	public void modificarUnPoi(Poi unPoi) {
-		entityManager().persist(unPoi);
+		entityManager().merge(unPoi);
 	}
 
 	//Ver este metodo
@@ -49,8 +49,10 @@ public class Mapa implements OrigenDeDatos, WithGlobalEntityManager{
 	protected Mapa() {
 	}
 	
-	public Poi buscarPoi(String id){
-		return entityManager().find(Poi.class, id);
+	public List<Poi> buscarPois(Long poiID){
+		return entityManager().createQuery("from Poi c where c.poiID like :id",Poi.class)
+				.setParameter("id",poiID)
+				.getResultList();
 	}
 	
 	 public List<Poi> buscarPorNombre(String nombre) {

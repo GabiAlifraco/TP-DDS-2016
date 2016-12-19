@@ -43,7 +43,7 @@ public class Routes {
 		get("/administrador", home::mostrarHomeAdmin, engine);//Si entro como perfil administrador
 		
 		get("/administrador/pois",administracion::mostrarPois,engine); //Muestro Pois
-		//get("/administrador/pois/:id", administracion::eliminarPoi, engine); //Elimino un Poi
+		get("/administrador/pois/:id", administracion::eliminar, engine); //Elimino un Poi
 		//get("/administrador/pois/modificar/:id", administracion::modificarPoi, engine); //Modifico un Poi
 		//post("/administrador/pois/modificar/:id", administracion::guardarModificacion, engine); //Guardo Modificacion
 		
