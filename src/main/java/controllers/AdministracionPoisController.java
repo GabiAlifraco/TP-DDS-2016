@@ -18,11 +18,17 @@ public class AdministracionPoisController extends Controller{
 
 	public ModelAndView mostrarPois(Request request, Response response) {
 		
-		Map<String, List<Poi>> pois=new HashMap<>();	
-		List<Poi> filtrados= new ArrayList<>();
+		List<Poi> filtrados;
+		String filtroNombre=request.queryParams("filtroNombre");
 		filtrados=Mapa.getInstance().getPois(); //Devuelve todos los pois persistidos.	
-	    pois.put("filtrados", filtrados);
-		
+		if (Objects.isNull(filtroNombre) || filtroNombre.isEmpty()) {
+		      filtrados = Mapa.getInstance().getPois();
+		    } else {
+		    		filtrados = Mapa.getInstance().buscarPorNombre(filtroNombre);
+		    }
+		Map<String, Object> pois=new HashMap<>();	
+		pois.put("filtrados", filtrados);
+		pois.put("filtroNombre", filtroNombre);
 		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(pois, "admPois.hbs"));
 	}
 	
@@ -30,19 +36,18 @@ public class AdministracionPoisController extends Controller{
 		
 		String filtroPoi=request.queryParams("filtroPoi");
 		
-		List<Poi> pois;
+		Map<String, List<Poi>> pois=new HashMap<>();	
+		List<Poi> filtrados= new ArrayList<>();
 
 	    if (Objects.isNull(filtroPoi) || filtroPoi.isEmpty()) {
-	      pois = Mapa.getInstance().getPois();
+	      filtrados = Mapa.getInstance().getPois();
 	    } else {
-	    		pois = Mapa.getInstance().buscarPorNombre(filtroPoi);
+	    		filtrados = Mapa.getInstance().buscarPorNombre(filtroPoi);
 	    }
 
-	    HashMap<String, Object> viewModel = new HashMap<>();
-	    viewModel.put("pois", pois);
-	    viewModel.put("filtroPoi", filtroPoi);
+	    pois.put("filtrados", filtrados);
 		
-		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(viewModel, "admPois.hbs"));
+		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(filtrados, "admPois.hbs"));
 	}
 
 	public ModelAndView mostrarPoisPorTipo(Request request, Response response) {

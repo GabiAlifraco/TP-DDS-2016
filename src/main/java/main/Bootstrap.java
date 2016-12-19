@@ -329,7 +329,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			villacrespo.setComunaTerminal("15");
 			beginTransaction();
 		    withTransaction(() -> {
-		    /*persist(cgpComuna1);
+		    persist(cgpComuna1);
 		    persist(parada37);
 		    persist(cgpComuna3);
 		    persist(banco1);
@@ -340,7 +340,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		    persist(parada114);
 		    persist(comercio2);
 		    persist(parada146);
-		    persist(comercio3);*/
+		    persist(comercio3);
 		    persist(abasto);
 			persist(villacrespo);
 			persist(admin);
