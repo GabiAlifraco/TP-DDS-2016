@@ -475,14 +475,14 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			poisEncontrados4.add(cgpComuna1);
 			poisEncontrados4.add(cgpComuna2);
 			poisEncontrados4.add(cgpComuna3);
-			//Resultado resultado1=new Resultado(LocalDate.parse("2005-03-01"),"Banco",abasto,poisEncontrados);
-			//Resultado resultado2=new Resultado(LocalDate.parse("2006-03-10"),"ParadaColectivo",villacrespo,poisEncontrados2);
-			//Resultado resultado3=new Resultado(LocalDate.parse("2014-01-20"),"Comercio",abasto,poisEncontrados3);
-			//Resultado resultado4=new Resultado(LocalDate.parse("2016-05-17"),"CGP",villacrespo,poisEncontrados4);
-			//datastore.save(resultado1);
-			//datastore.save(resultado2);
-			//datastore.save(resultado3);
-			//datastore.save(resultado4);
+			Resultado resultado1=new Resultado(LocalDate.parse("2005-03-01"),"Banco",abasto,poisEncontrados);
+			Resultado resultado2=new Resultado(LocalDate.parse("2006-03-10"),"ParadaColectivo",villacrespo,poisEncontrados2);
+			Resultado resultado3=new Resultado(LocalDate.parse("2014-01-20"),"Comercio",abasto,poisEncontrados3);
+			Resultado resultado4=new Resultado(LocalDate.parse("2016-05-17"),"CGP",villacrespo,poisEncontrados4);
+			datastore.save(resultado1);
+			datastore.save(resultado2);
+			datastore.save(resultado3);
+			datastore.save(resultado4);
 			
 			beginTransaction();
 		    withTransaction(() -> {

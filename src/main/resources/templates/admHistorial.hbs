@@ -28,7 +28,7 @@
       </div>
       
       <div id="inputFecha" class = "filtro" style="float:left;" hidden>
-        <form class="form-inline" align="center" action="/filtroFecha" method="post">
+        <form class="form-inline" align="center" action="/administrador/historial/filtroFecha">
           <div class="form-group" style="margin:0px 100px;">
             <label for="desde">Desde</label>
             <input type="date" class="form-control" id="desde" placeholder="Desde" name="desdeFecha">
@@ -37,27 +37,27 @@
             <label for="hasta">Hasta</label>
             <input type="date" class="form-control" id="hasta" placeholder="Hasta" name="hastaFecha">
           </div>
-          <button type="submit" class="btn btn-default" style="margin-left:40px;"">Buscar</button>
+          <button type="submit" class="btn btn-danger" style="margin-left:40px;"">Buscar</button>
         </form>
       </div>
      
       <div class="filtro" id="inputResultados" style="float:left;" hidden>
-        <form class="form-inline" align="center" action="/filtroResultados" method="post">
+        <form class="form-inline" align="center" action="/administrador/historial/filtroResultados">
           <div class="form-group" style="margin-left:100px;">
             <label for="resultados">Cantidad de Resultados</label>
             <input type="number" class="form-control" id="resultados" placeholder="Ingrese Cantidad" name="cantidadResultados">
           </div>
-          <button type="submit" class="btn btn-default" style="margin-left:40px;">Buscar</button>
+          <button type="submit" class="btn btn-danger" style="margin-left:40px;">Buscar</button>
         </form>
       </div>
       
       <div class="filtro" id="inputTerminal" hidden>
-        <form class="form-inline" align="center" action="filtroTerminal" method="post">
+        <form class="form-inline" align="center" action="/administrador/historial/filtroTerminal">
           <div class="form-group" style="margin-left:100px;" >
             <label for="terminal">Terminal</label>
             <input type="text" class="form-control" id="terminal" placeholder="Ingrese Terminal" name="terminal">
           </div>
-          <button type="submit" class="btn btn-default" style="margin-left:40px;">Buscar</button>
+          <button type="submit" class="btn btn-danger" style="margin-left:40px;">Buscar</button>
         </form>
       </div>
     </div>
@@ -72,13 +72,16 @@
           <td>Terminal</td>
         </thead>
         <tbody>
-          {{#resultadosBusqueda}}
+          {{#each misResultados}}
           <tr>
             <td>{{fecha}}</td>
-            <td>{{cantidadResultados}}</td>
-            <td>{{terminal}}</td>
+            <td>{{cantidadDeResultados}}</td>
+            <td>{{terminal.nombreTerminal}}</td>
+            <td>
+ 					<a href="/administrador/historial/{{id}}"><span class="glyphicon glyphicon-pencil"></span></a>
+			</td>
           </tr>
-          {{/resultadosBusqueda}}				
+          {{/each}}				
         </tbody>
       </table>
     </div>

@@ -56,8 +56,8 @@ public class Routes {
 		get("/administrador/historial",administracion::mostrarHistorial,engine);//Muestro historial de Consultas
 		//get("/administrador/historial/:id",administracion::mostrarPoisDetallado,engine);
 		get("/administrador/historial/filtroFecha",administracion::mostrarHistorialFiltroFecha,engine);
-		//post("/administrador/historial/filtroResultados",administracion::mostrarHistorialFiltroResultados,engine);
-		//post("/administrador/historial/filtroTerminal",administracion::mostrarHistorialFiltroTerminal,engine);
+		get("/administrador/historial/filtroResultados",administracion::mostrarHistorialFiltroResultados,engine);
+		get("/administrador/historial/filtroTerminal",administracion::mostrarHistorialFiltroTerminal,engine);
 
 		get("/terminal",home::mostrarHomeTerminal,engine);//Si entro como perfil terminal
 		get("/terminal/bancos",terminal::mostrarBancos,engine);

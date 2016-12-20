@@ -1,8 +1,10 @@
 package controllers;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -228,14 +230,59 @@ public ModelAndView mostrarHistorialFiltroFecha(Request request, Response respon
 	
 	public ModelAndView mostrarHistorialFiltroResultados(Request request, Response response){
 		
+		String cantidad=request.queryParams("cantidadResultados");
+		int valor=Integer.parseInt(cantidad);
+		final Morphia morphia=new Morphia();
+		morphia.getMapper().getConverters().addConverter(LocalDateConverter.class);
+		morphia.mapPackage("Resultado");
+		morphia.mapPackage("Pois");
+  		final Datastore datastore = morphia.createDatastore(new MongoClient(), "tpAnual");
+  		datastore.ensureIndexes();
+  		List<Resultado> misResultados=datastore.createQuery(Resultado.class).asList();
+  		if(!cantidad.isEmpty()){
+  		
+  			misResultados=misResultados.stream().filter(res->res.getCantidadDeResultados()==valor).collect(Collectors.toList());
+  			
+  		}
+  		Map<String, List<Resultado>> historias = new HashMap<>();
+		historias.put("misResultados", misResultados);
 			
-		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(null, "admHistorial.hbs"));
+		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(historias, "admHistorial.hbs"));
 	}
 	
 	public ModelAndView mostrarHistorialFiltroTerminal(Request request, Response response){
 		
+		String nombreTerminal=request.queryParams("terminal");
+		final Morphia morphia=new Morphia();
+		morphia.getMapper().getConverters().addConverter(LocalDateConverter.class);
+		morphia.mapPackage("Resultado");
+		morphia.mapPackage("Pois");
+  		final Datastore datastore = morphia.createDatastore(new MongoClient(), "tpAnual");
+  		datastore.ensureIndexes();
+  		List<Resultado> misResultados=datastore.createQuery(Resultado.class).asList();
+  		List<Resultado> porTerminal=new ArrayList<Resultado>();
+  		int valor=0;
+  		List<Poi> poisTotales=new ArrayList<Poi>();
+  		if(!nombreTerminal.isEmpty()){
+  			
+  			misResultados=misResultados.stream().filter(res->res.getTerminal().getNombreTerminal().equalsIgnoreCase(nombreTerminal)).collect(Collectors.toList());
+  	
+  			for(Resultado result:misResultados){
+  				valor=valor+result.getCantidadDeResultados();
+  				for(Poi poi:result.getPoisEncontrados()){
+  					poisTotales.add(poi);
+  				}
+  			
+  			}
+  			Resultado terminalBuscada = new Resultado(LocalDate.now(),"TERMINAL",misResultados.get(0).getTerminal(),poisTotales);
+  			porTerminal.add(terminalBuscada);
+  		}
+  		
+  		Map<String, List<Resultado>> historias = new HashMap<>();
+		historias.put("misResultados", porTerminal);
 		
-		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(null, "admHistorial.hbs"));
+		
+		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(historias, "admHistorial.hbs"));
 	}
 	
 	public static Date asDate(String localDate) {
