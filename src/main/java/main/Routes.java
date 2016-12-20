@@ -41,24 +41,24 @@ public class Routes {
 		get("/administrador", home::mostrarHomeAdmin, engine);//Si entro como perfil administrador
 		
 		get("/administrador/pois",administracion::mostrarPois,engine); //Muestro Pois
-		get("/administrador/pois/:id", administracion::eliminar, engine); //Elimino un Poi
-		get("/administrador/pois/modificar/:id", administracion::modificarPoi, engine); //Modifico un Poi
 		get("/administrador/pois/modificar/guardar/:id", administracion::actualizarPoi, engine); //Guardo Modificacion
+		get("/administrador/pois/modificar/:id", administracion::modificarPoi, engine); //Modifico un Poi
+		get("/administrador/pois/:id", administracion::eliminar, engine); //Elimino un Poi
 		
 		get("/administrador/terminales/agregar", administracion::nueva, engine); //Agrego nueva terminal
 		get("/administrador/terminales/nueva/agregar", administracion::agregarTerminal, engine);
 		get("/administrador/terminales",administracion::mostrarTerminales,engine);//Muestro terminales
-		get("/administrador/terminales/:id", administracion::eliminarTerminal,engine);
-		get("/administrador/terminales/modificar/:id", administracion::modificarTerminal,engine);
 		get("/administrador/terminales/modificar/guardar/:id", administracion::actualizarTerminal,engine);
+		get("/administrador/terminales/modificar/:id", administracion::modificarTerminal,engine);
+		get("/administrador/terminales/:id", administracion::eliminarTerminal,engine);
 		
 		
 		get("/administrador/historial",administracion::mostrarHistorial,engine);//Muestro historial de Consultas
-		//get("/administrador/historial/:id",administracion::mostrarPoisDetallado,engine);
 		get("/administrador/historial/filtroFecha",administracion::mostrarHistorialFiltroFecha,engine);
 		get("/administrador/historial/filtroResultados",administracion::mostrarHistorialFiltroResultados,engine);
 		get("/administrador/historial/filtroTerminal",administracion::mostrarHistorialFiltroTerminal,engine);
-
+		get("/administrador/historial/:id",administracion::mostrarPoisDetallado,engine);
+		
 		get("/terminal",home::mostrarHomeTerminal,engine);//Si entro como perfil terminal
 		get("/terminal/bancos",terminal::mostrarBancos,engine);
 		get("/terminal/cgps",terminal::mostrarCgps,engine);
