@@ -321,6 +321,57 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			banco3.setPalabrasClave(palabrasClaveBanco);
 			banco3.setHorariosDeAtencion(horariosBanco3);
 			
+			Banco banco4= new Banco();
+			banco4.setNombre("Banco_Galicia");
+			Punto coordenadaBanco4 = new Punto(130.7517, 34.8525);
+			Domicilio domicilioBanco4 = new Domicilio("Avenida_Cordoba", 3227, "Gallo", "Bustamante", 981, 0, 0, 0, 1240);
+			Region regionBanco4 = new Region("Almagro", "CABA", "Buenos_Aires", "Argentina");
+			Ubicacion ubicacionBanco4 = new Ubicacion();
+			ubicacionBanco4.setCoordenadas(coordenadaBanco4);
+			ubicacionBanco4.setDomicilio(domicilioBanco4);
+			ubicacionBanco4.setRegion(regionBanco4);
+			banco4.setUbicacion(ubicacionBanco4);
+			Disponibilidad disponibilidadBanco4 = new Disponibilidad();
+			disponibilidadBanco4.setHorarioFinal(LocalTime.of(16, 0));
+			disponibilidadBanco4.setHorarioInicial( LocalTime.of(8, 0));
+			List<Disponibilidad> horariosBanco4 = Arrays.asList(disponibilidadBanco4);
+			banco4.setPalabrasClave(palabrasClaveBanco);
+			banco4.setHorariosDeAtencion(horariosBanco4);
+			
+			Banco banco5= new Banco();
+			banco5.setNombre("Banco_Santander");
+			Punto coordenadaBanco5 = new Punto(-34.6181, -58.5023);
+			Domicilio domicilioBanco5 = new Domicilio("Avenida_Alvarez_Jonte", 4502, "Segurola", "Bombay", 1990, 0, 0, 0, 1407);
+			Region regionBanco5 = new Region("Floresta", "CABA", "Buenos_Aires", "Argentina");
+			Ubicacion ubicacionBanco5 = new Ubicacion();
+			ubicacionBanco5.setCoordenadas(coordenadaBanco5);
+			ubicacionBanco5.setDomicilio(domicilioBanco5);
+			ubicacionBanco5.setRegion(regionBanco5);
+			banco5.setUbicacion(ubicacionBanco5);
+			Disponibilidad disponibilidadBanco5 = new Disponibilidad();
+			disponibilidadBanco5.setHorarioFinal(LocalTime.of(15, 0));
+			disponibilidadBanco5.setHorarioInicial( LocalTime.of(7, 0));
+			List<Disponibilidad> horariosBanco5 = Arrays.asList(disponibilidadBanco5);
+			banco5.setPalabrasClave(palabrasClaveBanco);
+			banco5.setHorariosDeAtencion(horariosBanco5);
+			
+			Banco banco6= new Banco();
+			banco6.setNombre("Banco_Nacion");
+			Punto coordenadaBanco6 = new Punto(-34.5753, -58.5038);
+			Domicilio domicilioBanco6 = new Domicilio("Avenida_Triunvirato", 4802, "Roosevelt", "Cullen",5100, 0, 0, 0, 1431);
+			Region regionBanco6 = new Region("Villa_Urquiza", "CABA", "Buenos_Aires", "Argentina");
+			Ubicacion ubicacionBanco6 = new Ubicacion();
+			ubicacionBanco6.setCoordenadas(coordenadaBanco6);
+			ubicacionBanco6.setDomicilio(domicilioBanco6);
+			ubicacionBanco6.setRegion(regionBanco6);
+			banco6.setUbicacion(ubicacionBanco6);
+			Disponibilidad disponibilidadBanco6 = new Disponibilidad();
+			disponibilidadBanco6.setHorarioFinal(LocalTime.of(17, 0));
+			disponibilidadBanco6.setHorarioInicial( LocalTime.of(9, 0));
+			List<Disponibilidad> horariosBanco6 = Arrays.asList(disponibilidadBanco6);
+			banco6.setPalabrasClave(palabrasClaveBanco);
+			banco6.setHorariosDeAtencion(horariosBanco6);
+			
 			//Creo comercios
 			
 			List<String> palabrasClaveComercio = Arrays.asList("ropa","cliente","juguetes","comida");
@@ -406,10 +457,16 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			poisEncontrados.add(banco1);
 			poisEncontrados.add(banco2);
 			poisEncontrados.add(banco3);
+			poisEncontrados.add(banco4);
+			poisEncontrados.add(banco5);
+			poisEncontrados.add(banco6);
 			List<Poi> poisEncontrados2=new ArrayList<Poi>();
 			poisEncontrados2.add(parada37);
 			poisEncontrados2.add(parada114);
 			poisEncontrados2.add(parada146);
+			poisEncontrados2.add(parada19);
+			poisEncontrados2.add(parada47);
+			poisEncontrados2.add(parada70);
 			List<Poi> poisEncontrados3=new ArrayList<Poi>();
 			poisEncontrados3.add(comercio1);
 			poisEncontrados3.add(comercio2);
@@ -449,6 +506,9 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			persist(retiro);
 			persist(flores);
 			persist(palermo);
+			persist(banco4);
+			persist(banco5);
+			persist(banco6);
 			persist(admin);
 		    });
 		    commitTransaction();
