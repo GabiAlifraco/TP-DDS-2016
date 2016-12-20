@@ -336,10 +336,26 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			Punto coordenadasa = new Punto(34.6030, -58.4107);
 			abasto.setCoordenadaDispositivoMovil(coordenadasa);
 			abasto.setComunaTerminal("3");
-			Terminal villacrespo = new Terminal("Terminal_VillaCrespo", servicios,new Usuario("terminalVC","elmejorbarrio123","terminal"));
+			Terminal villacrespo = new Terminal("Terminal_VillaCrespo", servicios,new Usuario("terminalVC","elmejorbarrio123","TERMINAL"));
 			Punto coordenadasVC = new Punto(-34.5972, 58.4415);
 			villacrespo.setCoordenadaDispositivoMovil(coordenadasVC);
 			villacrespo.setComunaTerminal("15");
+			
+			Terminal retiro = new Terminal("Terminal_Retiro", servicios,new Usuario("terminalRetiro","retiro","TERMINAL"));
+			Punto coordenadasRetiro = new Punto(-34.5872, -58.3744);
+			retiro.setCoordenadaDispositivoMovil(coordenadasRetiro);
+			retiro.setComunaTerminal("1");
+			
+			Terminal flores = new Terminal("Terminal_Flores", servicios,new Usuario("terminalFlores","flores","TERMINAL"));
+			Punto coordenadasFlores = new Punto(-34.6377, -58.4593);
+			flores.setCoordenadaDispositivoMovil(coordenadasFlores);
+			flores.setComunaTerminal("7");
+			
+			Terminal palermo = new Terminal("Terminal_Palermo", servicios,new Usuario("terminalPalermo","palermo","TERMINAL"));
+			Punto coordenadasPalermo = new Punto(-34.5710, -58.4232);
+			palermo.setCoordenadaDispositivoMovil(coordenadasPalermo);
+			palermo.setComunaTerminal("14");
+		
 			List<Poi> poisEncontrados=new ArrayList<Poi>();
 			poisEncontrados.add(banco1);
 			poisEncontrados.add(banco2);
@@ -381,6 +397,9 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		    persist(comercio3);
 		    persist(abasto);
 			persist(villacrespo);
+			persist(retiro);
+			persist(flores);
+			persist(palermo);
 			persist(admin);
 		    });
 		    commitTransaction();
