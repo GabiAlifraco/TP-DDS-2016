@@ -1,8 +1,6 @@
 package Resultado;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Converters;
@@ -11,7 +9,7 @@ import Terminal.Terminal;
 import converter.LocalDateConverter;
 import converter.LocalTimeConverter;
 
-@org.mongodb.morphia.annotations.Entity
+@org.mongodb.morphia.annotations.Entity("Resultados")
 @Converters({LocalDateConverter.class, LocalTimeConverter.class})
 public class Resultado {
 
@@ -21,13 +19,11 @@ public class Resultado {
 	
 	LocalDate fecha;
 	
-	@org.mongodb.morphia.annotations.Transient
-	long segundosBusqueda;
-	
 	String fraseBuscada;
+	
 	int cantidadDeResultados;
 	
-	
+	@org.mongodb.morphia.annotations.Embedded	
 	Terminal terminal;
 	
 	@org.mongodb.morphia.annotations.Embedded
@@ -80,10 +76,6 @@ public class Resultado {
 
 	public LocalDate getFecha() {
 		return fecha;
-	}
-
-	public long getSegundosBusqueda() {
-		return segundosBusqueda;
 	}
 	
 	public int getCantidadDeResultados() {

@@ -23,9 +23,7 @@ public class MailDemoraBusqueda extends NotificacionBusqueda{
 	//En caso de que el tiempo que tarda en buscar supere al maximo estipulado, manda mail	
     @Override
 	public void actualizar(Resultado resultado,Terminal terminal) {
-		if(busquedaSuperaTiempoMaximoDemora(resultado.getSegundosBusqueda())){
-			sendMail();
-		}
+		sendMail();
 	}
     
     //Simula mandar mail-Escribe por pantalla-->Para mas adelante

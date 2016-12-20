@@ -189,7 +189,26 @@ public ModelAndView actualizarTerminal(Request request, Response response) {
         resultado=(resultado/Math.pow(10, numeroDecimales))+parteEntera;
         return resultado;
     }
+	
+	
 	public ModelAndView mostrarHistorial(Request request, Response response){
+		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(null, "admHistorial.hbs"));
+	}
+	
+public ModelAndView mostrarHistorialFiltroFecha(Request request, Response response){
+		
+		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(null, "admHistorial.hbs"));
+	}
+	
+	public ModelAndView mostrarHistorialFiltroResultados(Request request, Response response){
+		
+			
+		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(null, "admHistorial.hbs"));
+	}
+	
+	public ModelAndView mostrarHistorialFiltroTerminal(Request request, Response response){
+		
+		
 		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(null, "admHistorial.hbs"));
 	}
 }

@@ -86,13 +86,11 @@ public class Terminal implements WithGlobalEntityManager{
 
 	public List<Poi> busquedaDePuntos(String unNombre, String unaPalabraClave) {
 
-		LocalTime comienzo = LocalTime.now();
 		List<Poi> listaResultados = obtenerResultadosServicios(unNombre, unaPalabraClave).stream()
 				.collect(Collectors.toList());
 		mapa.agregarResultados(listaResultados);
-		LocalTime finalizacion = LocalTime.now();
 
-		Resultado resultado = new Resultado(LocalDate.now(), finalizacion, comienzo, unNombre + " " + unaPalabraClave,
+		Resultado resultado = new Resultado(LocalDate.now(), unNombre + " " + unaPalabraClave,
 				this, listaResultados);
 
 		notificarBusqueda(resultado, this);

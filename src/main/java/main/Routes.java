@@ -5,7 +5,6 @@ import static spark.Spark.*;
 
 import controllers.AccesosController;
 import controllers.AdministracionPoisController;
-import controllers.HistorialController;
 import controllers.HomeController;
 import controllers.TerminalController;
 import spark.Spark;
@@ -22,7 +21,6 @@ public class Routes {
 		HomeController home = new HomeController();
 		AccesosController accesos = new AccesosController();
 		AdministracionPoisController administracion= new AdministracionPoisController();
-		HistorialController historial = new HistorialController();
 		DebugScreen.enableDebugScreen();
 		HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
 		
@@ -56,9 +54,9 @@ public class Routes {
 		
 		
 		get("/administrador/historial",administracion::mostrarHistorial,engine);//Muestro historial de Consultas
-		post("/administrador/historial/filtroFecha",historial::mostrarHistorialFiltroFecha,engine);
-		post("/administrador/historial/filtroResultados",historial::mostrarHistorialFiltroResultados,engine);
-		post("/administrador/historial/filtroTerminal",historial::mostrarHistorialFiltroTerminal,engine);
+		post("/administrador/historial/filtroFecha",administracion::mostrarHistorialFiltroFecha,engine);
+		post("/administrador/historial/filtroResultados",administracion::mostrarHistorialFiltroResultados,engine);
+		post("/administrador/historial/filtroTerminal",administracion::mostrarHistorialFiltroTerminal,engine);
 
 		get("/terminal",home::mostrarHomeTerminal,engine);//Si entro como perfil terminal
 		get("/terminal/bancos",terminal::mostrarBancos,engine);
