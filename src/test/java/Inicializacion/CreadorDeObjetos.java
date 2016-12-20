@@ -316,14 +316,14 @@ public abstract class CreadorDeObjetos {
 	//Envio de Mail
 	
 	private Resultado resultado;
-	private LocalDate fecha;
+	private org.joda.time.LocalDate fecha;
 	protected MockNotificadorAdministrador notificadorAdministrador;
 	private Terminal terminal;
 	private List<OrigenDeDatos> servicios;
 	
 	protected void crearMail(){
 		
-		fecha = LocalDate.parse("2016-10-16");
+		fecha = org.joda.time.LocalDate.parse("2016-10-16");
 		notificadorAdministrador = new MockNotificadorAdministrador();
 		terminal = new Terminal("Terminal Abasto", servicios);
 		terminal.agregarObserver(notificadorAdministrador);

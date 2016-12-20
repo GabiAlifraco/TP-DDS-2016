@@ -90,7 +90,7 @@ public class Terminal implements WithGlobalEntityManager{
 				.collect(Collectors.toList());
 		mapa.agregarResultados(listaResultados);
 
-		Resultado resultado = new Resultado(LocalDate.now(), unNombre + " " + unaPalabraClave,
+		Resultado resultado = new Resultado(org.joda.time.LocalDate.now(), unNombre + " " + unaPalabraClave,
 				this, listaResultados);
 
 		notificarBusqueda(resultado, this);

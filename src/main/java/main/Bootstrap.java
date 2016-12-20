@@ -6,9 +6,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.joda.time.LocalDate;
+import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Morphia;
 import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
+
+import com.mongodb.MongoClient;
 
 import Accesos.AdministradorUsuarios;
 import Accesos.Usuario;
@@ -28,6 +33,7 @@ import Pois.CGP;
 import Pois.Comercio;
 import Pois.ParadaColectivo;
 import Pois.Poi;
+import Resultado.Resultado;
 import Terminal.AdministradorTerminales;
 import Terminal.Terminal;
 
@@ -40,6 +46,15 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 
 	  public void run() {
 		  
+		  	//Vamos a cargar unos resultados de busquedas anteriores desde las distintas terminales
+		  	final Morphia morphia=new Morphia();
+		  	morphia.mapPackage("Resultado");
+		  	morphia.mapPackage("Pois");
+		  	final Datastore datastore = morphia.createDatastore(new MongoClient(), "tpAnual");
+		  	datastore.ensureIndexes();
+		  
+		  
+		  
 		  	//Comun a los CGP
 			Mapa mapa = Mapa.getInstance();
 			ProveedorBancos bancos = new ProveedorBancos();
@@ -51,6 +66,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			List<String> palabrasClaveCgp = Arrays.asList("cgp","comuna");
 			
 			
+			//Creo CGPs
 			CGP cgpComuna1=new CGP();
 			cgpComuna1.setNombre("Cgp_Alvear");
 			Punto coordenadas = new Punto(34.4124, 24.4856);
@@ -147,9 +163,6 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			//Creo paradas
 			//Palabras y disponibilidad comun a todas las paradas
 			List<String> palabrasClaveParada = Arrays.asList("Colectivo", "Parada");
-			/*List<DayOfWeek> diasParada = Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY,
-					DayOfWeek.FRIDAY);*/
-			//horarioParada.setDias(diasParada);
 		
 			
 			ParadaColectivo parada114=new ParadaColectivo();
@@ -327,6 +340,31 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			Punto coordenadasVC = new Punto(-34.5972, 58.4415);
 			villacrespo.setCoordenadaDispositivoMovil(coordenadasVC);
 			villacrespo.setComunaTerminal("15");
+			List<Poi> poisEncontrados=new ArrayList<Poi>();
+			poisEncontrados.add(banco1);
+			poisEncontrados.add(banco2);
+			poisEncontrados.add(banco3);
+			List<Poi> poisEncontrados2=new ArrayList<Poi>();
+			poisEncontrados2.add(parada37);
+			poisEncontrados2.add(parada114);
+			poisEncontrados2.add(parada146);
+			List<Poi> poisEncontrados3=new ArrayList<Poi>();
+			poisEncontrados3.add(comercio1);
+			poisEncontrados3.add(comercio2);
+			poisEncontrados3.add(comercio3);
+			List<Poi> poisEncontrados4=new ArrayList<Poi>();
+			poisEncontrados4.add(cgpComuna1);
+			poisEncontrados4.add(cgpComuna2);
+			poisEncontrados4.add(cgpComuna3);
+			Resultado resultado1=new Resultado(new LocalDate("2005-07-16"),"Banco",abasto,poisEncontrados);
+			Resultado resultado2=new Resultado(new LocalDate("2006-03-10"),"CGP",villacrespo,poisEncontrados2);
+			Resultado resultado3=new Resultado(new LocalDate("2005-07-16"),"Banco",abasto,poisEncontrados3);
+			Resultado resultado4=new Resultado(new LocalDate("2005-07-16"),"Banco",villacrespo,poisEncontrados4);
+			datastore.save(resultado1);
+			datastore.save(resultado2);
+			datastore.save(resultado3);
+			datastore.save(resultado4);
+			
 			beginTransaction();
 		    withTransaction(() -> {
 		    persist(cgpComuna1);

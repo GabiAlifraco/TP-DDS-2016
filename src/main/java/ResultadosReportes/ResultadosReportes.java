@@ -1,6 +1,5 @@
 package ResultadosReportes;
 
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,9 +14,9 @@ public class ResultadosReportes {
 	private AlmacenadorBusquedas almacenador = AlmacenadorBusquedas.getInstance();
 
 	
-	public Map<LocalDate, Integer> getReportePorFecha(Terminal terminal) {
+	public Map<org.joda.time.LocalDate, Integer> getReportePorFecha(Terminal terminal) {
 		if (almacenador.getTerminalesActivadas().contains(terminal)) {
-			Map<LocalDate, Integer> reportePorFecha = new HashMap<LocalDate, Integer>();
+			Map<org.joda.time.LocalDate, Integer> reportePorFecha = new HashMap<org.joda.time.LocalDate, Integer>();
 
 			for (Resultado resultado : almacenador.getResultadosEncontrados().get(terminal)) {
 				if (reportePorFecha.containsKey(resultado.getFecha())) {

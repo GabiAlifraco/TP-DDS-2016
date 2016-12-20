@@ -1,6 +1,5 @@
 package Resultado;
 
-import java.time.LocalDate;
 import java.util.List;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Converters;
@@ -17,7 +16,7 @@ public class Resultado {
 	ObjectId id;
 	
 	
-	LocalDate fecha;
+	org.joda.time.LocalDate fecha;
 	
 	String fraseBuscada;
 	
@@ -30,9 +29,9 @@ public class Resultado {
 	List<Poi> poisEncontrados;
 	
 
-	public Resultado(LocalDate unaFecha, String unaFraseBuscada, Terminal terminal, List<Poi> poisEncontrados) {
+	public Resultado(org.joda.time.LocalDate localDate, String unaFraseBuscada, Terminal terminal, List<Poi> poisEncontrados) {
 
-		this.setFecha(unaFecha);
+		this.setFecha(localDate);
 		this.setFraseBuscada(unaFraseBuscada);
 		this.setCantidadResultados(poisEncontrados.size());
 		this.setTerminal(terminal);
@@ -61,8 +60,8 @@ public class Resultado {
 		this.fraseBuscada = unaFraseBuscada;
 	}
 
-	public void setFecha(LocalDate unaFecha) {
-		this.fecha = unaFecha;
+	public void setFecha(org.joda.time.LocalDate localDate) {
+		this.fecha = localDate;
 
 	}
 
@@ -74,7 +73,7 @@ public class Resultado {
 		return fraseBuscada;
 	}
 
-	public LocalDate getFecha() {
+	public org.joda.time.LocalDate getFecha() {
 		return fecha;
 	}
 	
