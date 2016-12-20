@@ -74,7 +74,7 @@ public class testPersistenciaResultado {
 		horaFin = LocalTime.of(12, 03);
 		fraseBuscada = "Parada 132";
 		totalResultados = poisEncontrados.size();
-		resultado = new Resultado(fecha, horaInicio, horaFin, fraseBuscada, terminal, poisEncontrados);
+		resultado = new Resultado(fecha, fraseBuscada, terminal, poisEncontrados);
 	}
 	@After
 	public void dropDB() {
@@ -91,17 +91,6 @@ public class testPersistenciaResultado {
 
 	}
 
-	@Test
-	public void testPersistenciaHoraInicioYFin() {
-		Object id = datastore.save(resultado).getId();
-		Resultado resultadoMongo = datastore.get(Resultado.class, id);
-		
-		LocalTime horaInicioPersistida = resultadoMongo.getUnTiempoInicio();
-		LocalTime horaFinPersistida = resultadoMongo.getUnTiempoFinalizacion();
-		
-		Assert.assertEquals(horaInicio, horaInicioPersistida);
-		Assert.assertEquals(horaFin, horaFinPersistida);
-	}
 
 	@Test
 	public void testPersistenciaFraseBuscada() {

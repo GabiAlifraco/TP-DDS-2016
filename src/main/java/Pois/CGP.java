@@ -7,12 +7,15 @@ import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 
+import org.mongodb.morphia.annotations.Embedded;
+
 import CaracteristicaPoi.Punto;
 import CaracteristicaPoi.Region;
 import CaracteristicaPoi.ServicioCGP;
 import CaracteristicaPoi.Ubicacion;
 import CaracteristicaPoi.Zona;
 
+@Embedded
 @javax.persistence.Entity
 @javax.persistence.DiscriminatorValue(value="CGP")
 public class CGP extends Poi{

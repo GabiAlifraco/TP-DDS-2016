@@ -1,6 +1,7 @@
 package Terminal;
 
 import java.time.DayOfWeek;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -10,7 +11,6 @@ import java.util.stream.Collectors;
 
 import javax.persistence.*;
 
-import org.bson.types.ObjectId;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import Accesos.Usuario;
@@ -23,6 +23,7 @@ import Pois.Poi;
 import Resultado.Resultado;
 import ResultadosReportes.ResultadosReportes;
 
+@org.mongodb.morphia.annotations.Embedded
 @Entity
 @Table(name="Terminales")
 public class Terminal implements WithGlobalEntityManager{

@@ -7,8 +7,6 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import org.bson.types.ObjectId;
-
 import CaracteristicaPoi.Disponibilidad;
 import CaracteristicaPoi.Domicilio;
 import CaracteristicaPoi.Punto;
@@ -16,7 +14,6 @@ import CaracteristicaPoi.Region;
 import CaracteristicaPoi.Ubicacion;
 
 @javax.persistence.Entity
-@org.mongodb.morphia.annotations.Entity
 
 @javax.persistence.Table(name="Pois")
 @javax.persistence.Inheritance(strategy=InheritanceType.SINGLE_TABLE)
@@ -25,13 +22,7 @@ public abstract class Poi{
 
 	@javax.persistence.Id
 	@javax.persistence.GeneratedValue
-	@org.mongodb.morphia.annotations.Transient
 	private Long poiID;
-	
-	
-	@javax.persistence.Transient
-	@org.mongodb.morphia.annotations.Id
-	private ObjectId id;
 	
 	@javax.persistence.OneToOne(cascade = CascadeType.ALL)
 	@javax.persistence.JoinColumn(name = "idUbicacion")
@@ -51,7 +42,6 @@ public abstract class Poi{
 
 	@javax.persistence.ElementCollection
 	@javax.persistence.CollectionTable(name = "PalabrasClaveDePoi") 
-	@org.mongodb.morphia.annotations.Embedded
 	private List<String> palabrasClave = new ArrayList<String>();
 	
 	@javax.persistence.OneToMany(cascade=CascadeType.ALL)
@@ -147,9 +137,6 @@ public abstract class Poi{
 		this.poiID = poiID;
 	}
 
-	public ObjectId getId() {
-		return id;
-	}
 
 	@Override
 	public int hashCode() {

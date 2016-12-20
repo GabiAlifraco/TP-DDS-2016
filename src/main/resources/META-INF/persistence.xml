@@ -15,14 +15,12 @@
     	<class>Pois.Comercio</class>
     	<class>CaracteristicaPoi.Domicilio</class>
     	<class>CaracteristicaPoi.Region</class>
-    	<class>converter.PointConverter</class>
     	<class>CaracteristicaPoi.Ubicacion</class>
 		<class>CaracteristicaPoi.Disponibilidad</class>
 		<class>CaracteristicaPoi.ServicioCGP</class>
 		<class>Accesos.Usuario</class>
 		<class>Terminal.Terminal</class>
-		<class>Notificaciones.MailDemoraBusqueda</class>
-		<class>Resultado.Resultado</class>
+		
 		
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        

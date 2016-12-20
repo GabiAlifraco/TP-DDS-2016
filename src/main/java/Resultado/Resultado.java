@@ -27,8 +27,6 @@ public class Resultado {
 	String fraseBuscada;
 	int cantidadDeResultados;
 	
-	LocalTime unTiempoInicio;
-	LocalTime unTiempoFinalizacion;
 	
 	Terminal terminal;
 	
@@ -36,38 +34,18 @@ public class Resultado {
 	List<Poi> poisEncontrados;
 	
 
-	public Resultado(LocalDate unaFecha, LocalTime tiempoInicio, LocalTime tiempoFinalizacion, String unaFraseBuscada,
-			Terminal terminal, List<Poi> poisEncontrados) {
+	public Resultado(LocalDate unaFecha, String unaFraseBuscada, Terminal terminal, List<Poi> poisEncontrados) {
 
 		this.setFecha(unaFecha);
-		this.setTiempoBusqueda(tiempoInicio, tiempoFinalizacion);
 		this.setFraseBuscada(unaFraseBuscada);
 		this.setCantidadResultados(poisEncontrados.size());
 		this.setTerminal(terminal);
 		this.setPoisEncontrados(poisEncontrados);
-		this.setUnTiempoInicio(tiempoInicio);
-		this.setUnTiempoFinalizacion(tiempoFinalizacion);
 
 	}
 	
 	public Resultado(){
 		
-	}
-
-	public LocalTime getUnTiempoInicio() {
-		return unTiempoInicio;
-	}
-
-	public void setUnTiempoInicio(LocalTime unTiempoInicio) {
-		this.unTiempoInicio = unTiempoInicio;
-	}
-
-	public LocalTime getUnTiempoFinalizacion() {
-		return unTiempoFinalizacion;
-	}
-
-	public void setUnTiempoFinalizacion(LocalTime unTiempoFinalizacion) {
-		this.unTiempoFinalizacion = unTiempoFinalizacion;
 	}
 
 	public void setTerminal(Terminal terminal) {
@@ -85,10 +63,6 @@ public class Resultado {
 
 	private void setFraseBuscada(String unaFraseBuscada) {
 		this.fraseBuscada = unaFraseBuscada;
-	}
-
-	private void setTiempoBusqueda(LocalTime comienzo, LocalTime finalizacion) {
-		this.segundosBusqueda = ChronoUnit.SECONDS.between(comienzo, finalizacion);
 	}
 
 	public void setFecha(LocalDate unaFecha) {

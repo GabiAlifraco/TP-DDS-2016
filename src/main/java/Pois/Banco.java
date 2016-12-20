@@ -2,8 +2,11 @@ package Pois;
 
 import java.util.List;
 
+import org.mongodb.morphia.annotations.Embedded;
+
 import CaracteristicaPoi.Ubicacion;
 
+@Embedded
 @javax.persistence.Entity
 @javax.persistence.DiscriminatorValue(value= "Banco")
 public class Banco extends Poi {

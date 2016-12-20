@@ -329,7 +329,7 @@ public abstract class CreadorDeObjetos {
 		terminal.agregarObserver(notificadorAdministrador);
 		notificadorAdministrador.setTiempoMaximoBusqueda(5);
 		List<Poi> poisEncontrados = Arrays.asList(parada114);
-		resultado = new Resultado(fecha, LocalTime.of(10, 40, 02), LocalTime.of(10, 40, 10), "sarasa", terminal, poisEncontrados);
+		resultado = new Resultado(fecha, "sarasa", terminal, poisEncontrados);
 		
 		terminal.notificarBusqueda(resultado,terminal);
 	}

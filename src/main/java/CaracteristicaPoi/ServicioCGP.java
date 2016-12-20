@@ -6,19 +6,12 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 
-import org.bson.types.ObjectId;
-
 @javax.persistence.Entity
 @javax.persistence.Table(name = "ServiciosCGP")
 public class ServicioCGP {
 	
-	@javax.persistence.Transient
-	@org.mongodb.morphia.annotations.Id
-	ObjectId id;
-	
 	@javax.persistence.Id
 	@javax.persistence.GeneratedValue
-	@org.mongodb.morphia.annotations.Transient
 	private long idServicioCGP;
 	
 	private String nombre;
