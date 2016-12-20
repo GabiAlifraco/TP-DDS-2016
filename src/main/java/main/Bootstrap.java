@@ -164,7 +164,6 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			//Palabras y disponibilidad comun a todas las paradas
 			List<String> palabrasClaveParada = Arrays.asList("Colectivo", "Parada");
 		
-			
 			ParadaColectivo parada114=new ParadaColectivo();
 			parada114.setNombre("Parada_114");
 			Punto coordenadaParada = new Punto(37.3598, 98.2843);
@@ -216,11 +215,61 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			parada37.setPalabrasClave(palabrasClaveParada);
 			parada37.setHorariosDeAtencion(horariosParada3);
 
+			ParadaColectivo parada19=new ParadaColectivo();
+			parada19.setNombre("Parada_19");
+			Domicilio domicilioParada4 = new Domicilio("Avenida_Corrientes",6700, " Avenida_Federico_Lacroze", "Maure", 4200, 0, 0, 0, 1420);
+			Region regionParada4 = new Region("Once", "Plaza_Miserere", "Buenos_Aires", "Argentina");
+			Punto coordenadaParada4 = new Punto(119.5124, 18.7652);
+			Ubicacion ubicacionParada4 = new Ubicacion();
+			ubicacionParada4.setCoordenadas(coordenadaParada4);
+			ubicacionParada4.setDomicilio(domicilioParada4);
+			ubicacionParada4.setRegion(regionParada4);
+			parada19.setUbicacion(ubicacionParada4);
+			Disponibilidad horarioParada4 =new Disponibilidad();
+			horarioParada4.setHorarioInicial(LocalTime.of(00,00));
+			horarioParada4.setHorarioFinal(LocalTime.of(23,59));
+			List<Disponibilidad> horariosParada4=Arrays.asList(horarioParada4);
+			parada19.setPalabrasClave(palabrasClaveParada);
+			parada19.setHorariosDeAtencion(horariosParada4);
+			
+			ParadaColectivo parada70=new ParadaColectivo();
+			parada70.setNombre("Parada_70");
+			Domicilio domicilioParada5 = new Domicilio("Iriarte",3400, " Vieytes ", "Luna", 1500, 0, 0, 0, 1218);
+			Region regionParada5 = new Region("Nueva_Pompeya", "Omnibus_Retiro", "Buenos_Aires", "Argentina");
+			Punto coordenadaParada5 = new Punto(113.4567, 15.3754);
+			Ubicacion ubicacionParada5 = new Ubicacion();
+			ubicacionParada5.setCoordenadas(coordenadaParada5);
+			ubicacionParada5.setDomicilio(domicilioParada5);
+			ubicacionParada5.setRegion(regionParada5);
+			parada70.setUbicacion(ubicacionParada5);
+			Disponibilidad horarioParada5 =new Disponibilidad();
+			horarioParada5.setHorarioInicial(LocalTime.of(00,00));
+			horarioParada5.setHorarioFinal(LocalTime.of(23,59));
+			List<Disponibilidad> horariosParada5=Arrays.asList(horarioParada5);
+			parada70.setPalabrasClave(palabrasClaveParada);
+			parada70.setHorariosDeAtencion(horariosParada5);
+			
+			ParadaColectivo parada47=new ParadaColectivo();
+			parada47.setNombre("Parada_47");
+			Domicilio domicilioParada6 = new Domicilio("Avenida_Juan_Bautista_Justo",9700, " General_Paz ", "Nogoya", 6200, 0, 0, 0, 1325);
+			Region regionParada6 = new Region("Liniers", "Federico_Lacroze", "Buenos_Aires", "Argentina");
+			Punto coordenadaParada6 = new Punto(152.3456, 21.7891);
+			Ubicacion ubicacionParada6 = new Ubicacion();
+			ubicacionParada6.setCoordenadas(coordenadaParada6);
+			ubicacionParada6.setDomicilio(domicilioParada6);
+			ubicacionParada6.setRegion(regionParada6);
+			parada47.setUbicacion(ubicacionParada6);
+			Disponibilidad horarioParada6 =new Disponibilidad();
+			horarioParada6.setHorarioInicial(LocalTime.of(00,00));
+			horarioParada6.setHorarioFinal(LocalTime.of(23,59));
+			List<Disponibilidad> horariosParada6=Arrays.asList(horarioParada6);
+			parada47.setPalabrasClave(palabrasClaveParada);
+			parada47.setHorariosDeAtencion(horariosParada6);
+			
 			//Creo Bancos
 			
 			List<String> palabrasClaveBanco = Arrays.asList("banco","tarjeta");
 
-			
 			Banco banco1= new Banco();
 			banco1.setNombre("Banco_HSBC");
 			Punto coordenadaBanco1 = new Punto(22.9577, 34.0056);
@@ -255,7 +304,6 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			banco2.setPalabrasClave(palabrasClaveBanco);
 			banco2.setHorariosDeAtencion(horariosBanco2);
 
-			
 			Banco banco3= new Banco();
 			banco3.setNombre("Banco_Comafi");
 			Punto coordenadaBanco3 = new Punto(132.6577, 37.8845);
@@ -293,8 +341,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			List<Disponibilidad> horariosComercio1 = Arrays.asList(disponibilidadComercio1);
 			comercio1.setPalabrasClave(palabrasClaveComercio);
 			comercio1.setHorariosDeAtencion(horariosComercio1);
-		  
-
+		 
 			Comercio comercio2= new Comercio();
 			comercio2.setNombre("Vans_S.R.L");
 			Punto coordenadaComercio2 = new Punto(6.9856, 137.0324);
@@ -311,7 +358,6 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			List<Disponibilidad> horariosComercio2 = Arrays.asList(disponibilidadComercio2);
 			comercio2.setPalabrasClave(palabrasClaveComercio);
 			comercio2.setHorariosDeAtencion(horariosComercio2);
-	
 			
 			Comercio comercio3= new Comercio();
 			comercio3.setNombre("Solo_Deportes_S.A");
@@ -394,6 +440,9 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		    persist(parada114);
 		    persist(comercio2);
 		    persist(parada146);
+		    persist(parada19);
+		    persist(parada47);
+		    persist(parada70);
 		    persist(comercio3);
 		    persist(abasto);
 			persist(villacrespo);
