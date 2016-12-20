@@ -1,12 +1,12 @@
 package main;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.joda.time.LocalDate;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
@@ -336,7 +336,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			Punto coordenadasa = new Punto(34.6030, -58.4107);
 			abasto.setCoordenadaDispositivoMovil(coordenadasa);
 			abasto.setComunaTerminal("3");
-			Terminal villacrespo = new Terminal("Terminal_VillaCrespo", servicios,new Usuario("terminalVC","elmejorbarrio123","terminal"));
+			Terminal villacrespo = new Terminal("Terminal_VillaCrespo", servicios,new Usuario("terminalVC","elmejorbarrio123","TERMINAL"));
 			Punto coordenadasVC = new Punto(-34.5972, 58.4415);
 			villacrespo.setCoordenadaDispositivoMovil(coordenadasVC);
 			villacrespo.setComunaTerminal("15");
@@ -356,14 +356,14 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			poisEncontrados4.add(cgpComuna1);
 			poisEncontrados4.add(cgpComuna2);
 			poisEncontrados4.add(cgpComuna3);
-			Resultado resultado1=new Resultado(new LocalDate("2005-07-16"),"Banco",abasto,poisEncontrados);
-			Resultado resultado2=new Resultado(new LocalDate("2006-03-10"),"CGP",villacrespo,poisEncontrados2);
-			Resultado resultado3=new Resultado(new LocalDate("2005-07-16"),"Banco",abasto,poisEncontrados3);
-			Resultado resultado4=new Resultado(new LocalDate("2005-07-16"),"Banco",villacrespo,poisEncontrados4);
-			datastore.save(resultado1);
-			datastore.save(resultado2);
-			datastore.save(resultado3);
-			datastore.save(resultado4);
+			//Resultado resultado1=new Resultado(LocalDate.parse("2005-03-01"),"Banco",abasto,poisEncontrados);
+			//Resultado resultado2=new Resultado(LocalDate.parse("2006-03-10"),"ParadaColectivo",villacrespo,poisEncontrados2);
+			//Resultado resultado3=new Resultado(LocalDate.parse("2014-01-20"),"Comercio",abasto,poisEncontrados3);
+			//Resultado resultado4=new Resultado(LocalDate.parse("2016-05-17"),"CGP",villacrespo,poisEncontrados4);
+			//datastore.save(resultado1);
+			//datastore.save(resultado2);
+			//datastore.save(resultado3);
+			//datastore.save(resultado4);
 			
 			beginTransaction();
 		    withTransaction(() -> {

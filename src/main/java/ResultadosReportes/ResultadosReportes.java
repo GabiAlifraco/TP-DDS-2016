@@ -1,9 +1,13 @@
 package ResultadosReportes;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import org.joda.time.DateTime;
 
 import Notificaciones.AlmacenadorBusquedas;
 import Resultado.Resultado;
@@ -14,9 +18,9 @@ public class ResultadosReportes {
 	private AlmacenadorBusquedas almacenador = AlmacenadorBusquedas.getInstance();
 
 	
-	public Map<org.joda.time.LocalDate, Integer> getReportePorFecha(Terminal terminal) {
+	public Map<Date, Integer> getReportePorFecha(Terminal terminal) {
 		if (almacenador.getTerminalesActivadas().contains(terminal)) {
-			Map<org.joda.time.LocalDate, Integer> reportePorFecha = new HashMap<org.joda.time.LocalDate, Integer>();
+			Map<Date, Integer> reportePorFecha = new HashMap<Date, Integer>();
 
 			for (Resultado resultado : almacenador.getResultadosEncontrados().get(terminal)) {
 				if (reportePorFecha.containsKey(resultado.getFecha())) {

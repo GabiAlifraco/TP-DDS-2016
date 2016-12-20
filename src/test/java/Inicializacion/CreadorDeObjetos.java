@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.joda.time.DateTime;
+
 import CaracteristicaPoi.Disponibilidad;
 import CaracteristicaPoi.Domicilio;
 import CaracteristicaPoi.Punto;
@@ -316,14 +318,14 @@ public abstract class CreadorDeObjetos {
 	//Envio de Mail
 	
 	private Resultado resultado;
-	private org.joda.time.LocalDate fecha;
+	private LocalDate fecha;
 	protected MockNotificadorAdministrador notificadorAdministrador;
 	private Terminal terminal;
 	private List<OrigenDeDatos> servicios;
 	
 	protected void crearMail(){
 		
-		fecha = org.joda.time.LocalDate.parse("2016-10-16");
+		fecha = LocalDate.parse("2016-10-16");
 		notificadorAdministrador = new MockNotificadorAdministrador();
 		terminal = new Terminal("Terminal Abasto", servicios);
 		terminal.agregarObserver(notificadorAdministrador);

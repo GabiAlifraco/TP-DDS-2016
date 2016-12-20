@@ -1,18 +1,21 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
+import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Morphia;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
+import com.mongodb.MongoClient;
 
-
-
-
+import converter.LocalDateConverter;
 import Accesos.Usuario;
 import CaracteristicaPoi.Punto;
 import OrigenesDeDatos.Mapa;
@@ -20,6 +23,7 @@ import OrigenesDeDatos.OrigenDeDatos;
 import OrigenesDeDatos.ProveedorBancos;
 import OrigenesDeDatos.ProveedorCGPs;
 import Pois.Poi;
+import Resultado.Resultado;
 import Terminal.AdministradorTerminales;
 import Terminal.Terminal;
 import spark.ModelAndView;
@@ -196,8 +200,30 @@ public ModelAndView actualizarTerminal(Request request, Response response) {
 	}
 	
 public ModelAndView mostrarHistorialFiltroFecha(Request request, Response response){
+	
+		String desde=request.queryParams("desdeFecha");
+		String hasta=request.queryParams("hastaFecha");
 		
-		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(null, "admHistorial.hbs"));
+		final Morphia morphia=new Morphia();
+		morphia.getMapper().getConverters().addConverter(LocalDateConverter.class);
+		morphia.mapPackage("Resultado");
+		morphia.mapPackage("Pois");
+  		final Datastore datastore = morphia.createDatastore(new MongoClient(), "tpAnual");
+  		datastore.ensureIndexes();
+  		List<Resultado> misResultados=datastore.createQuery(Resultado.class).asList();
+		if(!desde.isEmpty()){
+			
+			Date desdeFecha=asDate(desde);
+			misResultados=misResultados.stream().filter(res->res.getFecha().after(desdeFecha)).collect(Collectors.toList());
+		}
+		if(!hasta.isEmpty()){
+			
+			Date hastaFecha=asDate(hasta);
+			misResultados=misResultados.stream().filter(res->res.getFecha().before(hastaFecha)).collect(Collectors.toList());
+		}
+		Map<String, List<Resultado>> historias = new HashMap<>();
+		historias.put("misResultados", misResultados);
+		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(historias, "admHistorial.hbs"));
 	}
 	
 	public ModelAndView mostrarHistorialFiltroResultados(Request request, Response response){
@@ -211,4 +237,8 @@ public ModelAndView mostrarHistorialFiltroFecha(Request request, Response respon
 		
 		return this.redirigirSegunPermisos(request, response, "administrador", new ModelAndView(null, "admHistorial.hbs"));
 	}
+	
+	public static Date asDate(String localDate) {
+	    return java.sql.Date.valueOf(localDate);
+	  }
 }

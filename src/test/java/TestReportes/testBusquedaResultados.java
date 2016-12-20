@@ -2,8 +2,8 @@ package TestReportes;
 
 import java.time.LocalDate;
 
+import org.joda.time.DateTime;
 import org.junit.*;
-import org.junit.Before;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
@@ -45,15 +45,15 @@ public class testBusquedaResultados {
 		resultadoFlorida = new Resultado();
 
 		resultadoAbasto.setCantidadDeResultados(20);
-		resultadoAbasto.setFecha(org.joda.time.LocalDate.parse("2016-05-10"));
+		resultadoAbasto.setFecha(LocalDate.parse("2016-05-10"));
 		resultadoAbasto.setTerminal(terminalAbasto);
 
 		resultadoAbasto2.setCantidadDeResultados(5);
-		resultadoAbasto2.setFecha(org.joda.time.LocalDate.parse("2016-09-10"));
+		resultadoAbasto2.setFecha(LocalDate.parse("2016-09-10"));
 		resultadoAbasto2.setTerminal(terminalAbasto);
 
 		resultadoFlorida.setCantidadDeResultados(5);
-		resultadoFlorida.setFecha(org.joda.time.LocalDate.parse("2016-10-10"));
+		resultadoFlorida.setFecha(LocalDate.parse("2016-10-10"));
 		resultadoFlorida.setTerminal(terminalFlorida);
 		
 		datastore.save(resultadoAbasto);

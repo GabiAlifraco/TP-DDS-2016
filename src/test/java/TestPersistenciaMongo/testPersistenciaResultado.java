@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -37,7 +38,7 @@ public class testPersistenciaResultado {
 	Punto coordenadas;
 	Terminal terminal;
 	Resultado resultado;
-	org.joda.time.LocalDate fecha;
+	LocalDate fecha;
 	String fraseBuscada;
 	int totalResultados;
 	LocalTime horaInicio;
@@ -69,7 +70,7 @@ public class testPersistenciaResultado {
 		coordenadas = new Punto(-34.6030, -58.4107);
 		terminal.setCoordenadaDispositivoMovil(coordenadas);
 		terminal.setComunaTerminal("3");
-		fecha = org.joda.time.LocalDate.parse("2016-09-10");
+		fecha = LocalDate.parse("2016-09-10");
 		horaInicio = LocalTime.of(11, 59);
 		horaFin = LocalTime.of(12, 03);
 		fraseBuscada = "Parada 132";
