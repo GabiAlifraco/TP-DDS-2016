@@ -23,6 +23,9 @@ public class AdministradorTerminales implements WithGlobalEntityManager {
 			entityManager().persist(terminal);
 		}
 	}
+	public void modificarTerminal(Terminal terminal) {
+		entityManager().merge(terminal);
+	}
 
 	public void eliminarTerminal(Terminal terminal) {
 		List<Terminal> encontradas=entityManager().createQuery("from Terminal",Terminal.class).getResultList();

@@ -160,6 +160,26 @@ public class AdministracionPoisController extends Controller implements WithGlob
 		
 	}
 	
+public ModelAndView actualizarTerminal(Request request, Response response) {
+		
+		Long id = Long.parseLong(request.params(":id"));
+		Terminal terminal=AdministradorTerminales.getInstance().buscarTerminal(id);
+		terminal.setNombreTerminal(request.queryParams("nombreTerminal"));
+		terminal.setComunaTerminal(request.queryParams("comuna"));
+		terminal.getUsuario().setUser(request.queryParams("nombreTerminal"));
+		if(!Objects.isNull(request.queryParams("pass"))){
+		terminal.getUsuario().setPassword(request.queryParams("pass"));
+		}
+		terminal.getCoordenadaDispositivoMovil().setLatitud(Double.parseDouble(request.queryParams("latitud")));
+		terminal.getCoordenadaDispositivoMovil().setLongitud(Double.parseDouble(request.queryParams("longitud")));
+		withTransaction(() ->{
+			AdministradorTerminales.getInstance().modificarTerminal(terminal);
+			response.redirect("/administrador");
+		});
+    	return null;
+		
+	}
+	
 	public static double redondearDecimales(double valorInicial, int numeroDecimales) {
         double parteEntera, resultado;
         resultado = valorInicial;

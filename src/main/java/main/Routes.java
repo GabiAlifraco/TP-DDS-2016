@@ -52,7 +52,7 @@ public class Routes {
 		get("/administrador/terminales",administracion::mostrarTerminales,engine);//Muestro terminales
 		get("/administrador/terminales/:id", administracion::eliminarTerminal,engine);
 		get("/administrador/terminales/modificar/:id", administracion::modificarTerminal,engine);
-       // get("/administrador/terminales/modificar/guardar/:id", administracion::actualizarTerminal,engine);
+		get("/administrador/terminales/modificar/guardar/:id", administracion::actualizarTerminal,engine);
 		
 		
 		get("/administrador/historial",administracion::mostrarHistorial,engine);//Muestro historial de Consultas
@@ -65,6 +65,6 @@ public class Routes {
 		get("/terminal/cgps",terminal::mostrarCgps,engine);
 		get("/terminal/paradas",terminal::mostrarParadas,engine);
 		get("/terminal/locales",terminal::mostrarLocales,engine);
-		//get("/terminal/detalle/:id",terminal::mostrarDetalle,engine); //Veo el detalle del Poi
+		get("/terminal/detalle/:id",terminal::mostrarDetalle,engine); //Veo el detalle del Poi
 	}
 }
