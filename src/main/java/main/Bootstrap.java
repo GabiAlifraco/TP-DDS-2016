@@ -479,10 +479,14 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			Resultado resultado2=new Resultado(LocalDate.parse("2006-03-10"),"ParadaColectivo",palermo,poisEncontrados2);
 			Resultado resultado3=new Resultado(LocalDate.parse("2014-01-20"),"Comercio",flores,poisEncontrados3);
 			Resultado resultado4=new Resultado(LocalDate.parse("2016-05-17"),"CGP",villacrespo,poisEncontrados4);
+			Resultado resultado5=new Resultado(LocalDate.parse("2017-01-01"),"Comercio",abasto,poisEncontrados3);
+			Resultado resultado6=new Resultado(LocalDate.parse("2010-11-21"),"ParadaColectivo",flores,poisEncontrados2);
 			datastore.save(resultado1);
 			datastore.save(resultado2);
 			datastore.save(resultado3);
 			datastore.save(resultado4);
+			datastore.save(resultado5);
+			datastore.save(resultado6);
 			
 			beginTransaction();
 		    withTransaction(() -> {

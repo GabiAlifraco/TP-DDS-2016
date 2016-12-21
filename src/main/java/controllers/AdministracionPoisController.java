@@ -275,7 +275,6 @@ public ModelAndView mostrarHistorialFiltroFecha(Request request, Response respon
   			
   			}
   			Resultado terminalBuscada = new Resultado(LocalDate.now(),"TERMINAL",misResultados.get(0).getTerminal(),poisTotales);
-  			datastore.save(terminalBuscada);
   			porTerminal.add(terminalBuscada);
   		}
   		
@@ -298,13 +297,13 @@ public ModelAndView mostrarHistorialFiltroFecha(Request request, Response respon
   		List<Resultado> resultados=datastore.createQuery(Resultado.class).asList();
   		List<Poi> poisTotales=new ArrayList<Poi>();
   		resultados=resultados.stream().filter(res->res.getTerminal().getNombreTerminal().equalsIgnoreCase(nombreTerminal)).collect(Collectors.toList());
-  		Resultado resultado=resultados.get(0);
   		if(nombreTerminal!=null){
+  			for(Resultado resultado:resultados){
   			for(Poi poi:resultado.getPoisEncontrados()){
   				poisTotales.add(poi);
   			}
   			}
-  		
+  		}
   		
   		Map<String, List<Poi>> historias = new HashMap<>();
   		historias.put("poisTotales", poisTotales);
